@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Химиялық реакция жылдамдығы</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=Unbounded:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+/*CSS*/
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <a class="logo" href="#s1" aria-label="⟦Басты бет‖Главная‖Home⟧">
+    <span class="logo-mark">v</span>
+    <span class="logo-text">⟦Кинетика‖Кинетика‖Kinetics⟧</span>
+  </a>
+  <div class="chapter" id="chapter" aria-live="polite"></div>
+  <div class="lang" role="group" aria-label="⟦Тіл‖Язык‖Language⟧">
+    <button type="button" data-lang="kk" aria-pressed="true">Қаз</button>
+    <button type="button" data-lang="ru" aria-pressed="false">Рус</button>
+    <button type="button" data-lang="en" aria-pressed="false">Eng</button>
+  </div>
+  <button class="menu-btn" type="button" id="menuBtn" aria-haspopup="dialog" aria-expanded="false" aria-controls="menu">
+    <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><rect x="1" y="1" width="6" height="6" rx="1.5"/><rect x="9" y="1" width="6" height="6" rx="1.5"/><rect x="1" y="9" width="6" height="6" rx="1.5"/><rect x="9" y="9" width="6" height="6" rx="1.5"/></svg>
+    <span>⟦Барлық слайдтар‖Все слайды‖All slides⟧</span>
+  </button>
+</header>
+
+<div class="menu" id="menu" role="dialog" aria-modal="true" aria-labelledby="menuTitle">
+  <div class="menu-panel">
+    <div class="menu-head">
+      <h2 id="menuTitle">⟦Барлық слайдтар‖Все слайды‖All slides⟧</h2>
+      <button class="icon-btn" type="button" id="menuClose" aria-label="⟦Жабу‖Закрыть‖Close⟧">✕</button>
+    </div>
+    <ul class="menu-list" id="menuList"></ul>
+  </div>
+</div>
+
+<main class="stage" id="stage">
+<!--SLIDES-->
+</main>
+
+<nav class="navbar" aria-label="⟦Слайдтар навигациясы‖Навигация по слайдам‖Slide navigation⟧">
+  <button class="nav-arrow nav-prev" type="button" id="prevBtn" aria-label="⟦Алдыңғы слайд‖Предыдущий слайд‖Previous slide⟧">
+    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.5 4 6.5 10l6 6"/></svg>
+  </button>
+  <div class="nav-info">
+    <div class="nav-title" id="navTitle"></div>
+    <div class="nav-count" id="navCount"></div>
+  </div>
+  <div class="dots" id="dots"></div>
+  <button class="nav-arrow nav-next" type="button" id="nextBtn" aria-label="⟦Келесі слайд‖Следующий слайд‖Next slide⟧">
+    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.5 4l6 6-6 6"/></svg>
+  </button>
+</nav>
+<div class="tip" id="tip" role="tooltip"></div>
+
+<script>
+/*JS*/
+</script>
+</body>
+</html>

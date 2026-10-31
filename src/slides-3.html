@@ -1,0 +1,219 @@
+<!-- ===================== 9. 06 Вант-Гофф және Аррениус ===================== -->
+<section class="slide" id="s9">
+<div class="wrap stack">
+  <div class="chead">
+    <div class="num">06</div>
+    <div>
+      <h2>⟦Вант-Гофф ережесі және Аррениус теңдеуі‖Правило Вант-Гоффа и уравнение Аррениуса‖Van 't Hoff's rule and the Arrhenius equation⟧</h2>
+      <p>⟦Температураның жылдамдыққа әсерін сандық бағалау‖Количественная оценка влияния температуры на скорость‖Putting a number on how temperature affects the rate⟧</p>
+    </div>
+  </div>
+
+  <div class="grid g2">
+    <div class="card">
+      <h3>⟦Вант-Гофф ережесі‖Правило Вант-Гоффа‖Van 't Hoff's rule⟧</h3>
+      <p>⟦Температура 10 °C-қа көтерілгенде көптеген реакциялардың жылдамдығы 2–4 есе артады (Я. Вант-Гофф, 1884).‖При повышении температуры на 10 °C скорость большинства реакций возрастает в 2–4 раза (Я. Вант-Гофф, 1884).‖When the temperature rises by 10 °C, the rate of most reactions increases 2–4 times (J. van 't Hoff, 1884).⟧</p>
+      <div class="formula"><span class="frac"><span><i>v</i>₂</span><span><i>v</i>₁</span></span> = γ<sup>(<i>t</i>₂ − <i>t</i>₁)/10</sup> &nbsp;&nbsp; <span class="frac"><span>τ₁</span><span>τ₂</span></span> = γ<sup>Δ<i>t</i>/10</sup></div>
+      <dl class="legend">
+        <dt>v₁, v₂</dt><dd>⟦t₁ және t₂ температурадағы жылдамдық‖скорости при температурах t₁ и t₂‖rates at temperatures t₁ and t₂⟧</dd>
+        <dt>γ</dt><dd>⟦температуралық коэффициент (әдетте 2–4)‖температурный коэффициент (обычно 2–4)‖temperature coefficient (usually 2–4)⟧</dd>
+        <dt>t₁, t₂</dt><dd>⟦бастапқы және соңғы температура, °C‖начальная и конечная температура, °C‖initial and final temperature, °C⟧</dd>
+        <dt>τ₁, τ₂</dt><dd>⟦реакцияның жүру уақыты (жылдамдыққа кері пропорционал)‖время протекания реакции (обратно пропорционально скорости)‖reaction time (inversely proportional to the rate)⟧</dd>
+      </dl>
+    </div>
+    <div class="card">
+      <h3>⟦Аррениус теңдеуі‖Уравнение Аррениуса‖Arrhenius equation⟧</h3>
+      <p>⟦Жылдамдық константасының температураға және активтендіру энергиясына дәл тәуелділігі (С. Аррениус, 1889).‖Точная зависимость константы скорости от температуры и энергии активации (С. Аррениус, 1889).‖The exact dependence of the rate constant on temperature and activation energy (S. Arrhenius, 1889).⟧</p>
+      <div class="formula"><i>k</i> = <i>A</i> · e<sup>−<i>E</i><sub>a</sub>/<i>RT</i></sup></div>
+      <div class="formula">ln <span class="frac"><span><i>k</i>₂</span><span><i>k</i>₁</span></span> = <span class="frac"><span><i>E</i><sub>a</sub></span><span><i>R</i></span></span>(<span class="frac"><span>1</span><span><i>T</i>₁</span></span> − <span class="frac"><span>1</span><span><i>T</i>₂</span></span>)</div>
+      <dl class="legend">
+        <dt>k₁, k₂</dt><dd>⟦T₁ және T₂ кезіндегі жылдамдық константалары‖константы скорости при T₁ и T₂‖rate constants at T₁ and T₂⟧</dd>
+        <dt>A</dt><dd>⟦экспонента алдындағы көбейткіш (соқтығысу жиілігі мен бағытқа байланысты)‖предэкспоненциальный множитель (связан с частотой и ориентацией столкновений)‖pre-exponential factor (linked to collision frequency and orientation)⟧</dd>
+        <dt>Eₐ</dt><dd>⟦активтендіру энергиясы, Дж/моль‖энергия активации, Дж/моль‖activation energy, J/mol⟧</dd>
+        <dt>R</dt><dd>⟦әмбебап газ тұрақтысы, 8,314 Дж/(моль·К)‖универсальная газовая постоянная, 8,314 Дж/(моль·К)‖universal gas constant, 8.314 J/(mol·K)⟧</dd>
+        <dt>T</dt><dd>⟦абсолют температура, К (T = t + 273,15)‖абсолютная температура, К (T = t + 273,15)‖absolute temperature, K (T = t + 273.15)⟧</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="grid g3">
+    <div class="card">
+      <h3>⟦Калькулятор: Вант-Гофф‖Калькулятор: Вант-Гофф‖Calculator: Van 't Hoff⟧</h3>
+      <div class="fields">
+        <label class="field">γ<input type="text" inputmode="decimal" id="vhG" value="2,5"></label>
+        <label class="field">⟦t₁, °C‖t₁, °C‖t₁, °C⟧<input type="text" inputmode="decimal" id="vhT1" value="20"></label>
+        <label class="field">⟦t₂, °C‖t₂, °C‖t₂, °C⟧<input type="text" inputmode="decimal" id="vhT2" value="50"></label>
+        <label class="field">⟦τ₁, с (уақыт)‖τ₁, с (время)‖τ₁, s (time)⟧<input type="text" inputmode="decimal" id="vhTau" value="60"></label>
+      </div>
+      <div class="result" id="vhRes" aria-live="polite"></div>
+    </div>
+    <div class="card">
+      <h3>⟦Калькулятор: Аррениус‖Калькулятор: Аррениус‖Calculator: Arrhenius⟧</h3>
+      <div class="seg" role="group" aria-label="⟦Есептеу режимі‖Режим расчёта‖Calculation mode⟧" style="margin-bottom:12px">
+        <button type="button" id="arModeK" aria-pressed="true">⟦k₂/k₁ табу‖Найти k₂/k₁‖Find k₂/k₁⟧</button>
+        <button type="button" id="arModeE" aria-pressed="false">⟦Eₐ табу‖Найти Eₐ‖Find Eₐ⟧</button>
+      </div>
+      <div class="fields">
+        <label class="field" id="arEaF">⟦Eₐ, кДж/моль‖Eₐ, кДж/моль‖Eₐ, kJ/mol⟧<input type="text" inputmode="decimal" id="arEa" value="50"></label>
+        <label class="field" id="arRF" hidden>k₂/k₁<input type="text" inputmode="decimal" id="arR" value="2"></label>
+        <label class="field">⟦t₁, °C‖t₁, °C‖t₁, °C⟧<input type="text" inputmode="decimal" id="arT1" value="25"></label>
+        <label class="field">⟦t₂, °C‖t₂, °C‖t₂, °C⟧<input type="text" inputmode="decimal" id="arT2" value="35"></label>
+      </div>
+      <div class="result" id="arRes" aria-live="polite"></div>
+    </div>
+    <div class="card">
+      <h3>⟦Калькулятор: массалар заңы‖Калькулятор: закон действующих масс‖Calculator: law of mass action⟧</h3>
+      <label class="field" style="margin-bottom:12px">⟦Реакция‖Реакция‖Reaction⟧
+        <select id="maRx">
+          <option value="0">2NO + O₂ → 2NO₂</option>
+          <option value="1">H₂ + I₂ → 2HI</option>
+          <option value="2">2SO₂ + O₂ → 2SO₃</option>
+          <option value="3">⟦C(қ) + O₂ → CO₂‖C(тв) + O₂ → CO₂‖C(s) + O₂ → CO₂⟧</option>
+        </select>
+      </label>
+      <div class="fields" id="maFields"></div>
+      <label class="field" style="margin-top:12px">⟦Қысым неше есе артады‖Во сколько раз растёт давление‖Pressure multiplied by⟧<input type="text" inputmode="decimal" id="maP" value="1"></label>
+      <div class="result" id="maRes" aria-live="polite"></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ===================== 10. 07 Катализ ===================== -->
+<section class="slide" id="s10">
+<div class="wrap stack">
+  <div class="chead">
+    <div class="num">07</div>
+    <div>
+      <h2>⟦Катализ‖Катализ‖Catalysis⟧</h2>
+      <p>⟦Катализатор реакцияны қалай тездетеді?‖Как катализатор ускоряет реакцию?‖How does a catalyst speed up a reaction?⟧</p>
+    </div>
+  </div>
+
+  <div class="grid g2">
+    <div class="card def">
+      <div class="def-head">⟦Катализатор‖Катализатор‖Catalyst⟧</div>
+      <div class="def-row"><span>⟦Ғылыми анықтама‖Научное определение‖Scientific definition⟧</span><p>⟦Реакцияны тездететін, аралық сатыларға қатысатын, бірақ реакция соңында химиялық құрамы мен мөлшері өзгермей қалпына келетін зат. Катализатор қатысатын құбылыс — катализ.‖Вещество, которое ускоряет реакцию, участвует в промежуточных стадиях, но к концу реакции восстанавливается с неизменным составом и количеством. Явление с участием катализатора — катализ.‖A substance that speeds up a reaction and takes part in intermediate steps, but is regenerated with unchanged composition and amount at the end. The process involving a catalyst is called catalysis.⟧</p></div>
+      <div class="def-row simple"><span>⟦Қарапайым тілмен‖Простыми словами‖In simple words⟧</span><p>⟦Реакцияға «жол көрсетуші»: өзі жұмсалмай, бөлшектерге оңай жол табуға көмектеседі.‖«Проводник» реакции: сам не расходуется, но помогает частицам найти лёгкий путь.‖A “guide” for the reaction: it is not used up but helps particles find an easier path.⟧</p></div>
+      <div class="def-row ex"><span>⟦Мысалы‖Пример‖Example⟧</span><p>⟦<span class="chem">2H₂O₂ → 2H₂O + O₂</span> — MnO₂ ұнтағын қосқанда сутек пероксиді бірден көпіршіп ыдырайды, ал MnO₂ өзгеріссіз қалады.‖<span class="chem">2H₂O₂ → 2H₂O + O₂</span> — при добавлении порошка MnO₂ пероксид водорода бурно разлагается, а MnO₂ остаётся неизменным.‖<span class="chem">2H₂O₂ → 2H₂O + O₂</span> — adding MnO₂ powder makes hydrogen peroxide fizz and decompose at once, while the MnO₂ stays unchanged.⟧</p></div>
+    </div>
+    <div class="stack">
+      <div class="card">
+        <h3>⟦Катализ механизмі‖Механизм катализа‖Mechanism of catalysis⟧</h3>
+        <div class="mech" aria-label="A + K → AK → AB + K">
+          <span class="ball a">A</span><span class="op">+</span><span class="ball k">K</span><span class="op">→</span><span class="ball ak">AK</span><span class="op">→</span><span class="ball ab">AB</span><span class="op">+</span><span class="ball k">K</span>
+        </div>
+        <ol class="list small">
+          <li>⟦<b>A + K → AK.</b> Катализатор бастапқы затпен аралық қосылыс түзеді (Eₐ₁ кіші).‖<b>A + K → AK.</b> Катализатор образует с исходным веществом промежуточное соединение (Eₐ₁ мала).‖<b>A + K → AK.</b> The catalyst forms an intermediate compound with the reactant (small Eₐ₁).⟧</li>
+          <li>⟦<b>AK + B → AB + K.</b> Аралық қосылыс екінші затпен әрекеттесіп, өнім түзеді, ал катализатор босайды (Eₐ₂ кіші).‖<b>AK + B → AB + K.</b> Промежуточное соединение реагирует со вторым веществом, образуется продукт, а катализатор освобождается (Eₐ₂ мала).‖<b>AK + B → AB + K.</b> The intermediate reacts with the second substance to give the product and the catalyst is released (small Eₐ₂).⟧</li>
+        </ol>
+        <p class="small muted" style="margin-top:8px">⟦Екі төмен «төбе» бір биік төбеден оңай өтіледі: Eₐ₁ және Eₐ₂ &lt; Eₐ.‖Два низких «холма» преодолеть легче, чем один высокий: Eₐ₁ и Eₐ₂ &lt; Eₐ.‖Two low “hills” are easier to cross than one high one: Eₐ₁ and Eₐ₂ &lt; Eₐ.⟧</p>
+      </div>
+      <div class="card analogy">
+        <span class="label">⟦Ұқсату: тау арқылы өтетін туннель‖Аналогия: туннель через гору‖Analogy: a tunnel through a mountain⟧</span>
+        <p>⟦Таудың арғы бетіне асуға жол ұзақ әрі биік. Туннель қазылса, көліктер аз күшпен тез өтеді. Бастапқы және соңғы нүкте өзгермейді (ΔH бірдей), тек жол аласарады (Eₐ кемиді). Катализатор — химиялық туннель.‖Дорога через перевал длинная и высокая. Если прорыть туннель, машины проедут быстрее и с меньшими затратами. Начальная и конечная точки не меняются (ΔH тот же), меняется только высота пути (Eₐ снижается). Катализатор — химический туннель.‖The road over the pass is long and high. Dig a tunnel and cars get through faster with less effort. The start and end points stay the same (same ΔH); only the height of the path drops (lower Eₐ). A catalyst is a chemical tunnel.⟧</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>⟦Катализатордың қасиеттері‖Свойства катализаторов‖Properties of catalysts⟧</h3>
+    <div class="grid g3">
+      <p>⟦<b>Талғамдылық.</b> Әр катализатор белгілі бір реакцияны ғана тездетеді: бір шикізаттан әртүрлі катализатормен әртүрлі өнім алуға болады.‖<b>Избирательность.</b> Каждый катализатор ускоряет лишь определённую реакцию: из одного сырья с разными катализаторами можно получить разные продукты.‖<b>Selectivity.</b> Each catalyst speeds up only certain reactions: different catalysts can turn the same raw material into different products.⟧</p>
+      <p>⟦<b>Жұмсалмайды.</b> Аз мөлшері көп затты түрлендіре алады.‖<b>Не расходуется.</b> Малое количество может превратить много вещества.‖<b>Not consumed.</b> A small amount can convert a large amount of substance.⟧</p>
+      <p>⟦<b>Тепе-теңдікті ығыстырмайды.</b> Тура және кері реакцияларды бірдей тездетеді, тек тепе-теңдікке тезірек жеткізеді.‖<b>Не смещает равновесие.</b> Одинаково ускоряет прямую и обратную реакции, лишь быстрее приводит к равновесию.‖<b>Does not shift equilibrium.</b> It speeds up the forward and reverse reactions equally and only helps reach equilibrium sooner.⟧</p>
+      <p>⟦<b>ΔH-ты өзгертпейді.</b> Жылу эффектісі бастапқы және соңғы күйге ғана тәуелді.‖<b>Не меняет ΔH.</b> Тепловой эффект зависит только от начального и конечного состояний.‖<b>Does not change ΔH.</b> The heat of reaction depends only on the initial and final states.⟧</p>
+      <p>⟦<b>Улануы мүмкін.</b> Кейбір қоспалар катализатордың белсенділігін жояды.‖<b>Может отравляться.</b> Некоторые примеси подавляют активность катализатора.‖<b>Can be poisoned.</b> Some impurities destroy a catalyst's activity.⟧</p>
+      <p>⟦<b>Ингибитор — керісінше.</b> Реакцияны баяулатады: тот, тағамның тотығуы, полимерлердің ескіруі.‖<b>Ингибитор — наоборот.</b> Замедляет реакцию: коррозию, окисление продуктов, старение полимеров.‖<b>An inhibitor does the opposite.</b> It slows reactions down: corrosion, food oxidation, ageing of polymers.⟧</p>
+    </div>
+  </div>
+
+  <div class="grid g3">
+    <div class="card">
+      <span class="tag a">⟦Гомогенді катализ‖Гомогенный катализ‖Homogeneous catalysis⟧</span>
+      <p style="margin-top:10px">⟦Катализатор мен әрекеттесуші заттар бір фазада болады.‖Катализатор и реагенты находятся в одной фазе.‖The catalyst and the reactants are in the same phase.⟧</p>
+      <ul class="list small" style="margin-top:8px">
+        <li>⟦H₂O₂ ыдырауы I⁻ иондарының қатысуымен (ерітіндіде)‖разложение H₂O₂ в присутствии ионов I⁻ (в растворе)‖decomposition of H₂O₂ with I⁻ ions (in solution)⟧</li>
+        <li>⟦күрделі эфирлердің H⁺ иондарымен гидролизі‖гидролиз сложных эфиров ионами H⁺‖hydrolysis of esters catalysed by H⁺ ions⟧</li>
+        <li>⟦<span class="chem">2SO₂ + O₂ → 2SO₃</span>, катализатор NO (камералық әдіс)‖<span class="chem">2SO₂ + O₂ → 2SO₃</span>, катализатор NO (камерный способ)‖<span class="chem">2SO₂ + O₂ → 2SO₃</span>, catalysed by NO (lead chamber process)⟧</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag b">⟦Гетерогенді катализ‖Гетерогенный катализ‖Heterogeneous catalysis⟧</span>
+      <p style="margin-top:10px">⟦Катализатор басқа фазада, көбіне қатты зат. Реакция бетте жүреді: адсорбция → әрекеттесу → десорбция.‖Катализатор в другой фазе, чаще твёрдый. Реакция идёт на поверхности: адсорбция → взаимодействие → десорбция.‖The catalyst is in a different phase, usually a solid. The reaction happens on the surface: adsorption → reaction → desorption.⟧</p>
+      <ul class="list small" style="margin-top:8px">
+        <li>⟦аммиак синтезі темір бетінде‖синтез аммиака на железе‖ammonia synthesis on iron⟧</li>
+        <li>⟦SO₂ тотығуы V₂O₅ бетінде‖окисление SO₂ на V₂O₅‖oxidation of SO₂ on V₂O₅⟧</li>
+        <li>⟦көлік газдарын Pt/Pd/Rh арқылы тазарту‖очистка выхлопных газов на Pt/Pd/Rh‖cleaning exhaust gases on Pt/Pd/Rh⟧</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag pink">⟦Автокатализ‖Автокатализ‖Autocatalysis⟧</span>
+      <p style="margin-top:10px">⟦Реакция өнімінің өзі катализатор болады. Реакция алдымен баяу жүріп, өнім жиналған сайын үдей түседі.‖Катализатором служит сам продукт реакции. Сначала реакция идёт медленно, а по мере накопления продукта ускоряется.‖A product of the reaction acts as the catalyst. The reaction starts slowly and speeds up as the product builds up.⟧</p>
+      <p class="small muted" style="margin-top:8px">⟦Мысалы, KMnO₄-тің қымыздық қышқылымен әрекеттесуі: түзілген Mn²⁺ иондары реакцияны тездетеді, күлгін түс алдымен баяу, кейін тез жоғалады.‖Например, реакция KMnO₄ с щавелевой кислотой: образующиеся ионы Mn²⁺ ускоряют её, и фиолетовая окраска сначала исчезает медленно, а потом быстро.‖For example, KMnO₄ reacting with oxalic acid: the Mn²⁺ ions formed speed it up, so the purple colour fades slowly at first and then quickly.⟧</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ===================== 11. 07 Ферменттер және өнеркәсіп ===================== -->
+<section class="slide" id="s11">
+<div class="wrap stack">
+  <div class="chead">
+    <div class="num">07</div>
+    <div>
+      <h2>⟦Ферменттер, промоторлар, каталитикалық улар‖Ферменты, промоторы, каталитические яды‖Enzymes, promoters and catalyst poisons⟧</h2>
+      <p>⟦Тірі ағзадағы және өнеркәсіптегі катализ‖Катализ в живых организмах и в промышленности‖Catalysis in living organisms and in industry⟧</p>
+    </div>
+  </div>
+
+  <div class="grid g2">
+    <div class="card def">
+      <div class="def-head">⟦Фермент (энзим)‖Фермент (энзим)‖Enzyme⟧</div>
+      <div class="def-row"><span>⟦Ғылыми анықтама‖Научное определение‖Scientific definition⟧</span><p>⟦Тірі ағзадағы реакцияларды тездететін ақуыз табиғатты биологиялық катализатор. Өте белсенді әрі талғампаз: әр фермент бір реакцияны ғана тездетеді.‖Биологический катализатор белковой природы, ускоряющий реакции в живом организме. Очень активен и избирателен: каждый фермент ускоряет одну реакцию.‖A protein-based biological catalyst that speeds up reactions in living organisms. It is highly active and selective: each enzyme speeds up one reaction.⟧</p></div>
+      <div class="def-row simple"><span>⟦Қарапайым тілмен‖Простыми словами‖In simple words⟧</span><p>⟦Ағзадағы «шағын зауыттар»: асты қорытады, энергия береді, уларды бейтараптайды.‖«Маленькие заводы» организма: переваривают пищу, дают энергию, обезвреживают яды.‖The body's “tiny factories”: they digest food, release energy and neutralise poisons.⟧</p></div>
+      <div class="def-row ex"><span>⟦Мысалы‖Пример‖Example⟧</span><p>⟦Каталаза бір секундта миллиондаған H₂O₂ молекуласын ыдыратады; сілекейдегі амилаза крахмалды ыдыратады — нанды ұзақ шайнасаңыз, тәтті дәм сезіледі.‖Каталаза разлагает миллионы молекул H₂O₂ в секунду; амилаза слюны расщепляет крахмал — если долго жевать хлеб, появляется сладкий вкус.‖Catalase breaks down millions of H₂O₂ molecules per second; salivary amylase breaks down starch, which is why bread tastes sweet if you chew it for a long time.⟧</p></div>
+    </div>
+    <div class="card">
+      <h3>⟦Ферменттің белсенділігі‖Активность фермента‖Enzyme activity⟧</h3>
+      <div class="chart" id="enzChart"></div>
+      <ul class="list small" style="margin-top:10px">
+        <li>⟦<b>Температура:</b> адам ферменттері үшін оңтайлысы ≈ 37 °C. 40–45 °C-тан жоғары ақуыз денатурацияланып, белсенділік жойылады — сондықтан жоғары қызу қауіпті.‖<b>Температура:</b> для ферментов человека оптимум ≈ 37 °C. Выше 40–45 °C белок денатурирует и активность теряется — поэтому высокая температура тела опасна.‖<b>Temperature:</b> the optimum for human enzymes is ≈ 37 °C. Above 40–45 °C the protein denatures and loses activity, which is why a high fever is dangerous.⟧</li>
+        <li>⟦<b>pH:</b> әр ферменттің өз оңтайлы pH мәні бар: пепсин (асқазан) ≈ 1,5–2, сілекей амилазасы ≈ 6,8, трипсин (ішек) ≈ 8.‖<b>pH:</b> у каждого фермента свой оптимум pH: пепсин (желудок) ≈ 1,5–2, амилаза слюны ≈ 6,8, трипсин (кишечник) ≈ 8.‖<b>pH:</b> each enzyme has its own optimum pH: pepsin (stomach) ≈ 1.5–2, salivary amylase ≈ 6.8, trypsin (intestine) ≈ 8.⟧</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="grid g3">
+    <div class="card analogy">
+      <span class="label">⟦Ұқсату: кілт пен құлып‖Аналогия: ключ и замок‖Analogy: lock and key⟧</span>
+      <p>⟦Ферменттің белсенді орталығы — құлып, субстрат — кілт. Құлыпты тек өз кілті ашады: пішіні сәйкес келмейтін молекула ферментке «кірмейді». Бұл модельді 1894 жылы Э. Фишер ұсынған.‖Активный центр фермента — замок, субстрат — ключ. Замок открывает только свой ключ: молекула неподходящей формы к ферменту «не подходит». Модель предложил Э. Фишер в 1894 году.‖The enzyme's active site is the lock and the substrate is the key. Only the right key opens the lock: a molecule of the wrong shape does not “fit” the enzyme. E. Fischer proposed this model in 1894.⟧</p>
+    </div>
+    <div class="card">
+      <h4>⟦Промоторлар‖Промоторы‖Promoters⟧</h4>
+      <p class="small">⟦Өзі катализатор емес, бірақ катализатордың белсенділігін арттыратын заттар. Мысалы, аммиак синтезіндегі темір катализаторына K₂O мен Al₂O₃ қосылады.‖Вещества, которые сами не катализируют, но усиливают действие катализатора. Например, к железному катализатору синтеза аммиака добавляют K₂O и Al₂O₃.‖Substances that are not catalysts themselves but boost a catalyst's activity. For example, K₂O and Al₂O₃ are added to the iron catalyst for ammonia synthesis.⟧</p>
+    </div>
+    <div class="card">
+      <h4>⟦Каталитикалық улар‖Каталитические яды‖Catalyst poisons⟧</h4>
+      <p class="small">⟦Катализатордың белсенді орталықтарын жауып, оны істен шығаратын заттар: күкірт және мышьяк қосылыстары, CO. Қорғасын қосылыстары көліктің платина катализаторын улайды — сондықтан қорғасынсыз бензин қолданылады.‖Вещества, которые блокируют активные центры катализатора и выводят его из строя: соединения серы и мышьяка, CO. Соединения свинца отравляют платиновый катализатор автомобиля — поэтому используют неэтилированный бензин.‖Substances that block a catalyst's active sites and disable it: sulfur and arsenic compounds, CO. Lead compounds poison a car's platinum catalyst, which is why unleaded petrol is used.⟧</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>⟦Өнеркәсіптегі катализаторлар‖Катализаторы в промышленности‖Industrial catalysts⟧</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>⟦Катализатор‖Катализатор‖Catalyst⟧</th><th>⟦Процесс‖Процесс‖Process⟧</th><th>⟦Теңдеу‖Уравнение‖Equation⟧</th></tr></thead>
+        <tbody>
+          <tr><td><b>Fe</b> <span class="muted">(+ K₂O, Al₂O₃)</span></td><td>⟦Аммиак синтезі (Габер–Бош)‖Синтез аммиака (Габер–Бош)‖Ammonia synthesis (Haber–Bosch)⟧</td><td class="chem">N₂ + 3H₂ ⇌ 2NH₃</td></tr>
+          <tr><td><b>V₂O₅</b></td><td>⟦Күкірт қышқылын өндіру (жанасу әдісі)‖Производство серной кислоты (контактный способ)‖Sulfuric acid production (contact process)⟧</td><td class="chem">2SO₂ + O₂ ⇌ 2SO₃</td></tr>
+          <tr><td><b>Pt–Rh</b></td><td>⟦Азот қышқылын өндіру: аммиакты тотықтыру‖Производство азотной кислоты: окисление аммиака‖Nitric acid production: oxidation of ammonia⟧</td><td class="chem">4NH₃ + 5O₂ → 4NO + 6H₂O</td></tr>
+          <tr><td><b>Ni</b></td><td>⟦Майларды гидрлеу (маргарин алу)‖Гидрирование жиров (получение маргарина)‖Hydrogenation of fats (making margarine)⟧</td><td class="chem">–CH=CH– + H₂ → –CH₂–CH₂–</td></tr>
+          <tr><td><b>⟦Цеолиттер‖Цеолиты‖Zeolites⟧</b></td><td>⟦Мұнай крекингі (Павлодар, Атырау, Шымкент МӨЗ)‖Крекинг нефти (НПЗ Павлодара, Атырау, Шымкента)‖Oil cracking (Pavlodar, Atyrau and Shymkent refineries)⟧</td><td class="chem">C₁₆H₃₄ → C₈H₁₈ + C₈H₁₆</td></tr>
+          <tr><td><b>Pt / Pd / Rh</b></td><td>⟦Көліктің каталитикалық бейтараптандырғышы‖Автомобильный каталитический нейтрализатор‖Car catalytic converter⟧</td><td class="chem">2CO + O₂ → 2CO₂<br>2NO + 2CO → N₂ + 2CO₂</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</section>
