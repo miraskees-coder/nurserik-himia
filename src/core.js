@@ -86,7 +86,7 @@ var SLIDES = [
   { n: "10", t: ["Тест", "Тест", "Quiz"] },
   { n: "11", t: ["Қосымша", "Приложение", "Appendix"] }
 ];
-var DOC_TITLE = ["Химиялық реакция жылдамдығы", "Скорость химической реакции", "Rate of chemical reactions"];
+var DOC_TITLE = ["Химиялық реакция жылдамдығы — 10 сынып | Нурсерик Хуантхан", "Скорость химической реакции — 10 класс | Нурсерик Хуантхан", "Rate of chemical reactions — Grade 10 | Nurserik Khuantkhan"];
 
 /* ---------- Тіл ---------- */
 var ATTRS = [["data-ia", "aria-label"], ["data-it", "title"], ["data-ip", "placeholder"]];
