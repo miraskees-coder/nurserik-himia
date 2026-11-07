@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>
+/* Ескі сілтемелер (…/nurserik-himia/#14) сабаққа апарады. */
+(function () {
+  var h = location.hash;
+  if (/^#(s?\d{1,2}|s\d{1,2}-.*)$/.test(h)) location.replace("kinetics/" + h);
+  try {
+    var r = document.documentElement, t = localStorage.getItem("nc-theme");
+    if (t === "light" || t === "dark") r.setAttribute("data-theme", t);
+    if (localStorage.getItem("nc-large") === "1") r.setAttribute("data-large", "");
+    if (localStorage.getItem("nc-contrast") === "1") r.setAttribute("data-contrast", "");
+    if (localStorage.getItem("nc-calm") === "1") r.setAttribute("data-calm", "");
+  } catch (e) {}
+})();
+</script>
+<title>NURSERIK CHEMISTRY — химияны өз бетімен оқу және сыни ойлау платформасы</title>
+<meta name="nc-title" content="NURSERIK CHEMISTRY — химияны өз бетімен оқу және сыни ойлау платформасы‖NURSERIK CHEMISTRY — платформа самостоятельного изучения химии и критического мышления‖NURSERIK CHEMISTRY — learn chemistry independently and think critically">
+<meta name="description" content="NURSERIK CHEMISTRY — Хуантхан Нурсериктің химияны өз бетімен оқуға және сыни ойлауды дамытуға арналған платформасы. 10-сыныпқа арналған «Химиялық кинетика» интерактивті курсы: реакция камерасы, графиктер, есептер, тест. Қазақша, орысша, ағылшынша.">
+<meta name="keywords" content="NURSERIK CHEMISTRY, Нурсерик Хуантхан, химия 10 сынып, химиялық реакция жылдамдығы, химиялық кинетика, сыни ойлау, химия 10 класс, скорость химической реакции">
+<meta name="author" content="Хуантхан Нурсерик">
+<meta name="robots" content="index, follow">
+<meta name="google-site-verification" content="ovStX0SUYkSL_SO1i28O3sXJ-bjD_ZZak1GMbOxPZiM">
+<meta name="theme-color" content="#F6F5F1" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0F1222" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://miraskees-coder.github.io/nurserik-himia/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2315171F'/%3E%3Cpath d='M16 6 24.7 11v10L16 26l-8.7-5V11Z' fill='none' stroke='white' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='3.4' fill='%23A597FF'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="NURSERIK CHEMISTRY">
+<meta property="og:description" content="Химияны өз бетімен оқу және сыни ойлауды дамыту платформасы. Қаз / Рус / Eng.">
+<meta property="og:url" content="https://miraskees-coder.github.io/nurserik-himia/">
+<meta property="og:locale" content="kk_KZ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "NURSERIK CHEMISTRY",
+  "alternateName": "NURSERIK CHEMISTRY — AI Learning & Research Platform",
+  "url": "https://miraskees-coder.github.io/nurserik-himia/",
+  "inLanguage": ["kk", "ru", "en"],
+  "author": { "@type": "Person", "name": "Хуантхан Нурсерик", "alternateName": "Nurserik Khuantkhan", "jobTitle": "Химия пәнінің мұғалімі" }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=Unbounded:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+/*CSS*/
+</style>
+</head>
+<body data-page="home">
+<!--HEADER-->
+
+<main id="main">
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">AI Learning &amp; Research Platform</p>
+      <h1>NURSERIK <span>CHEMISTRY</span></h1>
+      <p class="sub">⟦Химияны өз бетімен оқуға және сыни ойлауды дамытуға арналған интеллектуалды платформа.‖Интеллектуальная платформа самостоятельного изучения химии и развития критического мышления.‖An intelligent platform for learning chemistry independently and developing critical thinking.⟧</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="kinetics/">⟦Оқуды бастау‖Начать обучение‖Start learning⟧</a>
+        <a class="btn" href="kinetics/#2">⟦Зертхананы зерттеу‖Исследовать лабораторию‖Explore the lab⟧</a>
+        <a class="btn" href="kinetics/#13">⟦Есеп шығару‖Решать задачи‖Solve problems⟧</a>
+        <a class="btn" href="research/">⟦Зерттеу туралы‖Узнать об исследовании‖About the research⟧</a>
+      </div>
+
+      <div class="card viz">
+        <canvas id="gasCanvas" role="img" aria-label="⟦Бөлшектер қозғалысының моделі: түсі бөлшектің энергиясын көрсетеді‖Модель движения частиц: цвет показывает энергию частицы‖Particle motion model: colour shows each particle's energy⟧"></canvas>
+        <div class="viz-side">
+          <div>
+            <p class="eyebrow">⟦Тірі модель‖Живая модель‖Live model⟧</p>
+            <h3 style="margin-top:6px">⟦Температура және Eₐ-дан асатын бөлшектер‖Температура и частицы с энергией выше Eₐ‖Temperature and particles above Eₐ⟧</h3>
+          </div>
+          <div class="range">
+            <div class="range-top"><label for="gasT">⟦Температура‖Температура‖Temperature⟧</label><output id="gasTv">300 K</output></div>
+            <input type="range" id="gasT" min="200" max="600" step="10" value="300">
+          </div>
+          <div class="readout">
+            <div><b id="gasModel">—</b><span>⟦модельде E &gt; Eₐ үлесі‖доля E &gt; Eₐ в модели‖share with E &gt; Eₐ in the model⟧</span></div>
+            <div><b id="gasTheory">—</b><span>⟦теория: e<sup>−Eₐ/kT</sup>‖теория: e<sup>−Eₐ/kT</sup>‖theory: e<sup>−Eₐ/kT</sup>⟧</span></div>
+          </div>
+          <div class="legend">
+            <span><i style="background:var(--c-a)"></i>⟦E &lt; Eₐ‖E &lt; Eₐ‖E &lt; Eₐ⟧</span>
+            <span><i style="background:var(--c-ab)"></i>⟦E &gt; Eₐ — тиімді соқтығысуға қабілетті‖E &gt; Eₐ — способны к эффективному столкновению‖E &gt; Eₐ — able to collide effectively⟧</span>
+          </div>
+          <button class="btn" type="button" id="gasPlay"></button>
+          <p class="note">⟦Жеңілдетілген модель: екі өлшемді серпімді дискілер, келтірілген бірліктер, Eₐ = 3·kT (300 К). Модельдегі үлес кездейсоқ ауытқиды және теориялық мәннің маңында тербеледі.‖Упрощённая модель: двумерные упругие диски, приведённые единицы, Eₐ = 3·kT (при 300 К). Доля в модели случайно колеблется около теоретического значения.‖Simplified model: two-dimensional elastic discs in reduced units, Eₐ = 3·kT (at 300 K). The model's share fluctuates randomly around the theoretical value.⟧</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">⟦Оқушының жолы‖Путь ученика‖The learner's path⟧</p>
+        <h2>⟦Тіркелуден сертификатқа дейін‖От регистрации до сертификата‖From sign-up to certificate⟧</h2>
+        <p>⟦Платформа кезең-кезеңімен дамып келеді. Әр кезеңнің қазіргі күйі ашық көрсетілген: дайын емес мүмкіндік жұмыс істеп тұрғандай көрсетілмейді.‖Платформа развивается поэтапно. Текущее состояние каждого этапа указано открыто: неготовые функции не выдаются за работающие.‖The platform is being built step by step. The current state of each stage is shown openly: unfinished features are never presented as working.⟧</p>
+      </div>
+      <ol class="path">
+        <li><h3>⟦Тіркелу және аккаунт‖Регистрация и аккаунт‖Sign-up and account⟧</h3><p>⟦Мұғалім берген код арқылы, ең аз жеке деректермен.‖По коду учителя, с минимумом персональных данных.‖With a teacher's code and minimal personal data.⟧</p><span class="status st-ext">⟦Дерекқорды қосу керек‖Требуется подключение базы данных‖Database connection required⟧</span></li>
+        <li><h3>⟦Білімді диагностикалау‖Диагностика знаний‖Diagnostic test⟧</h3><p>⟦Бастапқы деңгейді анықтайтын тест.‖Тест для определения исходного уровня.‖A test that sets the starting level.⟧</p><span class="status st-dev">⟦Әзірленуде‖В разработке‖In development⟧</span></li>
+        <li><h3>⟦Теория‖Теория‖Theory⟧</h3><p>⟦15 слайд: анықтамалар, формулалар, ұқсатулар, графиктер.‖15 слайдов: определения, формулы, аналогии, графики.‖15 slides: definitions, formulas, analogies, graphs.⟧</p><span class="status st-ok">⟦Қолжетімді‖Доступно‖Available⟧</span></li>
+        <li><h3>⟦Виртуалды тәжірибелер‖Виртуальные эксперименты‖Virtual experiments⟧</h3><p>⟦Реакция камерасы және «жоғалатын крест» журналы.‖Реакционная камера и журнал «исчезающий крест».‖The reaction chamber and the “disappearing cross” log.⟧</p><span class="status st-ok">⟦Қолжетімді‖Доступно‖Available⟧</span></li>
+        <li><h3>⟦Есептер‖Решение задач‖Problem solving⟧</h3><p>⟦A–C деңгейіндегі 12 есеп шешуімен. Параметрлі генератор әзірленуде.‖12 задач уровней A–C с решениями. Параметризованный генератор — в разработке.‖12 problems at levels A–C with solutions. A parameterised generator is in development.⟧</p><span class="status st-part">⟦Ішінара‖Частично‖Partly available⟧</span></li>
+        <li><h3>⟦Сыни ойлау зертханасы‖Лаборатория критического мышления‖Critical thinking lab⟧</h3><p>⟦«Талдау — Болжам — Шешім — Тексеру — Рефлексия» моделі бойынша жұмыс.‖Работа по модели «Анализ — Гипотеза — Решение — Проверка — Рефлексия».‖Working through the Analyse — Hypothesise — Solve — Check — Reflect model.⟧</p><span class="status st-dev">⟦Әзірленуде‖В разработке‖In development⟧</span></li>
+        <li><h3>⟦ИИ-тәлімгер‖ИИ-наставник‖AI tutor⟧</h3><p>⟦Дайын жауап бермей, сұрақтар арқылы бағыттайды.‖Не даёт готовый ответ, а направляет вопросами.‖Guides with questions instead of giving the answer.⟧</p><span class="status st-ext">⟦ИИ-ді қосу керек‖Требуется подключение ИИ‖AI connection required⟧</span></li>
+        <li><h3>⟦Бақылау және прогресс‖Контроль и прогресс‖Assessment and progress⟧</h3><p>⟦15 сұрақтық тест бар; нәтиже әзірге сақталмайды.‖Есть тест из 15 вопросов; результат пока не сохраняется.‖A 15-question quiz is available; results are not saved yet.⟧</p><span class="status st-part">⟦Ішінара‖Частично‖Partly available⟧</span></li>
+        <li><h3>⟦Платформа сертификаты‖Сертификат платформы‖Platform certificate⟧</h3><p>⟦Курсты аяқтағаны туралы, түпнұсқалығын тексеру коды бар.‖О прохождении курса, с кодом проверки подлинности.‖For completing a course, with an authenticity code.⟧</p><span class="status st-dev">⟦Әзірленуде‖В разработке‖In development⟧</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">⟦Курстар‖Курсы‖Courses⟧</p>
+        <h2>⟦Алғашқы толық курс‖Первый полный курс‖The first full course⟧</h2>
+      </div>
+      <article class="card course">
+        <div>
+          <div class="course-meta"><span class="chip">⟦10 сынып‖10 класс‖Grade 10⟧</span><span class="chip">⟦Қаз · Рус · Eng‖Каз · Рус · Англ‖Kaz · Rus · Eng⟧</span><span class="chip">⟦15 слайд‖15 слайдов‖15 slides⟧</span></div>
+          <h3 style="margin-top:14px;font-size:1.4rem">⟦Химиялық кинетика: реакция жылдамдығы‖Химическая кинетика: скорость реакции‖Chemical kinetics: reaction rate⟧</h3>
+          <ul>
+            <li>⟦Реакция жылдамдығы, соқтығысу теориясы, энергетикалық диаграмма‖Скорость реакции, теория столкновений, энергетическая диаграмма‖Reaction rate, collision theory, energy profile diagrams⟧</li>
+            <li>⟦Кинетикалық теңдеу, Вант-Гофф ережесі, Аррениус теңдеуі, катализ‖Кинетическое уравнение, правило Вант-Гоффа, уравнение Аррениуса, катализ‖Rate law, Van 't Hoff's rule, the Arrhenius equation, catalysis⟧</li>
+            <li>⟦Реакция камерасы, 3 калькулятор, зертхана журналы, 12 есеп, 15 сұрақтық тест‖Реакционная камера, 3 калькулятора, лабораторный журнал, 12 задач, тест из 15 вопросов‖Reaction chamber, 3 calculators, a lab log, 12 problems and a 15-question quiz⟧</li>
+          </ul>
+          <a class="btn btn-primary" href="kinetics/">⟦Курсты ашу‖Открыть курс‖Open the course⟧</a>
+        </div>
+        <div class="course-art" aria-hidden="true">
+          <svg viewBox="0 0 320 240">
+            <line x1="30" y1="210" x2="300" y2="210" stroke="var(--border)" stroke-width="2"/>
+            <line x1="30" y1="20" x2="30" y2="210" stroke="var(--border)" stroke-width="2"/>
+            <path d="M40 140 L80 140 C120 140 128 50 165 50 C202 50 210 175 250 175 L295 175" fill="none" stroke="var(--accent)" stroke-width="4" stroke-linecap="round"/>
+            <path d="M80 140 C108 140 112 98 135 98 C150 98 152 120 165 120 C178 120 180 104 195 104 C215 104 222 175 250 175" fill="none" stroke="var(--c-a)" stroke-width="3" stroke-dasharray="7 6"/>
+            <line x1="150" y1="140" x2="150" y2="56" stroke="var(--c-ab)" stroke-width="2"/>
+            <path d="M145 64 150 54 155 64" fill="none" stroke="var(--c-ab)" stroke-width="2"/>
+            <text x="132" y="104" font-family="Golos Text, system-ui" font-size="14" font-weight="700" fill="var(--c-ab)" text-anchor="end">Eₐ</text>
+            <circle cx="60" cy="128" r="9" fill="var(--c-a)"/><circle cx="80" cy="124" r="9" fill="var(--c-b)"/>
+            <circle cx="268" cy="163" r="9" fill="var(--c-a)"/><circle cx="282" cy="163" r="9" fill="var(--c-b)"/>
+          </svg>
+        </div>
+      </article>
+      <p class="muted small" style="margin-top:14px">⟦7–11-сыныптарға арналған басқа тақырыптар осы құрылыммен кейін қосылады.‖Другие темы для 7–11 классов будут добавляться по этой же структуре.‖More topics for grades 7–11 will be added using the same structure.⟧</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Critical Thinking Lab</p>
+        <h2>⟦Күрделі есепті шешудің бес кезеңі‖Пять этапов решения сложной задачи‖Five stages of solving a hard problem⟧</h2>
+        <p>⟦Платформаның педагогикалық негізі. ИИ дайын жауап бермейді: оқушы әр кезеңді өзі өтеді, ал жүйе сұрақтар қойып, тексеруге көмектеседі.‖Педагогическая основа платформы. ИИ не даёт готовый ответ: ученик сам проходит каждый этап, а система задаёт вопросы и помогает проверить себя.‖The teaching foundation of the platform. The AI does not hand out answers: students work through each stage themselves while the system asks questions and helps them check their work.⟧</p>
+      </div>
+      <div class="grid g5">
+        <div class="card stage"><span class="n">1</span><h3>⟦Талдау‖Анализ‖Analyse⟧</h3><p>⟦Белгілі және белгісіз шамалар, бірліктер, заңдылықтар.‖Известные и неизвестные величины, единицы, закономерности.‖Known and unknown quantities, units, relevant laws.⟧</p></div>
+        <div class="card stage"><span class="n">2</span><h3>⟦Болжам‖Гипотеза‖Hypothesise⟧</h3><p>⟦Шешу әдісін таңдап, оны негіздеу.‖Выбор метода решения и его обоснование.‖Choose a method and justify it.⟧</p></div>
+        <div class="card stage"><span class="n">3</span><h3>⟦Шешім‖Решение‖Solve⟧</h3><p>⟦Қадамдық есептеу, бірліктерді бақылау.‖Пошаговые вычисления, контроль единиц.‖Step-by-step calculation with unit checks.⟧</p></div>
+        <div class="card stage"><span class="n">4</span><h3>⟦Тексеру‖Проверка‖Check⟧</h3><p>⟦Нәтиженің шынайылығы, балама әдіс, қатені іздеу.‖Реалистичность ответа, альтернативный способ, поиск ошибки.‖Is it realistic? Another method? Where could the error be?⟧</p></div>
+        <div class="card stage"><span class="n">5</span><h3>⟦Рефлексия‖Рефлексия‖Reflect⟧</h3><p>⟦Не дұрыс болды, не қате, шарт өзгерсе не болады.‖Что сработало, где ошибка, что изменится при других условиях.‖What worked, what went wrong, what changes if the conditions change.⟧</p></div>
+      </div>
+      <p style="margin-top:20px"><a class="btn" href="research/">⟦Модель және бағалау рубрикасы‖Модель и рубрика оценивания‖The model and assessment rubric⟧</a></p>
+    </div>
+  </section>
+</main>
+
+<!--FOOTER-->
+<script>
+/*JS*/
+</script>
+</body>
+</html>

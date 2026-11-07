@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>
+(function () {
+  try {
+    var r = document.documentElement, t = localStorage.getItem("nc-theme");
+    if (t === "light" || t === "dark") r.setAttribute("data-theme", t);
+    if (localStorage.getItem("nc-large") === "1") r.setAttribute("data-large", "");
+    if (localStorage.getItem("nc-contrast") === "1") r.setAttribute("data-contrast", "");
+    if (localStorage.getItem("nc-calm") === "1") r.setAttribute("data-calm", "");
+  } catch (e) {}
+})();
+</script>
+<title>Зерттеу туралы — NURSERIK CHEMISTRY</title>
+<meta name="nc-title" content="Зерттеу туралы — NURSERIK CHEMISTRY‖Об исследовании — NURSERIK CHEMISTRY‖About the research — NURSERIK CHEMISTRY">
+<meta name="description" content="Магистрлік зерттеу: 10-сынып оқушыларының химиядан күрделі есептерді шығару барысында жасанды интеллект құралдары арқылы сыни ойлау дағдыларын дамыту әдісі. Модель, бағалау рубрикасы, зерттеу дизайны.">
+<meta name="author" content="Хуантхан Нурсерик">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://miraskees-coder.github.io/nurserik-himia/research/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2315171F'/%3E%3Cpath d='M16 6 24.7 11v10L16 26l-8.7-5V11Z' fill='none' stroke='white' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='3.4' fill='%23A597FF'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=Unbounded:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ================= NURSERIK CHEMISTRY — платформаның дизайн жүйесі ================= */
+:root {
+  --bg: #F6F5F1;
+  --surface: #FFFFFF;
+  --surface-2: #EEECE6;
+  --text: #15171F;
+  --muted: #565B6B;
+  --border: #DCD9D0;
+  --accent: #4733D1;
+  --accent-ink: #FFFFFF;
+  --accent-soft: rgba(71, 51, 209, .09);
+  --c-a: #0679B8;
+  --c-b: #C46F00;
+  --c-ab: #C8285F;
+  --ok: #17784A;
+  --warn: #9A5B00;
+  --ext: #6A4CC0;
+  --dev: #646A7A;
+  --shadow: 0 1px 2px rgba(20, 22, 31, .06), 0 8px 24px rgba(20, 22, 31, .06);
+  --radius: 18px;
+  --radius-sm: 12px;
+  --font-head: "Unbounded", system-ui, sans-serif;
+  --font-body: "Golos Text", system-ui, sans-serif;
+  --fs: 17px;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0F1222; --surface: #171B30; --surface-2: #20253F; --text: #E9ECF7; --muted: #A5ACC6; --border: #2C3254;
+    --accent: #A597FF; --accent-ink: #0F1222; --accent-soft: rgba(165, 151, 255, .12);
+    --c-a: #4CC6FF; --c-b: #FFB547; --c-ab: #FF5C9C; --ok: #48D597; --warn: #FFC266; --ext: #B9A6FF; --dev: #9AA1BA;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 10px 30px rgba(0, 0, 0, .25);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0F1222; --surface: #171B30; --surface-2: #20253F; --text: #E9ECF7; --muted: #A5ACC6; --border: #2C3254;
+  --accent: #A597FF; --accent-ink: #0F1222; --accent-soft: rgba(165, 151, 255, .12);
+  --c-a: #4CC6FF; --c-b: #FFB547; --c-ab: #FF5C9C; --ok: #48D597; --warn: #FFC266; --ext: #B9A6FF; --dev: #9AA1BA;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 10px 30px rgba(0, 0, 0, .25);
+  color-scheme: dark;
+}
+:root[data-large] { --fs: 19.5px; }
+:root[data-contrast] { --muted: var(--text); --border: var(--text); --shadow: none; }
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+[hidden] { display: none !important; }
+html { font-size: var(--fs); -webkit-text-size-adjust: 100%; }
+body {
+  background: var(--bg); color: var(--text);
+  font-family: var(--font-body); font-size: 1rem; line-height: 1.6;
+  -webkit-font-smoothing: antialiased; overflow-x: hidden;
+}
+a { color: var(--accent); text-underline-offset: 3px; }
+button, input, select { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+sub, sup { line-height: 0; }
+.wrap { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+.muted { color: var(--muted); }
+.small { font-size: .875rem; }
+.skip { position: absolute; left: 12px; top: -60px; z-index: 100; background: var(--accent); color: var(--accent-ink); padding: 8px 14px; border-radius: 10px; }
+.skip:focus { top: 12px; }
+
+/* ---------- Шапка ---------- */
+.site-head {
+  position: sticky; top: 0; z-index: 30;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+.head-row { display: flex; align-items: center; gap: 20px; height: 64px; }
+.brand { display: flex; align-items: center; gap: 10px; color: var(--text); text-decoration: none; flex: none; }
+.brand-mark { width: 30px; height: 30px; color: var(--text); }
+.brand-text { font: 600 .82rem/1 var(--font-head); letter-spacing: .06em; }
+.brand-text b { font-weight: 800; color: var(--accent); }
+.main-nav { display: flex; gap: 4px; margin-left: auto; }
+.main-nav a {
+  color: var(--muted); text-decoration: none; font-weight: 500; font-size: .94rem;
+  padding: 8px 12px; border-radius: 10px;
+}
+.main-nav a:hover { color: var(--text); background: var(--surface-2); }
+.main-nav a[aria-current="page"] { color: var(--text); background: var(--accent-soft); }
+.head-tools { display: flex; align-items: center; gap: 8px; flex: none; }
+.lang-seg, .seg { display: inline-flex; gap: 2px; padding: 3px; border: 1px solid var(--border); border-radius: 999px; background: var(--surface); }
+.lang-seg button, .seg button { border: 0; background: none; padding: 5px 11px; border-radius: 999px; font-size: .82rem; font-weight: 600; color: var(--muted); }
+.lang-seg button[aria-pressed="true"], .seg button[aria-pressed="true"] { background: var(--text); color: var(--bg); }
+.icon-btn {
+  width: 38px; height: 38px; display: grid; place-items: center;
+  border-radius: 50%; border: 1px solid var(--border); background: var(--surface); color: var(--text);
+}
+.icon-btn svg { width: 18px; height: 18px; }
+.menu-toggle { display: none; }
+.pop-wrap { position: relative; }
+.pop {
+  position: absolute; right: 0; top: calc(100% + 8px); width: 270px; z-index: 40;
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow);
+  padding: 14px; display: grid; gap: 8px;
+}
+.pop-title { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-top: 4px; }
+.check { display: flex; align-items: center; gap: 10px; font-size: .92rem; cursor: pointer; }
+.check input { width: 18px; height: 18px; accent-color: var(--accent); }
+
+/* ---------- Типографика ---------- */
+.eyebrow { font: 600 .75rem/1.2 var(--font-head); letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+h1, h2, h3 { font-family: var(--font-head); line-height: 1.15; letter-spacing: -.01em; }
+h2 { font-size: clamp(1.45rem, 3vw, 2.1rem); font-weight: 700; }
+h3 { font-size: 1.08rem; font-weight: 700; }
+.section { padding: 72px 0; }
+.section + .section { border-top: 1px solid var(--border); }
+.section-head { max-width: 720px; margin-bottom: 32px; }
+.section-head p { color: var(--muted); margin-top: 10px; }
+.prose p + p { margin-top: 12px; }
+.prose ul { padding-left: 20px; margin-top: 8px; }
+.prose li + li { margin-top: 6px; }
+
+/* ---------- Батырмалар ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 12px 20px; border-radius: 12px; font-weight: 600; font-size: .95rem; text-decoration: none;
+  border: 1px solid var(--border); background: var(--surface); color: var(--text);
+  transition: transform .15s, border-color .15s;
+}
+.btn:hover { border-color: var(--text); }
+.btn-primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.btn-primary:hover { border-color: var(--accent); transform: translateY(-1px); }
+.btn svg { width: 16px; height: 16px; }
+
+/* ---------- Басты экран ---------- */
+.hero { padding: 64px 0 40px; }
+.hero h1 { font-size: clamp(2.3rem, 7.2vw, 5.4rem); font-weight: 800; line-height: .98; margin: 16px 0 20px; letter-spacing: -.02em; }
+.hero h1 span { display: block; color: var(--accent); }
+.hero .sub { font-size: clamp(1.05rem, 1.8vw, 1.3rem); color: var(--muted); max-width: 700px; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+
+/* ---------- Карточкалар ---------- */
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); min-width: 0; }
+.grid { display: grid; gap: 16px; }
+.g2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.g5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+
+/* ---------- Модель көрсетілімі ---------- */
+.card.viz { padding: 0; }
+.viz { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: 0; padding: 0; overflow: hidden; margin-top: 44px; }
+.viz canvas { display: block; width: 100%; height: 340px; background: var(--surface-2); touch-action: pan-y; }
+.viz-side { padding: 22px; display: grid; gap: 14px; align-content: start; border-left: 1px solid var(--border); }
+.viz-side h3 { font-size: 1rem; }
+.range { display: grid; gap: 4px; }
+.range-top { display: flex; justify-content: space-between; font-size: .9rem; }
+.range-top output { font-weight: 700; font-variant-numeric: tabular-nums; }
+input[type="range"] { width: 100%; accent-color: var(--accent); height: 28px; }
+.readout { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.readout div { background: var(--surface-2); border-radius: var(--radius-sm); padding: 10px 12px; }
+.readout b { display: block; font: 700 1.25rem/1.2 var(--font-head); font-variant-numeric: tabular-nums; }
+.readout span { font-size: .78rem; color: var(--muted); }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: .8rem; color: var(--muted); }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: -1px; }
+.note { font-size: .8rem; color: var(--muted); border-top: 1px dashed var(--border); padding-top: 10px; }
+
+/* ---------- Оқу жолы ---------- */
+.path { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; counter-reset: step; }
+.path li { counter-increment: step; position: relative; padding: 16px 16px 16px 56px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--surface); min-width: 0; }
+.path li::before {
+  content: counter(step, decimal-leading-zero); position: absolute; left: 16px; top: 16px;
+  font: 700 .8rem/1 var(--font-head); color: var(--muted);
+}
+.path h3 { font-size: .95rem; font-family: var(--font-body); font-weight: 700; letter-spacing: 0; }
+.path p { font-size: .85rem; color: var(--muted); margin-top: 4px; }
+.status { display: inline-flex; align-items: center; gap: 6px; margin-top: 8px; font-size: .74rem; font-weight: 700; letter-spacing: .02em; }
+.status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+.st-ok { color: var(--ok); }
+.st-part { color: var(--warn); }
+.st-ext { color: var(--ext); }
+.st-dev { color: var(--dev); }
+
+/* ---------- Курс карточкасы ---------- */
+.course { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 24px; align-items: center; }
+.course ul { list-style: none; display: grid; gap: 8px; margin: 14px 0 20px; }
+.course li { display: flex; gap: 10px; font-size: .93rem; }
+.course li::before { content: ""; flex: none; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); margin-top: .6em; }
+.course-meta { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-block; padding: 4px 10px; border-radius: 999px; font-size: .78rem; font-weight: 600; background: var(--surface-2); color: var(--muted); }
+.course-art { aspect-ratio: 4 / 3; border-radius: var(--radius-sm); background: var(--surface-2); display: grid; place-items: center; }
+.course-art svg { width: 82%; height: auto; }
+
+/* ---------- Модель кезеңдері ---------- */
+.stage { border-top: 3px solid var(--accent); }
+.stage .n { font: 800 1.8rem/1 var(--font-head); color: var(--accent); }
+.stage h3 { margin: 10px 0 6px; font-size: .98rem; }
+.stage p { font-size: .87rem; color: var(--muted); }
+
+/* ---------- Рубрика ---------- */
+.rubric details { border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--surface); }
+.rubric details + details { margin-top: 10px; }
+.rubric summary { cursor: pointer; padding: 14px 18px; font-weight: 700; display: flex; justify-content: space-between; gap: 12px; list-style: none; }
+.rubric summary::-webkit-details-marker { display: none; }
+.rubric summary::after { content: "+"; font-weight: 400; color: var(--muted); }
+.rubric details[open] summary::after { content: "−"; }
+.rubric ol { list-style: none; padding: 0 18px 16px; display: grid; gap: 8px; }
+.rubric li { display: grid; grid-template-columns: 34px 1fr; gap: 10px; font-size: .9rem; }
+.rubric li b { font-family: var(--font-head); color: var(--accent); }
+.callout { border-left: 4px solid var(--warn); background: var(--surface); padding: 16px 18px; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
+.table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius-sm); }
+table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { background: var(--surface-2); font-size: .8rem; color: var(--muted); }
+tr:last-child td { border-bottom: 0; }
+
+/* ---------- Подвал ---------- */
+.site-foot { border-top: 1px solid var(--border); padding: 40px 0 56px; margin-top: 40px; }
+.foot-grid { display: grid; grid-template-columns: 1fr 1.6fr 1fr; gap: 28px; }
+.foot-grid p + p { margin-top: 8px; }
+.foot-links { display: grid; gap: 6px; align-content: start; }
+
+/* ---------- Бейімделу ---------- */
+@media (max-width: 980px) {
+  .path { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .g5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .g3 { grid-template-columns: 1fr; }
+  .viz { grid-template-columns: 1fr; }
+  .viz-side { border-left: 0; border-top: 1px solid var(--border); }
+  .course { grid-template-columns: 1fr; }
+  .foot-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 820px) {
+  .menu-toggle { display: grid; }
+  .main-nav {
+    display: none; position: absolute; left: 0; right: 0; top: 64px;
+    flex-direction: column; padding: 10px 16px 16px; gap: 2px;
+    background: var(--bg); border-bottom: 1px solid var(--border);
+  }
+  .main-nav.open { display: flex; }
+  .main-nav a { padding: 12px; }
+}
+@media (max-width: 600px) {
+  .wrap { padding: 0 16px; }
+  .head-row { gap: 10px; }
+  .brand-text { display: none; }
+  .lang-seg button { padding: 5px 8px; }
+  .hero { padding: 40px 0 24px; }
+  .hero-actions .btn { flex: 1 1 100%; }
+  .viz canvas { height: 260px; }
+  .path, .g2, .g5 { grid-template-columns: 1fr; }
+  .section { padding: 52px 0; }
+  .card { padding: 18px; }
+  .pop { right: -48px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+:root[data-calm] * { transition: none !important; }
+
+</style>
+</head>
+<body data-page="research">
+<a class="skip" href="#main" data-i="7">Мазмұнға өту</a>
+<header class="site-head">
+  <div class="wrap head-row">
+    <a class="brand" href="../" aria-label="NURSERIK CHEMISTRY — басты бет" data-ia="0">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M16 3.5 26.8 9.75v12.5L16 28.5 5.2 22.25V9.75Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+        <circle cx="16" cy="16" r="4.2" fill="var(--accent)"/>
+        <circle cx="16" cy="3.5" r="2.4" fill="var(--c-a)"/>
+        <circle cx="26.8" cy="22.25" r="2.4" fill="var(--c-b)"/>
+      </svg>
+      <span class="brand-text">NURSERIK <b>CHEMISTRY</b></span>
+    </a>
+
+    <nav class="main-nav" id="mainNav" aria-label="Негізгі мәзір" data-ia="1">
+      <a href="../kinetics/" data-i="8">Курс</a>
+      <a href="../kinetics/#2" data-i="9">Зертхана</a>
+      <a href="../kinetics/#13" data-i="10">Есептер</a>
+      <a href="../research/" data-nav="research" data-i="11">Зерттеу</a>
+    </nav>
+
+    <div class="head-tools">
+      <div class="lang-seg" role="group" aria-label="Тіл" data-ia="2">
+        <button type="button" data-lang="kk" aria-pressed="true">Қаз</button>
+        <button type="button" data-lang="ru" aria-pressed="false">Рус</button>
+        <button type="button" data-lang="en" aria-pressed="false">Eng</button>
+      </div>
+      <div class="pop-wrap">
+        <button class="icon-btn" type="button" id="prefsBtn" aria-expanded="false" aria-controls="prefs" aria-label="Көрініс және қолжетімділік" data-ia="3">
+          <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="3.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M10 1.8v2.6M10 15.6v2.6M18.2 10h-2.6M4.4 10H1.8M15.8 4.2l-1.8 1.8M6 14l-1.8 1.8M15.8 15.8 14 14M6 6 4.2 4.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </button>
+        <div class="pop" id="prefs" hidden>
+          <p class="pop-title" data-i="12">Тақырып</p>
+          <div class="seg" role="group" aria-label="Тақырып" data-ia="4">
+            <button type="button" data-theme-set="system" data-i="13">Жүйелік</button>
+            <button type="button" data-theme-set="light" data-i="14">Жарық</button>
+            <button type="button" data-theme-set="dark" data-i="15">Қараңғы</button>
+          </div>
+          <p class="pop-title" data-i="16">Қолжетімділік</p>
+          <label class="check"><input type="checkbox" data-a11y="large"><span data-i="17">Үлкен қаріп</span></label>
+          <label class="check"><input type="checkbox" data-a11y="contrast"><span data-i="18">Жоғары контраст</span></label>
+          <label class="check"><input type="checkbox" data-a11y="calm"><span data-i="19">Анимацияны азайту</span></label>
+        </div>
+      </div>
+      <button class="icon-btn menu-toggle" type="button" id="menuToggle" aria-expanded="false" aria-controls="mainNav" aria-label="Мәзір" data-ia="5">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 6h14M3 10h14M3 14h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+
+<main id="main">
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Critical Thinking Research Center</p>
+      <h1 style="font-size:clamp(1.8rem,4.6vw,3.2rem)" data-i="20">Зерттеу туралы</h1>
+      <p class="sub" data-i="21">«10-сынып оқушыларының химиядан күрделі есептерді шығару барысында жасанды интеллект құралдарын қолдану негізінде сыни ойлау дағдыларын дамыту әдісі» — магистрлік диссертация тақырыбы.</p>
+      <p class="muted" style="margin-top:12px" data-i="22">Автор: Хуантхан Нурсерик, химия пәнінің мұғалімі, педагогика бағытының магистранты.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap grid g3">
+      <div class="card">
+        <p class="eyebrow" data-i="23">Мәселе</p>
+        <p style="margin-top:10px" data-i="24">Күрделі химиялық есептерді шығарғанда оқушылар тек есептеуде ғана емес, шартты талдауда, шешімді негіздеуде және нәтижені тексеруде де қиналады.</p>
+      </div>
+      <div class="card">
+        <p class="eyebrow" data-i="25">Идея</p>
+        <p style="margin-top:10px" data-i="26">Интерактивті платформа мен ИИ-тәлімгер оқушымен жеке жұмысты ұйымдастырып, талдау мен дәлелдеу дағдыларын дамытуға жағдай жасай алады.</p>
+      </div>
+      <div class="card">
+        <p class="eyebrow" data-i="27">Мақсат</p>
+        <p style="margin-top:10px" data-i="28">Күрделі химиялық есептерді шығару кезінде ИИ құралдары арқылы 10-сынып оқушыларының сыни ойлауын дамыту әдісін әзірлеу және зерттеу.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow" data-i="29">Жұмыс моделі</p>
+        <h2 data-i="30">Талдау — Болжам — Шешім — Тексеру — Рефлексия</h2>
+        <p data-i="31">Бұл зерттеуде нақтыланып, тексерілетін авторлық жұмыс моделі. Әр кезеңде ИИ дайын шешімді көрсетпейді.</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th data-i="32">Кезең</th><th data-i="33">Оқушы не істейді</th><th data-i="34">ИИ-тәлімгердің рөлі</th></tr></thead>
+          <tbody>
+            <tr><td><b data-i="35">1. Талдау</b></td><td data-i="36">Шартты оқиды; белгілі және белгісіз шамаларды, бірліктерді, қажетті заңдылықтарды бөліп жазады.</td><td data-i="37">«Шарттан не белгілі?», «Нені табу керек?», «Деректер жеткілікті ме?» деген сұрақтар қояды.</td></tr>
+            <tr><td><b data-i="38">2. Болжам</b></td><td data-i="39">Шешу әдісін ұсынады және неге сол әдісті таңдағанын түсіндіреді.</td><td data-i="40">«Неге дәл осы теңдеу?», «Оны қолдану шарттары орындала ма?» деп сұрайды.</td></tr>
+            <tr><td><b data-i="41">3. Шешім</b></td><td data-i="42">Қадамдап есептейді, бірліктерді бақылайды, қажет болса әдісін өзгертеді.</td><td data-i="43">Қадамдағы бірліктер мен түрлендірулерге назар аудартады, бірақ нәтижені айтпайды.</td></tr>
+            <tr><td><b data-i="44">4. Тексеру</b></td><td data-i="45">Бірліктерді, санның шынайылығын тексереді, балама әдіспен салыстырады, қатені іздейді.</td><td data-i="46">«Жауап химиялық заңдылыққа сай ма?», «Шекті жағдайда не болар еді?» деп сұрайды.</td></tr>
+            <tr><td><b data-i="47">5. Рефлексия</b></td><td data-i="48">Әдістің неге дұрыс болғанын, қандай қате жібергенін, шарт өзгерсе не болатынын жазады.</td><td data-i="49">Рефлексиялық сұрақтар қояды; жауаптар зерттеу үшін өзгеріссіз сақталады.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow" data-i="50">Бағалау құралы</p>
+        <h2 data-i="51">Аналитикалық рубрика: 5 критерий × 0–4 балл</h2>
+        <p data-i="52">Ең жоғары жиынтық — 20 балл. Бұл апробациядан өтуі тиіс педагогикалық құрал, валидацияланған психологиялық тест емес. ИИ алдын ала баға ұсына алады, бірақ зерттеу режимінде соңғы бағаны мұғалім өзгерістер тарихымен бірге бекітеді.</p>
+      </div>
+      <div class="rubric">
+        <details open>
+          <summary data-i="53">К1. Ақпаратты талдау</summary>
+          <ol>
+            <li><b>0</b><span data-i="54">Деректерді бөлмейді немесе шартты талдаусыз көшіреді.</span></li>
+            <li><b>1</b><span data-i="55">Белгілі шамалардың бір бөлігін ғана бөледі; ізделетін шама анықталмаған не қате.</span></li>
+            <li><b>2</b><span data-i="56">Белгілі және ізделетін шамаларды бөледі, бірақ бірліктерді не маңызды шарттарды (мысалы, °C пен K) ескермейді.</span></li>
+            <li><b>3</b><span data-i="57">Деректерді, ізделетін шаманы, бірліктер мен маңызды шарттарды толық әрі дұрыс бөледі.</span></li>
+            <li><b>4</b><span data-i="58">3-деңгейдегідей, сонымен қатар жетіспейтін не артық деректерді және жасырын болжамдарды (мысалы, реакцияның элементар екенін) табады.</span></li>
+          </ol>
+        </details>
+        <details>
+          <summary data-i="59">К2. Стратегияны таңдау және негіздеу</summary>
+          <ol>
+            <li><b>0</b><span data-i="60">Әдіс таңдалмаған немесе шартқа байланыссыз кездейсоқ таңдалған.</span></li>
+            <li><b>1</b><span data-i="61">Формула аталады, бірақ негіздемесіз немесе ол есепке сай емес.</span></li>
+            <li><b>2</b><span data-i="62">Сай әдіс таңдалған, бірақ негіздемесі үстірт («сабақта осылай шығардық»).</span></li>
+            <li><b>3</b><span data-i="63">Сай әдіс заңдылыққа және оны қолдану шарттарына сілтеме жасап негізделген.</span></li>
+            <li><b>4</b><span data-i="64">3-деңгейдегідей, сонымен қатар балама әдіспен салыстырып, таңдауын түсіндіреді (мысалы, Вант-Гофф пен Аррениус).</span></li>
+          </ol>
+        </details>
+        <details>
+          <summary data-i="65">К3. Пайымдау логикасы</summary>
+          <ol>
+            <li><b>0</b><span data-i="66">Байланысты шешім жоқ.</span></li>
+            <li><b>1</b><span data-i="67">Есептеулердің бір-бірімен байланыссыз үзінділері, өрескел қателер.</span></li>
+            <li><b>2</b><span data-i="68">Жалпы реттілік дұрыс, бірақ логикалық олқылықтар не түрлендірудегі қателер бар.</span></li>
+            <li><b>3</b><span data-i="69">Шешім жүйелі: әр қадам алдыңғысынан шығады, бірліктер келісілген.</span></li>
+            <li><b>4</b><span data-i="70">3-деңгейдегідей, сонымен қатар аралық қорытындыларды анық тұжырымдап, әр қадамды дәлелдейді.</span></li>
+          </ol>
+        </details>
+        <details>
+          <summary data-i="71">К4. Нәтижені тексеру</summary>
+          <ol>
+            <li><b>0</b><span data-i="72">Тексеру жоқ.</span></li>
+            <li><b>1</b><span data-i="73">Формалды тексеру («жауабы кітаптағымен сәйкес»).</span></li>
+            <li><b>2</b><span data-i="74">Бірліктерді НЕМЕСЕ санның шамасын тексереді.</span></li>
+            <li><b>3</b><span data-i="75">Бірліктерді де, шынайылықты да тексеріп, нәтижені химиялық заңдылықпен салыстырады.</span></li>
+            <li><b>4</b><span data-i="76">3-деңгейдегідей, сонымен қатар тәуелсіз тексеру жасайды (басқа әдіс, шекті жағдай, кері есептеу) және тапқан қатесін түзетеді.</span></li>
+          </ol>
+        </details>
+        <details>
+          <summary data-i="77">К5. Рефлексия</summary>
+          <ol>
+            <li><b>0</b><span data-i="78">Рефлексиялық сұрақтарға жауап жоқ.</span></li>
+            <li><b>1</b><span data-i="79">Шешіммен байланыссыз жалпы сөздер («бәрі түсінікті»).</span></li>
+            <li><b>2</b><span data-i="80">Қиындықты не қатені атайды, бірақ себебін талдамайды.</span></li>
+            <li><b>3</b><span data-i="81">Қатенің не сәттіліктің себебін талдап, оны нақты қадаммен байланыстырады.</span></li>
+            <li><b>4</b><span data-i="82">3-деңгейдегідей, сонымен қатар тасымалдауды тұжырымдайды: шарт өзгерсе шешім қалай өзгереді, келесі жолы не істейді.</span></li>
+          </ol>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap grid g2">
+      <div class="card prose">
+        <p class="eyebrow" data-i="83">Жоспарланған дизайн</p>
+        <h3 style="margin:8px 0 10px" data-i="84">Педагогикалық эксперимент</h3>
+        <ul>
+          <li data-i="85">Қатысушылар: 10-сынып оқушылары.</li>
+          <li data-i="86">Эксперименттік топ платформамен және ИИ-тәлімгермен, бақылау тобы алдын ала белгіленген дәстүрлі шарт бойынша оқиды.</li>
+          <li data-i="87">Кезеңдер: алдын ала диагностика → оқыту кезеңі → қорытынды диагностика → динамиканы талдау.</li>
+          <li data-i="88">Диагностика күрделілігі салыстырмалы эквивалентті нұсқалармен жүргізіледі.</li>
+          <li data-i="89">Қосымша сабақтар мен сыртқы көмек тіркеледі — нәтижені түсіндіру үшін қажет.</li>
+        </ul>
+      </div>
+      <div class="card prose">
+        <p class="eyebrow" data-i="90">Деректер және этика</p>
+        <h3 style="margin:8px 0 10px" data-i="91">Оқушылар — кәмелетке толмағандар</h3>
+        <ul>
+          <li data-i="92">Тек зерттеуге қажетті ең аз деректер жиналады.</li>
+          <li data-i="93">Ата-ананың (заңды өкілдің) және оқушының келісімі алынады.</li>
+          <li data-i="94">Зерттеу жиынтығында оқушы бүркеншік идентификатормен көрсетіледі; жеке деректер бөлек сақталады.</li>
+          <li data-i="95">Төмен нәтижелер бойынша ашық рейтинг жасалмайды.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="callout">
+        <p><b data-i="96">Ғылыми мәртебесі</b></p>
+        <p style="margin-top:6px" data-i="97">Бұл бетте әзірленген әдістеме мен күтілетін артықшылықтар сипатталған. Эксперимент әлі жүргізілген жоқ, сондықтан әдістің тиімділігі туралы қорытынды жасалмайды. Нәтижелер зерттеу аяқталғаннан кейін, талдау әдістері мен шектеулерімен бірге жарияланады.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap foot-grid">
+    <div>
+      <p class="brand-text">NURSERIK <b>CHEMISTRY</b></p>
+      <p class="muted small" data-i="98">Химияны өз бетімен оқуға және сыни ойлауды дамытуға арналған платформа.</p>
+    </div>
+    <div class="small">
+      <p data-i="99">Білім беру тұжырымдамасының авторы: <b>Хуантхан Нурсерик</b>, химия пәнінің мұғалімі.</p>
+      <p class="muted" data-i="100">Платформа магистрлік педагогикалық зерттеу аясында дамып келеді. Сайт ИИ-құралдардың (Claude) көмегімен әзірленді; сыртқы кітапханалар қолданылмайды, қаріптер — Google Fonts.</p>
+    </div>
+    <nav class="foot-links small" aria-label="Төменгі мәзір" data-ia="6">
+      <a href="../kinetics/" data-i="101">Химиялық кинетика курсы</a>
+      <a href="../research/" data-i="102">Зерттеу туралы</a>
+      <a href="https://github.com/miraskees-coder/nurserik-himia">GitHub</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+var I18N = {"ru":["NURSERIK CHEMISTRY — главная","Главное меню","Язык","Вид и доступность","Тема","Меню","Нижнее меню","Перейти к содержанию","Курс","Лаборатория","Задачи","Исследование","Тема","Системная","Светлая","Тёмная","Доступность","Крупный шрифт","Высокий контраст","Меньше анимации","Об исследовании","«Метод развития навыков критического мышления учащихся 10 класса в процессе решения сложных задач по химии на основе использования инструментов искусственного интеллекта» — тема магистерской диссертации.","Автор: Хуантхан Нурсерик, учитель химии, магистрант педагогического направления.","Проблема","При решении сложных химических задач учащиеся нередко испытывают трудности не только с вычислениями, но и с анализом условий, обоснованием решений и проверкой результатов.","Идея","Интерактивная образовательная платформа и ИИ-наставник позволяют организовать индивидуальную работу ученика и создать условия для развития навыков анализа и аргументации.","Цель","Разработать и исследовать метод развития критического мышления учащихся 10 класса при решении сложных химических задач посредством инструментов искусственного интеллекта.","Рабочая модель","Анализ — Гипотеза — Решение — Проверка — Рефлексия","Авторская рабочая модель, которая будет уточняться и проверяться в исследовании. Ни на одном этапе ИИ не показывает готовое решение.","Этап","Что делает ученик","Роль ИИ-наставника","1. Анализ","Читает условие; выписывает известные и неизвестные величины, единицы и нужные закономерности.","Задаёт вопросы: «Что известно из условия?», «Что нужно найти?», «Достаточно ли данных?»","2. Гипотеза","Предлагает метод решения и объясняет, почему выбрал именно его.","Спрашивает: «Почему именно это уравнение?», «Выполняются ли условия его применения?»","3. Решение","Выполняет вычисления по шагам, следит за единицами, при необходимости меняет метод.","Обращает внимание на единицы и преобразования на шаге, но не называет результат.","4. Проверка","Проверяет единицы и реалистичность числа, сравнивает с альтернативным способом, ищет ошибку.","Спрашивает: «Соответствует ли ответ химической закономерности?», «Что было бы в предельном случае?»","5. Рефлексия","Пишет, почему метод оказался верным, какую ошибку допустил, что изменится при других условиях.","Задаёт рефлексивные вопросы; ответы сохраняются без изменений для исследования.","Инструмент оценивания","Аналитическая рубрика: 5 критериев × 0–4 балла","Максимальная сумма — 20 баллов. Это педагогический инструмент, требующий апробации, а не валидированный психологический тест. ИИ может предложить предварительную оценку, но в исследовательском режиме итоговую оценку утверждает учитель с сохранением истории изменений.","К1. Анализ информации","Не выделяет данные или переписывает условие без анализа.","Выделяет лишь часть известных величин; искомая величина не указана или указана неверно.","Выделяет известные и искомую величины, но упускает единицы или существенные условия (например, °C и K).","Полно и верно выделяет данные, искомую величину, единицы и существенные условия.","Как на уровне 3, а также выявляет недостающие или избыточные данные и неявные допущения (например, элементарность реакции).","К2. Выбор и обоснование стратегии","Метод не выбран или выбран случайно, без связи с условием.","Названа формула без обоснования либо неподходящая.","Выбран подходящий метод, но обоснование поверхностное («так решали на уроке»).","Подходящий метод обоснован ссылкой на закономерность и условия её применимости.","Как на уровне 3, а также сравнивает с альтернативным методом и объясняет выбор (например, Вант-Гофф и Аррениус).","К3. Логика рассуждений","Связного решения нет.","Разрозненные фрагменты вычислений, грубые ошибки.","Последовательность в целом верна, но есть логические пропуски или ошибки в преобразованиях.","Решение последовательно: каждый шаг вытекает из предыдущего, единицы согласованы.","Как на уровне 3, а также явно формулирует промежуточные выводы и аргументирует каждый шаг.","К4. Проверка результата","Проверка отсутствует.","Формальная проверка («ответ совпал с ответом в учебнике»).","Проверяет единицы ИЛИ порядок величины.","Проверяет и единицы, и реалистичность, сопоставляет результат с химической закономерностью.","Как на уровне 3, а также выполняет независимую проверку (другой метод, предельный случай, обратный расчёт) и исправляет найденную ошибку.","К5. Рефлексия","Нет ответа на рефлексивные вопросы.","Общие фразы без связи с решением («всё понятно»).","Называет трудность или ошибку без анализа причины.","Анализирует причину ошибки или успеха, связывает её с конкретным шагом.","Как на уровне 3, а также формулирует перенос: как изменится решение при других условиях, что сделает иначе в следующий раз.","Планируемый дизайн","Педагогический эксперимент","Участники: учащиеся 10 класса.","Экспериментальная группа занимается с платформой и ИИ-наставником, контрольная — по заранее определённому традиционному условию.","Этапы: предварительная диагностика → обучающий этап → итоговая диагностика → анализ динамики.","Диагностика проводится на эквивалентных вариантах сопоставимой сложности.","Фиксируются дополнительные занятия и внешняя помощь — это нужно для интерпретации результатов.","Данные и этика","Ученики — несовершеннолетние","Собирается только минимум данных, необходимых для исследования.","Получается согласие родителей (законных представителей) и ученика.","В исследовательском наборе ученик представлен псевдонимизированным идентификатором; персональные данные хранятся отдельно.","Публичные рейтинги по низким результатам не создаются.","Научный статус","На этой странице описаны разработанная методика и предполагаемые преимущества. Эксперимент ещё не проведён, поэтому выводы об эффективности метода не делаются. Результаты будут опубликованы после завершения исследования вместе с методами анализа и ограничениями.","Платформа для самостоятельного изучения химии и развития критического мышления.","Автор образовательной концепции: <b>Хуантхан Нурсерик<\/b>, учитель химии.","Платформа развивается в рамках магистерского педагогического исследования. Сайт разработан с помощью ИИ-инструментов (Claude); внешние библиотеки не используются, шрифты — Google Fonts.","Курс «Химическая кинетика»","Об исследовании"],"en":["NURSERIK CHEMISTRY — home","Main menu","Language","Display and accessibility","Theme","Menu","Footer menu","Skip to content","Course","Lab","Problems","Research","Theme","System","Light","Dark","Accessibility","Larger text","High contrast","Reduce motion","About the research","“A method for developing critical thinking skills of grade 10 students while solving complex chemistry problems using artificial intelligence tools” — the topic of a master's thesis.","Author: Nurserik Khuantkhan, chemistry teacher and master's student in education.","Problem","When solving complex chemistry problems, students often struggle not only with calculations but also with analysing the conditions, justifying their solutions and checking their results.","Idea","An interactive platform and an AI tutor make it possible to organise individual work and create conditions for developing analysis and argumentation skills.","Aim","To develop and study a method for building grade 10 students' critical thinking when solving complex chemistry problems with AI tools.","Working model","Analyse — Hypothesise — Solve — Check — Reflect","The author's working model, to be refined and tested in the study. At no stage does the AI show a finished solution.","Stage","What the student does","Role of the AI tutor","1. Analyse","Reads the problem; lists known and unknown quantities, units and relevant laws.","Asks: “What is given?”, “What must be found?”, “Is the data sufficient?”","2. Hypothesise","Proposes a method and explains why it was chosen.","Asks: “Why this equation?”, “Are its conditions of use met?”","3. Solve","Calculates step by step, tracks units and changes method if needed.","Draws attention to units and transformations in a step without giving the result.","4. Check","Checks units and whether the number is realistic, compares with another method and looks for errors.","Asks: “Does the answer fit the chemical law?”, “What would happen in a limiting case?”","5. Reflect","Writes why the method worked, what mistake was made and what would change under other conditions.","Asks reflective questions; answers are stored unchanged for the study.","Assessment tool","Analytic rubric: 5 criteria × 0–4 points","The maximum total is 20 points. This is a teaching instrument that still needs piloting, not a validated psychological test. The AI may suggest a preliminary score, but in research mode the teacher confirms the final score and every change is logged.","C1. Analysing information","Does not identify the data or copies the problem without analysis.","Identifies only some known quantities; the unknown is missing or wrong.","Identifies known and unknown quantities but misses units or key conditions (e.g. °C vs K).","Fully and correctly identifies the data, the unknown, the units and the key conditions.","As level 3, and also spots missing or redundant data and hidden assumptions (e.g. that the reaction is elementary).","C2. Choosing and justifying a strategy","No method is chosen, or it is chosen at random with no link to the problem.","A formula is named without justification, or it does not fit.","A suitable method is chosen but the justification is shallow (“that's how we did it in class”).","A suitable method is justified with reference to the law and its conditions of use.","As level 3, and also compares with an alternative method and explains the choice (e.g. Van 't Hoff vs Arrhenius).","C3. Logic of reasoning","There is no coherent solution.","Disconnected fragments of calculation with serious errors.","The sequence is broadly right but has logical gaps or errors in transformations.","The solution is coherent: each step follows from the previous one and units are consistent.","As level 3, and also states intermediate conclusions and justifies each step.","C4. Checking the result","No check.","A formal check (“it matches the answer in the book”).","Checks units OR the order of magnitude.","Checks both units and plausibility and compares the result with the chemical law.","As level 3, and also checks independently (another method, a limiting case, a reverse calculation) and fixes any error found.","C5. Reflection","No answer to the reflective questions.","Generic phrases unrelated to the solution (“it's all clear”).","Names a difficulty or mistake without analysing why.","Analyses why something went wrong or right and links it to a specific step.","As level 3, and also describes transfer: how the solution would change under other conditions and what to do differently next time.","Planned design","Teaching experiment","Participants: grade 10 students.","The experimental group works with the platform and AI tutor; the control group follows a pre-defined traditional condition.","Stages: pre-test → teaching phase → post-test → analysis of change.","Testing uses equivalent versions of comparable difficulty.","Extra lessons and outside help are recorded, as this matters for interpreting results.","Data and ethics","Students are minors","Only the minimum data needed for the study is collected.","Consent is obtained from parents (legal guardians) and students.","In the research dataset students appear under a pseudonymous ID; personal data is stored separately.","No public rankings of low scores are created.","Scientific status","This page describes the method that has been developed and its expected benefits. The experiment has not yet been carried out, so no claims about the method's effectiveness are made. Results will be published when the study is complete, together with the analysis methods and limitations.","A platform for learning chemistry independently and developing critical thinking.","Author of the educational concept: <b>Nurserik Khuantkhan<\/b>, chemistry teacher.","The platform is being developed as part of a master's research project in education. The site was built with the help of AI tools (Claude); no external libraries are used; fonts are from Google Fonts.","Chemical kinetics course","About the research"]};
+/* ================= Платформа: тіл, тақырып, қолжетімділік, мәзір ================= */
+var LANG = "kk";
+var KK = {};
+function L(kk, ru, en) { return LANG === "ru" ? ru : LANG === "en" ? en : kk; }
+function safe(name, fn) { try { fn(); } catch (e) { if (window.console) console.error("[" + name + "]", e); } }
+function $(id) { return document.getElementById(id); }
+function store(key, val) {
+  try { if (val === undefined) return localStorage.getItem(key); localStorage.setItem(key, val); } catch (e) {}
+  return null;
+}
+function fmt(x, d) {
+  if (typeof x !== "number" || !isFinite(x)) return "—";
+  var s = Math.abs(x).toFixed(d == null ? 2 : d);
+  if (s.indexOf(".") >= 0) s = s.replace(/0+$/, "").replace(/\.$/, "");
+  var p = s.split("."), en = LANG === "en";
+  if (p[0].length > (en ? 3 : 4)) p[0] = p[0].replace(/\B(?=(\d{3})+(?!\d))/g, en ? "," : " ");
+  return (x < 0 && s !== "0" ? "−" : "") + p[0] + (p[1] ? (en ? "." : ",") + p[1] : "");
+}
+
+var ATTRS = [["data-ia", "aria-label"], ["data-it", "title"], ["data-ip", "placeholder"]];
+var PAGE_TITLE = null;
+
+function setLang(lang, silent) {
+  if (lang !== "kk" && !I18N[lang]) lang = "kk";
+  LANG = lang;
+  var dict = I18N[lang];
+  document.querySelectorAll("[data-i]").forEach(function (el) {
+    var i = el.getAttribute("data-i"), v = lang === "kk" ? KK["t" + i] : dict[i];
+    if (v != null && el.innerHTML !== v) el.innerHTML = v;
+  });
+  ATTRS.forEach(function (p) {
+    document.querySelectorAll("[" + p[0] + "]").forEach(function (el) {
+      var i = el.getAttribute(p[0]), v = lang === "kk" ? KK["a" + i] : dict[i];
+      if (v != null) el.setAttribute(p[1], v);
+    });
+  });
+  document.documentElement.lang = lang;
+  if (PAGE_TITLE) document.title = L(PAGE_TITLE[0], PAGE_TITLE[1], PAGE_TITLE[2]);
+  document.querySelectorAll(".lang-seg button").forEach(function (b) {
+    b.setAttribute("aria-pressed", String(b.getAttribute("data-lang") === lang));
+  });
+  store("nc-lang", lang);
+  if (!silent) document.dispatchEvent(new CustomEvent("langchange", { detail: { lang: lang } }));
+}
+function onLang(fn) { document.addEventListener("langchange", function () { safe("langchange", fn); }); }
+
+safe("i18n", function () {
+  var t = document.querySelector('meta[name="nc-title"]');
+  if (t) PAGE_TITLE = t.getAttribute("content").split("‖");
+  document.querySelectorAll("[data-i]").forEach(function (el) { KK["t" + el.getAttribute("data-i")] = el.innerHTML; });
+  ATTRS.forEach(function (p) {
+    document.querySelectorAll("[" + p[0] + "]").forEach(function (el) { KK["a" + el.getAttribute(p[0])] = el.getAttribute(p[1]); });
+  });
+  document.querySelectorAll(".lang-seg button").forEach(function (b) {
+    b.addEventListener("click", function () { setLang(b.getAttribute("data-lang")); });
+  });
+  var saved = store("nc-lang");
+  setLang(saved === "ru" || saved === "en" ? saved : "kk", true);
+});
+
+/* ---------- Тақырып және қолжетімділік ---------- */
+safe("prefs", function () {
+  var root = document.documentElement, btn = $("prefsBtn"), pop = $("prefs");
+  function applyTheme(v) {
+    if (v === "light" || v === "dark") root.setAttribute("data-theme", v); else root.removeAttribute("data-theme");
+    document.querySelectorAll("[data-theme-set]").forEach(function (b) {
+      b.setAttribute("aria-pressed", String(b.getAttribute("data-theme-set") === (v || "system")));
+    });
+  }
+  var flags = { large: "data-large", contrast: "data-contrast", calm: "data-calm" };
+  function applyA11y(key, on) {
+    if (on) root.setAttribute(flags[key], ""); else root.removeAttribute(flags[key]);
+  }
+  applyTheme(store("nc-theme") || "system");
+  document.querySelectorAll("[data-a11y]").forEach(function (c) {
+    var k = c.getAttribute("data-a11y");
+    c.checked = store("nc-" + k) === "1";
+    applyA11y(k, c.checked);
+    c.addEventListener("change", function () {
+      applyA11y(k, c.checked);
+      store("nc-" + k, c.checked ? "1" : "0");
+      document.dispatchEvent(new CustomEvent("prefschange"));
+    });
+  });
+  document.querySelectorAll("[data-theme-set]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var v = b.getAttribute("data-theme-set");
+      store("nc-theme", v);
+      applyTheme(v);
+      document.dispatchEvent(new CustomEvent("prefschange"));
+    });
+  });
+  function toggle(open) {
+    pop.hidden = !open;
+    btn.setAttribute("aria-expanded", String(open));
+  }
+  btn.addEventListener("click", function (e) { e.stopPropagation(); toggle(pop.hidden); });
+  pop.addEventListener("click", function (e) { e.stopPropagation(); });
+  document.addEventListener("click", function () { if (!pop.hidden) toggle(false); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !pop.hidden) { toggle(false); btn.focus(); } });
+});
+
+/* ---------- Мобильді мәзір және белсенді бөлім ---------- */
+safe("menu", function () {
+  var nav = $("mainNav"), btn = $("menuToggle");
+  btn.addEventListener("click", function () {
+    var open = !nav.classList.contains("open");
+    nav.classList.toggle("open", open);
+    btn.setAttribute("aria-expanded", String(open));
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && nav.classList.contains("open")) { nav.classList.remove("open"); btn.setAttribute("aria-expanded", "false"); btn.focus(); }
+  });
+  var page = document.body.getAttribute("data-page");
+  var cur = page && nav.querySelector('[data-nav="' + page + '"]');
+  if (cur) cur.setAttribute("aria-current", "page");
+});
+
+function reducedMotion() {
+  var calm = document.documentElement.hasAttribute("data-calm");
+  try { return calm || window.matchMedia("(prefers-reduced-motion: reduce)").matches; } catch (e) { return calm; }
+}
+
+</script>
+</body>
+</html>

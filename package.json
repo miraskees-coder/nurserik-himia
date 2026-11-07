@@ -1,0 +1,10 @@
+{
+  "name": "nurserik-chemistry",
+  "private": true,
+  "description": "NURSERIK CHEMISTRY — платформа самостоятельного изучения химии и развития критического мышления",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "test": "node build.mjs && node tests/browser.mjs"
+  }
+}

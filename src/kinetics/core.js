@@ -127,7 +127,7 @@ function setLang(lang, silent) {
   document.querySelectorAll(".lang button").forEach(function (b) {
     b.setAttribute("aria-pressed", String(b.getAttribute("data-lang") === lang));
   });
-  try { localStorage.setItem("rate-lang", lang); } catch (e) {}
+  try { localStorage.setItem("nc-lang", lang); } catch (e) {}
   if (!silent) document.dispatchEvent(new CustomEvent("langchange", { detail: { lang: lang } }));
 }
 
@@ -205,7 +205,7 @@ safe("i18n", function () {
     b.addEventListener("click", function () { setLang(b.getAttribute("data-lang")); });
   });
   var saved = null;
-  try { saved = localStorage.getItem("rate-lang"); } catch (e) {}
+  try { saved = localStorage.getItem("nc-lang"); } catch (e) {}
   setLang(saved && (saved === "kk" || I18N[saved]) ? saved : "kk", true);
 });
 
