@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>
+(function () {
+  try {
+    var r = document.documentElement, t = localStorage.getItem("nc-theme");
+    if (t === "light" || t === "dark") r.setAttribute("data-theme", t);
+    if (localStorage.getItem("nc-large") === "1") r.setAttribute("data-large", "");
+    if (localStorage.getItem("nc-contrast") === "1") r.setAttribute("data-contrast", "");
+    if (localStorage.getItem("nc-calm") === "1") r.setAttribute("data-calm", "");
+  } catch (e) {}
+})();
+</script>
+<title>Critical Thinking Lab — NURSERIK CHEMISTRY</title>
+<meta name="nc-title" content="Сыни ойлау зертханасы — NURSERIK CHEMISTRY‖Лаборатория критического мышления — NURSERIK CHEMISTRY‖Critical Thinking Lab — NURSERIK CHEMISTRY">
+<meta name="description" content="Химиялық кинетика есептерін 7 кезеңмен шығару тренажері: талдау, болжам, негіздеу, шешім, тексеру, ИИ шешімін сыни талдау, рефлексия. Әр жолы жаңа нұсқа.">
+<meta name="author" content="Хуантхан Нурсерик">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://miraskees-coder.github.io/nurserik-himia/trainer/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2315171F'/%3E%3Cpath d='M16 6 24.7 11v10L16 26l-8.7-5V11Z' fill='none' stroke='white' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='3.4' fill='%23A597FF'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=Unbounded:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+/*CSS*/
+</style>
+</head>
+<body data-page="trainer">
+<!--HEADER-->
+
+<main id="main">
+  <section class="hero" style="padding-bottom:20px">
+    <div class="wrap">
+      <p class="eyebrow">Critical Thinking Lab · Chemistry Problem Solving Engine</p>
+      <h1 style="font-size:clamp(1.7rem,4.2vw,3rem)">⟦Есепті жеті кезеңмен шығару‖Решение задачи в семь этапов‖Solving a problem in seven stages⟧</h1>
+      <p class="sub">⟦Мақсат — тек дұрыс жауап емес, оның неге дұрыс екенін түсіну. Әр жолы есептің жаңа нұсқасы шығады.‖Цель — не только верный ответ, но и понимание, почему он верен. Каждый раз создаётся новый вариант задачи.‖The goal is not just the right answer but understanding why it is right. Every attempt gets a new version of the problem.⟧</p>
+      <div class="notice" role="note">
+        <p>⟦<b>Қазіргі күйі.</b> Генеративті ИИ-тәлімгер әлі қосылмаған: тексеру алдын ала дайындалған ережелермен жүргізіледі, ал «ИИ шешімі» — оқу мақсатында дайындалған мысал. Нәтижелер тек осы браузерде сақталады; аккаунттар қосылғанша оларды файл ретінде жүктеп алыңыз.‖<b>Текущее состояние.</b> Генеративный ИИ-наставник ещё не подключён: проверка выполняется заранее подготовленными правилами, а «решение ИИ» — учебный пример, подготовленный заранее. Результаты сохраняются только в этом браузере; пока аккаунты не подключены, скачивайте их файлом.‖<b>Current status.</b> The generative AI tutor is not connected yet: checking is done by prepared rules, and the “AI solution” is a prepared teaching example. Results are saved only in this browser; until accounts are connected, download them as a file.⟧</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap ct">
+    <div class="tabs" role="tablist" aria-label="⟦Режим‖Режим‖Mode⟧">
+      <button type="button" role="tab" id="tabProblem" aria-selected="true" aria-controls="paneProblem">⟦Есеп (7 кезең)‖Задача (7 этапов)‖Problem (7 stages)⟧</button>
+      <button type="button" role="tab" id="tabClaims" aria-selected="false" aria-controls="paneClaims">⟦ИИ жауабын тексер‖Проверь ответ ИИ‖Check the AI's answer⟧</button>
+      <button type="button" role="tab" id="tabHistory" aria-selected="false" aria-controls="paneHistory">⟦Менің нәтижелерім‖Мои результаты‖My results⟧</button>
+    </div>
+
+    <div id="paneProblem" role="tabpanel" aria-labelledby="tabProblem">
+      <div class="ct-bar">
+        <label class="field-inline">⟦Деңгей‖Уровень‖Level⟧
+          <select id="ctLevel">
+            <option value="">⟦Аралас‖Любой‖Any⟧</option>
+            <option value="A">⟦A — негізгі‖A — базовый‖A — basic⟧</option>
+            <option value="B">⟦B — орта‖B — средний‖B — intermediate⟧</option>
+            <option value="C">⟦C — жоғары‖C — повышенный‖C — advanced⟧</option>
+          </select>
+        </label>
+        <button class="btn btn-primary" type="button" id="ctNew">⟦Жаңа есеп‖Новая задача‖New problem⟧</button>
+      </div>
+      <ol class="steps" id="ctSteps" aria-label="⟦Кезеңдер‖Этапы‖Stages⟧"></ol>
+      <article class="card ct-problem" id="ctProblem" aria-live="polite"></article>
+      <div class="card ct-stage" id="ctStage"></div>
+    </div>
+
+    <div id="paneClaims" role="tabpanel" aria-labelledby="tabClaims" hidden>
+      <p class="muted" style="margin-bottom:14px">⟦Төменде «ИИ айтқан» тұжырым. Кейбіреулері дұрыс, кейбірінде әдейі қате бар. Оны бағалап, дәлеліңізді жазыңыз. Түсіндірмеңіз автоматты түрде бағаланбайды — ол мұғалімге сақталады.‖Ниже — утверждение, «сделанное ИИ». Некоторые верны, в некоторых специально допущена ошибка. Оцените его и запишите аргумент. Объяснение не оценивается автоматически — оно сохраняется для учителя.‖Below is a statement “made by an AI”. Some are correct, some contain a deliberate error. Judge it and write down your argument. Your explanation is not scored automatically; it is saved for the teacher.⟧</p>
+      <div class="card" id="claimBox"></div>
+    </div>
+
+    <div id="paneHistory" role="tabpanel" aria-labelledby="tabHistory" hidden>
+      <div class="ct-bar">
+        <button class="btn" type="button" id="hCsv">⟦CSV жүктеу‖Скачать CSV‖Download CSV⟧</button>
+        <button class="btn" type="button" id="hJson">⟦JSON жүктеу‖Скачать JSON‖Download JSON⟧</button>
+        <button class="btn" type="button" id="hClear">⟦Тарихты тазалау‖Очистить историю‖Clear history⟧</button>
+      </div>
+      <div id="historyBox"></div>
+    </div>
+  </section>
+</main>
+
+<!--FOOTER-->
+<script>
+/*JS*/
+</script>
+</body>
+</html>

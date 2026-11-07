@@ -273,7 +273,7 @@ try {
   const textsP = `(() => { const out = []; const walk = (n) => { if (n.nodeType === 3) { const t = n.nodeValue.trim(); if (t) out.push(t); return; } if (n.nodeType !== 1) return; if (n.matches('script,style,.lang-seg')) return; for (const a of ['aria-label','title','placeholder']) if (n.hasAttribute(a)) out.push('@'+a+': '+n.getAttribute(a)); n.childNodes.forEach(walk); }; walk(document.body); out.push('TITLE: '+document.title); return out; })()`;
   for (const [w, h] of [[1280, 800], [390, 844]]) {
     await d.send("Emulation.setDeviceMetricsOverride", { width: w, height: h, deviceScaleFactor: w < 500 ? 2 : 1, mobile: w < 500 });
-    for (const pg of ["", "research/"]) {
+    for (const pg of ["", "research/", "trainer/"]) {
       d.errors.length = 0;
       await nav(d, `http://127.0.0.1:${PORT}/nurserik-himia/${pg}`);
       const tag = `${pg || "home"} @${w}`;
@@ -292,8 +292,8 @@ try {
         const broken = [];
         for (const u of links) { const r = await fetch(u); if (r.status !== 200) broken.push(r.status + " " + u); }
         check(`Платформа ${tag}: ішкі сілтемелер ашылады (${links.length})`, broken.length === 0, broken.join(" | "));
-        await shot(d, "p-" + (pg ? "research" : "home") + "-ru-en-kk");
-      } else await shot(d, "p-" + (pg ? "research" : "home") + "-m");
+        await shot(d, "p-" + (pg ? pg.replace("/", "") : "home") + "-ru-en-kk");
+      } else await shot(d, "p-" + (pg ? pg.replace("/", "") : "home") + "-m");
     }
   }
   await d.send("Emulation.setDeviceMetricsOverride", { width: 1280, height: 800, deviceScaleFactor: 1, mobile: false });
@@ -313,6 +313,74 @@ try {
   await nav(d, `http://127.0.0.1:${PORT}/nurserik-himia/#14`);
   const red = await ev(d, "location.pathname + ' ' + (document.querySelector('.slide.active')||{}).id");
   check("Ескі сілтеме /#14 → сабақтың 14-слайды", red.includes("/kinetics/") && red.endsWith("s14"), red);
+  /* ---------- E. Тренажёр: сквозной сценарий 7 этапов ---------- */
+  await nav(d, `http://127.0.0.1:${PORT}/nurserik-himia/trainer/`);
+  await ev(d, "localStorage.setItem('nc-ct-current', 'null'); localStorage.setItem('nc-ct-history', '[]'); true");
+  await nav(d, `http://127.0.0.1:${PORT}/nurserik-himia/trainer/`);
+  const flow = await ev(d, `(async () => {
+    const W = (ms) => new Promise(r => setTimeout(r, ms));
+    const $ = (s) => document.querySelector(s), $$ = (s) => [...document.querySelectorAll(s)];
+    const act = (a) => $('[data-act="' + a + '"]').click();
+    const setv = (el, v) => { el.value = v; el.dispatchEvent(new Event('input', { bubbles: true })); el.dispatchEvent(new Event('change', { bubbles: true })); };
+    const tick = (el) => { el.checked = true; el.dispatchEvent(new Event('change')); };
+    const log = [];
+    document.getElementById('ctLevel').value = 'C';
+    document.getElementById('ctNew').click(); await W(50);
+    const st = JSON.parse(localStorage.getItem('nc-ct-current'));
+    const t = NCEngine.byId(st.template), g = NCEngine.generate(st.template, st.seed), p = g.params;
+    log.push('template=' + st.template + ' level=' + st.level);
+    const gv = t.givens(p, 'kk');
+    $$('[data-given]').forEach(el => { const x = gv.find(q => q.id === el.dataset.given); if (x.relevant) tick(el); });
+    $$('input[name="unk"]').forEach(el => { if (el.value === NCEngine.unknownOf(t, p)) tick(el); });
+    $$('input[name="conv"]').forEach(el => { if ((el.value === 'true') === t.convert(p)) tick(el); });
+    act('checkA'); await W(20); log.push('A:' + !!$('#ctStage .fb.ok')); act('next'); await W(20);
+    act('next'); await W(20); log.push('noMethodBlocked:' + !!$('#ctStage .fb.warn'));
+    $$('input[name="meth"]').forEach(el => { if (el.value === t.method) tick(el); });
+    act('next'); await W(20);
+    setv($('#ctJust'), 'Шартта екі температура мен активтендіру энергиясы берілген.'); act('checkM'); await W(20);
+    log.push('M:' + !!$('#ctStage .fb.ok')); act('next'); await W(20);
+    const a = t.answer(p);
+    setv($('#ctWork'), 'қадамдар');
+    setv($('#ctAns'), String(a.value * 1.7).replace('.', ',')); if ($('#ctUnit')) setv($('#ctUnit'), a.unit); act('checkS'); await W(20);
+    log.push('wrongRejected:' + !!$('#ctStage .fb.bad'));
+    setv($('#ctAns'), a.value.toPrecision(4).replace('.', ',')); act('checkS'); await W(20);
+    log.push('S:' + !!$('#ctStage .fb.ok')); act('next'); await W(20);
+    t.checks.forEach((q, i) => $$('input[name="chk' + i + '"]').forEach(el => { if ((el.value === 'true') === q.a) tick(el); }));
+    act('checkC'); await W(20); act('next'); await W(20);
+    const v = g.ai.type === 'none' ? 'ok' : 'err';
+    tick($$('input[name="verdict"]').find(el => el.value === v)); await W(20);
+    if (v === 'err') setv($('#ctErrType'), g.ai.type);
+    setv($('#ctExpl'), 'Бірліктер мен формуланы тексердім.'); act('checkK'); await W(20);
+    log.push('K:' + !!$('#ctStage .fb.ok')); act('next'); await W(20);
+    $$('[data-refl]').forEach(el => setv(el, 'жауап мәтіні'));
+    act('finish'); await W(50);
+    const h = JSON.parse(localStorage.getItem('nc-ct-history'));
+    log.push('auto=' + JSON.stringify(h[0].auto) + ' attempts=' + h[0].solve.attempts.length);
+    log.push('summary:' + !!$('.score-table'));
+    return log.join(' | ');
+  })()`);
+  check("Тренажёр: 7 этапов проходятся, неверный ответ отклоняется, оценки сохраняются",
+    /A:true/.test(flow) && /noMethodBlocked:true/.test(flow) && /M:true/.test(flow) && /wrongRejected:true/.test(flow) && /S:true/.test(flow) && /K:true/.test(flow) && /"K1":4,"K2":2,"K3":4,"K4":3,"K5":null/.test(flow) && /summary:true/.test(flow), flow);
+  await nav(d, `http://127.0.0.1:${PORT}/nurserik-himia/trainer/`);
+  const kept = await ev(d, "!!document.querySelector('.score-table') && JSON.parse(localStorage.getItem('nc-ct-history')).length === 1");
+  check("Тренажёр: состояние и история сохраняются после перезагрузки", kept === true);
+  await ev(d, "document.querySelector('.lang-seg [data-lang=\"ru\"]').click(); document.getElementById('ctNew').click(); true");
+  const ruT = (await ev(d, textsP)).filter((x) => KZd.test(x));
+  check("Тренажёр: в русском нет казахских букв (задача, этапы, история)", ruT.length === 0, ruT.slice(0, 4).join(" ‖ "));
+  await ev(d, "document.querySelector('.lang-seg [data-lang=\"en\"]').click(); document.getElementById('tabClaims').click(); true");
+  const enT = (await ev(d, textsP)).filter((x) => /[Ѐ-ӿ]/.test(x));
+  check("Тренажёр: в английском нет кириллицы", enT.length === 0, enT.slice(0, 4).join(" ‖ "));
+  const claim = await ev(d, `(() => {
+    const el = document.querySelector('input[name="clv"][value="ok"]'); el.checked = true; el.dispatchEvent(new Event('change'));
+    const ta = document.getElementById('clExpl'); ta.value = 'Because of the definition used.'; ta.dispatchEvent(new Event('input'));
+    document.getElementById('clCheck').click();
+    return !!document.querySelector('#claimBox .fb') && JSON.parse(localStorage.getItem('nc-ct-history'))[0].kind === 'claim';
+  })()`);
+  check("Тренажёр: режим «Проверь ответ ИИ» работает и сохраняет ответ", claim === true);
+  await ev(d, "document.getElementById('tabHistory').click(); document.querySelector('.lang-seg [data-lang=\"kk\"]').click(); true");
+  const rows = await ev(d, "document.querySelectorAll('#historyBox tbody tr').length");
+  check("Тренажёр: таблица результатов", rows === 2, String(rows));
+  await shot(d, "p-trainer-history");
   check("Платформа: консоль таза (барлық әрекеттен кейін)", d.errors.length === 0, d.errors.join(" | "));
 } catch (e) {
   results.push("ERROR " + e.stack);

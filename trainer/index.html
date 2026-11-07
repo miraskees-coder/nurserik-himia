@@ -1,0 +1,1704 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>
+(function () {
+  try {
+    var r = document.documentElement, t = localStorage.getItem("nc-theme");
+    if (t === "light" || t === "dark") r.setAttribute("data-theme", t);
+    if (localStorage.getItem("nc-large") === "1") r.setAttribute("data-large", "");
+    if (localStorage.getItem("nc-contrast") === "1") r.setAttribute("data-contrast", "");
+    if (localStorage.getItem("nc-calm") === "1") r.setAttribute("data-calm", "");
+  } catch (e) {}
+})();
+</script>
+<title>Critical Thinking Lab — NURSERIK CHEMISTRY</title>
+<meta name="nc-title" content="Сыни ойлау зертханасы — NURSERIK CHEMISTRY‖Лаборатория критического мышления — NURSERIK CHEMISTRY‖Critical Thinking Lab — NURSERIK CHEMISTRY">
+<meta name="description" content="Химиялық кинетика есептерін 7 кезеңмен шығару тренажері: талдау, болжам, негіздеу, шешім, тексеру, ИИ шешімін сыни талдау, рефлексия. Әр жолы жаңа нұсқа.">
+<meta name="author" content="Хуантхан Нурсерик">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://miraskees-coder.github.io/nurserik-himia/trainer/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2315171F'/%3E%3Cpath d='M16 6 24.7 11v10L16 26l-8.7-5V11Z' fill='none' stroke='white' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='3.4' fill='%23A597FF'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=Unbounded:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ================= NURSERIK CHEMISTRY — платформаның дизайн жүйесі ================= */
+:root {
+  --bg: #F6F5F1;
+  --surface: #FFFFFF;
+  --surface-2: #EEECE6;
+  --text: #15171F;
+  --muted: #565B6B;
+  --border: #DCD9D0;
+  --accent: #4733D1;
+  --accent-ink: #FFFFFF;
+  --accent-soft: rgba(71, 51, 209, .09);
+  --c-a: #0679B8;
+  --c-b: #C46F00;
+  --c-ab: #C8285F;
+  --ok: #17784A;
+  --warn: #9A5B00;
+  --ext: #6A4CC0;
+  --dev: #646A7A;
+  --shadow: 0 1px 2px rgba(20, 22, 31, .06), 0 8px 24px rgba(20, 22, 31, .06);
+  --radius: 18px;
+  --radius-sm: 12px;
+  --font-head: "Unbounded", system-ui, sans-serif;
+  --font-body: "Golos Text", system-ui, sans-serif;
+  --fs: 17px;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0F1222; --surface: #171B30; --surface-2: #20253F; --text: #E9ECF7; --muted: #A5ACC6; --border: #2C3254;
+    --accent: #A597FF; --accent-ink: #0F1222; --accent-soft: rgba(165, 151, 255, .12);
+    --c-a: #4CC6FF; --c-b: #FFB547; --c-ab: #FF5C9C; --ok: #48D597; --warn: #FFC266; --ext: #B9A6FF; --dev: #9AA1BA;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 10px 30px rgba(0, 0, 0, .25);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0F1222; --surface: #171B30; --surface-2: #20253F; --text: #E9ECF7; --muted: #A5ACC6; --border: #2C3254;
+  --accent: #A597FF; --accent-ink: #0F1222; --accent-soft: rgba(165, 151, 255, .12);
+  --c-a: #4CC6FF; --c-b: #FFB547; --c-ab: #FF5C9C; --ok: #48D597; --warn: #FFC266; --ext: #B9A6FF; --dev: #9AA1BA;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 10px 30px rgba(0, 0, 0, .25);
+  color-scheme: dark;
+}
+:root[data-large] { --fs: 19.5px; }
+:root[data-contrast] { --muted: var(--text); --border: var(--text); --shadow: none; }
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+[hidden] { display: none !important; }
+html { font-size: var(--fs); -webkit-text-size-adjust: 100%; }
+body {
+  background: var(--bg); color: var(--text);
+  font-family: var(--font-body); font-size: 1rem; line-height: 1.6;
+  -webkit-font-smoothing: antialiased; overflow-x: hidden;
+}
+a { color: var(--accent); text-underline-offset: 3px; }
+button, input, select { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+sub, sup { line-height: 0; }
+.wrap { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+.muted { color: var(--muted); }
+.small { font-size: .875rem; }
+.skip { position: absolute; left: 12px; top: -60px; z-index: 100; background: var(--accent); color: var(--accent-ink); padding: 8px 14px; border-radius: 10px; }
+.skip:focus { top: 12px; }
+
+/* ---------- Шапка ---------- */
+.site-head {
+  position: sticky; top: 0; z-index: 30;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+.head-row { display: flex; align-items: center; gap: 20px; height: 64px; }
+.brand { display: flex; align-items: center; gap: 10px; color: var(--text); text-decoration: none; flex: none; }
+.brand-mark { width: 30px; height: 30px; color: var(--text); }
+.brand-text { font: 600 .82rem/1 var(--font-head); letter-spacing: .06em; }
+.brand-text b { font-weight: 800; color: var(--accent); }
+.main-nav { display: flex; gap: 4px; margin-left: auto; }
+.main-nav a {
+  color: var(--muted); text-decoration: none; font-weight: 500; font-size: .94rem;
+  padding: 8px 12px; border-radius: 10px;
+}
+.main-nav a:hover { color: var(--text); background: var(--surface-2); }
+.main-nav a[aria-current="page"] { color: var(--text); background: var(--accent-soft); }
+.head-tools { display: flex; align-items: center; gap: 8px; flex: none; }
+.lang-seg, .seg { display: inline-flex; gap: 2px; padding: 3px; border: 1px solid var(--border); border-radius: 999px; background: var(--surface); }
+.lang-seg button, .seg button { border: 0; background: none; padding: 5px 11px; border-radius: 999px; font-size: .82rem; font-weight: 600; color: var(--muted); }
+.lang-seg button[aria-pressed="true"], .seg button[aria-pressed="true"] { background: var(--text); color: var(--bg); }
+.icon-btn {
+  width: 38px; height: 38px; display: grid; place-items: center;
+  border-radius: 50%; border: 1px solid var(--border); background: var(--surface); color: var(--text);
+}
+.icon-btn svg { width: 18px; height: 18px; }
+.menu-toggle { display: none; }
+.pop-wrap { position: relative; }
+.pop {
+  position: absolute; right: 0; top: calc(100% + 8px); width: 270px; z-index: 40;
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow);
+  padding: 14px; display: grid; gap: 8px;
+}
+.pop-title { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-top: 4px; }
+.check { display: flex; align-items: center; gap: 10px; font-size: .92rem; cursor: pointer; }
+.check input { width: 18px; height: 18px; accent-color: var(--accent); }
+
+/* ---------- Типографика ---------- */
+.eyebrow { font: 600 .75rem/1.2 var(--font-head); letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+h1, h2, h3 { font-family: var(--font-head); line-height: 1.15; letter-spacing: -.01em; }
+h2 { font-size: clamp(1.45rem, 3vw, 2.1rem); font-weight: 700; }
+h3 { font-size: 1.08rem; font-weight: 700; }
+.section { padding: 72px 0; }
+.section + .section { border-top: 1px solid var(--border); }
+.section-head { max-width: 720px; margin-bottom: 32px; }
+.section-head p { color: var(--muted); margin-top: 10px; }
+.prose p + p { margin-top: 12px; }
+.prose ul { padding-left: 20px; margin-top: 8px; }
+.prose li + li { margin-top: 6px; }
+
+/* ---------- Батырмалар ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 12px 20px; border-radius: 12px; font-weight: 600; font-size: .95rem; text-decoration: none;
+  border: 1px solid var(--border); background: var(--surface); color: var(--text);
+  transition: transform .15s, border-color .15s;
+}
+.btn:hover { border-color: var(--text); }
+.btn-primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.btn-primary:hover { border-color: var(--accent); transform: translateY(-1px); }
+.btn svg { width: 16px; height: 16px; }
+
+/* ---------- Басты экран ---------- */
+.hero { padding: 64px 0 40px; }
+.hero h1 { font-size: clamp(2.3rem, 7.2vw, 5.4rem); font-weight: 800; line-height: .98; margin: 16px 0 20px; letter-spacing: -.02em; }
+.hero h1 span { display: block; color: var(--accent); }
+.hero .sub { font-size: clamp(1.05rem, 1.8vw, 1.3rem); color: var(--muted); max-width: 700px; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+
+/* ---------- Карточкалар ---------- */
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); min-width: 0; }
+.grid { display: grid; gap: 16px; }
+.g2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.g5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+
+/* ---------- Модель көрсетілімі ---------- */
+.card.viz { padding: 0; }
+.viz { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: 0; padding: 0; overflow: hidden; margin-top: 44px; }
+.viz canvas { display: block; width: 100%; height: 340px; background: var(--surface-2); touch-action: pan-y; }
+.viz-side { padding: 22px; display: grid; gap: 14px; align-content: start; border-left: 1px solid var(--border); }
+.viz-side h3 { font-size: 1rem; }
+.range { display: grid; gap: 4px; }
+.range-top { display: flex; justify-content: space-between; font-size: .9rem; }
+.range-top output { font-weight: 700; font-variant-numeric: tabular-nums; }
+input[type="range"] { width: 100%; accent-color: var(--accent); height: 28px; }
+.readout { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.readout div { background: var(--surface-2); border-radius: var(--radius-sm); padding: 10px 12px; }
+.readout b { display: block; font: 700 1.25rem/1.2 var(--font-head); font-variant-numeric: tabular-nums; }
+.readout span { font-size: .78rem; color: var(--muted); }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: .8rem; color: var(--muted); }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: -1px; }
+.note { font-size: .8rem; color: var(--muted); border-top: 1px dashed var(--border); padding-top: 10px; }
+
+/* ---------- Оқу жолы ---------- */
+.path { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; counter-reset: step; }
+.path li { counter-increment: step; position: relative; padding: 16px 16px 16px 56px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--surface); min-width: 0; }
+.path li::before {
+  content: counter(step, decimal-leading-zero); position: absolute; left: 16px; top: 16px;
+  font: 700 .8rem/1 var(--font-head); color: var(--muted);
+}
+.path h3 { font-size: .95rem; font-family: var(--font-body); font-weight: 700; letter-spacing: 0; }
+.path p { font-size: .85rem; color: var(--muted); margin-top: 4px; }
+.status { display: inline-flex; align-items: center; gap: 6px; margin-top: 8px; font-size: .74rem; font-weight: 700; letter-spacing: .02em; }
+.status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+.st-ok { color: var(--ok); }
+.st-part { color: var(--warn); }
+.st-ext { color: var(--ext); }
+.st-dev { color: var(--dev); }
+
+/* ---------- Курс карточкасы ---------- */
+.course { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 24px; align-items: center; }
+.course ul { list-style: none; display: grid; gap: 8px; margin: 14px 0 20px; }
+.course li { display: flex; gap: 10px; font-size: .93rem; }
+.course li::before { content: ""; flex: none; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); margin-top: .6em; }
+.course-meta { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-block; padding: 4px 10px; border-radius: 999px; font-size: .78rem; font-weight: 600; background: var(--surface-2); color: var(--muted); }
+.course-art { aspect-ratio: 4 / 3; border-radius: var(--radius-sm); background: var(--surface-2); display: grid; place-items: center; }
+.course-art svg { width: 82%; height: auto; }
+
+/* ---------- Модель кезеңдері ---------- */
+.stage { border-top: 3px solid var(--accent); }
+.stage .n { font: 800 1.8rem/1 var(--font-head); color: var(--accent); }
+.stage h3 { margin: 10px 0 6px; font-size: .98rem; }
+.stage p { font-size: .87rem; color: var(--muted); }
+
+/* ---------- Рубрика ---------- */
+.rubric details { border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--surface); }
+.rubric details + details { margin-top: 10px; }
+.rubric summary { cursor: pointer; padding: 14px 18px; font-weight: 700; display: flex; justify-content: space-between; gap: 12px; list-style: none; }
+.rubric summary::-webkit-details-marker { display: none; }
+.rubric summary::after { content: "+"; font-weight: 400; color: var(--muted); }
+.rubric details[open] summary::after { content: "−"; }
+.rubric ol { list-style: none; padding: 0 18px 16px; display: grid; gap: 8px; }
+.rubric li { display: grid; grid-template-columns: 34px 1fr; gap: 10px; font-size: .9rem; }
+.rubric li b { font-family: var(--font-head); color: var(--accent); }
+.callout { border-left: 4px solid var(--warn); background: var(--surface); padding: 16px 18px; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
+.table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius-sm); }
+table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { background: var(--surface-2); font-size: .8rem; color: var(--muted); }
+tr:last-child td { border-bottom: 0; }
+
+/* ---------- Подвал ---------- */
+.site-foot { border-top: 1px solid var(--border); padding: 40px 0 56px; margin-top: 40px; }
+.foot-grid { display: grid; grid-template-columns: 1fr 1.6fr 1fr; gap: 28px; }
+.foot-grid p + p { margin-top: 8px; }
+.foot-links { display: grid; gap: 6px; align-content: start; }
+
+/* ---------- Бейімделу ---------- */
+@media (max-width: 980px) {
+  .path { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .g5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .g3 { grid-template-columns: 1fr; }
+  .viz { grid-template-columns: 1fr; }
+  .viz-side { border-left: 0; border-top: 1px solid var(--border); }
+  .course { grid-template-columns: 1fr; }
+  .foot-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 820px) {
+  .menu-toggle { display: grid; }
+  .main-nav {
+    display: none; position: absolute; left: 0; right: 0; top: 64px;
+    flex-direction: column; padding: 10px 16px 16px; gap: 2px;
+    background: var(--bg); border-bottom: 1px solid var(--border);
+  }
+  .main-nav.open { display: flex; }
+  .main-nav a { padding: 12px; }
+}
+@media (max-width: 600px) {
+  .wrap { padding: 0 16px; }
+  .head-row { gap: 10px; }
+  .brand-text { display: none; }
+  .lang-seg button { padding: 5px 8px; }
+  .hero { padding: 40px 0 24px; }
+  .hero-actions .btn { flex: 1 1 100%; }
+  .viz canvas { height: 260px; }
+  .path, .g2, .g5 { grid-template-columns: 1fr; }
+  .section { padding: 52px 0; }
+  .card { padding: 18px; }
+  .pop { right: -48px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+:root[data-calm] * { transition: none !important; }
+
+/* ================= Critical Thinking Lab ================= */
+.notice { margin-top: 20px; padding: 14px 16px; border-radius: var(--radius-sm); background: var(--accent-soft); border: 1px solid var(--border); font-size: .92rem; max-width: 820px; }
+.ct { padding-bottom: 40px; }
+.tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; border-bottom: 1px solid var(--border); }
+.tabs button { border: 0; background: none; padding: 10px 14px; font-weight: 600; color: var(--muted); border-bottom: 3px solid transparent; margin-bottom: -1px; }
+.tabs button[aria-selected="true"] { color: var(--text); border-bottom-color: var(--accent); }
+.ct-bar { display: flex; flex-wrap: wrap; align-items: end; gap: 10px; margin-bottom: 16px; }
+.field-inline { display: grid; gap: 4px; font-size: .85rem; color: var(--muted); }
+select, textarea, .inp {
+  font: inherit; color: var(--text); background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 9px 12px;
+}
+select:focus, textarea:focus, .inp:focus { outline: 3px solid var(--accent); outline-offset: 1px; }
+textarea { width: 100%; min-height: 84px; resize: vertical; line-height: 1.5; }
+.inp { width: 160px; font-variant-numeric: tabular-nums; }
+
+.steps { list-style: none; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; margin-bottom: 14px; }
+.steps li { font-size: .74rem; font-weight: 600; color: var(--muted); padding: 8px 6px 6px; border-top: 3px solid var(--border); line-height: 1.25; }
+.steps li b { display: block; font: 700 .9rem var(--font-head); }
+.steps li.done { border-top-color: var(--ok); color: var(--text); }
+.steps li.now { border-top-color: var(--accent); color: var(--text); }
+
+.ct-problem { margin-bottom: 14px; }
+.ct-problem .meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+.ct-problem p.st { font-size: 1.05rem; }
+.ct-stage h2 { font-size: 1.15rem; margin-bottom: 6px; }
+.ct-stage .lead { color: var(--muted); margin-bottom: 14px; font-size: .95rem; }
+.q { margin: 14px 0 8px; font-weight: 600; }
+.opts { display: grid; gap: 6px; }
+.opt { display: flex; gap: 10px; align-items: flex-start; padding: 10px 12px; border: 1px solid var(--border); border-radius: 10px; background: var(--surface); cursor: pointer; }
+.opt input { margin-top: 4px; accent-color: var(--accent); width: 17px; height: 17px; flex: none; }
+.opt.right { border-color: var(--ok); }
+.opt.wrong { border-color: var(--c-ab); }
+.yn { display: flex; gap: 8px; flex-wrap: wrap; }
+.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 12px; }
+.fb { margin-top: 12px; padding: 12px 14px; border-radius: 10px; border: 1px solid var(--border); background: var(--surface-2); font-size: .93rem; }
+.fb.ok { border-color: var(--ok); }
+.fb.bad { border-color: var(--c-ab); }
+.fb p + p { margin-top: 6px; }
+.mark-ok { color: var(--ok); font-weight: 700; }
+.mark-bad { color: var(--c-ab); font-weight: 700; }
+.ai-sol { border: 1px dashed var(--ext); border-radius: 12px; padding: 14px 16px; background: var(--surface-2); font-variant-numeric: tabular-nums; }
+.ai-sol .tag { font-size: .74rem; font-weight: 700; color: var(--ext); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 6px; }
+.ai-sol ol { padding-left: 20px; }
+.sol-list { padding-left: 20px; margin-top: 6px; font-variant-numeric: tabular-nums; }
+.score-table td:nth-child(n+2) { text-align: center; white-space: nowrap; }
+.hist td { font-size: .85rem; white-space: nowrap; }
+.empty { padding: 28px; text-align: center; color: var(--muted); border: 1px dashed var(--border); border-radius: var(--radius-sm); }
+@media (max-width: 700px) {
+  .steps { grid-template-columns: repeat(7, 1fr); gap: 3px; }
+  .steps li { font-size: 0; padding: 6px 0 0; }
+  .steps li b { font-size: .8rem; text-align: center; }
+  .inp { width: 100%; }
+}
+
+</style>
+</head>
+<body data-page="trainer">
+<a class="skip" href="#main" data-i="9">Мазмұнға өту</a>
+<header class="site-head">
+  <div class="wrap head-row">
+    <a class="brand" href="../" aria-label="NURSERIK CHEMISTRY — басты бет" data-ia="0">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M16 3.5 26.8 9.75v12.5L16 28.5 5.2 22.25V9.75Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+        <circle cx="16" cy="16" r="4.2" fill="var(--accent)"/>
+        <circle cx="16" cy="3.5" r="2.4" fill="var(--c-a)"/>
+        <circle cx="26.8" cy="22.25" r="2.4" fill="var(--c-b)"/>
+      </svg>
+      <span class="brand-text">NURSERIK <b>CHEMISTRY</b></span>
+    </a>
+
+    <nav class="main-nav" id="mainNav" aria-label="Негізгі мәзір" data-ia="1">
+      <a href="../kinetics/" data-i="10">Курс</a>
+      <a href="../kinetics/#2" data-i="11">Зертхана</a>
+      <a href="../trainer/" data-nav="trainer" data-i="12">Тренажер</a>
+      <a href="../research/" data-nav="research" data-i="13">Зерттеу</a>
+    </nav>
+
+    <div class="head-tools">
+      <div class="lang-seg" role="group" aria-label="Тіл" data-ia="2">
+        <button type="button" data-lang="kk" aria-pressed="true">Қаз</button>
+        <button type="button" data-lang="ru" aria-pressed="false">Рус</button>
+        <button type="button" data-lang="en" aria-pressed="false">Eng</button>
+      </div>
+      <div class="pop-wrap">
+        <button class="icon-btn" type="button" id="prefsBtn" aria-expanded="false" aria-controls="prefs" aria-label="Көрініс және қолжетімділік" data-ia="3">
+          <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="3.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M10 1.8v2.6M10 15.6v2.6M18.2 10h-2.6M4.4 10H1.8M15.8 4.2l-1.8 1.8M6 14l-1.8 1.8M15.8 15.8 14 14M6 6 4.2 4.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </button>
+        <div class="pop" id="prefs" hidden>
+          <p class="pop-title" data-i="14">Тақырып</p>
+          <div class="seg" role="group" aria-label="Тақырып" data-ia="4">
+            <button type="button" data-theme-set="system" data-i="15">Жүйелік</button>
+            <button type="button" data-theme-set="light" data-i="16">Жарық</button>
+            <button type="button" data-theme-set="dark" data-i="17">Қараңғы</button>
+          </div>
+          <p class="pop-title" data-i="18">Қолжетімділік</p>
+          <label class="check"><input type="checkbox" data-a11y="large"><span data-i="19">Үлкен қаріп</span></label>
+          <label class="check"><input type="checkbox" data-a11y="contrast"><span data-i="20">Жоғары контраст</span></label>
+          <label class="check"><input type="checkbox" data-a11y="calm"><span data-i="21">Анимацияны азайту</span></label>
+        </div>
+      </div>
+      <button class="icon-btn menu-toggle" type="button" id="menuToggle" aria-expanded="false" aria-controls="mainNav" aria-label="Мәзір" data-ia="5">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 6h14M3 10h14M3 14h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+
+<main id="main">
+  <section class="hero" style="padding-bottom:20px">
+    <div class="wrap">
+      <p class="eyebrow">Critical Thinking Lab · Chemistry Problem Solving Engine</p>
+      <h1 style="font-size:clamp(1.7rem,4.2vw,3rem)" data-i="22">Есепті жеті кезеңмен шығару</h1>
+      <p class="sub" data-i="23">Мақсат — тек дұрыс жауап емес, оның неге дұрыс екенін түсіну. Әр жолы есептің жаңа нұсқасы шығады.</p>
+      <div class="notice" role="note">
+        <p data-i="24"><b>Қазіргі күйі.</b> Генеративті ИИ-тәлімгер әлі қосылмаған: тексеру алдын ала дайындалған ережелермен жүргізіледі, ал «ИИ шешімі» — оқу мақсатында дайындалған мысал. Нәтижелер тек осы браузерде сақталады; аккаунттар қосылғанша оларды файл ретінде жүктеп алыңыз.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap ct">
+    <div class="tabs" role="tablist" aria-label="Режим" data-ia="6">
+      <button type="button" role="tab" id="tabProblem" aria-selected="true" aria-controls="paneProblem" data-i="25">Есеп (7 кезең)</button>
+      <button type="button" role="tab" id="tabClaims" aria-selected="false" aria-controls="paneClaims" data-i="26">ИИ жауабын тексер</button>
+      <button type="button" role="tab" id="tabHistory" aria-selected="false" aria-controls="paneHistory" data-i="27">Менің нәтижелерім</button>
+    </div>
+
+    <div id="paneProblem" role="tabpanel" aria-labelledby="tabProblem">
+      <div class="ct-bar">
+        <label class="field-inline"><span data-i="42">Деңгей</span>
+          <select id="ctLevel">
+            <option value="" data-i="28">Аралас</option>
+            <option value="A" data-i="29">A — негізгі</option>
+            <option value="B" data-i="30">B — орта</option>
+            <option value="C" data-i="31">C — жоғары</option>
+          </select>
+        </label>
+        <button class="btn btn-primary" type="button" id="ctNew" data-i="32">Жаңа есеп</button>
+      </div>
+      <ol class="steps" id="ctSteps" aria-label="Кезеңдер" data-ia="7"></ol>
+      <article class="card ct-problem" id="ctProblem" aria-live="polite"></article>
+      <div class="card ct-stage" id="ctStage"></div>
+    </div>
+
+    <div id="paneClaims" role="tabpanel" aria-labelledby="tabClaims" hidden>
+      <p class="muted" style="margin-bottom:14px" data-i="33">Төменде «ИИ айтқан» тұжырым. Кейбіреулері дұрыс, кейбірінде әдейі қате бар. Оны бағалап, дәлеліңізді жазыңыз. Түсіндірмеңіз автоматты түрде бағаланбайды — ол мұғалімге сақталады.</p>
+      <div class="card" id="claimBox"></div>
+    </div>
+
+    <div id="paneHistory" role="tabpanel" aria-labelledby="tabHistory" hidden>
+      <div class="ct-bar">
+        <button class="btn" type="button" id="hCsv" data-i="34">CSV жүктеу</button>
+        <button class="btn" type="button" id="hJson" data-i="35">JSON жүктеу</button>
+        <button class="btn" type="button" id="hClear" data-i="36">Тарихты тазалау</button>
+      </div>
+      <div id="historyBox"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap foot-grid">
+    <div>
+      <p class="brand-text">NURSERIK <b>CHEMISTRY</b></p>
+      <p class="muted small" data-i="37">Химияны өз бетімен оқуға және сыни ойлауды дамытуға арналған платформа.</p>
+    </div>
+    <div class="small">
+      <p data-i="38">Білім беру тұжырымдамасының авторы: <b>Хуантхан Нурсерик</b>, химия пәнінің мұғалімі.</p>
+      <p class="muted" data-i="39">Платформа магистрлік педагогикалық зерттеу аясында дамып келеді. Сайт ИИ-құралдардың (Claude) көмегімен әзірленді; сыртқы кітапханалар қолданылмайды, қаріптер — Google Fonts.</p>
+    </div>
+    <nav class="foot-links small" aria-label="Төменгі мәзір" data-ia="8">
+      <a href="../kinetics/" data-i="40">Химиялық кинетика курсы</a>
+      <a href="../research/" data-i="41">Зерттеу туралы</a>
+      <a href="https://github.com/miraskees-coder/nurserik-himia">GitHub</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+var I18N = {"ru":["NURSERIK CHEMISTRY — главная","Главное меню","Язык","Вид и доступность","Тема","Меню","Режим","Этапы","Нижнее меню","Перейти к содержанию","Курс","Лаборатория","Тренажёр","Исследование","Тема","Системная","Светлая","Тёмная","Доступность","Крупный шрифт","Высокий контраст","Меньше анимации","Решение задачи в семь этапов","Цель — не только верный ответ, но и понимание, почему он верен. Каждый раз создаётся новый вариант задачи.","<b>Текущее состояние.<\/b> Генеративный ИИ-наставник ещё не подключён: проверка выполняется заранее подготовленными правилами, а «решение ИИ» — учебный пример, подготовленный заранее. Результаты сохраняются только в этом браузере; пока аккаунты не подключены, скачивайте их файлом.","Задача (7 этапов)","Проверь ответ ИИ","Мои результаты","Любой","A — базовый","B — средний","C — повышенный","Новая задача","Ниже — утверждение, «сделанное ИИ». Некоторые верны, в некоторых специально допущена ошибка. Оцените его и запишите аргумент. Объяснение не оценивается автоматически — оно сохраняется для учителя.","Скачать CSV","Скачать JSON","Очистить историю","Платформа для самостоятельного изучения химии и развития критического мышления.","Автор образовательной концепции: <b>Хуантхан Нурсерик<\/b>, учитель химии.","Платформа развивается в рамках магистерского педагогического исследования. Сайт разработан с помощью ИИ-инструментов (Claude); внешние библиотеки не используются, шрифты — Google Fonts.","Курс «Химическая кинетика»","Об исследовании","Уровень"],"en":["NURSERIK CHEMISTRY — home","Main menu","Language","Display and accessibility","Theme","Menu","Mode","Stages","Footer menu","Skip to content","Course","Lab","Trainer","Research","Theme","System","Light","Dark","Accessibility","Larger text","High contrast","Reduce motion","Solving a problem in seven stages","The goal is not just the right answer but understanding why it is right. Every attempt gets a new version of the problem.","<b>Current status.<\/b> The generative AI tutor is not connected yet: checking is done by prepared rules, and the “AI solution” is a prepared teaching example. Results are saved only in this browser; until accounts are connected, download them as a file.","Problem (7 stages)","Check the AI's answer","My results","Any","A — basic","B — intermediate","C — advanced","New problem","Below is a statement “made by an AI”. Some are correct, some contain a deliberate error. Judge it and write down your argument. Your explanation is not scored automatically; it is saved for the teacher.","Download CSV","Download JSON","Clear history","A platform for learning chemistry independently and developing critical thinking.","Author of the educational concept: <b>Nurserik Khuantkhan<\/b>, chemistry teacher.","The platform is being developed as part of a master's research project in education. The site was built with the help of AI tools (Claude); no external libraries are used; fonts are from Google Fonts.","Chemical kinetics course","About the research","Level"]};
+/* ================= Платформа: тіл, тақырып, қолжетімділік, мәзір ================= */
+var LANG = "kk";
+var KK = {};
+function L(kk, ru, en) { return LANG === "ru" ? ru : LANG === "en" ? en : kk; }
+function safe(name, fn) { try { fn(); } catch (e) { if (window.console) console.error("[" + name + "]", e); } }
+function $(id) { return document.getElementById(id); }
+function store(key, val) {
+  try { if (val === undefined) return localStorage.getItem(key); localStorage.setItem(key, val); } catch (e) {}
+  return null;
+}
+function fmt(x, d) {
+  if (typeof x !== "number" || !isFinite(x)) return "—";
+  var s = Math.abs(x).toFixed(d == null ? 2 : d);
+  if (s.indexOf(".") >= 0) s = s.replace(/0+$/, "").replace(/\.$/, "");
+  var p = s.split("."), en = LANG === "en";
+  if (p[0].length > (en ? 3 : 4)) p[0] = p[0].replace(/\B(?=(\d{3})+(?!\d))/g, en ? "," : " ");
+  return (x < 0 && s !== "0" ? "−" : "") + p[0] + (p[1] ? (en ? "." : ",") + p[1] : "");
+}
+
+var ATTRS = [["data-ia", "aria-label"], ["data-it", "title"], ["data-ip", "placeholder"]];
+var PAGE_TITLE = null;
+
+function setLang(lang, silent) {
+  if (lang !== "kk" && !I18N[lang]) lang = "kk";
+  LANG = lang;
+  var dict = I18N[lang];
+  document.querySelectorAll("[data-i]").forEach(function (el) {
+    var i = el.getAttribute("data-i"), v = lang === "kk" ? KK["t" + i] : dict[i];
+    if (v != null && el.innerHTML !== v) el.innerHTML = v;
+  });
+  ATTRS.forEach(function (p) {
+    document.querySelectorAll("[" + p[0] + "]").forEach(function (el) {
+      var i = el.getAttribute(p[0]), v = lang === "kk" ? KK["a" + i] : dict[i];
+      if (v != null) el.setAttribute(p[1], v);
+    });
+  });
+  document.documentElement.lang = lang;
+  if (PAGE_TITLE) document.title = L(PAGE_TITLE[0], PAGE_TITLE[1], PAGE_TITLE[2]);
+  document.querySelectorAll(".lang-seg button").forEach(function (b) {
+    b.setAttribute("aria-pressed", String(b.getAttribute("data-lang") === lang));
+  });
+  store("nc-lang", lang);
+  if (!silent) document.dispatchEvent(new CustomEvent("langchange", { detail: { lang: lang } }));
+}
+function onLang(fn) { document.addEventListener("langchange", function () { safe("langchange", fn); }); }
+
+safe("i18n", function () {
+  var t = document.querySelector('meta[name="nc-title"]');
+  if (t) PAGE_TITLE = t.getAttribute("content").split("‖");
+  document.querySelectorAll("[data-i]").forEach(function (el) { KK["t" + el.getAttribute("data-i")] = el.innerHTML; });
+  ATTRS.forEach(function (p) {
+    document.querySelectorAll("[" + p[0] + "]").forEach(function (el) { KK["a" + el.getAttribute(p[0])] = el.getAttribute(p[1]); });
+  });
+  document.querySelectorAll(".lang-seg button").forEach(function (b) {
+    b.addEventListener("click", function () { setLang(b.getAttribute("data-lang")); });
+  });
+  var saved = store("nc-lang");
+  setLang(saved === "ru" || saved === "en" ? saved : "kk", true);
+});
+
+/* ---------- Тақырып және қолжетімділік ---------- */
+safe("prefs", function () {
+  var root = document.documentElement, btn = $("prefsBtn"), pop = $("prefs");
+  function applyTheme(v) {
+    if (v === "light" || v === "dark") root.setAttribute("data-theme", v); else root.removeAttribute("data-theme");
+    document.querySelectorAll("[data-theme-set]").forEach(function (b) {
+      b.setAttribute("aria-pressed", String(b.getAttribute("data-theme-set") === (v || "system")));
+    });
+  }
+  var flags = { large: "data-large", contrast: "data-contrast", calm: "data-calm" };
+  function applyA11y(key, on) {
+    if (on) root.setAttribute(flags[key], ""); else root.removeAttribute(flags[key]);
+  }
+  applyTheme(store("nc-theme") || "system");
+  document.querySelectorAll("[data-a11y]").forEach(function (c) {
+    var k = c.getAttribute("data-a11y");
+    c.checked = store("nc-" + k) === "1";
+    applyA11y(k, c.checked);
+    c.addEventListener("change", function () {
+      applyA11y(k, c.checked);
+      store("nc-" + k, c.checked ? "1" : "0");
+      document.dispatchEvent(new CustomEvent("prefschange"));
+    });
+  });
+  document.querySelectorAll("[data-theme-set]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var v = b.getAttribute("data-theme-set");
+      store("nc-theme", v);
+      applyTheme(v);
+      document.dispatchEvent(new CustomEvent("prefschange"));
+    });
+  });
+  function toggle(open) {
+    pop.hidden = !open;
+    btn.setAttribute("aria-expanded", String(open));
+  }
+  btn.addEventListener("click", function (e) { e.stopPropagation(); toggle(pop.hidden); });
+  pop.addEventListener("click", function (e) { e.stopPropagation(); });
+  document.addEventListener("click", function () { if (!pop.hidden) toggle(false); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !pop.hidden) { toggle(false); btn.focus(); } });
+});
+
+/* ---------- Мобильді мәзір және белсенді бөлім ---------- */
+safe("menu", function () {
+  var nav = $("mainNav"), btn = $("menuToggle");
+  btn.addEventListener("click", function () {
+    var open = !nav.classList.contains("open");
+    nav.classList.toggle("open", open);
+    btn.setAttribute("aria-expanded", String(open));
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && nav.classList.contains("open")) { nav.classList.remove("open"); btn.setAttribute("aria-expanded", "false"); btn.focus(); }
+  });
+  var page = document.body.getAttribute("data-page");
+  var cur = page && nav.querySelector('[data-nav="' + page + '"]');
+  if (cur) cur.setAttribute("aria-current", "page");
+});
+
+function reducedMotion() {
+  var calm = document.documentElement.hasAttribute("data-calm");
+  try { return calm || window.matchMedia("(prefers-reduced-motion: reduce)").matches; } catch (e) { return calm; }
+}
+
+/* ================= NURSERIK CHEMISTRY — движок параметризованных задач =================
+   Чистый модуль без DOM: генерация (воспроизводимая по seed), эталон, проверка ответа,
+   распознавание типичных ошибок, «решение ИИ» для критического анализа.
+   Работает в браузере (глобальная NCEngine) и в Node (tests/engine.test.mjs). */
+var NCEngine = (function () {
+  "use strict";
+  var R = 8.314;
+  var VERSION = "1.0.0";
+
+  /* ---------- Утилиты ---------- */
+  function rng(seed) {
+    var a = seed >>> 0;
+    return function () {
+      a = (a + 0x6D2B79F5) | 0;
+      var t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+  function pick(r, arr) { return arr[Math.floor(r() * arr.length)]; }
+  function range(r, lo, hi, step) { var n = Math.round((hi - lo) / step); return +(lo + Math.floor(r() * (n + 1)) * step).toFixed(6); }
+  function S(lang, kk, ru, en) { return lang === "ru" ? ru : lang === "en" ? en : kk; }
+  function N(x, d, lang) {
+    if (typeof x !== "number" || !isFinite(x)) return "—";
+    var s = Math.abs(x).toFixed(d == null ? 3 : d);
+    if (s.indexOf(".") >= 0) s = s.replace(/0+$/, "").replace(/\.$/, "");
+    var p = s.split("."), en = lang === "en";
+    if (p[0].length > (en ? 3 : 4)) p[0] = p[0].replace(/\B(?=(\d{3})+(?!\d))/g, en ? "," : " ");
+    return (x < 0 && s !== "0" ? "−" : "") + p[0] + (p[1] ? (en ? "." : ",") + p[1] : "");
+  }
+  // Значащие цифры для ответов.
+  function G(x, lang, sig) {
+    if (!isFinite(x)) return "—";
+    var a = Math.abs(x), d = a === 0 ? 0 : Math.max(0, (sig || 3) - 1 - Math.floor(Math.log10(a)));
+    return N(+x.toPrecision(sig || 3), Math.min(d, 6), lang);
+  }
+  function parseNum(v) {
+    var s = String(v == null ? "" : v).trim().replace(/[\s ]/g, "").replace(/−/g, "-").replace(",", ".");
+    s = s.replace(/[·x×*]10\^?([-−]?\d+)$/i, "e$1");
+    if (!/^[-+]?(\d+\.?\d*|\.\d+)(e[-+]?\d+)?$/i.test(s)) return NaN;
+    return parseFloat(s);
+  }
+
+  /* ---------- Справочники ---------- */
+  var UNITS = {
+    rate_s:   { t: ["моль/(л·с)", "моль/(л·с)", "mol/(L·s)"], dim: "rate", f: 1 },
+    rate_min: { t: ["моль/(л·мин)", "моль/(л·мин)", "mol/(L·min)"], dim: "rate", f: 60 },
+    conc:     { t: ["моль/л", "моль/л", "mol/L"], dim: "conc", f: 1 },
+    none:     { t: ["бірліксіз (есе)", "безразмерная (раз)", "dimensionless (×)"], dim: "none", f: 1 },
+    kJ:       { t: ["кДж/моль", "кДж/моль", "kJ/mol"], dim: "energy", f: 1 },
+    J:        { t: ["Дж/моль", "Дж/моль", "J/mol"], dim: "energy", f: 1000 },
+    min:      { t: ["мин", "мин", "min"], dim: "time", f: 1 },
+    s:        { t: ["с", "с", "s"], dim: "time", f: 60 },
+    pct:      { t: ["%", "%", "%"], dim: "pct", f: 1 }
+  };
+  var METHODS = {
+    avg_rate:    ["Орташа жылдамдық анықтамасы: v = ΔC/Δt", "Определение средней скорости: v = ΔC/Δt", "Definition of average rate: v = ΔC/Δt"],
+    vant_hoff:   ["Вант-Гофф ережесі: v₂/v₁ = γ^(Δt/10)", "Правило Вант-Гоффа: v₂/v₁ = γ^(Δt/10)", "Van 't Hoff's rule: v₂/v₁ = γ^(Δt/10)"],
+    arrhenius:   ["Аррениус теңдеуі: ln(k₂/k₁) = (Eₐ/R)(1/T₁ − 1/T₂)", "Уравнение Аррениуса: ln(k₂/k₁) = (Eₐ/R)(1/T₁ − 1/T₂)", "Arrhenius equation: ln(k₂/k₁) = (Eₐ/R)(1/T₁ − 1/T₂)"],
+    mass_action: ["Әрекеттесуші массалар заңы: v = k[A]ᵃ[B]ᵇ", "Закон действующих масс: v = k[A]ᵃ[B]ᵇ", "Law of mass action: v = k[A]ᵃ[B]ᵇ"],
+    half_life:   ["1-ретті реакция: t½ = ln2/k, C = C₀·e^(−kt)", "Реакция 1 порядка: t½ = ln2/k, C = C₀·e^(−kt)", "First-order reaction: t½ = ln2/k, C = C₀·e^(−kt)"]
+  };
+  var UNKNOWNS = {
+    rate:     ["Орташа реакция жылдамдығы", "Средняя скорость реакции", "Average reaction rate"],
+    ratio:    ["Жылдамдықтың (константаның) неше есе өзгергені", "Во сколько раз изменилась скорость (константа)", "How many times the rate (constant) changes"],
+    gamma:    ["Температуралық коэффициент γ", "Температурный коэффициент γ", "Temperature coefficient γ"],
+    time:     ["Реакцияның жүру уақыты", "Время протекания реакции", "Reaction time"],
+    energy:   ["Активтендіру энергиясы", "Энергия активации", "Activation energy"],
+    halflife: ["Жартылай ыдырау периоды", "Период полупревращения", "Half-life"],
+    remain:   ["Қалған заттың үлесі", "Доля оставшегося вещества", "Fraction of substance remaining"]
+  };
+  var ERRORS = {
+    none:    ["Қате жоқ", "Ошибки нет", "No error"],
+    formula: ["Формула (әдіс) қате таңдалған", "Неправильно выбрана формула (метод)", "Wrong formula (method)"],
+    units:   ["Бірліктердегі қате", "Ошибка в единицах измерения", "Error in units"],
+    calc:    ["Есептеу қатесі", "Ошибка вычислений", "Calculation error"],
+    data:    ["Деректер қате пайдаланылған", "Данные использованы неверно", "Data used incorrectly"],
+    chem:    ["Қате химиялық болжам", "Ошибочное химическое предположение", "Wrong chemical assumption"],
+    general: ["Негізсіз жалпылау", "Неправомерное обобщение", "Unjustified generalisation"]
+  };
+
+  /* ---------- Шаблоны задач ---------- */
+  var T = [];
+
+  // A1. Средняя скорость реакции.
+  T.push({
+    id: "avg_rate", level: "A", method: "avg_rate", unknown: "rate", units: ["rate_s", "rate_min", "conc", "s"], tol: 0.01,
+    gen: function (r) {
+      var p = { product: r() < 0.35, minutes: r() < 0.4, T: pick(r, [20, 25, 30]) };
+      if (p.product) { p.C1 = 0; p.C2 = range(r, 0.2, 1.2, 0.05); }
+      else { p.C1 = range(r, 0.6, 2.0, 0.05); p.C2 = +(p.C1 - range(r, 0.1, p.C1 - 0.1, 0.05)).toFixed(2); }
+      p.tmin = pick(r, [1, 2, 3, 4, 5]);
+      p.t = p.minutes ? p.tmin * 60 : pick(r, [20, 25, 30, 40, 50, 60, 80, 100, 120]);
+      return p;
+    },
+    valid: function (p) { var d = Math.abs(p.C2 - p.C1); return d >= 0.05 && p.C2 >= 0 && d / p.t > 1e-4 && d / p.t < 0.1; },
+    answer: function (p) { return { value: Math.abs(p.C2 - p.C1) / p.t, unit: "rate_s" }; },
+    convert: function (p) { return p.minutes; },
+    statement: function (p, l) {
+      var tt = p.minutes ? N(p.tmin, 0, l) + S(l, " мин", " мин", " min") : N(p.t, 0, l) + S(l, " с", " с", " s");
+      return p.product
+        ? S(l, "A + B → C реакциясы " + p.T + " °C-та жүреді. " + tt + " ішінде C өнімінің концентрациясы 0-ден " + N(p.C2, 2, l) + " моль/л-ге дейін артты. Реакцияның орташа жылдамдығын моль/(л·с) бірлігінде табыңыз.",
+              "Реакция A + B → C протекает при " + p.T + " °C. За " + tt + " концентрация продукта C возросла от 0 до " + N(p.C2, 2, l) + " моль/л. Найдите среднюю скорость реакции в моль/(л·с).",
+              "The reaction A + B → C takes place at " + p.T + " °C. In " + tt + " the concentration of product C rose from 0 to " + N(p.C2, 2, l) + " mol/L. Find the average rate of the reaction in mol/(L·s).")
+        : S(l, "A + B → C реакциясы " + p.T + " °C-та жүреді. " + tt + " ішінде A затының концентрациясы " + N(p.C1, 2, l) + "-ден " + N(p.C2, 2, l) + " моль/л-ге дейін азайды. Реакцияның орташа жылдамдығын моль/(л·с) бірлігінде табыңыз.",
+              "Реакция A + B → C протекает при " + p.T + " °C. За " + tt + " концентрация вещества A уменьшилась с " + N(p.C1, 2, l) + " до " + N(p.C2, 2, l) + " моль/л. Найдите среднюю скорость реакции в моль/(л·с).",
+              "The reaction A + B → C takes place at " + p.T + " °C. In " + tt + " the concentration of A fell from " + N(p.C1, 2, l) + " to " + N(p.C2, 2, l) + " mol/L. Find the average rate of the reaction in mol/(L·s).");
+    },
+    givens: function (p, l) {
+      return [
+        { id: "C1", text: "C₁ = " + N(p.C1, 2, l) + S(l, " моль/л", " моль/л", " mol/L"), relevant: true },
+        { id: "C2", text: "C₂ = " + N(p.C2, 2, l) + S(l, " моль/л", " моль/л", " mol/L"), relevant: true },
+        { id: "t", text: "Δt = " + (p.minutes ? N(p.tmin, 0, l) + S(l, " мин", " мин", " min") : N(p.t, 0, l) + S(l, " с", " с", " s")), relevant: true },
+        { id: "T", text: "t = " + p.T + " °C", relevant: false }
+      ];
+    },
+    hints: [
+      function (p, l) { return S(l, "Орташа жылдамдық — концентрация өзгерісінің уақытқа қатынасы. Алдымен ΔC-ны табыңыз.", "Средняя скорость — отношение изменения концентрации ко времени. Сначала найдите ΔC.", "Average rate is the change in concentration divided by time. Find ΔC first."); },
+      function (p, l) {
+        var dc = N(Math.abs(p.C2 - p.C1), 2, l);
+        return p.minutes
+          ? S(l, "ΔC = " + dc + " моль/л. Уақыт минутпен берілген, ал жауап секундпен сұралады: 1 мин = 60 с.", "ΔC = " + dc + " моль/л. Время дано в минутах, а ответ нужен в секундах: 1 мин = 60 с.", "ΔC = " + dc + " mol/L. Time is given in minutes but the answer is wanted per second: 1 min = 60 s.")
+          : S(l, "ΔC = " + dc + " моль/л, Δt = " + p.t + " с. Енді ΔC-ны Δt-ға бөліңіз.", "ΔC = " + dc + " моль/л, Δt = " + p.t + " с. Теперь разделите ΔC на Δt.", "ΔC = " + dc + " mol/L, Δt = " + p.t + " s. Now divide ΔC by Δt.");
+      }
+    ],
+    solution: function (p, l) {
+      var dc = Math.abs(p.C2 - p.C1), v = dc / p.t;
+      var s = ["ΔC = |" + N(p.C2, 2, l) + " − " + N(p.C1, 2, l) + "| = " + N(dc, 2, l) + S(l, " моль/л", " моль/л", " mol/L")];
+      if (p.minutes) s.push("Δt = " + p.tmin + S(l, " мин = ", " мин = ", " min = ") + p.t + S(l, " с", " с", " s"));
+      s.push("v = ΔC/Δt = " + N(dc, 2, l) + " / " + p.t + " = " + G(v, l) + S(l, " моль/(л·с)", " моль/(л·с)", " mol/(L·s)"));
+      return s;
+    },
+    mistakes: function (p) {
+      var dc = Math.abs(p.C2 - p.C1), m = [{ id: "formula", value: dc, msg: ["ΔC уақытқа бөлінбеген сияқты.", "Похоже, ΔC не разделили на время.", "It looks like ΔC was not divided by the time."] }];
+      if (p.minutes) m.push({ id: "units", value: dc / p.tmin, msg: ["Уақыт секундқа айналдырылмаған сияқты (1 мин = 60 с).", "Похоже, время не переведено в секунды (1 мин = 60 с).", "It looks like the time was not converted to seconds (1 min = 60 s)."] });
+      if (p.C1 > 0) m.push({ id: "data", value: p.C1 / p.t, msg: ["Концентрация өзгерісінің орнына бастапқы концентрация алынған сияқты.", "Похоже, вместо изменения концентрации взята начальная концентрация.", "It looks like the initial concentration was used instead of the change."] });
+      if (p.C2 > 0 && p.C1 > 0) m.push({ id: "data", value: p.C2 / p.t, msg: ["Концентрация өзгерісінің орнына соңғы концентрация алынған сияқты.", "Похоже, вместо изменения концентрации взята конечная концентрация.", "It looks like the final concentration was used instead of the change."] });
+      return m;
+    },
+    checks: [
+      { q: ["Орташа жылдамдық оң сан болуы керек пе?", "Должна ли средняя скорость быть положительной?", "Must the average rate be positive?"], a: true,
+        why: ["Иә: жылдамдық анықтама бойынша оң, белгі тек бастапқы зат пен өнімді ажыратады.", "Да: скорость по определению положительна, знак лишь различает реагент и продукт.", "Yes: rate is positive by definition; the sign only distinguishes reactant from product."] },
+      { q: ["Δt екі есе ұзақ болса (ΔC сол қалпында), орташа жылдамдық екі есе кіші болар ма еді?", "Если бы Δt было вдвое больше (при том же ΔC), стала бы средняя скорость вдвое меньше?", "If Δt were twice as long (same ΔC), would the average rate be half as big?"], a: true,
+        why: ["Иә: v = ΔC/Δt, жылдамдық уақытқа кері пропорционал.", "Да: v = ΔC/Δt, скорость обратно пропорциональна времени.", "Yes: v = ΔC/Δt, so the rate is inversely proportional to time."] }
+    ],
+    ai: function (p, r) {
+      var dc = Math.abs(p.C2 - p.C1), v = dc / p.t;
+      // Для продукта (C₁ = 0) C₂/Δt совпадает с верным ответом, поэтому там ошибка «data» невозможна.
+      var wrong = ["calc"];
+      if (p.minutes) wrong.push("units"); else if (p.C1 > 0) wrong.push("data");
+      var type = r() < 0.4 ? "none" : pick(r, wrong);
+      var unitS = [" моль/(л·с)", " моль/(л·с)", " mol/(L·s)"];
+      return {
+        type: type,
+        text: function (l) {
+          var u = S(l, unitS[0], unitS[1], unitS[2]);
+          if (type === "units") return ["ΔC = " + N(dc, 2, l), "v = ΔC/Δt = " + N(dc, 2, l) + " / " + p.tmin + " = " + G(dc / p.tmin, l) + u];
+          if (type === "data") return ["v = C₂/Δt = " + N(p.C2 || p.C1, 2, l) + " / " + p.t + " = " + G((p.C2 || p.C1) / p.t, l) + u];
+          if (type === "calc") return ["ΔC = " + N(dc, 2, l), "v = " + N(dc, 2, l) + " / " + p.t + " = " + G(v * 10, l) + u];
+          return ["ΔC = " + N(dc, 2, l), "Δt = " + p.t + S(l, " с", " с", " s"), "v = " + N(dc, 2, l) + " / " + p.t + " = " + G(v, l) + u];
+        }
+      };
+    }
+  });
+
+  // A2. Правило Вант-Гоффа: во сколько раз растёт скорость.
+  T.push({
+    id: "vh_ratio", level: "A", method: "vant_hoff", unknown: "ratio", units: ["none"], tol: 0.01,
+    gen: function (r) { var p = { g: pick(r, [2, 2.5, 3, 3.5, 4]), t1: pick(r, [10, 15, 20, 25, 30]), d: pick(r, [10, 20, 30, 40]), C: pick(r, [0.1, 0.2, 0.5]) }; p.t2 = p.t1 + p.d; return p; },
+    valid: function (p) { return Math.pow(p.g, p.d / 10) <= 300; },
+    answer: function (p) { return { value: Math.pow(p.g, p.d / 10), unit: "none" }; },
+    convert: function () { return false; },
+    statement: function (p, l) {
+      return S(l, "Реакцияның температуралық коэффициенті γ = " + N(p.g, 1, l) + ". Бастапқы заттың концентрациясы " + N(p.C, 1, l) + " моль/л. Температураны " + p.t1 + "-ден " + p.t2 + " °C-қа дейін көтергенде реакция жылдамдығы неше есе артады?",
+        "Температурный коэффициент реакции γ = " + N(p.g, 1, l) + ". Концентрация исходного вещества " + N(p.C, 1, l) + " моль/л. Во сколько раз возрастёт скорость реакции при нагревании от " + p.t1 + " до " + p.t2 + " °C?",
+        "The temperature coefficient of a reaction is γ = " + N(p.g, 1, l) + ". The reactant concentration is " + N(p.C, 1, l) + " mol/L. How many times faster does the reaction go when heated from " + p.t1 + " to " + p.t2 + " °C?");
+    },
+    givens: function (p, l) {
+      return [
+        { id: "g", text: "γ = " + N(p.g, 1, l), relevant: true },
+        { id: "t1", text: "t₁ = " + p.t1 + " °C", relevant: true },
+        { id: "t2", text: "t₂ = " + p.t2 + " °C", relevant: true },
+        { id: "C", text: "C = " + N(p.C, 1, l) + S(l, " моль/л", " моль/л", " mol/L"), relevant: false }
+      ];
+    },
+    hints: [
+      function (p, l) { return S(l, "Вант-Гофф ережесін қолданыңыз. Температура неше градусқа өзгерді?", "Примените правило Вант-Гоффа. На сколько градусов изменилась температура?", "Use Van 't Hoff's rule. By how many degrees did the temperature change?"); },
+      function (p, l) { return S(l, "Δt/10 = " + p.d / 10 + ". γ-ны осы дәрежеге шығарыңыз.", "Δt/10 = " + p.d / 10 + ". Возведите γ в эту степень.", "Δt/10 = " + p.d / 10 + ". Raise γ to this power."); }
+    ],
+    solution: function (p, l) {
+      return ["Δt = " + p.t2 + " − " + p.t1 + " = " + p.d + " °C", "v₂/v₁ = γ^(Δt/10) = " + N(p.g, 1, l) + "^" + p.d / 10 + " = " + G(Math.pow(p.g, p.d / 10), l, 4)];
+    },
+    mistakes: function (p) {
+      return [
+        { id: "formula", value: p.g * p.d / 10, msg: ["γ дәрежеге шығарылмай, көбейтілген сияқты.", "Похоже, γ умножили, а не возвели в степень.", "It looks like γ was multiplied instead of raised to a power."] },
+        { id: "general", value: Math.pow(2, p.d / 10), msg: ["Берілген γ-ның орнына «әрқашан 2» алынған сияқты.", "Похоже, вместо данного γ взято «всегда 2».", "It looks like “always 2” was used instead of the given γ."] }
+      ].filter(function (m) { return Math.abs(m.value - Math.pow(p.g, p.d / 10)) > 1e-9; });
+    },
+    checks: [
+      { q: ["Температура көтерілді — қатынас 1-ден үлкен болуы керек пе?", "Температура выросла — должно ли отношение быть больше 1?", "The temperature went up: should the ratio be greater than 1?"], a: true,
+        why: ["Иә: қыздырғанда реакциялар әдетте тездейді.", "Да: при нагревании реакции, как правило, ускоряются.", "Yes: reactions usually speed up when heated."] },
+      { q: ["Бастапқы концентрация жауапқа әсер ете ме?", "Влияет ли начальная концентрация на ответ?", "Does the initial concentration affect the answer?"], a: false,
+        why: ["Жоқ: Вант-Гофф ережесі тек температураға қатысты, концентрация — артық дерек.", "Нет: правило Вант-Гоффа касается только температуры, концентрация — лишнее данное.", "No: Van 't Hoff's rule concerns only temperature; the concentration is surplus data."] }
+    ],
+    ai: function (p, r) {
+      var type = r() < 0.4 ? "none" : pick(r, ["formula", "general"]), x = Math.pow(p.g, p.d / 10);
+      return {
+        type: type,
+        text: function (l) {
+          if (type === "formula") return ["v₂/v₁ = γ · Δt/10 = " + N(p.g, 1, l) + " · " + p.d / 10 + " = " + G(p.g * p.d / 10, l, 4)];
+          if (type === "general") return [S(l, "Әр 10 °C-та жылдамдық әрқашан 2 есе артады,", "На каждые 10 °C скорость всегда растёт ровно в 2 раза,", "The rate always doubles exactly every 10 °C,"), "v₂/v₁ = 2^" + p.d / 10 + " = " + G(Math.pow(2, p.d / 10), l, 4)];
+          return ["Δt = " + p.d + " °C", "v₂/v₁ = " + N(p.g, 1, l) + "^" + p.d / 10 + " = " + G(x, l, 4)];
+        }
+      };
+    }
+  });
+
+  // B1. Найти γ по известному изменению скорости.
+  T.push({
+    id: "vh_gamma", level: "B", method: "vant_hoff", unknown: "gamma", units: ["none"], tol: 0.01,
+    gen: function (r) { var p = { g: pick(r, [2, 3, 4]), d: pick(r, [20, 30]), tau: pick(r, [10, 20, 40]) }; p.ratio = Math.pow(p.g, p.d / 10); return p; },
+    valid: function () { return true; },
+    answer: function (p) { return { value: p.g, unit: "none" }; },
+    convert: function () { return false; },
+    statement: function (p, l) {
+      return S(l, "Температураны " + p.d + " °C-қа көтергенде реакция жылдамдығы " + p.ratio + " есе артты. Бастапқы температурада реакция " + p.tau + " минутта аяқталған. Температуралық коэффициентті табыңыз.",
+        "При повышении температуры на " + p.d + " °C скорость реакции возросла в " + p.ratio + " " + (p.ratio % 10 >= 2 && p.ratio % 10 <= 4 && (p.ratio % 100 < 12 || p.ratio % 100 > 14) ? "раза" : "раз") + ". При начальной температуре реакция заканчивалась за " + p.tau + " мин. Найдите температурный коэффициент.",
+        "Raising the temperature by " + p.d + " °C made the reaction " + p.ratio + " times faster. At the starting temperature the reaction took " + p.tau + " min. Find the temperature coefficient.");
+    },
+    givens: function (p, l) {
+      return [
+        { id: "d", text: "Δt = " + p.d + " °C", relevant: true },
+        { id: "ratio", text: "v₂/v₁ = " + p.ratio, relevant: true },
+        { id: "tau", text: "τ₁ = " + p.tau + S(l, " мин", " мин", " min"), relevant: false }
+      ];
+    },
+    hints: [
+      function (p, l) { return S(l, "Вант-Гофф ережесін γ-ға қатысты шешіңіз: γ^(Δt/10) = v₂/v₁.", "Решите правило Вант-Гоффа относительно γ: γ^(Δt/10) = v₂/v₁.", "Solve Van 't Hoff's rule for γ: γ^(Δt/10) = v₂/v₁."); },
+      function (p, l) { return S(l, "γ^" + p.d / 10 + " = " + p.ratio + ". Қандай сан " + p.d / 10 + "-дәрежеде " + p.ratio + " береді?", "γ^" + p.d / 10 + " = " + p.ratio + ". Какое число в степени " + p.d / 10 + " даёт " + p.ratio + "?", "γ^" + p.d / 10 + " = " + p.ratio + ". Which number to the power " + p.d / 10 + " gives " + p.ratio + "?"); }
+    ],
+    solution: function (p, l) { return ["γ^(" + p.d + "/10) = " + p.ratio, "γ^" + p.d / 10 + " = " + p.ratio + " → γ = " + p.ratio + "^(1/" + p.d / 10 + ") = " + p.g]; },
+    mistakes: function (p) { return [{ id: "formula", value: p.ratio / (p.d / 10), msg: ["Дәреженің орнына бөлу қолданылған сияқты.", "Похоже, вместо извлечения корня выполнено деление.", "It looks like you divided instead of taking a root."] }]; },
+    checks: [
+      { q: ["Алынған γ көптеген реакциялар үшін әдеттегі 2–4 аралығында ма?", "Попадает ли полученный γ в типичный для многих реакций диапазон 2–4?", "Is the γ you got within the usual 2–4 range for many reactions?"], a: true,
+        why: ["Иә, бұл шынайылықты тексерудің бір тәсілі.", "Да, это один из способов проверить реалистичность.", "Yes, that is one way to check plausibility."] },
+      { q: ["Реакция уақыты τ₁ γ-ны табу үшін керек пе?", "Нужно ли время τ₁, чтобы найти γ?", "Is the time τ₁ needed to find γ?"], a: false,
+        why: ["Жоқ: бұл — артық дерек.", "Нет: это лишнее данное.", "No: it is surplus data."] }
+    ],
+    ai: function (p, r) {
+      var type = r() < 0.4 ? "none" : "formula";
+      return { type: type, text: function () {
+        return type === "formula" ? ["γ = (v₂/v₁)/(Δt/10) = " + p.ratio + " / " + p.d / 10 + " = " + +(p.ratio / (p.d / 10)).toFixed(2)] : ["γ^" + p.d / 10 + " = " + p.ratio, "γ = " + p.g];
+      } };
+    }
+  });
+
+  // B2. Время реакции при другой температуре.
+  T.push({
+    id: "vh_time", level: "B", method: "vant_hoff", unknown: "time", units: ["min", "s", "none"], tol: 0.01,
+    gen: function (r) { var p = { tau: pick(r, [8, 12, 16, 24, 32, 48, 54]), g: pick(r, [2, 3]), d: pick(r, [10, 20, 30]), t1: pick(r, [20, 30, 40, 50]), C: pick(r, [0.2, 0.5, 1]) }; p.t2 = p.t1 + p.d; return p; },
+    valid: function (p) { return p.tau / Math.pow(p.g, p.d / 10) >= 0.25; },
+    answer: function (p) { return { value: p.tau / Math.pow(p.g, p.d / 10), unit: "min" }; },
+    convert: function () { return false; },
+    statement: function (p, l) {
+      return S(l, p.t1 + " °C-та реакция " + p.tau + " минутта аяқталады, бастапқы зат концентрациясы " + N(p.C, 1, l) + " моль/л. γ = " + p.g + ". " + p.t2 + " °C-та реакция қанша минутта аяқталады?",
+        "При " + p.t1 + " °C реакция заканчивается за " + p.tau + " мин, концентрация исходного вещества " + N(p.C, 1, l) + " моль/л. γ = " + p.g + ". За сколько минут закончится реакция при " + p.t2 + " °C?",
+        "At " + p.t1 + " °C the reaction is complete in " + p.tau + " min; the reactant concentration is " + N(p.C, 1, l) + " mol/L. γ = " + p.g + ". How many minutes will it take at " + p.t2 + " °C?");
+    },
+    givens: function (p, l) {
+      return [
+        { id: "tau", text: "τ₁ = " + p.tau + S(l, " мин", " мин", " min"), relevant: true },
+        { id: "t", text: "t₁ = " + p.t1 + " °C, t₂ = " + p.t2 + " °C", relevant: true },
+        { id: "g", text: "γ = " + p.g, relevant: true },
+        { id: "C", text: "C = " + N(p.C, 1, l) + S(l, " моль/л", " моль/л", " mol/L"), relevant: false }
+      ];
+    },
+    hints: [
+      function (p, l) { return S(l, "Алдымен жылдамдық неше есе өзгергенін табыңыз. Уақыт жылдамдыққа қалай байланысты?", "Сначала найдите, во сколько раз изменилась скорость. Как время связано со скоростью?", "First find how many times the rate changed. How is time related to rate?"); },
+      function (p, l) { return S(l, "v₂/v₁ = " + p.g + "^" + p.d / 10 + " = " + Math.pow(p.g, p.d / 10) + ". Уақыт жылдамдыққа кері пропорционал: τ₂ = τ₁ / (v₂/v₁).", "v₂/v₁ = " + p.g + "^" + p.d / 10 + " = " + Math.pow(p.g, p.d / 10) + ". Время обратно пропорционально скорости: τ₂ = τ₁ / (v₂/v₁).", "v₂/v₁ = " + p.g + "^" + p.d / 10 + " = " + Math.pow(p.g, p.d / 10) + ". Time is inversely proportional to rate: τ₂ = τ₁ / (v₂/v₁)."); }
+    ],
+    solution: function (p, l) {
+      var k = Math.pow(p.g, p.d / 10);
+      return ["v₂/v₁ = " + p.g + "^((" + p.t2 + " − " + p.t1 + ")/10) = " + k, "τ₂ = τ₁ / (v₂/v₁) = " + p.tau + " / " + k + " = " + G(p.tau / k, l) + S(l, " мин", " мин", " min")];
+    },
+    mistakes: function (p) {
+      var k = Math.pow(p.g, p.d / 10);
+      return [
+        { id: "formula", value: p.tau * k, msg: ["Уақыт азаюдың орнына көбейтілген: τ жылдамдыққа кері пропорционал.", "Время умножено, а должно уменьшиться: τ обратно пропорционально скорости.", "The time was multiplied but should decrease: τ is inversely proportional to rate."] },
+        { id: "formula", value: p.tau / (p.g * p.d / 10), msg: ["γ дәрежеге шығарылмаған сияқты.", "Похоже, γ не возведён в степень.", "It looks like γ was not raised to a power."] }
+      ].filter(function (m) { return Math.abs(m.value - p.tau / k) > 1e-9; });
+    },
+    checks: [
+      { q: ["Қыздырғанда реакция уақыты қысқаруы керек пе?", "Должно ли время реакции уменьшиться при нагревании?", "Should the reaction time get shorter on heating?"], a: true,
+        why: ["Иә: жылдамдық артады, сондықтан уақыт азаяды.", "Да: скорость растёт, значит время уменьшается.", "Yes: the rate rises, so the time falls."] },
+      { q: ["τ₂ · (v₂/v₁) бастапқы τ₁-ге тең болуы керек пе (кері тексеріс)?", "Должно ли τ₂ · (v₂/v₁) равняться исходному τ₁ (обратная проверка)?", "Should τ₂ · (v₂/v₁) equal the original τ₁ (reverse check)?"], a: true,
+        why: ["Иә, бұл кері есептеу арқылы тексеру.", "Да, это проверка обратным расчётом.", "Yes, that is a check by reverse calculation."] }
+    ],
+    ai: function (p, r) {
+      var type = r() < 0.4 ? "none" : pick(r, ["formula", "units"]), k = Math.pow(p.g, p.d / 10);
+      return { type: type, text: function (l) {
+        var mn = S(l, " мин", " мин", " min");
+        if (type === "formula") return ["v₂/v₁ = " + k, "τ₂ = τ₁ · (v₂/v₁) = " + p.tau + " · " + k + " = " + G(p.tau * k, l) + mn];
+        if (type === "units") return ["v₂/v₁ = " + k, "τ₂ = " + p.tau + " · 60 / " + k + " = " + G(p.tau * 60 / k, l) + mn];
+        return ["v₂/v₁ = " + k, "τ₂ = " + p.tau + " / " + k + " = " + G(p.tau / k, l) + mn];
+      } };
+    }
+  });
+
+  // B3. Закон действующих масс: изменение давления, объёма или концентрации.
+  var RX = [
+    { eq: ["2NO + O₂ → 2NO₂", "2NO + O₂ → 2NO₂", "2NO + O₂ → 2NO₂"], sp: [["NO", 2], ["O₂", 1]] },
+    { eq: ["H₂ + I₂ → 2HI", "H₂ + I₂ → 2HI", "H₂ + I₂ → 2HI"], sp: [["H₂", 1], ["I₂", 1]] },
+    { eq: ["2SO₂ + O₂ → 2SO₃", "2SO₂ + O₂ → 2SO₃", "2SO₂ + O₂ → 2SO₃"], sp: [["SO₂", 2], ["O₂", 1]] },
+    { eq: ["C(қ) + O₂(г) → CO₂(г)", "C(тв) + O₂(г) → CO₂(г)", "C(s) + O₂(g) → CO₂(g)"], sp: [["O₂", 1]], solid: true }
+  ];
+  T.push({
+    id: "mass_action", level: "B", method: "mass_action", unknown: "ratio", units: ["none"], tol: 0.01,
+    gen: function (r) {
+      var p = { rx: Math.floor(r() * RX.length), kind: pick(r, ["p", "V", "c"]), n: pick(r, [2, 3, 4]), T: pick(r, [300, 400, 500]) };
+      p.sp = Math.floor(r() * RX[p.rx].sp.length);
+      return p;
+    },
+    valid: function () { return true; },
+    answer: function (p) {
+      var rx = RX[p.rx];
+      if (p.kind === "c") return { value: Math.pow(p.n, rx.sp[p.sp][1]), unit: "none" };
+      var e = 0; rx.sp.forEach(function (s) { e += s[1]; });
+      return { value: Math.pow(p.n, e), unit: "none" };
+    },
+    convert: function () { return false; },
+    statement: function (p, l) {
+      var rx = RX[p.rx], eq = S(l, rx.eq[0], rx.eq[1], rx.eq[2]);
+      var ch = p.kind === "p" ? S(l, "қысымды " + p.n + " есе арттырса", "давление увеличить в " + p.n + " раза", "the pressure is increased " + p.n + " times")
+        : p.kind === "V" ? S(l, "ыдыстың көлемін " + p.n + " есе азайтса", "объём сосуда уменьшить в " + p.n + " раза", "the vessel volume is reduced " + p.n + " times")
+        : S(l, rx.sp[p.sp][0] + " концентрациясын " + p.n + " есе арттырса (басқалары өзгермейді)", "концентрацию " + rx.sp[p.sp][0] + " увеличить в " + p.n + " раза (остальные не меняются)", "the concentration of " + rx.sp[p.sp][0] + " is increased " + p.n + " times (others unchanged)");
+      return S(l, "Элементар реакция " + eq + " " + p.T + " К-де жүреді. Егер " + ch + ", реакция жылдамдығы неше есе өзгереді?",
+        "Элементарная реакция " + eq + " протекает при " + p.T + " К. Во сколько раз изменится скорость реакции, если " + ch + "?",
+        "The elementary reaction " + eq + " runs at " + p.T + " K. By what factor does the rate change if " + ch + "?");
+    },
+    givens: function (p, l) {
+      var rx = RX[p.rx];
+      return [
+        { id: "eq", text: S(l, "Теңдеу: ", "Уравнение: ", "Equation: ") + S(l, rx.eq[0], rx.eq[1], rx.eq[2]), relevant: true },
+        { id: "n", text: S(l, "Өзгеріс: ", "Изменение: ", "Change: ") + (p.kind === "p" ? "p × " + p.n : p.kind === "V" ? "V : " + p.n : "[" + rx.sp[p.sp][0] + "] × " + p.n), relevant: true },
+        { id: "T", text: "T = " + p.T + " K", relevant: false }
+      ];
+    },
+    hints: [
+      function (p, l) { return S(l, "Массалар заңы бойынша кинетикалық теңдеуді жазыңыз. Қатты заттар оған енбейді.", "Запишите кинетическое уравнение по закону действующих масс. Твёрдые вещества в него не входят.", "Write the rate law using the law of mass action. Solids are left out."); },
+      function (p, l) {
+        return p.kind === "c"
+          ? S(l, "Тек бір заттың концентрациясы өзгереді — оның дәреже көрсеткішін қараңыз.", "Меняется концентрация только одного вещества — посмотрите на его показатель степени.", "Only one concentration changes — look at its exponent.")
+          : S(l, "Қысым " + p.n + " есе артса (немесе көлем " + p.n + " есе азайса), әр газдың концентрациясы " + p.n + " есе артады.", "При увеличении давления в " + p.n + " раза (или уменьшении объёма) концентрация каждого газа растёт в " + p.n + " раза.", "If pressure rises " + p.n + "× (or volume falls " + p.n + "×), each gas concentration rises " + p.n + "×.");
+      }
+    ],
+    solution: function (p, l) {
+      var rx = RX[p.rx];
+      var law = "v = k·" + rx.sp.map(function (s) { return "[" + s[0] + "]" + (s[1] > 1 ? "²" : ""); }).join("·");
+      var a = this.answer(p).value;
+      var calc = p.kind === "c" ? p.n + (rx.sp[p.sp][1] > 1 ? "²" : "") : rx.sp.map(function (s) { return p.n + (s[1] > 1 ? "²" : ""); }).join(" · ");
+      return [law + (rx.solid ? S(l, " (C — қатты зат)", " (C — твёрдое вещество)", " (C is a solid)") : ""), "v₂/v₁ = " + calc + " = " + a];
+    },
+    mistakes: function (p) {
+      var rx = RX[p.rx], right = this.answer(p).value, m = [];
+      m.push({ id: "formula", value: p.kind === "c" ? p.n : Math.pow(p.n, rx.sp.length), msg: ["Дәреже көрсеткіштері (коэффициенттер) ескерілмеген сияқты.", "Похоже, не учтены показатели степени (коэффициенты).", "It looks like the exponents (coefficients) were ignored."] });
+      if (rx.solid) m.push({ id: "data", value: Math.pow(p.n, 2), msg: ["Қатты зат (көмір) теңдеуге енгізілген сияқты.", "Похоже, твёрдое вещество (уголь) включено в уравнение.", "It looks like the solid (carbon) was included in the rate law."] });
+      return m.filter(function (x) { return Math.abs(x.value - right) > 1e-9; });
+    },
+    checks: [
+      { q: ["Қатты заттың концентрациясы кинетикалық теңдеуге кіре ме?", "Входит ли концентрация твёрдого вещества в кинетическое уравнение?", "Does the concentration of a solid appear in the rate law?"], a: false,
+        why: ["Жоқ: қатты заттар мен таза сұйықтар теңдеуге жазылмайды.", "Нет: твёрдые вещества и чистые жидкости в уравнение не записывают.", "No: solids and pure liquids are left out of the rate law."] },
+      { q: ["Температура жауапты есептеу үшін керек пе (ол өзгермейді)?", "Нужна ли температура для расчёта (она не меняется)?", "Is the temperature needed for the calculation (it does not change)?"], a: false,
+        why: ["Жоқ: T тұрақты болса, k өзгермейді — бұл артық дерек.", "Нет: при постоянной T константа k не меняется — это лишнее данное.", "No: at constant T, k does not change, so T is surplus data."] }
+    ],
+    ai: function (p, r) {
+      var self = this, rx = RX[p.rx], type = r() < 0.4 ? "none" : (rx.solid ? pick(r, ["formula", "data"]) : "formula");
+      var right = self.answer(p).value;
+      var wrong = type === "data" ? Math.pow(p.n, 2) : (p.kind === "c" ? p.n : Math.pow(p.n, rx.sp.length));
+      if (type !== "none" && Math.abs(wrong - right) < 1e-9) type = "none";
+      return { type: type, text: function (l) {
+        return type === "none" ? self.solution(p, l)
+          : type === "data" ? ["v = k·[C]·[O₂]", "v₂/v₁ = " + p.n + " · " + p.n + " = " + wrong]
+          : [S(l, "Әр зат концентрациясы бірінші дәрежеде алынады:", "Каждая концентрация берётся в первой степени:", "Each concentration is taken to the first power:"), "v₂/v₁ = " + wrong];
+      } };
+    }
+  });
+
+  // C1. Уравнение Аррениуса: во сколько раз растёт константа.
+  T.push({
+    id: "arr_ratio", level: "C", method: "arrhenius", unknown: "ratio", units: ["none"], tol: 0.02,
+    gen: function (r) { var p = { Ea: range(r, 40, 90, 5), t1: pick(r, [20, 25, 27, 30, 35]), d: pick(r, [10, 20]), A: pick(r, [2, 5, 8]) }; p.t2 = p.t1 + p.d; return p; },
+    valid: function (p) { var x = this.answer(p).value; return x > 1.2 && x < 50; },
+    answer: function (p) { var T1 = p.t1 + 273.15, T2 = p.t2 + 273.15; return { value: Math.exp(p.Ea * 1000 / R * (1 / T1 - 1 / T2)), unit: "none" }; },
+    convert: function () { return true; },
+    statement: function (p, l) {
+      return S(l, "Реакцияның активтендіру энергиясы " + p.Ea + " кДж/моль, экспонента алдындағы көбейткіш A = " + p.A + "·10¹⁰ с⁻¹. Температураны " + p.t1 + "-ден " + p.t2 + " °C-қа дейін көтергенде жылдамдық константасы неше есе артады?",
+        "Энергия активации реакции " + p.Ea + " кДж/моль, предэкспоненциальный множитель A = " + p.A + "·10¹⁰ с⁻¹. Во сколько раз возрастёт константа скорости при нагревании от " + p.t1 + " до " + p.t2 + " °C?",
+        "A reaction has an activation energy of " + p.Ea + " kJ/mol and a pre-exponential factor A = " + p.A + "·10¹⁰ s⁻¹. By what factor does the rate constant increase when heated from " + p.t1 + " to " + p.t2 + " °C?");
+    },
+    givens: function (p, l) {
+      return [
+        { id: "Ea", text: "Eₐ = " + p.Ea + S(l, " кДж/моль", " кДж/моль", " kJ/mol"), relevant: true },
+        { id: "t", text: "t₁ = " + p.t1 + " °C, t₂ = " + p.t2 + " °C", relevant: true },
+        { id: "A", text: "A = " + p.A + "·10¹⁰ " + S(l, "с⁻¹", "с⁻¹", "s⁻¹"), relevant: false }
+      ];
+    },
+    hints: [
+      function (p, l) { return S(l, "Екі температура үшін Аррениус теңдеуін жазып, бір-біріне бөліңіз: A қысқарады. Температураны Кельвинге, Eₐ-ны Дж/моль-ге айналдырыңыз.", "Запишите уравнение Аррениуса для двух температур и разделите одно на другое: A сокращается. Переведите температуру в кельвины, а Eₐ в Дж/моль.", "Write the Arrhenius equation for both temperatures and divide one by the other: A cancels. Convert temperatures to kelvin and Eₐ to J/mol."); },
+      function (p, l) { var T1 = p.t1 + 273.15, T2 = p.t2 + 273.15; return S(l, "T₁ = " + N(T1, 2, l) + " К, T₂ = " + N(T2, 2, l) + " К, Eₐ = " + p.Ea * 1000 + " Дж/моль. ln(k₂/k₁) = (Eₐ/R)(1/T₁ − 1/T₂).", "T₁ = " + N(T1, 2, l) + " К, T₂ = " + N(T2, 2, l) + " К, Eₐ = " + p.Ea * 1000 + " Дж/моль. ln(k₂/k₁) = (Eₐ/R)(1/T₁ − 1/T₂).", "T₁ = " + N(T1, 2, l) + " K, T₂ = " + N(T2, 2, l) + " K, Eₐ = " + p.Ea * 1000 + " J/mol. ln(k₂/k₁) = (Eₐ/R)(1/T₁ − 1/T₂)."); }
+    ],
+    solution: function (p, l) {
+      var T1 = p.t1 + 273.15, T2 = p.t2 + 273.15, ln = p.Ea * 1000 / R * (1 / T1 - 1 / T2);
+      return ["T₁ = " + N(T1, 2, l) + " K, T₂ = " + N(T2, 2, l) + " K",
+        "ln(k₂/k₁) = " + p.Ea * 1000 + " / " + N(R, 3, l) + " · (1/" + N(T1, 2, l) + " − 1/" + N(T2, 2, l) + ") = " + N(ln, 4, l),
+        "k₂/k₁ = e^" + N(ln, 4, l) + " ≈ " + G(Math.exp(ln), l)];
+    },
+    mistakes: function (p) {
+      var T1 = p.t1 + 273.15, T2 = p.t2 + 273.15, ln = p.Ea * 1000 / R * (1 / T1 - 1 / T2);
+      return [
+        { id: "units", value: Math.exp(p.Ea / R * (1 / T1 - 1 / T2)), msg: ["Eₐ Дж/моль-ге айналдырылмаған сияқты (×1000).", "Похоже, Eₐ не переведена в Дж/моль (×1000).", "It looks like Eₐ was not converted to J/mol (×1000)."] },
+        { id: "units", value: Math.exp(Math.min(700, p.Ea * 1000 / R * (1 / p.t1 - 1 / p.t2))), msg: ["Температура Кельвинге айналдырылмаған сияқты.", "Похоже, температура не переведена в кельвины.", "It looks like the temperature was not converted to kelvin."] },
+        { id: "formula", value: Math.pow(10, ln), msg: ["Натурал логарифмнің орнына ондық логарифм қолданылған сияқты.", "Похоже, вместо натурального логарифма использован десятичный.", "It looks like log₁₀ was used instead of the natural log."] }
+      ];
+    },
+    checks: [
+      { q: ["Аррениус теңдеуінде температура Кельвинмен алынды ма?", "Взята ли температура в уравнении Аррениуса в кельвинах?", "Was temperature used in kelvin in the Arrhenius equation?"], a: true,
+        why: ["Иә: теңдеуде абсолют температура T = t + 273,15 қолданылады.", "Да: в уравнении используется абсолютная температура T = t + 273,15.", "Yes: the equation uses absolute temperature, T = t + 273.15."] },
+      { q: ["A көбейткіші k₂/k₁ қатынасына әсер ете ме?", "Влияет ли множитель A на отношение k₂/k₁?", "Does the factor A affect the ratio k₂/k₁?"], a: false,
+        why: ["Жоқ: A екі температурада бірдей деп есептеледі және қысқарады.", "Нет: A считается одинаковым при обеих температурах и сокращается.", "No: A is assumed the same at both temperatures and cancels."] }
+    ],
+    ai: function (p, r) {
+      var self = this, type = r() < 0.4 ? "none" : pick(r, ["units", "calc"]);
+      var T1 = p.t1 + 273.15, T2 = p.t2 + 273.15;
+      return { type: type, text: function (l) {
+        if (type === "units") { var x = Math.exp(Math.min(700, p.Ea * 1000 / R * (1 / p.t1 - 1 / p.t2))); return ["ln(k₂/k₁) = " + p.Ea * 1000 + " / " + N(R, 3, l) + " · (1/" + p.t1 + " − 1/" + p.t2 + ")", "k₂/k₁ ≈ " + (x > 1e6 ? "10^" + Math.round(Math.log10(x)) : G(x, l))]; }
+        if (type === "calc") return ["ln(k₂/k₁) = " + p.Ea + " / " + N(R, 3, l) + " · (1/" + N(T1, 2, l) + " − 1/" + N(T2, 2, l) + ")", "k₂/k₁ ≈ " + G(Math.exp(p.Ea / R * (1 / T1 - 1 / T2)), l, 4) + S(l, " — константа іс жүзінде өзгермейді.", " — константа практически не меняется.", " — the constant barely changes.")];
+        return self.solution(p, l);
+      } };
+    }
+  });
+
+  // C2. Энергия активации по двум константам.
+  T.push({
+    id: "arr_ea", level: "C", method: "arrhenius", unknown: "energy", units: ["kJ", "J", "none"], tol: 0.02,
+    gen: function (r) { var p = { ratio: pick(r, [2, 3, 4, 5]), T1: pick(r, [290, 295, 300, 310]), d: pick(r, [10, 15, 20]), C: pick(r, [0.1, 0.5]) }; p.T2 = p.T1 + p.d; return p; },
+    valid: function () { return true; },
+    answer: function (p) { return { value: R * Math.log(p.ratio) / (1 / p.T1 - 1 / p.T2) / 1000, unit: "kJ" }; },
+    convert: function () { return true; },
+    statement: function (p, l) {
+      return S(l, "Бастапқы концентрация " + N(p.C, 1, l) + " моль/л болғанда температураны " + p.T1 + " К-нен " + p.T2 + " К-ге көтергенде жылдамдық константасы " + p.ratio + " есе артты. Активтендіру энергиясын кДж/моль бірлігінде табыңыз.",
+        "При начальной концентрации " + N(p.C, 1, l) + " моль/л нагревание от " + p.T1 + " К до " + p.T2 + " К увеличило константу скорости в " + p.ratio + " " + (p.ratio <= 4 ? "раза" : "раз") + ". Найдите энергию активации в кДж/моль.",
+        "With an initial concentration of " + N(p.C, 1, l) + " mol/L, heating from " + p.T1 + " K to " + p.T2 + " K increased the rate constant " + p.ratio + " times. Find the activation energy in kJ/mol.");
+    },
+    givens: function (p, l) {
+      return [
+        { id: "ratio", text: "k₂/k₁ = " + p.ratio, relevant: true },
+        { id: "T", text: "T₁ = " + p.T1 + " K, T₂ = " + p.T2 + " K", relevant: true },
+        { id: "C", text: "C₀ = " + N(p.C, 1, l) + S(l, " моль/л", " моль/л", " mol/L"), relevant: false }
+      ];
+    },
+    hints: [
+      function (p, l) { return S(l, "Аррениус теңдеуін Eₐ-ға қатысты шешіңіз: Eₐ = R·ln(k₂/k₁) / (1/T₁ − 1/T₂).", "Решите уравнение Аррениуса относительно Eₐ: Eₐ = R·ln(k₂/k₁) / (1/T₁ − 1/T₂).", "Solve the Arrhenius equation for Eₐ: Eₐ = R·ln(k₂/k₁) / (1/T₁ − 1/T₂)."); },
+      function (p, l) { return S(l, "ln " + p.ratio + " = " + N(Math.log(p.ratio), 4, l) + "; 1/T₁ − 1/T₂ = " + N((1 / p.T1 - 1 / p.T2) * 1e4, 4, l) + "·10⁻⁴ К⁻¹. Нәтиже Дж/моль-мен шығады — кДж-ға айналдырыңыз.", "ln " + p.ratio + " = " + N(Math.log(p.ratio), 4, l) + "; 1/T₁ − 1/T₂ = " + N((1 / p.T1 - 1 / p.T2) * 1e4, 4, l) + "·10⁻⁴ К⁻¹. Результат получится в Дж/моль — переведите в кДж.", "ln " + p.ratio + " = " + N(Math.log(p.ratio), 4, l) + "; 1/T₁ − 1/T₂ = " + N((1 / p.T1 - 1 / p.T2) * 1e4, 4, l) + "·10⁻⁴ K⁻¹. The result comes out in J/mol — convert to kJ."); }
+    ],
+    solution: function (p, l) {
+      var inv = 1 / p.T1 - 1 / p.T2, E = R * Math.log(p.ratio) / inv;
+      return ["1/T₁ − 1/T₂ = 1/" + p.T1 + " − 1/" + p.T2 + " = " + N(inv * 1e4, 4, l) + "·10⁻⁴",
+        "Eₐ = " + N(R, 3, l) + " · ln " + p.ratio + " / " + N(inv * 1e4, 4, l) + "·10⁻⁴ = " + G(E, l, 4) + S(l, " Дж/моль", " Дж/моль", " J/mol"),
+        "Eₐ ≈ " + G(E / 1000, l) + S(l, " кДж/моль", " кДж/моль", " kJ/mol")];
+    },
+    mistakes: function (p) {
+      var inv = 1 / p.T1 - 1 / p.T2;
+      return [
+        { id: "formula", value: R * Math.log10(p.ratio) / inv / 1000, msg: ["Натурал логарифмнің орнына ондық логарифм алынған сияқты.", "Похоже, взят десятичный логарифм вместо натурального.", "It looks like log₁₀ was used instead of ln."] },
+        { id: "formula", value: R * Math.log(p.ratio) / (p.T2 - p.T1) / 1000, msg: ["1/T₁ − 1/T₂ орнына T₂ − T₁ алынған сияқты.", "Похоже, вместо 1/T₁ − 1/T₂ взято T₂ − T₁.", "It looks like T₂ − T₁ was used instead of 1/T₁ − 1/T₂."] }
+      ];
+    },
+    checks: [
+      { q: ["Алынған Eₐ ондаған кДж/моль шамасында ма (көптеген реакциялар үшін әдеттегі)?", "Лежит ли полученная Eₐ в пределах десятков кДж/моль (типично для многих реакций)?", "Is the Eₐ you got in the tens of kJ/mol (typical for many reactions)?"], a: true,
+        why: ["Иә, бұл шынайылықты тексеру.", "Да, это проверка реалистичности.", "Yes, that is a plausibility check."] },
+      { q: ["Бастапқы концентрация Eₐ-ны есептеуге керек пе?", "Нужна ли начальная концентрация для расчёта Eₐ?", "Is the initial concentration needed to calculate Eₐ?"], a: false,
+        why: ["Жоқ: k концентрацияға тәуелсіз, бұл — артық дерек.", "Нет: k не зависит от концентрации, это лишнее данное.", "No: k does not depend on concentration, so this is surplus data."] }
+    ],
+    ai: function (p, r) {
+      var self = this, type = r() < 0.4 ? "none" : pick(r, ["formula", "units"]);
+      var inv = 1 / p.T1 - 1 / p.T2, E = R * Math.log(p.ratio) / inv;
+      return { type: type, text: function (l) {
+        var kj = S(l, " кДж/моль", " кДж/моль", " kJ/mol");
+        if (type === "formula") return ["Eₐ = R · lg(k₂/k₁) / (1/T₁ − 1/T₂)", "Eₐ ≈ " + G(R * Math.log10(p.ratio) / inv / 1000, l) + kj];
+        if (type === "units") return ["Eₐ = " + N(R, 3, l) + " · ln " + p.ratio + " / " + N(inv * 1e4, 4, l) + "·10⁻⁴", "Eₐ ≈ " + G(E, l, 4) + kj];
+        return self.solution(p, l);
+      } };
+    }
+  });
+
+  // C3. Период полупревращения / доля оставшегося вещества (1 порядок).
+  T.push({
+    id: "half_life", level: "C", method: "half_life", unknown: "halflife", units: ["min", "s", "pct"], tol: 0.02,
+    gen: function (r) {
+      var p = { th: pick(r, [10, 12, 15, 20, 24, 30, 40]), ask: pick(r, ["th", "rem"]), n: pick(r, [2, 3, 4]), C0: pick(r, [0.4, 0.8, 1.2]) };
+      p.k = +(Math.LN2 / p.th).toPrecision(3);
+      p.t = p.n * p.th;
+      return p;
+    },
+    valid: function () { return true; },
+    unknownOf: function (p) { return p.ask === "th" ? "halflife" : "remain"; },
+    answer: function (p) { return p.ask === "th" ? { value: Math.LN2 / p.k, unit: "min" } : { value: 100 * Math.exp(-p.k * p.t), unit: "pct" }; },
+    convert: function () { return false; },
+    statement: function (p, l) {
+      var base = S(l, "1-ретті реакцияның жылдамдық константасы k = " + N(p.k, 4, l) + " мин⁻¹, бастапқы концентрация " + N(p.C0, 1, l) + " моль/л. ", "Константа скорости реакции 1 порядка k = " + N(p.k, 4, l) + " мин⁻¹, начальная концентрация " + N(p.C0, 1, l) + " моль/л. ", "A first-order reaction has k = " + N(p.k, 4, l) + " min⁻¹ and an initial concentration of " + N(p.C0, 1, l) + " mol/L. ");
+      return base + (p.ask === "th"
+        ? S(l, "Жартылай ыдырау периодын минутпен табыңыз.", "Найдите период полупревращения в минутах.", "Find the half-life in minutes.")
+        : S(l, p.t + " минуттан кейін бастапқы заттың неше пайызы қалады?", "Сколько процентов исходного вещества останется через " + p.t + " мин?", "What percentage of the reactant remains after " + p.t + " min?"));
+    },
+    givens: function (p, l) {
+      var g = [{ id: "k", text: "k = " + N(p.k, 4, l) + S(l, " мин⁻¹", " мин⁻¹", " min⁻¹"), relevant: true }];
+      if (p.ask === "rem") g.push({ id: "t", text: "t = " + p.t + S(l, " мин", " мин", " min"), relevant: true });
+      g.push({ id: "C0", text: "C₀ = " + N(p.C0, 1, l) + S(l, " моль/л", " моль/л", " mol/L"), relevant: false });
+      return g;
+    },
+    hints: [
+      function (p, l) { return S(l, "1-ретті реакция үшін t½ = ln2/k, ал C/C₀ = e^(−kt). C₀ мұнда керек пе?", "Для реакции 1 порядка t½ = ln2/k, а C/C₀ = e^(−kt). Нужна ли здесь C₀?", "For a first-order reaction t½ = ln2/k and C/C₀ = e^(−kt). Is C₀ needed here?"); },
+      function (p, l) { return p.ask === "th" ? S(l, "ln2 ≈ 0,693. Оны k-ға бөліңіз.", "ln2 ≈ 0,693. Разделите на k.", "ln2 ≈ 0.693. Divide by k.") : S(l, "k·t = " + N(p.k * p.t, 4, l) + ". Немесе: t½ санын табыңыз, сонда қалған үлес (1/2)ⁿ болады.", "k·t = " + N(p.k * p.t, 4, l) + ". Или: найдите число периодов полупревращения, тогда доля равна (1/2)ⁿ.", "k·t = " + N(p.k * p.t, 4, l) + ". Or count the half-lives: the fraction left is (1/2)ⁿ."); }
+    ],
+    solution: function (p, l) {
+      var th = Math.LN2 / p.k;
+      if (p.ask === "th") return ["t½ = ln2 / k = " + N(0.6931, 4, l) + " / " + N(p.k, 4, l) + " ≈ " + G(th, l) + S(l, " мин", " мин", " min")];
+      return ["C/C₀ = e^(−kt) = e^(−" + N(p.k, 4, l) + "·" + p.t + ") = e^(−" + N(p.k * p.t, 3, l) + ")", "≈ " + G(100 * Math.exp(-p.k * p.t), l) + " %",
+        S(l, "Тексеріс: t½ ≈ " + G(th, l) + " мин, t ≈ " + p.n + "·t½, (1/2)^" + p.n + " = " + N(100 / Math.pow(2, p.n), 2, l) + " %", "Проверка: t½ ≈ " + G(th, l) + " мин, t ≈ " + p.n + "·t½, (1/2)^" + p.n + " = " + N(100 / Math.pow(2, p.n), 2, l) + " %", "Check: t½ ≈ " + G(th, l) + " min, t ≈ " + p.n + "·t½, (1/2)^" + p.n + " = " + N(100 / Math.pow(2, p.n), 2, l) + "%")];
+    },
+    mistakes: function (p) {
+      if (p.ask === "th") return [
+        { id: "formula", value: p.k / Math.LN2, msg: ["Формула төңкерілген: t½ = ln2/k.", "Формула перевёрнута: t½ = ln2/k.", "The formula is upside down: t½ = ln2/k."] },
+        { id: "data", value: p.C0 / (2 * p.k), msg: ["0-ретті реакцияның формуласы (C₀/2k) қолданылған сияқты.", "Похоже, использована формула для реакции 0 порядка (C₀/2k).", "It looks like the zero-order formula (C₀/2k) was used."] }
+      ];
+      return [
+        { id: "formula", value: 100 - 50 * p.n, msg: ["Әр t½ сайын 50 % азаймайды — қалғанның жартысы азаяды.", "За каждый t½ убывает не 50 %, а половина оставшегося.", "Each half-life removes half of what is left, not 50% of the original."] },
+        { id: "formula", value: 100 * (1 - Math.exp(-p.k * p.t)), msg: ["Қалған үлестің орнына ыдыраған үлес табылған сияқты.", "Похоже, найдена доля прореагировавшего, а не оставшегося.", "It looks like you found the fraction that reacted, not what remains."] }
+      ].filter(function (m) { return m.value > 0; });
+    },
+    checks: [
+      { q: ["1-ретті реакцияда t½ бастапқы концентрацияға тәуелді ме?", "Зависит ли t½ реакции 1 порядка от начальной концентрации?", "Does t½ of a first-order reaction depend on the initial concentration?"], a: false,
+        why: ["Жоқ: t½ = ln2/k — C₀ бұл есепте артық дерек.", "Нет: t½ = ln2/k — C₀ в этой задаче лишнее данное.", "No: t½ = ln2/k, so C₀ is surplus data here."] },
+      { q: ["n жартылай ыдырау периодынан кейін бастапқы заттың (1/2)ⁿ бөлігі қала ма?", "Остаётся ли через n периодов полупревращения (1/2)ⁿ исходного вещества?", "After n half-lives, does (1/2)ⁿ of the reactant remain?"], a: true,
+        why: ["Иә, бұл жауапты тексерудің тәуелсіз тәсілі.", "Да, это независимый способ проверить ответ.", "Yes, that is an independent way to check the answer."] }
+    ],
+    ai: function (p, r) {
+      var self = this, type = r() < 0.4 ? "none" : pick(r, ["data", "formula"]);
+      return { type: type, text: function (l) {
+        var mn = S(l, " мин", " мин", " min");
+        if (p.ask === "th") {
+          if (type === "data") return ["t½ = C₀ / (2k) = " + N(p.C0, 1, l) + " / (2·" + N(p.k, 4, l) + ") = " + G(p.C0 / (2 * p.k), l) + mn];
+          if (type === "formula") return ["t½ = k / ln2 = " + N(p.k, 4, l) + " / " + N(0.6931, 4, l) + " = " + G(p.k / Math.LN2, l) + mn];
+        } else {
+          if (type === "data") return [S(l, "C₀ = " + N(p.C0, 1, l) + " моль/л, сондықтан C = C₀ − k·t = ", "C₀ = " + N(p.C0, 1, l) + " моль/л, поэтому C = C₀ − k·t = ", "C₀ = " + N(p.C0, 1, l) + " mol/L, so C = C₀ − k·t = ") + G(p.C0 - p.k * p.t, l), S(l, "Үлес ≈ ", "Доля ≈ ", "Share ≈ ") + G(Math.max(0, 100 * (p.C0 - p.k * p.t) / p.C0), l) + " %"];
+          if (type === "formula") return [S(l, "Әр t½ сайын 50 % жоғалады:", "За каждый t½ теряется 50 %:", "50% is lost every half-life:"), "100 − " + p.n + "·50 = " + (100 - 50 * p.n) + " %"];
+        }
+        return self.solution(p, l);
+      } };
+    }
+  });
+
+  /* ---------- Концептуальные утверждения «ИИ» (AI Answer Verification) ---------- */
+  var CLAIMS = [
+    { ok: false, type: "general",
+      c: ["Температура 10 °C-қа көтерілгенде кез келген реакцияның жылдамдығы әрқашан дәл 2 есе артады.", "При повышении температуры на 10 °C скорость любой реакции всегда увеличивается ровно в 2 раза.", "When the temperature rises by 10 °C, the rate of any reaction always increases exactly twofold."],
+      ref: ["Қате жалпылау. Вант-Гофф ережесі — жуық эмпирикалық ереже: γ әдетте 2–4 аралығында және реакцияның Eₐ-сы мен температура аралығына тәуелді. Дәлірек тәуелділікті Аррениус теңдеуі береді.", "Неправомерное обобщение. Правило Вант-Гоффа — приближённое эмпирическое правило: γ обычно лежит в пределах 2–4 и зависит от Eₐ реакции и интервала температур. Точнее зависимость описывает уравнение Аррениуса.", "An unjustified generalisation. Van 't Hoff's rule is an approximate empirical rule: γ is usually 2–4 and depends on the reaction's Eₐ and the temperature range. The Arrhenius equation describes the dependence more accurately."] },
+    { ok: false, type: "chem",
+      c: ["Катализатор реакцияның ΔH-ын азайтады, сондықтан реакция тездейді.", "Катализатор уменьшает ΔH реакции, поэтому реакция ускоряется.", "A catalyst lowers the ΔH of a reaction, which is why the reaction speeds up."],
+      ref: ["Қате химиялық болжам. Катализатор активтендіру энергиясын төмендетеді, ал ΔH бастапқы және соңғы күйге ғана тәуелді, өзгермейді.", "Ошибочное химическое предположение. Катализатор снижает энергию активации, а ΔH зависит только от начального и конечного состояний и не меняется.", "A wrong chemical assumption. A catalyst lowers the activation energy; ΔH depends only on the initial and final states and does not change."] },
+    { ok: true, type: "none",
+      c: ["Қатты заттың концентрациясы кинетикалық теңдеуге енбейді.", "Концентрация твёрдого вещества не входит в кинетическое уравнение.", "The concentration of a solid does not appear in the rate law."],
+      ref: ["Дұрыс. Гетерогенді реакцияда қатты заттың әсері жылдамдық константасы мен бет ауданы арқылы ескеріледі.", "Верно. В гетерогенной реакции влияние твёрдого вещества учитывается через константу скорости и площадь поверхности.", "Correct. In a heterogeneous reaction the solid's effect is captured by the rate constant and the surface area."] },
+    { ok: false, type: "chem",
+      c: ["1-ретті реакцияда бастапқы концентрация артқан сайын жартылай ыдырау периоды ұзарады.", "В реакции 1 порядка период полупревращения увеличивается с ростом начальной концентрации.", "In a first-order reaction the half-life gets longer as the initial concentration increases."],
+      ref: ["Қате. 1-ретті реакцияда t½ = ln2/k және C₀-ға тәуелді емес. C₀-ға тура пропорционал t½ — 0-ретті реакцияның белгісі.", "Неверно. Для реакции 1 порядка t½ = ln2/k и не зависит от C₀. Прямая пропорциональность t½ и C₀ — признак реакции 0 порядка.", "Wrong. For a first-order reaction t½ = ln2/k, independent of C₀. A t½ proportional to C₀ is a sign of a zero-order reaction."] },
+    { ok: false, type: "formula",
+      c: ["2NO + O₂ → 2NO₂ элементар реакциясында қысымды 2 есе арттырғанда жылдамдық 2 есе артады.", "В элементарной реакции 2NO + O₂ → 2NO₂ при увеличении давления в 2 раза скорость возрастает в 2 раза.", "In the elementary reaction 2NO + O₂ → 2NO₂, doubling the pressure doubles the rate."],
+      ref: ["Қате формула. v = k[NO]²[O₂]; екі газдың да концентрациясы 2 есе артады: 2² · 2 = 8 есе.", "Неверная формула. v = k[NO]²[O₂]; концентрации обоих газов растут в 2 раза: 2² · 2 = 8 раз.", "Wrong formula. v = k[NO]²[O₂]; both gas concentrations double: 2² · 2 = 8 times."] },
+    { ok: false, type: "units",
+      c: ["Аррениус теңдеуіне температураны Цельсий градусымен қоюға болады.", "В уравнение Аррениуса можно подставлять температуру в градусах Цельсия.", "You can put the temperature in degrees Celsius into the Arrhenius equation."],
+      ref: ["Бірліктердегі қате. Теңдеуде абсолют температура (К) қолданылады; °C-пен 1/T мағынасыз болады (0 °C-та тіпті шексіздік).", "Ошибка в единицах. В уравнении используется абсолютная температура (К); с °C величина 1/T теряет смысл (при 0 °C — даже бесконечность).", "A units error. The equation uses absolute temperature (K); with °C the quantity 1/T makes no sense (it even becomes infinite at 0 °C)."] },
+    { ok: true, type: "none",
+      c: ["Активтендіру энергиясы үлкен реакцияның жылдамдығы температураға сезімталырақ.", "Скорость реакции с большей энергией активации сильнее зависит от температуры.", "A reaction with a higher activation energy is more sensitive to temperature."],
+      ref: ["Дұрыс. ln(k₂/k₁) Eₐ-ға тура пропорционал, сондықтан бірдей қыздыруда Eₐ үлкен болса, k көбірек өзгереді.", "Верно. ln(k₂/k₁) прямо пропорционален Eₐ, поэтому при одинаковом нагревании k меняется сильнее при большей Eₐ.", "Correct. ln(k₂/k₁) is proportional to Eₐ, so for the same heating k changes more when Eₐ is larger."] },
+    { ok: false, type: "general",
+      c: ["Ферменттің белсенділігі температура көтерілген сайын шексіз өседі.", "Активность фермента неограниченно растёт с повышением температуры.", "An enzyme's activity keeps rising without limit as the temperature increases."],
+      ref: ["Негізсіз жалпылау. Оңтайлы температурадан (адам ферменттері үшін ≈ 37 °C) жоғары ақуыз денатурацияланып, белсенділік күрт төмендейді.", "Неправомерное обобщение. Выше оптимальной температуры (для ферментов человека ≈ 37 °C) белок денатурирует, и активность резко падает.", "An unjustified generalisation. Above the optimum temperature (≈ 37 °C for human enzymes) the protein denatures and activity falls sharply."] },
+    { ok: false, type: "data",
+      c: ["Бастапқы зат концентрациясы азаятындықтан, реакция жылдамдығы теріс сан болады.", "Поскольку концентрация исходного вещества убывает, скорость реакции — отрицательное число.", "Because the reactant concentration decreases, the reaction rate is a negative number."],
+      ref: ["Қате. Жылдамдық анықтама бойынша оң; ΔC/Δt алдындағы «−» таңбасы дәл осы үшін қойылады.", "Неверно. Скорость по определению положительна; знак «−» перед ΔC/Δt ставится именно для этого.", "Wrong. Rate is positive by definition; the “−” in front of ΔC/Δt is there exactly for that reason."] },
+    { ok: true, type: "none",
+      c: ["Бор ұнтағы бор кесегіне қарағанда HCl-мен тезірек әрекеттеседі, өйткені жанасу беті үлкен.", "Порошок мела реагирует с HCl быстрее, чем кусок мела, потому что больше поверхность контакта.", "Powdered chalk reacts with HCl faster than a lump of chalk because the contact surface is larger."],
+      ref: ["Дұрыс. Гетерогенді реакция фазалар шекарасында жүреді, ұсақтағанда бет ауданы артады.", "Верно. Гетерогенная реакция идёт на границе фаз, при измельчении площадь поверхности растёт.", "Correct. A heterogeneous reaction happens at the phase boundary, and grinding increases the surface area."] }
+  ];
+
+  /* ---------- API ---------- */
+  function byId(id) { for (var i = 0; i < T.length; i++) if (T[i].id === id) return T[i]; return null; }
+  function generate(id, seed) {
+    var t = byId(id);
+    if (!t) throw new Error("Unknown template " + id);
+    var r = rng(seed), p, tries = 0;
+    do { p = t.gen(r); tries++; } while (!t.valid(p) && tries < 200);
+    if (!t.valid(p)) throw new Error("No valid params for " + id);
+    var ai = t.ai(p, rng(seed ^ 0x9E3779B9));
+    return { template: id, version: VERSION, seed: seed, params: p, level: t.level, ai: ai };
+  }
+  function unknownOf(t, p) { return t.unknownOf ? t.unknownOf(p) : t.unknown; }
+  function unitsOf(t, p) {
+    var u = t.answer(p).unit;
+    if (u === "none") return ["none"];
+    if (u === "pct") return ["pct", "none"];
+    return t.units;
+  }
+  // Проверка числового ответа с единицей.
+  function check(id, p, input, unit) {
+    var t = byId(id), a = t.answer(p), x = parseNum(input);
+    if (isNaN(x)) return { status: "nan" };
+    var U = UNITS[unit || a.unit] || UNITS[a.unit];
+    var base = UNITS[a.unit];
+    if (U.dim !== base.dim) return { status: "unit", x: x };
+    var xb = x / U.f * base.f;
+    var rel = Math.abs(xb - a.value) / Math.abs(a.value);
+    if (rel <= t.tol) return { status: "ok", rel: rel };
+    if (xb < 0 && Math.abs(-xb - a.value) / a.value <= t.tol) return { status: "sign" };
+    var ms = t.mistakes(p);
+    for (var i = 0; i < ms.length; i++) {
+      if (isFinite(ms[i].value) && ms[i].value !== 0 && Math.abs(xb - ms[i].value) / Math.abs(ms[i].value) <= t.tol) return { status: "mistake", mistake: ms[i] };
+    }
+    var f = [1000, 1 / 1000, 60, 1 / 60];
+    for (var j = 0; j < f.length; j++) if (Math.abs(xb - a.value * f[j]) / Math.abs(a.value * f[j]) <= t.tol) return { status: "scale" };
+    return { status: "wrong", high: xb > a.value };
+  }
+
+  return {
+    VERSION: VERSION, R: R, UNITS: UNITS, METHODS: METHODS, UNKNOWNS: UNKNOWNS, ERRORS: ERRORS, CLAIMS: CLAIMS,
+    templates: T, byId: byId, generate: generate, check: check, unknownOf: unknownOf, unitsOf: unitsOf,
+    parseNum: parseNum, rng: rng, S: S, N: N, G: G
+  };
+})();
+
+/* ================= Critical Thinking Lab: интерфейс семи этапов =================
+   Зависит от site.js (L, LANG, $, safe, store, onLang) и engine.js (NCEngine). */
+safe("trainer", function () {
+  var E = NCEngine;
+  var KEY_CUR = "nc-ct-current", KEY_HIST = "nc-ct-history";
+  var STAGES = [
+    ["Талдау", "Анализ", "Analysis"],
+    ["Болжам", "Гипотеза", "Hypothesis"],
+    ["Негіздеу", "Обоснование", "Justification"],
+    ["Шешім", "Решение", "Solution"],
+    ["Тексеру", "Проверка", "Check"],
+    ["Сыни талдау", "Критический анализ", "Critical analysis"],
+    ["Рефлексия", "Рефлексия", "Reflection"]
+  ];
+  var JUSTIFY = {
+    avg_rate: ["Екі уақыт сәтіндегі концентрация берілген, орташа жылдамдық сұралады — бұл анықтаманың өзі.", "Даны концентрации в два момента времени и спрашивается средняя скорость — это само определение.", "Concentrations at two moments are given and the average rate is asked for — that is the definition itself."],
+    vant_hoff: ["Температура өзгерісі және γ (немесе жылдамдық өзгерісі) берілген, Eₐ жоқ — Вант-Гофф ережесі дәл осындай жағдайға арналған.", "Даны изменение температуры и γ (или изменение скорости), Eₐ нет — правило Вант-Гоффа рассчитано именно на этот случай.", "A temperature change and γ (or a rate change) are given with no Eₐ — Van 't Hoff's rule is meant for exactly this case."],
+    arrhenius: ["Eₐ немесе екі температурадағы константалар қатынасы берілген — абсолют температурамен дәл есептеу үшін Аррениус теңдеуі керек.", "Дана Eₐ или отношение констант при двух температурах — для точного расчёта с абсолютной температурой нужно уравнение Аррениуса.", "Eₐ or the ratio of constants at two temperatures is given — an exact calculation with absolute temperature needs the Arrhenius equation."],
+    mass_action: ["Концентрация не қысым өзгереді, температура тұрақты — жылдамдық кинетикалық теңдеу бойынша өзгереді.", "Меняются концентрация или давление при постоянной температуре — скорость меняется по кинетическому уравнению.", "Concentration or pressure changes at constant temperature — the rate changes according to the rate law."],
+    half_life: ["1-ретті реакцияның k-сы берілген — t½ мен қалған үлес осы реакцияның экспоненциалдық заңынан шығады.", "Дана k реакции 1 порядка — t½ и оставшаяся доля следуют из экспоненциального закона этой реакции.", "k of a first-order reaction is given — t½ and the remaining fraction follow from its exponential law."]
+  };
+  var cur = null;
+
+  function T3(a) { return L(a[0], a[1], a[2]); }
+  function esc(s) { return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+  function load(key, def) { try { var v = JSON.parse(store(key) || "null"); return v == null ? def : v; } catch (e) { return def; } }
+  function save() { store(KEY_CUR, JSON.stringify(cur)); }
+  function rid() { return Date.now().toString(36) + Math.floor(Math.random() * 1e6).toString(36); }
+  function shuffled(arr, seed) {
+    var r = E.rng(seed), a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(r() * (i + 1)), t = a[i]; a[i] = a[j]; a[j] = t; }
+    return a;
+  }
+
+  /* ---------- Создание задачи ---------- */
+  function newProblem() {
+    var lvl = $("ctLevel").value;
+    var pool = E.templates.filter(function (t) { return !lvl || t.level === lvl; });
+    var prev = cur && cur.template;
+    var t = pool[Math.floor(Math.random() * pool.length)];
+    if (pool.length > 1 && t.id === prev) t = pool[(pool.indexOf(t) + 1) % pool.length];
+    var seed = (Math.random() * 4294967296) >>> 0;
+    var g = E.generate(t.id, seed);
+    var unk = E.unknownOf(t, g.params);
+    var others = shuffled(Object.keys(E.UNKNOWNS).filter(function (k) { return k !== unk; }), seed).slice(0, 3);
+    cur = {
+      id: rid(), template: t.id, seed: seed, version: E.VERSION, level: t.level, stage: 0, started: new Date().toISOString(),
+      unknownOpts: shuffled(others.concat([unk]), seed + 1),
+      methodOpts: shuffled(Object.keys(E.METHODS), seed + 2),
+      a: { sel: {}, unknown: null, convert: null, checked: false, first: null },
+      m: { first: null, choice: null, just: "", checked: false, changes: 0 },
+      s: { work: "", value: "", unit: E.unitsOf(t, g.params)[0], attempts: [], hints: 0, shown: false, done: false, correct: false, hintsAtCorrect: null },
+      c: { ans: {}, checked: false, ok: null },
+      k: { verdict: null, type: "", expl: "", checked: false, verdictOk: null, typeOk: null },
+      r: { q1: "", q2: "", q3: "", q4: "" },
+      finished: null, auto: null
+    };
+    save();
+    render();
+  }
+  function ctx() {
+    var t = E.byId(cur.template), g = E.generate(cur.template, cur.seed);
+    return { t: t, p: g.params, ai: g.ai, unk: E.unknownOf(t, g.params) };
+  }
+
+  /* ---------- Отрисовка ---------- */
+  function renderSteps() {
+    $("ctSteps").innerHTML = STAGES.map(function (s, i) {
+      var cls = !cur ? "" : (cur.finished || i < cur.stage) ? "done" : i === cur.stage ? "now" : "";
+      return '<li class="' + cls + '"' + (cls === "now" ? ' aria-current="step"' : "") + "><b>" + (i + 1) + "</b>" + esc(T3(s)) + "</li>";
+    }).join("");
+  }
+  function render() {
+    renderSteps();
+    if (!cur) {
+      $("ctProblem").innerHTML = '<p class="muted">' + L("Деңгейді таңдап, «Жаңа есеп» батырмасын басыңыз.", "Выберите уровень и нажмите «Новая задача».", "Choose a level and press “New problem”.") + "</p>";
+      $("ctStage").hidden = true;
+      return;
+    }
+    var c = ctx();
+    $("ctProblem").innerHTML = '<div class="meta"><span class="chip">' + L("Деңгей ", "Уровень ", "Level ") + cur.level + '</span><span class="chip">' + L("Нұсқа №", "Вариант №", "Version #") + cur.seed.toString(36).toUpperCase() + "</span></div>" +
+      '<p class="st">' + esc(c.t.statement(c.p, LANG)) + "</p>";
+    $("ctStage").hidden = false;
+    var fn = cur.finished ? renderSummary : [stAnalysis, stHypothesis, stJustify, stSolve, stCheck, stCritical, stReflect][cur.stage];
+    $("ctStage").innerHTML = fn(c);
+    bindStage(c);
+  }
+  function head(i, lead) {
+    return "<h2>" + (i + 1) + ". " + esc(T3(STAGES[i])) + '</h2><p class="lead">' + lead + "</p>";
+  }
+  function nextBtn(label) {
+    return '<div class="row"><button class="btn btn-primary" type="button" data-act="next">' + (label || L("Келесі кезең →", "Следующий этап →", "Next stage →")) + "</button></div>";
+  }
+
+  // 1. Анализ условия.
+  function stAnalysis(c) {
+    var A = cur.a, gv = c.t.givens(c.p, LANG), h = head(0, L("Шартта не берілген, нені табу керек, қандай дерек артық? Шешу үшін керек деректерді белгілеңіз.", "Что дано, что нужно найти, какие данные лишние? Отметьте данные, которые нужны для решения.", "What is given, what must be found, which data are surplus? Tick the data needed to solve it."));
+    h += '<p class="q">' + L("Шешуге қажетті деректер:", "Данные, нужные для решения:", "Data needed for the solution:") + '</p><div class="opts">';
+    gv.forEach(function (g) {
+      var cls = A.checked ? ((!!A.sel[g.id]) === g.relevant ? " right" : " wrong") : "";
+      h += '<label class="opt' + cls + '"><input type="checkbox" data-given="' + g.id + '"' + (A.sel[g.id] ? " checked" : "") + (A.checked ? " disabled" : "") + "><span>" + esc(g.text) +
+        (A.checked && !g.relevant ? ' — <i class="muted">' + L("артық дерек", "лишнее данное", "surplus data") + "</i>" : "") + "</span></label>";
+    });
+    h += '</div><p class="q">' + L("Нені табу керек?", "Что нужно найти?", "What must be found?") + '</p><div class="opts">';
+    cur.unknownOpts.forEach(function (k) {
+      var cls = A.checked ? (k === c.unk ? " right" : k === A.unknown ? " wrong" : "") : "";
+      h += '<label class="opt' + cls + '"><input type="radio" name="unk" value="' + k + '"' + (A.unknown === k ? " checked" : "") + (A.checked ? " disabled" : "") + "><span>" + esc(T3(E.UNKNOWNS[k])) + "</span></label>";
+    });
+    var conv = c.t.convert(c.p);
+    h += '</div><p class="q">' + L("Бірліктерді айналдыру керек пе (мысалы, мин → с, °C → К, кДж → Дж)?", "Нужно ли переводить единицы (например, мин → с, °C → К, кДж → Дж)?", "Do any units need converting (e.g. min → s, °C → K, kJ → J)?") + '</p><div class="yn">';
+    [[true, L("Иә", "Да", "Yes")], [false, L("Жоқ", "Нет", "No")]].forEach(function (o) {
+      var cls = A.checked ? (o[0] === conv ? " right" : A.convert === o[0] ? " wrong" : "") : "";
+      h += '<label class="opt' + cls + '"><input type="radio" name="conv" value="' + o[0] + '"' + (A.convert === o[0] ? " checked" : "") + (A.checked ? " disabled" : "") + "><span>" + o[1] + "</span></label>";
+    });
+    h += "</div>";
+    if (!A.checked) h += '<div class="row"><button class="btn btn-primary" type="button" data-act="checkA">' + L("Тексеру", "Проверить", "Check") + "</button></div>";
+    else {
+      var f = A.first;
+      h += '<div class="fb ' + (f.unknown && f.givens && f.distractor && f.convert ? "ok" : "bad") + '"><p>' +
+        mark(f.unknown) + L(" Ізделетін шама", " Искомая величина", " Unknown quantity") + " · " + mark(f.givens) + L(" Қажетті деректер", " Нужные данные", " Needed data") + " · " +
+        mark(f.distractor) + L(" Артық дерек", " Лишнее данное", " Surplus data") + " · " + mark(f.convert) + L(" Бірліктер", " Единицы", " Units") + "</p>" +
+        (conv ? "<p>" + L("Бұл есепте бірліктерді айналдыру керек.", "В этой задаче нужен перевод единиц.", "This problem needs a unit conversion.") + "</p>" : "") + "</div>" + nextBtn();
+    }
+    return h;
+  }
+  // 2. Гипотеза: выбор метода.
+  function stHypothesis() {
+    var h = head(1, L("Есепті қандай әдіспен шешуге болады деп ойлайсыз? Таңдауыңыз келесі кезеңде негізделеді.", "Каким методом, по-вашему, можно решить задачу? Выбор вы обоснуете на следующем этапе.", "Which method do you think solves this problem? You will justify the choice in the next stage."));
+    h += '<div class="opts">';
+    cur.methodOpts.forEach(function (k) {
+      h += '<label class="opt"><input type="radio" name="meth" value="' + k + '"' + (cur.m.choice === k ? " checked" : "") + "><span>" + esc(T3(E.METHODS[k])) + "</span></label>";
+    });
+    return h + "</div>" + nextBtn();
+  }
+  // 3. Обоснование метода.
+  function stJustify(c) {
+    var M = cur.m, h = head(2, L("Неге дәл осы әдіс? Шарттағы қандай белгі оны таңдауға мәжбүрледі? Оны қолдану шарттары орындала ма?", "Почему именно этот метод? Какой признак условия на него указывает? Выполняются ли условия его применимости?", "Why this method? What in the problem points to it? Are its conditions of use met?"));
+    h += '<p class="q">' + L("Сіздің таңдауыңыз: ", "Ваш выбор: ", "Your choice: ") + esc(T3(E.METHODS[M.choice])) + "</p>";
+    h += '<textarea id="ctJust" aria-label="' + esc(L("Әдісті негіздеу", "Обоснование метода", "Justification of the method")) + '"' + (M.checked ? " readonly" : "") + ">" + esc(M.just) + "</textarea>";
+    if (!M.checked) return h + '<div class="row"><button class="btn btn-primary" type="button" data-act="checkM">' + L("Тексеру", "Проверить", "Check") + '</button><span class="muted small" id="ctJustHint"></span></div>';
+    var ok = M.choice === c.t.method;
+    h += '<div class="fb ' + (ok ? "ok" : "bad") + '"><p>' + (ok ? '<span class="mark-ok">✓</span> ' + L("Әдіс сәйкес келеді.", "Метод подходит.", "The method fits.") : '<span class="mark-bad">✗</span> ' + L("Бұл әдіс бұл есепке сәйкес келмейді.", "Этот метод не подходит к задаче.", "This method does not fit the problem.")) + "</p>";
+    if (ok) h += "<p><b>" + L("Салыстырыңыз:", "Сравните:", "Compare:") + "</b> " + esc(T3(JUSTIFY[c.t.method])) + "</p>";
+    else h += "<p>" + L("Шартты қайта оқып, басқа әдісті таңдаңыз.", "Перечитайте условие и выберите другой метод.", "Reread the problem and choose another method.") + "</p>";
+    h += "</div>";
+    return h + (ok ? nextBtn() : '<div class="row"><button class="btn" type="button" data-act="changeM">' + L("← Әдісті өзгерту", "← Изменить метод", "← Change method") + "</button></div>");
+  }
+  // 4. Самостоятельное решение.
+  function stSolve(c) {
+    var Sv = cur.s, units = E.unitsOf(c.t, c.p), h = head(3, L("Қадамдап шешіңіз. Алдымен өзіңіз тырысыңыз: кеңес біртіндеп ашылады, толық шешім — ең соңында.", "Решите по шагам. Сначала попробуйте сами: подсказки открываются постепенно, полное решение — в последнюю очередь.", "Solve it step by step. Try on your own first: hints open gradually, and the full solution comes last."));
+    h += '<p class="q">' + L("Шешу қадамдары (мұғалімге сақталады):", "Ход решения (сохраняется для учителя):", "Your working (saved for the teacher):") + "</p>";
+    h += '<textarea id="ctWork" aria-label="' + esc(L("Шешу қадамдары", "Ход решения", "Working")) + '">' + esc(Sv.work) + "</textarea>";
+    h += '<div class="row"><label class="field-inline">' + L("Жауап", "Ответ", "Answer") + '<input class="inp" id="ctAns" type="text" inputmode="decimal" autocomplete="off" value="' + esc(Sv.value) + '"' + (Sv.done ? " readonly" : "") + "></label>";
+    if (units.length > 1 || units[0] !== "none") {
+      h += '<label class="field-inline">' + L("Бірлік", "Единица", "Unit") + '<select id="ctUnit"' + (Sv.done ? " disabled" : "") + ">" + units.map(function (u) {
+        return '<option value="' + u + '"' + (Sv.unit === u ? " selected" : "") + ">" + esc(T3(E.UNITS[u].t)) + "</option>";
+      }).join("") + "</select></label>";
+    }
+    if (!Sv.done) {
+      h += '<button class="btn btn-primary" type="button" data-act="checkS">' + L("Тексеру", "Проверить", "Check") + "</button>";
+      h += '<button class="btn" type="button" data-act="hint">' + (Sv.hints < 2 ? L("Кеңес", "Подсказка", "Hint") + " " + (Sv.hints + 1) + "/2" : L("Толық шешімді көрсету", "Показать полное решение", "Show full solution")) + "</button>";
+    }
+    h += "</div>";
+    for (var i = 0; i < Sv.hints; i++) h += '<div class="fb"><p><b>' + L("Кеңес ", "Подсказка ", "Hint ") + (i + 1) + ".</b> " + esc(c.t.hints[i](c.p, LANG)) + "</p></div>";
+    var last = Sv.attempts[Sv.attempts.length - 1];
+    if (last) h += feedbackS(last, c);
+    if (Sv.shown) h += '<div class="fb"><p><b>' + L("Толық шешім", "Полное решение", "Full solution") + '</b></p><ol class="sol-list">' + c.t.solution(c.p, LANG).map(function (s) { return "<li>" + esc(s) + "</li>"; }).join("") + "</ol></div>";
+    if (Sv.done) h += nextBtn();
+    return h;
+  }
+  function feedbackS(a, c) {
+    var msg, ok = a.status === "ok";
+    if (ok) msg = L("Дұрыс! Келесі кезеңде нәтижені тексеріңіз.", "Верно! На следующем этапе проверьте результат.", "Correct! Check the result in the next stage.");
+    else if (a.status === "nan") msg = L("Санды дұрыс енгізіңіз (үтір де, нүкте де болады).", "Введите число правильно (можно с запятой или точкой).", "Enter a valid number (comma or dot both work).");
+    else if (a.status === "unit") msg = L("Бірлік ізделетін шамаға сәйкес келмейді. Не табу керек екенін еске түсіріңіз.", "Единица не соответствует искомой величине. Вспомните, что нужно найти.", "That unit does not match the quantity you are looking for. Recall what must be found.");
+    else if (a.status === "sign") msg = L("Таңба қате: бұл шама оң болуы керек.", "Неверный знак: эта величина должна быть положительной.", "Wrong sign: this quantity must be positive.");
+    else if (a.status === "mistake") msg = T3(a.mistake);
+    else if (a.status === "scale") msg = L("Сан 60 не 1000 есе ерекшеленеді — бірліктерді айналдыруды тексеріңіз.", "Число отличается в 60 или 1000 раз — проверьте перевод единиц.", "The number is off by a factor of 60 or 1000 — check your unit conversion.");
+    else msg = (a.high ? L("Жауап тым үлкен.", "Ответ слишком большой.", "The answer is too large.") : L("Жауап тым кіші.", "Ответ слишком маленький.", "The answer is too small.")) + " " + L("Қадамдарды қайта қараңыз немесе кеңес алыңыз.", "Пересмотрите шаги или возьмите подсказку.", "Go back over your steps or take a hint.");
+    return '<div class="fb ' + (ok ? "ok" : "bad") + '" role="status"><p>' + (ok ? '<span class="mark-ok">✓</span> ' : '<span class="mark-bad">✗</span> ') + esc(msg) + "</p>" +
+      (!ok ? '<p class="muted small">' + L("Әрекет: ", "Попытка: ", "Attempt: ") + cur.s.attempts.length + "</p>" : "") + "</div>";
+  }
+  // 5. Проверка по правилам.
+  function stCheck(c) {
+    var C = cur.c, h = head(4, L("Жауапқа сенуге бола ма? Төмендегі сұрақтарға жауап беріп, нәтижені тексеріңіз.", "Можно ли доверять ответу? Ответьте на вопросы ниже и проверьте результат.", "Can you trust the answer? Answer the questions below to check the result."));
+    h += '<div class="fb"><p>' + L("<b>ИИ-тәлімгер қосылмаған.</b> Бұл кезеңде тексеру алдын ала дайындалған ережелермен жүргізіледі.", "<b>ИИ-наставник не подключён.</b> На этом этапе проверка идёт по заранее подготовленным правилам.", "<b>The AI tutor is not connected.</b> In this stage checking uses prepared rules.") + "</p></div>";
+    c.t.checks.forEach(function (q, i) {
+      h += '<p class="q">' + (i + 1) + ". " + esc(T3(q.q)) + '</p><div class="yn">';
+      [[true, L("Иә", "Да", "Yes")], [false, L("Жоқ", "Нет", "No")]].forEach(function (o) {
+        var cls = C.checked ? (o[0] === q.a ? " right" : C.ans[i] === o[0] ? " wrong" : "") : "";
+        h += '<label class="opt' + cls + '"><input type="radio" name="chk' + i + '" value="' + o[0] + '"' + (C.ans[i] === o[0] ? " checked" : "") + (C.checked ? " disabled" : "") + "><span>" + o[1] + "</span></label>";
+      });
+      h += "</div>";
+      if (C.checked) h += '<p class="small muted" style="margin-top:6px">' + esc(T3(q.why)) + "</p>";
+    });
+    if (!C.checked) return h + '<div class="row"><button class="btn btn-primary" type="button" data-act="checkC">' + L("Тексеру", "Проверить", "Check") + "</button></div>";
+    return h + nextBtn();
+  }
+  // 6. Критический анализ «решения ИИ».
+  function stCritical(c) {
+    var K = cur.k, h = head(5, L("Төменде ИИ ұсынған шешім. Оған сенуге бола ма? Формула, бірліктер, есептеу, деректер дұрыс па?", "Ниже — решение, предложенное ИИ. Можно ли ему доверять? Верны ли формула, единицы, вычисления, данные?", "Below is a solution proposed by an AI. Can you trust it? Are the formula, units, arithmetic and data right?"));
+    h += '<div class="ai-sol"><p class="tag">' + L("ИИ шешімі · оқу мақсатында дайындалған мысал", "Решение ИИ · учебный пример, подготовленный заранее", "AI solution · a prepared teaching example") + "</p><ol>" +
+      c.ai.text(LANG).map(function (s) { return "<li>" + esc(s) + "</li>"; }).join("") + "</ol></div>";
+    h += '<p class="q">' + L("Сіздің бағаңыз:", "Ваша оценка:", "Your verdict:") + '</p><div class="yn">';
+    [["ok", L("Шешім дұрыс", "Решение верное", "The solution is correct")], ["err", L("Шешімде қате бар", "В решении есть ошибка", "The solution has an error")]].forEach(function (o) {
+      h += '<label class="opt"><input type="radio" name="verdict" value="' + o[0] + '"' + (K.verdict === o[0] ? " checked" : "") + (K.checked ? " disabled" : "") + "><span>" + o[1] + "</span></label>";
+    });
+    h += "</div>";
+    if (K.verdict === "err") {
+      h += '<p class="q">' + L("Қатенің түрі:", "Тип ошибки:", "Type of error:") + '</p><select id="ctErrType"' + (K.checked ? " disabled" : "") + '><option value="">—</option>' +
+        Object.keys(E.ERRORS).filter(function (k) { return k !== "none"; }).map(function (k) { return '<option value="' + k + '"' + (K.type === k ? " selected" : "") + ">" + esc(T3(E.ERRORS[k])) + "</option>"; }).join("") + "</select>";
+    }
+    h += '<p class="q">' + L("Дәлеліңіз (неге солай ойлайсыз?):", "Ваш аргумент (почему вы так считаете?):", "Your argument (why do you think so?):") + "</p>";
+    h += '<textarea id="ctExpl"' + (K.checked ? " readonly" : "") + ">" + esc(K.expl) + "</textarea>";
+    if (!K.checked) return h + '<div class="row"><button class="btn btn-primary" type="button" data-act="checkK">' + L("Тексеру", "Проверить", "Check") + '</button><span class="muted small" id="ctKHint"></span></div>';
+    var good = K.verdictOk && (c.ai.type === "none" || K.typeOk);
+    h += '<div class="fb ' + (good ? "ok" : "bad") + '"><p>' + mark(K.verdictOk) + " " +
+      (c.ai.type === "none" ? L("Бұл шешім дұрыс еді.", "Это решение было верным.", "This solution was correct.") : L("Бұл шешімде қате бар: ", "В этом решении есть ошибка: ", "This solution has an error: ") + "<b>" + esc(T3(E.ERRORS[c.ai.type])) + "</b>.") +
+      (c.ai.type !== "none" && K.verdict === "err" ? " " + mark(K.typeOk) + L(" қатенің түрі", " тип ошибки", " error type") : "") + "</p>" +
+      "<p><b>" + L("Эталон шешім:", "Эталонное решение:", "Reference solution:") + '</b></p><ol class="sol-list">' + c.t.solution(c.p, LANG).map(function (s) { return "<li>" + esc(s) + "</li>"; }).join("") + "</ol>" +
+      '<p class="muted small">' + L("Дәлеліңіз автоматты түрде бағаланбайды — оны мұғалім қарайды.", "Ваш аргумент не оценивается автоматически — его посмотрит учитель.", "Your argument is not scored automatically; the teacher will review it.") + "</p></div>";
+    return h + nextBtn();
+  }
+  // 7. Рефлексия.
+  var RQ = [
+    ["q1", ["Осы тапсырмадан кейін не түсіндім?", "Что я понял после выполнения задания?", "What did I understand after this task?"]],
+    ["q2", ["Қандай қате жібердім немесе қай жерде қиналдым?", "Какую ошибку я допустил или где было трудно?", "What mistake did I make, or where did I struggle?"]],
+    ["q3", ["Келесі есепте не істеймін басқаша?", "Что я сделаю по-другому в следующей задаче?", "What will I do differently in the next problem?"]],
+    ["q4", ["Шарт өзгерсе (мысалы, температура не концентрация), жауап қалай өзгерер еді?", "Как изменился бы ответ при других условиях (например, температуре или концентрации)?", "How would the answer change under different conditions (e.g. temperature or concentration)?"]]
+  ];
+  function stReflect() {
+    var h = head(6, L("Жауаптарыңыз зерттеу үшін өзгеріссіз сақталады. Дұрыс не бұрыс жауап жоқ — өз ойыңызды жазыңыз.", "Ответы сохраняются без изменений для исследования. Правильных и неправильных ответов нет — пишите своё мнение.", "Your answers are saved unchanged for the research. There are no right or wrong answers; write what you think."));
+    RQ.forEach(function (q) {
+      h += '<p class="q"><label for="ct_' + q[0] + '">' + esc(T3(q[1])) + "</label></p>" + '<textarea id="ct_' + q[0] + '" data-refl="' + q[0] + '">' + esc(cur.r[q[0]]) + "</textarea>";
+    });
+    return h + '<div class="row"><button class="btn btn-primary" type="button" data-act="finish">' + L("Аяқтау және сақтау", "Завершить и сохранить", "Finish and save") + '</button><span class="muted small" id="ctRHint"></span></div>';
+  }
+
+  /* ---------- Предварительная автоматическая оценка ---------- */
+  function autoScore(c) {
+    var f = cur.a.first, Sv = cur.s, k3;
+    if (!Sv.correct) k3 = Sv.attempts.length ? (Sv.shown ? 1 : 0) : 0;
+    else if (Sv.shown) k3 = 1;
+    else if (Sv.hintsAtCorrect === 0) k3 = Sv.attempts.length <= 2 ? 4 : 3;
+    else k3 = Sv.hintsAtCorrect === 1 ? 3 : 2;
+    var k4 = (cur.c.ok ? 1 : 0) + (cur.k.verdictOk ? 1 : 0) + ((c.ai.type === "none" ? cur.k.verdictOk : cur.k.typeOk) ? 1 : 0);
+    return {
+      K1: (f.unknown ? 1 : 0) + (f.givens ? 1 : 0) + (f.distractor ? 1 : 0) + (f.convert ? 1 : 0),
+      K2: cur.m.first === c.t.method ? 2 : 0,
+      K3: k3, K4: k4, K5: null,
+      max: { K1: 4, K2: 2, K3: 4, K4: 3, K5: 0 }
+    };
+  }
+  function renderSummary(c) {
+    var a = cur.auto, rows = [
+      ["K1", ["Ақпаратты талдау", "Анализ информации", "Analysing information"], ["Толық автоматты (1-кезеңнің бірінші жауабы).", "Полностью автоматически (первый ответ этапа 1).", "Fully automatic (first answer in stage 1)."]],
+      ["K2", ["Стратегияны таңдау және негіздеу", "Выбор и обоснование стратегии", "Choosing and justifying a strategy"], ["Автоматты — тек әдісті таңдау; негіздемені мұғалім бағалайды (+2).", "Автоматически — только выбор метода; обоснование оценивает учитель (+2).", "Automatic for the method choice only; the teacher scores the justification (+2)."]],
+      ["K3", ["Пайымдау логикасы", "Логика рассуждений", "Logic of reasoning"], ["Алдын ала: дұрыстық пен дербестік бойынша; жазбаны мұғалім қарайды.", "Предварительно: по правильности и самостоятельности; запись хода решения смотрит учитель.", "Preliminary: based on correctness and independence; the teacher reviews the working."]],
+      ["K4", ["Нәтижені тексеру", "Проверка результата", "Checking the result"], ["Автоматты — тексеру сұрақтары мен ИИ шешімін бағалау; дәлелді мұғалім бағалайды (+1).", "Автоматически — вопросы проверки и оценка решения ИИ; аргумент оценивает учитель (+1).", "Automatic for the check questions and the AI verdict; the teacher scores the argument (+1)."]],
+      ["K5", ["Рефлексия", "Рефлексия", "Reflection"], ["Тек мұғалім бағалайды.", "Оценивает только учитель.", "Scored by the teacher only."]]
+    ];
+    var h = "<h2>" + L("Есеп аяқталды", "Задача завершена", "Problem complete") + '</h2><p class="lead">' + L("Төменде — алдын ала автоматты бағалау. Бұл зерттеу бағасы емес: ашық жауаптарды мұғалім рубрика бойынша бағалайды.", "Ниже — предварительная автоматическая оценка. Это не исследовательская оценка: открытые ответы оценивает учитель по рубрике.", "Below is a preliminary automatic score. It is not a research score: open answers are scored by the teacher using the rubric.") + "</p>";
+    h += '<div class="table-wrap"><table class="score-table"><thead><tr><th>' + L("Критерий", "Критерий", "Criterion") + "</th><th>" + L("Авто", "Авто", "Auto") + "</th><th>" + L("Макс. авто", "Макс. авто", "Max auto") + "</th><th>" + L("Ескерту", "Примечание", "Note") + "</th></tr></thead><tbody>";
+    rows.forEach(function (r) {
+      h += "<tr><td><b>" + r[0] + "</b> " + esc(T3(r[1])) + "</td><td>" + (a[r[0]] == null ? "—" : a[r[0]]) + "</td><td>" + a.max[r[0]] + " / 4</td><td class=\"small muted\" style=\"text-align:left;white-space:normal\">" + esc(T3(r[2])) + "</td></tr>";
+    });
+    h += "</tbody></table></div>";
+    h += '<div class="row"><button class="btn btn-primary" type="button" data-act="again">' + L("Жаңа есеп", "Новая задача", "New problem") + '</button><a class="btn" href="../research/">' + L("Рубрика туралы", "О рубрике", "About the rubric") + "</a></div>";
+    return h;
+  }
+  function mark(ok) { return ok ? '<span class="mark-ok">✓</span>' : '<span class="mark-bad">✗</span>'; }
+
+  /* ---------- Обработчики ---------- */
+  function bindStage(c) {
+    var box = $("ctStage");
+    box.querySelectorAll("[data-given]").forEach(function (el) { el.addEventListener("change", function () { cur.a.sel[el.getAttribute("data-given")] = el.checked; save(); }); });
+    box.querySelectorAll('input[name="unk"]').forEach(function (el) { el.addEventListener("change", function () { cur.a.unknown = el.value; save(); }); });
+    box.querySelectorAll('input[name="conv"]').forEach(function (el) { el.addEventListener("change", function () { cur.a.convert = el.value === "true"; save(); }); });
+    box.querySelectorAll('input[name="meth"]').forEach(function (el) { el.addEventListener("change", function () { cur.m.choice = el.value; save(); }); });
+    box.querySelectorAll('input[name^="chk"]').forEach(function (el) { el.addEventListener("change", function () { cur.c.ans[el.name.slice(3)] = el.value === "true"; save(); }); });
+    box.querySelectorAll('input[name="verdict"]').forEach(function (el) { el.addEventListener("change", function () { cur.k.verdict = el.value; save(); render(); }); });
+    var map = { ctJust: ["m", "just"], ctWork: ["s", "work"], ctAns: ["s", "value"], ctExpl: ["k", "expl"] };
+    Object.keys(map).forEach(function (id) {
+      var el = $(id);
+      if (el) el.addEventListener("input", function () { cur[map[id][0]][map[id][1]] = el.value; save(); });
+    });
+    if ($("ctUnit")) $("ctUnit").addEventListener("change", function () { cur.s.unit = $("ctUnit").value; save(); });
+    if ($("ctErrType")) $("ctErrType").addEventListener("change", function () { cur.k.type = $("ctErrType").value; save(); });
+    box.querySelectorAll("[data-refl]").forEach(function (el) { el.addEventListener("input", function () { cur.r[el.getAttribute("data-refl")] = el.value; save(); }); });
+    if ($("ctAns")) $("ctAns").addEventListener("keydown", function (e) { if (e.key === "Enter") act("checkS", c); });
+    box.querySelectorAll("[data-act]").forEach(function (b) { b.addEventListener("click", function () { act(b.getAttribute("data-act"), c); }); });
+  }
+  function need(id, msg) { var el = $(id); if (el) el.textContent = msg; }
+  function go(stage) { cur.stage = stage; save(); render(); try { $("ctProblem").scrollIntoView({ block: "start", behavior: reducedMotion() ? "auto" : "smooth" }); } catch (e) {} }
+  function act(a, c) {
+    if (a === "checkA") {
+      var A = cur.a, gv = c.t.givens(c.p, LANG);
+      if (A.unknown == null || A.convert == null) return alertStage(L("Ізделетін шаманы және бірліктер туралы жауапты таңдаңыз.", "Выберите искомую величину и ответ про единицы.", "Choose the unknown and answer the units question."));
+      A.first = {
+        unknown: A.unknown === c.unk,
+        givens: gv.every(function (g) { return !g.relevant || !!A.sel[g.id]; }),
+        distractor: gv.every(function (g) { return g.relevant || !A.sel[g.id]; }),
+        convert: A.convert === c.t.convert(c.p)
+      };
+      A.checked = true; save(); render();
+    } else if (a === "next") {
+      if (cur.stage === 1 && !cur.m.choice) return alertStage(L("Әдісті таңдаңыз.", "Выберите метод.", "Choose a method."));
+      if (cur.stage === 1 && cur.m.first == null) cur.m.first = cur.m.choice;
+      go(cur.stage + 1);
+    } else if (a === "checkM") {
+      if ((cur.m.just || "").trim().length < 15) return need("ctJustHint", L("Кемінде бір толық сөйлем жазыңыз.", "Напишите хотя бы одно полное предложение.", "Write at least one full sentence."));
+      cur.m.checked = true; save(); render();
+    } else if (a === "changeM") {
+      cur.m.checked = false; cur.m.changes++; cur.m.choice = null; go(1);
+    } else if (a === "checkS") {
+      var r = E.check(cur.template, c.p, cur.s.value, cur.s.unit);
+      cur.s.attempts.push({ value: cur.s.value, unit: cur.s.unit, status: r.status, mistake: r.mistake ? r.mistake.id : null, hints: cur.s.hints, at: new Date().toISOString() });
+      if (r.status === "ok") { cur.s.done = true; cur.s.correct = true; cur.s.hintsAtCorrect = cur.s.hints; }
+      if (r.mistake) cur.s.attempts[cur.s.attempts.length - 1].mistake = r.mistake.id;
+      if (r.status === "mistake") cur.s.attempts[cur.s.attempts.length - 1].mistakeMsg = r.mistake.msg;
+      save(); render();
+    } else if (a === "hint") {
+      if (cur.s.hints < 2) cur.s.hints++;
+      else { cur.s.shown = true; cur.s.done = true; }
+      save(); render();
+    } else if (a === "checkC") {
+      var all = c.t.checks.every(function (q, i) { return cur.c.ans[i] != null; });
+      if (!all) return alertStage(L("Барлық сұрақтарға жауап беріңіз.", "Ответьте на все вопросы.", "Answer all the questions."));
+      cur.c.ok = c.t.checks.every(function (q, i) { return cur.c.ans[i] === q.a; });
+      cur.c.checked = true; save(); render();
+    } else if (a === "checkK") {
+      var K = cur.k;
+      if (!K.verdict) return need("ctKHint", L("Бағаңызды таңдаңыз.", "Выберите оценку.", "Choose a verdict."));
+      if (K.verdict === "err" && !K.type) return need("ctKHint", L("Қатенің түрін таңдаңыз.", "Выберите тип ошибки.", "Choose the error type."));
+      if ((K.expl || "").trim().length < 10) return need("ctKHint", L("Дәлеліңізді жазыңыз.", "Запишите аргумент.", "Write down your argument."));
+      K.verdictOk = (K.verdict === "ok") === (c.ai.type === "none");
+      K.typeOk = c.ai.type !== "none" && K.verdict === "err" && K.type === c.ai.type;
+      K.checked = true; save(); render();
+    } else if (a === "finish") {
+      var empty = RQ.some(function (q) { return (cur.r[q[0]] || "").trim().length < 3; });
+      if (empty) return need("ctRHint", L("Әр сұраққа қысқа болса да жауап жазыңыз.", "Ответьте на каждый вопрос, хотя бы коротко.", "Answer each question, even briefly."));
+      cur.finished = new Date().toISOString();
+      cur.auto = autoScore(c);
+      var hist = load(KEY_HIST, []);
+      hist.unshift(record(c));
+      store(KEY_HIST, JSON.stringify(hist.slice(0, 300)));
+      save(); render(); renderHistory();
+    } else if (a === "again") {
+      newProblem();
+    }
+  }
+  function alertStage(msg) {
+    var box = $("ctStage"), old = box.querySelector(".fb.warn");
+    if (old) old.remove();
+    var d = document.createElement("div");
+    d.className = "fb bad warn"; d.setAttribute("role", "alert"); d.textContent = msg;
+    box.appendChild(d);
+  }
+  function record(c) {
+    return {
+      kind: "problem", id: cur.id, template: cur.template, level: cur.level, seed: cur.seed, version: cur.version, lang: LANG,
+      started: cur.started, finished: cur.finished,
+      analysis: { selected: cur.a.sel, unknown: cur.a.unknown, convert: cur.a.convert, first: cur.a.first },
+      method: { first: cur.m.first, final: cur.m.choice, expected: c.t.method, changes: cur.m.changes, justification: cur.m.just },
+      solve: { work: cur.s.work, attempts: cur.s.attempts, hints: cur.s.hints, solutionShown: cur.s.shown, correct: cur.s.correct },
+      check: { answers: cur.c.ans, allCorrect: cur.c.ok },
+      critical: { aiErrorType: c.ai.type, verdict: cur.k.verdict, errorType: cur.k.type, argument: cur.k.expl, verdictOk: cur.k.verdictOk, typeOk: cur.k.typeOk },
+      reflection: cur.r, auto: cur.auto, teacherReview: null
+    };
+  }
+
+  /* ---------- Режим «Проверь ответ ИИ» ---------- */
+  var cl = { order: shuffled(E.CLAIMS.map(function (x, i) { return i; }), (Math.random() * 1e9) >>> 0), i: 0, verdict: null, type: "", expl: "", checked: false };
+  function renderClaim() {
+    var box = $("claimBox"), c = E.CLAIMS[cl.order[cl.i]];
+    var h = '<p class="muted small">' + L("Тұжырым ", "Утверждение ", "Statement ") + (cl.i + 1) + " / " + E.CLAIMS.length + "</p>";
+    h += '<div class="ai-sol" style="margin:8px 0 14px"><p class="tag">' + L("ИИ айтты", "ИИ утверждает", "The AI says") + "</p><p>" + esc(T3(c.c)) + "</p></div>";
+    h += '<div class="yn">' + [["ok", L("Дұрыс", "Верно", "Correct")], ["err", L("Қате бар", "Есть ошибка", "There is an error")]].map(function (o) {
+      return '<label class="opt"><input type="radio" name="clv" value="' + o[0] + '"' + (cl.verdict === o[0] ? " checked" : "") + (cl.checked ? " disabled" : "") + "><span>" + o[1] + "</span></label>";
+    }).join("") + "</div>";
+    if (cl.verdict === "err") h += '<p class="q">' + L("Қатенің түрі:", "Тип ошибки:", "Type of error:") + '</p><select id="clType"' + (cl.checked ? " disabled" : "") + '><option value="">—</option>' +
+      Object.keys(E.ERRORS).filter(function (k) { return k !== "none"; }).map(function (k) { return '<option value="' + k + '"' + (cl.type === k ? " selected" : "") + ">" + esc(T3(E.ERRORS[k])) + "</option>"; }).join("") + "</select>";
+    h += '<p class="q">' + L("Ғылыми дәлеліңіз және дұрыс тұжырым:", "Ваш научный аргумент и верный вывод:", "Your scientific argument and the correct conclusion:") + '</p><textarea id="clExpl"' + (cl.checked ? " readonly" : "") + ">" + esc(cl.expl) + "</textarea>";
+    if (!cl.checked) h += '<div class="row"><button class="btn btn-primary" type="button" id="clCheck">' + L("Тексеру", "Проверить", "Check") + '</button><span class="muted small" id="clHint"></span></div>';
+    else {
+      var vOk = (cl.verdict === "ok") === c.ok, tOk = c.ok || cl.type === c.type;
+      h += '<div class="fb ' + (vOk && tOk ? "ok" : "bad") + '"><p>' + mark(vOk) + " " + (c.ok ? L("Тұжырым дұрыс.", "Утверждение верно.", "The statement is correct.") : L("Тұжырымда қате бар: ", "В утверждении ошибка: ", "The statement contains an error: ") + "<b>" + esc(T3(E.ERRORS[c.type])) + "</b>.") + "</p><p>" + esc(T3(c.ref)) + '</p><p class="muted small">' +
+        L("Сіздің дәлеліңіз басқаша тұжырымдалуы мүмкін — оны мұғалім қарайды.", "Ваш аргумент может быть сформулирован иначе — его посмотрит учитель.", "Your argument may be worded differently; the teacher will review it.") + "</p></div>";
+      h += '<div class="row"><button class="btn btn-primary" type="button" id="clNext">' + (cl.i < E.CLAIMS.length - 1 ? L("Келесі тұжырым →", "Следующее утверждение →", "Next statement →") : L("Басынан бастау", "Начать сначала", "Start again")) + "</button></div>";
+    }
+    box.innerHTML = h;
+    box.querySelectorAll('input[name="clv"]').forEach(function (el) { el.addEventListener("change", function () { cl.verdict = el.value; renderClaim(); }); });
+    if ($("clType")) $("clType").addEventListener("change", function () { cl.type = $("clType").value; });
+    $("clExpl").addEventListener("input", function () { cl.expl = $("clExpl").value; });
+    if ($("clCheck")) $("clCheck").addEventListener("click", function () {
+      if (!cl.verdict) return need("clHint", L("Бағаңызды таңдаңыз.", "Выберите оценку.", "Choose a verdict."));
+      if (cl.verdict === "err" && !cl.type) return need("clHint", L("Қатенің түрін таңдаңыз.", "Выберите тип ошибки.", "Choose the error type."));
+      if (cl.expl.trim().length < 10) return need("clHint", L("Дәлеліңізді жазыңыз.", "Запишите аргумент.", "Write down your argument."));
+      cl.checked = true;
+      var hist = load(KEY_HIST, []);
+      hist.unshift({ kind: "claim", id: rid(), claim: cl.order[cl.i], expectedOk: c.ok, expectedType: c.type, verdict: cl.verdict, errorType: cl.type, argument: cl.expl,
+        verdictOk: (cl.verdict === "ok") === c.ok, typeOk: c.ok || cl.type === c.type, lang: LANG, finished: new Date().toISOString(), teacherReview: null });
+      store(KEY_HIST, JSON.stringify(hist.slice(0, 300)));
+      renderClaim(); renderHistory();
+    });
+    if ($("clNext")) $("clNext").addEventListener("click", function () {
+      cl.i = (cl.i + 1) % E.CLAIMS.length; cl.verdict = null; cl.type = ""; cl.expl = ""; cl.checked = false; renderClaim();
+    });
+  }
+
+  /* ---------- История и экспорт ---------- */
+  function renderHistory() {
+    var hist = load(KEY_HIST, []), box = $("historyBox");
+    if (!hist.length) { box.innerHTML = '<p class="empty">' + L("Әзірге нәтиже жоқ.", "Результатов пока нет.", "No results yet.") + "</p>"; return; }
+    var h = '<div class="table-wrap"><table class="hist"><thead><tr><th>' + [L("Күні", "Дата", "Date"), L("Түрі", "Тип", "Type"), L("Тапсырма", "Задание", "Task"), "K1", "K2", "K3", "K4", L("Жауап", "Ответ", "Answer"), L("Кеңес", "Подсказки", "Hints")].join("</th><th>") + "</th></tr></thead><tbody>";
+    hist.forEach(function (r) {
+      var ds = r.finished ? r.finished.slice(0, 10) + " " + new Date(r.finished).toTimeString().slice(0, 5) : "—";
+      if (r.kind === "problem") h += "<tr><td>" + ds + "</td><td>" + L("Есеп", "Задача", "Problem") + "</td><td>" + esc(r.template) + " · " + r.level + "</td><td>" + r.auto.K1 + "</td><td>" + r.auto.K2 + "</td><td>" + r.auto.K3 + "</td><td>" + r.auto.K4 + "</td><td>" + mark(r.solve.correct) + "</td><td>" + r.solve.hints + (r.solve.solutionShown ? "+" : "") + "</td></tr>";
+      else h += "<tr><td>" + ds + "</td><td>" + L("ИИ тұжырымы", "Утверждение ИИ", "AI claim") + "</td><td>#" + (r.claim + 1) + '</td><td colspan="4">' + mark(r.verdictOk) + " " + L("баға", "оценка", "verdict") + " · " + mark(r.typeOk) + " " + L("түрі", "тип", "type") + "</td><td>—</td><td>—</td></tr>";
+    });
+    box.innerHTML = h + "</tbody></table></div>";
+  }
+  function download(name, text, type) {
+    try {
+      var blob = new Blob([text], { type: type }), a = document.createElement("a");
+      a.href = URL.createObjectURL(blob); a.download = name;
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(function () { URL.revokeObjectURL(a.href); }, 2000);
+    } catch (e) { console.error(e); }
+  }
+  function csvCell(v) { var s = v == null ? "" : typeof v === "object" ? JSON.stringify(v) : String(v); return /[",\n;]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; }
+  function toCSV(hist) {
+    var cols = ["kind", "id", "finished", "lang", "template", "level", "seed", "version", "K1_auto", "K2_auto", "K3_auto", "K4_auto", "answer_correct", "attempts", "hints", "solution_shown",
+      "method_first", "method_expected", "justification", "work", "ai_error_type", "verdict", "verdict_ok", "error_type", "type_ok", "argument", "refl_q1", "refl_q2", "refl_q3", "refl_q4"];
+    var lines = [cols.join(",")];
+    hist.forEach(function (r) {
+      var p = r.kind === "problem";
+      var v = p ? [r.kind, r.id, r.finished, r.lang, r.template, r.level, r.seed, r.version, r.auto.K1, r.auto.K2, r.auto.K3, r.auto.K4, r.solve.correct, r.solve.attempts.length, r.solve.hints, r.solve.solutionShown,
+        r.method.first, r.method.expected, r.method.justification, r.solve.work, r.critical.aiErrorType, r.critical.verdict, r.critical.verdictOk, r.critical.errorType, r.critical.typeOk, r.critical.argument,
+        r.reflection.q1, r.reflection.q2, r.reflection.q3, r.reflection.q4]
+        : [r.kind, r.id, r.finished, r.lang, "claim_" + (r.claim + 1), "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", r.expectedOk ? "none" : r.expectedType, r.verdict, r.verdictOk, r.errorType, r.typeOk, r.argument, "", "", "", ""];
+      lines.push(v.map(csvCell).join(","));
+    });
+    return "﻿" + lines.join("\r\n");
+  }
+
+  /* ---------- Вкладки и запуск ---------- */
+  var tabs = [["tabProblem", "paneProblem"], ["tabClaims", "paneClaims"], ["tabHistory", "paneHistory"]];
+  tabs.forEach(function (t) {
+    $(t[0]).addEventListener("click", function () {
+      tabs.forEach(function (u) { $(u[0]).setAttribute("aria-selected", String(u === t)); $(u[1]).hidden = u !== t; });
+    });
+  });
+  $("ctNew").addEventListener("click", newProblem);
+  $("hCsv").addEventListener("click", function () { download("nurserik-ct-results.csv", toCSV(load(KEY_HIST, [])), "text/csv;charset=utf-8"); });
+  $("hJson").addEventListener("click", function () { download("nurserik-ct-results.json", JSON.stringify(load(KEY_HIST, []), null, 2), "application/json"); });
+  var clearArmed = 0;
+  $("hClear").addEventListener("click", function () {
+    var b = $("hClear");
+    if (Date.now() - clearArmed > 4000) {
+      clearArmed = Date.now();
+      b.textContent = L("Растау: бәрін өшіру", "Подтвердить: удалить всё", "Confirm: delete everything");
+      setTimeout(function () { if (Date.now() - clearArmed >= 4000) b.textContent = L("Тарихты тазалау", "Очистить историю", "Clear history"); }, 4100);
+      return;
+    }
+    clearArmed = 0;
+    store(KEY_HIST, "[]");
+    b.textContent = L("Тарихты тазалау", "Очистить историю", "Clear history");
+    renderHistory();
+  });
+
+  cur = load(KEY_CUR, null);
+  if (cur && (!E.byId(cur.template) || cur.version !== E.VERSION)) cur = null;
+  render();
+  renderClaim();
+  renderHistory();
+  onLang(function () { render(); renderClaim(); renderHistory(); });
+});
+
+</script>
+</body>
+</html>
