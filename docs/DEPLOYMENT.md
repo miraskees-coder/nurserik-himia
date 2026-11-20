@@ -3,8 +3,8 @@
 ## Сейчас: GitHub Pages (статическая часть)
 
 1. Измените исходники в `src/`.
-2. Выполните `node build.mjs`, затем `node --test tests/engine.test.mjs` и `node tests/browser.mjs`.
-3. Закоммитьте исходники **и** собранные файлы (`index.html`, `research/`, `trainer/`, `kinetics/`) и отправьте в `main`.
+2. Выполните `node build.mjs`, затем `node --test tests/engine.test.mjs tests/lab-models.test.mjs` и `node tests/browser.mjs`.
+3. Закоммитьте исходники **и** собранные файлы (`index.html`, `research/`, `trainer/`, `lab/`, `kinetics/`) и отправьте в `main`.
 4. Pages настроен так: *Settings → Pages → Deploy from a branch → `main` / root*. Обновление появляется через 30–60 секунд.
 
 Адреса работают внутри базового пути `/nurserik-himia/`. Все ссылки относительные (`../trainer/`), поэтому сайт открывается и с GitHub Pages, и с локального сервера. Клиентского роутинга нет: каждая страница — отдельная папка с `index.html`, поэтому прямые ссылки и обновление страницы работают.

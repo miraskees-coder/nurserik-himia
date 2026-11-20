@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>
+(function () {
+  try {
+    var r = document.documentElement, t = localStorage.getItem("nc-theme");
+    if (t === "light" || t === "dark") r.setAttribute("data-theme", t);
+    if (localStorage.getItem("nc-large") === "1") r.setAttribute("data-large", "");
+    if (localStorage.getItem("nc-contrast") === "1") r.setAttribute("data-contrast", "");
+    if (localStorage.getItem("nc-calm") === "1") r.setAttribute("data-calm", "");
+  } catch (e) {}
+})();
+</script>
+<title>Виртуалды химиялық зертхана — NURSERIK CHEMISTRY</title>
+<meta name="nc-title" content="Виртуалды химиялық зертхана — NURSERIK CHEMISTRY‖Виртуальная химическая лаборатория — NURSERIK CHEMISTRY‖Virtual Chemistry Laboratory — NURSERIK CHEMISTRY">
+<meta name="description" content="Виртуалды химиялық зертхана: химиялық кинетика бойынша 6 зертханалық жұмыс — концентрация, температура, бет ауданы, катализатор, деректерді талдау, зерттеу. Модель, кесте, график, талдау сұрақтары.">
+<meta name="author" content="Хуантхан Нурсерик">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://miraskees-coder.github.io/nurserik-himia/lab/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2315171F'/%3E%3Cpath d='M16 6 24.7 11v10L16 26l-8.7-5V11Z' fill='none' stroke='white' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='3.4' fill='%23A597FF'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=Unbounded:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+/*CSS*/
+</style>
+</head>
+<body data-page="lab">
+<!--HEADER-->
+
+<main id="main">
+  <section id="labCatalog" class="wrap lab-catalog">
+    <div class="hero" style="padding-bottom:16px">
+      <p class="eyebrow">Virtual Chemistry Laboratory</p>
+      <h1 style="font-size:clamp(1.7rem,4.2vw,3rem)">⟦Виртуалды химиялық зертхана‖Виртуальная химическая лаборатория‖Virtual Chemistry Laboratory⟧</h1>
+      <p class="sub">⟦Шарттарды өзіңіз таңдап, тәжірибе жүргізіңіз, кесте мен график құрып, нәтижені түсіндіріңіз. Әр модельдің жеңілдетулері жұмыстың ішінде жазылған.‖Выбирайте условия, проводите опыты, стройте таблицы и графики, объясняйте результат. Упрощения каждой модели описаны внутри работы.‖Choose the conditions, run experiments, build tables and graphs, and explain the results. Each model's simplifications are described inside the lab.⟧</p>
+      <p id="labProgress" class="muted" style="margin-top:12px"></p>
+    </div>
+    <div class="filters-bar">
+      <label class="field-inline">⟦Сынып‖Класс‖Grade⟧
+        <select id="fGrade"><option value="">⟦Барлығы‖Все‖All⟧</option><option value="10">10</option></select>
+      </label>
+      <label class="field-inline">⟦Жұмыс түрі‖Тип работы‖Type⟧
+        <select id="fKind">
+          <option value="">⟦Барлығы‖Все‖All⟧</option>
+          <option value="lab">⟦Зертханалық жұмыс‖Лабораторная работа‖Lab work⟧</option>
+          <option value="data">⟦Деректерді талдау‖Анализ данных‖Data analysis⟧</option>
+          <option value="research">⟦Зерттеу‖Исследование‖Investigation⟧</option>
+        </select>
+      </label>
+      <label class="field-inline">⟦Күрделілігі‖Сложность‖Difficulty⟧
+        <select id="fLevel">
+          <option value="">⟦Барлығы‖Все‖All⟧</option>
+          <option value="base">⟦Негізгі‖Базовый‖Basic⟧</option>
+          <option value="adv">⟦Жоғары‖Повышенный‖Advanced⟧</option>
+          <option value="res">⟦Зерттеушілік‖Исследовательский‖Research⟧</option>
+        </select>
+      </label>
+      <label class="field-inline">⟦Күйі‖Статус‖Status⟧
+        <select id="fStatus">
+          <option value="">⟦Барлығы‖Все‖All⟧</option>
+          <option value="new">⟦Басталмаған‖Не начата‖Not started⟧</option>
+          <option value="progress">⟦Орындалуда‖В процессе‖In progress⟧</option>
+          <option value="done">⟦Аяқталған‖Завершена‖Completed⟧</option>
+        </select>
+      </label>
+      <label class="field-inline grow">⟦Іздеу‖Поиск‖Search⟧
+        <input type="search" id="fSearch" class="inp" placeholder="⟦Мысалы: катализатор‖Например: катализатор‖e.g. catalyst⟧">
+      </label>
+    </div>
+    <div id="labGrid" class="lab-grid"></div>
+    <div class="planned">
+      <h2>⟦Әзірленуде‖В разработке‖In development⟧</h2>
+      <p class="muted">⟦Бұл тақырыптар әлі іске қосылған жоқ — сондықтан оларда «Бастау» батырмасы жоқ. 7–11-сыныптардың ресми тізімі бойынша кезекпен қосылады.‖Эти темы ещё не запущены — поэтому у них нет кнопки «Начать». Они будут добавляться по официальному перечню 7–11 классов.‖These topics are not live yet, which is why they have no “Start” button. They will be added in turn from the official grade 7–11 list.⟧</p>
+      <div id="labPlanned" class="planned-grid"></div>
+    </div>
+  </section>
+
+  <section id="labRunner" class="wrap lab-runner" hidden>
+    <div id="labHead" class="lab-head"></div>
+    <ol class="steps steps6" id="labSteps" aria-label="⟦Кезеңдер‖Этапы‖Stages⟧"></ol>
+    <div id="explainBox" class="card explain-box" hidden></div>
+    <div id="labBody"></div>
+  </section>
+
+  <div class="demo-bar" id="demoBar" hidden role="toolbar" aria-label="⟦Сабақта көрсету режимі‖Режим демонстрации на уроке‖Classroom demo mode⟧">
+    <button type="button" id="demoPrev" aria-label="⟦Алдыңғы жұмыс‖Предыдущая работа‖Previous lab⟧">←</button>
+    <button type="button" id="demoRun" class="primary">⟦Іске қосу / Пауза‖Пуск / Пауза‖Run / Pause⟧</button>
+    <button type="button" id="demoReset">⟦Қайта‖Сброс‖Reset⟧</button>
+    <button type="button" id="demoExplain">⟦Түсіндірме‖Объяснение‖Explain⟧</button>
+    <button type="button" id="demoNext" aria-label="⟦Келесі жұмыс‖Следующая работа‖Next lab⟧">→</button>
+    <button type="button" id="demoExit">⟦Шығу‖Выход‖Exit⟧</button>
+  </div>
+</main>
+
+<!--FOOTER-->
+<script>
+/*JS*/
+</script>
+</body>
+</html>

@@ -5,7 +5,8 @@
 ## Сборка и проверка
 
 - `node build.mjs` — собирает страницы из `src/` в `index.html`, `research/`, `trainer/`, `kinetics/`. Собранные файлы коммитятся: Pages публикует ветку `main` как есть.
-- `node --test tests/engine.test.mjs` — юнит-тесты движка задач (без браузера).
+- `node --test tests/engine.test.mjs tests/lab-models.test.mjs` — юнит-тесты движка задач и моделей лаборатории.
+- Новая лабораторная работа — запись в `src/lab/labs.js` (каталог строится только из неё); модель — в `src/lab/models.js` с тестом.
 - `node tests/browser.mjs` — браузерные тесты через Chrome DevTools Protocol. Chrome должен быть установлен.
 - После любого изменения в `src/` — пересобрать и прогнать оба набора тестов.
 

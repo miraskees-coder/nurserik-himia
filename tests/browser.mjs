@@ -273,7 +273,7 @@ try {
   const textsP = `(() => { const out = []; const walk = (n) => { if (n.nodeType === 3) { const t = n.nodeValue.trim(); if (t) out.push(t); return; } if (n.nodeType !== 1) return; if (n.matches('script,style,.lang-seg')) return; for (const a of ['aria-label','title','placeholder']) if (n.hasAttribute(a)) out.push('@'+a+': '+n.getAttribute(a)); n.childNodes.forEach(walk); }; walk(document.body); out.push('TITLE: '+document.title); return out; })()`;
   for (const [w, h] of [[1280, 800], [390, 844]]) {
     await d.send("Emulation.setDeviceMetricsOverride", { width: w, height: h, deviceScaleFactor: w < 500 ? 2 : 1, mobile: w < 500 });
-    for (const pg of ["", "research/", "trainer/"]) {
+    for (const pg of ["", "research/", "trainer/", "lab/"]) {
       d.errors.length = 0;
       await nav(d, `http://127.0.0.1:${PORT}/nurserik-himia/${pg}`);
       const tag = `${pg || "home"} @${w}`;
@@ -381,6 +381,126 @@ try {
   const rows = await ev(d, "document.querySelectorAll('#historyBox tbody tr').length");
   check("Тренажёр: таблица результатов", rows === 2, String(rows));
   await shot(d, "p-trainer-history");
+  /* ---------- F. Виртуальная лаборатория ---------- */
+  await d.send("Emulation.setDeviceMetricsOverride", { width: 1280, height: 860, deviceScaleFactor: 1, mobile: false });
+  await nav(d, `http://127.0.0.1:${PORT}/nurserik-himia/lab/`);
+  await ev(d, "Object.keys(localStorage).filter(k => k.startsWith('nc-lab') || k === 'nc-demo').forEach(k => localStorage.setItem(k, k === 'nc-lab-history' ? '[]' : 'null')); true");
+  d.errors.length = 0;
+  await nav(d, `http://127.0.0.1:${PORT}/nurserik-himia/lab/`);
+  const cat = await ev(d, `(async () => {
+    const W = (ms) => new Promise(r => setTimeout(r, ms));
+    const n0 = document.querySelectorAll('.lab-card').length;
+    const set = (id, v) => { const e = document.getElementById(id); e.value = v; e.dispatchEvent(new Event(e.tagName === 'INPUT' ? 'input' : 'change')); };
+    set('fKind', 'data'); await W(20); const nData = document.querySelectorAll('.lab-card').length; set('fKind', '');
+    set('fSearch', 'катализ'); await W(20); const nSearch = document.querySelectorAll('.lab-card').length; set('fSearch', '');
+    const planned = document.querySelectorAll('#labPlanned li').length, plannedBtns = document.querySelectorAll('#labPlanned a, #labPlanned button').length;
+    return { n0, nData, nSearch, planned, plannedBtns };
+  })()`);
+  check("Лаборатория: каталог (6 работ), фильтры, «в разработке» без кнопок", cat.n0 === 6 && cat.nData === 1 && cat.nSearch >= 1 && cat.planned > 0 && cat.plannedBtns === 0, JSON.stringify(cat));
+  await shot(d, "lab-catalog");
+
+  await nav(d, `http://127.0.0.1:${PORT}/nurserik-himia/lab/?lab=k-conc`);
+  const l1 = await ev(d, `(async () => {
+    const W = (ms) => new Promise(r => setTimeout(r, ms));
+    const $ = (s) => document.querySelector(s), $$ = (s) => [...document.querySelectorAll(s)];
+    const setv = (el, v, ev) => { el.value = v; el.dispatchEvent(new Event(ev || 'input', { bubbles: true })); };
+    const st = () => JSON.parse(localStorage.getItem('nc-lab-k-conc'));
+    const log = [];
+    $('#nextStage').click(); await W(30);
+    log.push('predBlocked:' + $('#nextStage').disabled);
+    const r0 = $('input[name="pred"][value="0"]'); r0.checked = true; r0.dispatchEvent(new Event('change'));
+    setv($('#predWhy'), 'Бөлшектер көбейеді, соқтығысу жиілейді.');
+    $('#nextStage').click(); await W(60);
+    for (const C of ['0.05', '0.1', '0.15']) {
+      setv($('#c_C'), C);
+      const before = st().runs.length;
+      $('#runBtn').click();
+      for (let i = 0; i < 200 && st().runs.length === before; i++) await W(100);
+    }
+    log.push('runs:' + st().runs.length);
+    log.push('rows:' + $$('#runTable tbody tr').length);
+    log.push('chart:' + !!$('#runChart svg') + ' fit:' + /R²/.test($('#fitNote').textContent));
+    log.push('cmp:' + !$('#cmpOut').hidden);
+    $('#nextStage').click(); await W(60);
+    const lab = NCLabs.list.find(l => l.id === 'k-conc');
+    log.push('answersHidden:' + !document.querySelector('#labBody .fb'));
+    for (const q of lab.questions) {
+      if (q.type === 'choice') { const e = $('input[name="q_' + q.id + '"][value="' + q.correct + '"]'); e.checked = true; e.dispatchEvent(new Event('change')); }
+      else if (q.type === 'num') setv($('[data-qn="' + q.id + '"]'), String(q.answer(st(), lab.simulate)).replace('.', ','));
+      else setv($('[data-qo="' + q.id + '"]'), 'Концентрация артқанда соқтығысу жиілігі артады.');
+    }
+    $('#checkQ').click(); await W(60);
+    log.push('fbOk:' + $$('#labBody .fb.ok').length + ' fbBad:' + $$('#labBody .fb.bad').length);
+    $('#nextStage').click(); await W(60);
+    setv($('#conclText'), 'Концентрация артқан сайын 1000/t тура пропорционал өсті, 1–3 тәжірибелер растайды.');
+    $$('[data-ev]').forEach(e => { e.checked = true; e.dispatchEvent(new Event('change')); });
+    $('#nextStage').click(); await W(80);
+    const h = JSON.parse(localStorage.getItem('nc-lab-history'));
+    log.push('result:' + !!$('#dlJson') + ' hist:' + h.length + ' score:' + JSON.stringify(h[0].score));
+    return log.join(' | ');
+  })()`);
+  check("Лаборатория L1: прогноз → 3 опыта → таблица, график, сравнение → вопросы → вывод → сохранение",
+    /predBlocked:true/.test(l1) && /runs:3/.test(l1) && /rows:3/.test(l1) && /chart:true fit:true/.test(l1) && /cmp:true/.test(l1) && /answersHidden:true/.test(l1) && /fbOk:4 fbBad:0/.test(l1) && /result:true hist:1/.test(l1) && /"auto":4,"max":4,"open":2/.test(l1), l1);
+  await shot(d, "lab-l1-result");
+  await nav(d, `http://127.0.0.1:${PORT}/nurserik-himia/lab/?lab=k-conc`);
+  check("Лаборатория: после перезагрузки открывается сохранённый результат", await ev(d, "!!document.getElementById('dlJson')"));
+  await nav(d, `http://127.0.0.1:${PORT}/nurserik-himia/lab/`);
+  const stat = await ev(d, "document.querySelector('.lab-card .status').className");
+  check("Каталог показывает статус «завершена»", /st-ok/.test(stat), stat);
+
+  await nav(d, `http://127.0.0.1:${PORT}/nurserik-himia/lab/?lab=k-cat`);
+  const demo = await ev(d, `(async () => {
+    const W = (ms) => new Promise(r => setTimeout(r, ms));
+    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'd', bubbles: true })); await W(80);
+    const on = document.documentElement.hasAttribute('data-demo') && !document.getElementById('demoBar').hidden && getComputedStyle(document.querySelector('.site-head')).display === 'none';
+    document.getElementById('demoRun').click(); await W(400);
+    const running = document.getElementById('runBtn') && document.getElementById('runBtn').disabled;
+    document.getElementById('demoExplain').click(); await W(30);
+    const expl = !document.getElementById('explainBox').hidden;
+    document.getElementById('demoReset').click(); await W(30);
+    document.getElementById('demoExit').click(); await W(80);
+    return { on, running, expl, off: !document.documentElement.hasAttribute('data-demo') };
+  })()`);
+  check("Режим «Демонстрация на уроке»: D, пуск, объяснение, сброс, выход", demo.on && demo.running && demo.expl && demo.off, JSON.stringify(demo));
+
+  await nav(d, `http://127.0.0.1:${PORT}/nurserik-himia/lab/?lab=k-data`);
+  const toExperiment = `(async () => {
+    const W = (ms) => new Promise(r => setTimeout(r, ms));
+    const $ = (s) => document.querySelector(s);
+    $('#nextStage').click(); await W(40);
+    const r0 = $('input[name="pred"][value="0"]'); r0.checked = true; r0.dispatchEvent(new Event('change'));
+    const t = $('#predWhy'); t.value = 'Болжам: себебі теория.'; t.dispatchEvent(new Event('input'));
+    $('#nextStage').click(); await W(60); return true;
+  })()`;
+  await ev(d, toExperiment);
+  const l5b = await ev(d, `(async () => {
+    const W = (ms) => new Promise(r => setTimeout(r, ms));
+    const st = JSON.parse(localStorage.getItem('nc-lab-k-data'));
+    const D = NCLabModels.dataset(st.dataSeed);
+    document.querySelectorAll('[data-v]').forEach(el => { const i = +el.dataset.v; el.value = ((D.rows[i][1] - D.rows[i + 1][1]) / 20).toFixed(5).replace('.', ','); el.dispatchEvent(new Event('input')); });
+    document.getElementById('checkData').click(); await W(60);
+    return document.querySelectorAll('#labBody .mark-ok').length + ' next:' + !document.getElementById('nextStage').disabled;
+  })()`);
+  check("Лаборатория L5: проверка расчётов по таблице данных", l5b === "5 next:true", l5b);
+
+  await nav(d, `http://127.0.0.1:${PORT}/nurserik-himia/lab/?lab=k-surface`);
+  await ev(d, toExperiment);
+  for (const lang of ["ru", "en"]) {
+    await ev(d, `document.querySelector('.lang-seg [data-lang="${lang}"]').click(); true`);
+    const bad = (await ev(d, textsP)).filter((x) => (lang === "ru" ? KZd : /[Ѐ-ӿ]/).test(x));
+    check(`Лаборатория (этап «Опыт»): ${lang === "ru" ? "в русском нет казахских букв" : "в английском нет кириллицы"}`, bad.length === 0, bad.slice(0, 4).join(" ‖ "));
+  }
+  await ev(d, "document.querySelector('.lang-seg [data-lang=\"kk\"]').click(); true");
+  await shot(d, "lab-l3-run");
+  await d.send("Emulation.setDeviceMetricsOverride", { width: 390, height: 844, deviceScaleFactor: 2, mobile: true });
+  for (const u of ["lab/", "lab/?lab=k-surface", "lab/?lab=k-research"]) {
+    await nav(d, `http://127.0.0.1:${PORT}/nurserik-himia/${u}`);
+    const sw = await ev(d, "document.documentElement.scrollWidth");
+    check(`390 px без горизонтальной прокрутки: ${u}`, sw <= 390, String(sw));
+  }
+  await shot(d, "lab-mobile");
+  check("Лаборатория: консоль без ошибок", d.errors.length === 0, d.errors.join(" | "));
+  await d.send("Emulation.setDeviceMetricsOverride", { width: 1280, height: 800, deviceScaleFactor: 1, mobile: false });
   check("Платформа: консоль таза (барлық әрекеттен кейін)", d.errors.length === 0, d.errors.join(" | "));
 } catch (e) {
   results.push("ERROR " + e.stack);

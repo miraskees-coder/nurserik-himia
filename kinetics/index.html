@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>
+(function () { try { var t = localStorage.getItem("nc-theme"); if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t); } catch (e) {} })();
+</script>
 <title>Химиялық реакция жылдамдығы — 10 сынып | Нурсерик Хуантхан</title>
 <meta name="description" content="Химиялық реакция жылдамдығы тақырыбына 10-сыныпқа арналған интерактивті сабақ: реакция камерасы, соқтығысу теориясы, Вант-Гофф ережесі, Аррениус теңдеуі, катализ, есептер мен тест. Қазақша, орысша, ағылшынша.">
 <meta name="keywords" content="химиялық реакция жылдамдығы, реакция жылдамдығы 10 сынып, химия 10 сынып, Вант-Гофф ережесі, Аррениус теңдеуі, катализатор, активтендіру энергиясы, скорость химической реакции, химия 10 класс, rate of reaction">
@@ -61,8 +64,25 @@
   --font-body: "Golos Text", system-ui, sans-serif;
   color-scheme: dark;
 }
+/* Светлая тема: по системной настройке или по выбору на платформе (nc-theme). */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+  --bg: #F6F5F1; --surface: #FFFFFF; --surface-2: #EEECE6; --text: #15171F; --muted: #565B6B; --border: #DCD9D0;
+  --accent: #4733D1; --pink: #C8285F; --p-a: #0679B8; --p-b: #B86500; --p-ab: #C8285F; --ok: #17784A; --bad: #C0392B;
+  color-scheme: light;
+  }
+  :root:not([data-theme="dark"]) .dot.seen { background: #E4E0F7; color: var(--text); border-color: #C9C2F0; }
+  :root:not([data-theme="dark"]) .mini canvas { background: #0B1026; }
+}
+:root[data-theme="light"] {
+  --bg: #F6F5F1; --surface: #FFFFFF; --surface-2: #EEECE6; --text: #15171F; --muted: #565B6B; --border: #DCD9D0;
+  --accent: #4733D1; --pink: #C8285F; --p-a: #0679B8; --p-b: #B86500; --p-ab: #C8285F; --ok: #17784A; --bad: #C0392B;
+  color-scheme: light;
+}
+:root[data-theme="light"] .dot.seen { background: #E4E0F7; color: var(--text); border-color: #C9C2F0; }
+:root[data-theme="light"] .mini canvas { background: #0B1026; }
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --bg: #0E1328;
     --surface: #161C3A;
     --surface-2: #1E264C;
@@ -673,7 +693,7 @@ mark { background: rgba(255, 181, 71, .35); color: inherit; border-radius: 3px; 
           <circle cx="80" cy="160" r="34" fill="url(#hgA)"/>
           <text x="80" y="170" text-anchor="middle" font-family="Unbounded, system-ui" font-weight="700" font-size="26" fill="#06223A">A</text>
         </g>
-        <text x="146" y="171" text-anchor="middle" font-family="Unbounded, system-ui" font-size="30" fill="#A6AFCE">+</text>
+        <text x="146" y="171" text-anchor="middle" font-family="Unbounded, system-ui" font-size="30" fill="var(--muted)">+</text>
         <g class="float-2">
           <circle cx="210" cy="160" r="40" fill="#FFB547" filter="url(#hglow)" opacity=".7"/>
           <circle cx="210" cy="160" r="34" fill="url(#hgB)"/>

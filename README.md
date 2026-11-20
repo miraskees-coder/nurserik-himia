@@ -9,6 +9,7 @@
 | Главная | `/` |
 | Курс «Химическая кинетика, 10 класс» | `/kinetics/` |
 | Тренажёр «Critical Thinking Lab» | `/trainer/` |
+| Виртуальная лаборатория (L1–L6, кинетика) | `/lab/`, `/lab/?lab=k-conc` |
 | Об исследовании | `/research/` |
 
 ## Запуск и сборка
@@ -17,7 +18,7 @@
 
 ```sh
 node build.mjs          # собрать index.html, research/, kinetics/
-node --test tests/engine.test.mjs  # юнит-тесты движка задач
+node --test tests/engine.test.mjs tests/lab-models.test.mjs  # юнит-тесты задач и моделей лаборатории
 node tests/browser.mjs  # браузерные тесты (нужен Google Chrome)
 ```
 

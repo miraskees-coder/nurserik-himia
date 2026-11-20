@@ -24,6 +24,10 @@ const PAGES = [
     css: ["site/site.css", "trainer/trainer.css"], js: [...SITE_JS, "trainer/engine.js", "trainer/trainer.js"]
   },
   {
+    out: "lab/index.html", base: "../", shell: "site/lab.html",
+    css: ["site/site.css", "trainer/trainer.css", "lab/lab.css"], js: [...SITE_JS, "lab/models.js", "lab/labs.js", "lab/lab.js"]
+  },
+  {
     out: "kinetics/index.html", base: "../", shell: "kinetics/shell.html",
     slides: ["slides-1.html", "slides-2.html", "slides-3.html", "slides-4.html"].map((f) => "kinetics/" + f),
     css: ["kinetics/style.css"],

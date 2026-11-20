@@ -1,0 +1,1790 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>
+(function () {
+  try {
+    var r = document.documentElement, t = localStorage.getItem("nc-theme");
+    if (t === "light" || t === "dark") r.setAttribute("data-theme", t);
+    if (localStorage.getItem("nc-large") === "1") r.setAttribute("data-large", "");
+    if (localStorage.getItem("nc-contrast") === "1") r.setAttribute("data-contrast", "");
+    if (localStorage.getItem("nc-calm") === "1") r.setAttribute("data-calm", "");
+  } catch (e) {}
+})();
+</script>
+<title>Виртуалды химиялық зертхана — NURSERIK CHEMISTRY</title>
+<meta name="nc-title" content="Виртуалды химиялық зертхана — NURSERIK CHEMISTRY‖Виртуальная химическая лаборатория — NURSERIK CHEMISTRY‖Virtual Chemistry Laboratory — NURSERIK CHEMISTRY">
+<meta name="description" content="Виртуалды химиялық зертхана: химиялық кинетика бойынша 6 зертханалық жұмыс — концентрация, температура, бет ауданы, катализатор, деректерді талдау, зерттеу. Модель, кесте, график, талдау сұрақтары.">
+<meta name="author" content="Хуантхан Нурсерик">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://miraskees-coder.github.io/nurserik-himia/lab/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2315171F'/%3E%3Cpath d='M16 6 24.7 11v10L16 26l-8.7-5V11Z' fill='none' stroke='white' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='3.4' fill='%23A597FF'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=Unbounded:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ================= NURSERIK CHEMISTRY — платформаның дизайн жүйесі ================= */
+:root {
+  --bg: #F6F5F1;
+  --surface: #FFFFFF;
+  --surface-2: #EEECE6;
+  --text: #15171F;
+  --muted: #565B6B;
+  --border: #DCD9D0;
+  --accent: #4733D1;
+  --accent-ink: #FFFFFF;
+  --accent-soft: rgba(71, 51, 209, .09);
+  --c-a: #0679B8;
+  --c-b: #C46F00;
+  --c-ab: #C8285F;
+  --ok: #17784A;
+  --warn: #9A5B00;
+  --ext: #6A4CC0;
+  --dev: #646A7A;
+  --shadow: 0 1px 2px rgba(20, 22, 31, .06), 0 8px 24px rgba(20, 22, 31, .06);
+  --radius: 18px;
+  --radius-sm: 12px;
+  --font-head: "Unbounded", system-ui, sans-serif;
+  --font-body: "Golos Text", system-ui, sans-serif;
+  --fs: 17px;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0F1222; --surface: #171B30; --surface-2: #20253F; --text: #E9ECF7; --muted: #A5ACC6; --border: #2C3254;
+    --accent: #A597FF; --accent-ink: #0F1222; --accent-soft: rgba(165, 151, 255, .12);
+    --c-a: #4CC6FF; --c-b: #FFB547; --c-ab: #FF5C9C; --ok: #48D597; --warn: #FFC266; --ext: #B9A6FF; --dev: #9AA1BA;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 10px 30px rgba(0, 0, 0, .25);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0F1222; --surface: #171B30; --surface-2: #20253F; --text: #E9ECF7; --muted: #A5ACC6; --border: #2C3254;
+  --accent: #A597FF; --accent-ink: #0F1222; --accent-soft: rgba(165, 151, 255, .12);
+  --c-a: #4CC6FF; --c-b: #FFB547; --c-ab: #FF5C9C; --ok: #48D597; --warn: #FFC266; --ext: #B9A6FF; --dev: #9AA1BA;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 10px 30px rgba(0, 0, 0, .25);
+  color-scheme: dark;
+}
+:root[data-large] { --fs: 19.5px; }
+:root[data-contrast] { --muted: var(--text); --border: var(--text); --shadow: none; }
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+[hidden] { display: none !important; }
+html { font-size: var(--fs); -webkit-text-size-adjust: 100%; }
+body {
+  background: var(--bg); color: var(--text);
+  font-family: var(--font-body); font-size: 1rem; line-height: 1.6;
+  -webkit-font-smoothing: antialiased; overflow-x: hidden;
+}
+a { color: var(--accent); text-underline-offset: 3px; }
+button, input, select { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+sub, sup { line-height: 0; }
+.wrap { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+.muted { color: var(--muted); }
+.small { font-size: .875rem; }
+.skip { position: absolute; left: 12px; top: -60px; z-index: 100; background: var(--accent); color: var(--accent-ink); padding: 8px 14px; border-radius: 10px; }
+.skip:focus { top: 12px; }
+
+/* ---------- Шапка ---------- */
+.site-head {
+  position: sticky; top: 0; z-index: 30;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+.head-row { display: flex; align-items: center; gap: 20px; height: 64px; }
+.brand { display: flex; align-items: center; gap: 10px; color: var(--text); text-decoration: none; flex: none; }
+.brand-mark { width: 30px; height: 30px; color: var(--text); }
+.brand-text { font: 600 .82rem/1 var(--font-head); letter-spacing: .06em; }
+.brand-text b { font-weight: 800; color: var(--accent); }
+.main-nav { display: flex; gap: 4px; margin-left: auto; }
+.main-nav a {
+  color: var(--muted); text-decoration: none; font-weight: 500; font-size: .94rem;
+  padding: 8px 12px; border-radius: 10px;
+}
+.main-nav a:hover { color: var(--text); background: var(--surface-2); }
+.main-nav a[aria-current="page"] { color: var(--text); background: var(--accent-soft); }
+.head-tools { display: flex; align-items: center; gap: 8px; flex: none; }
+.lang-seg, .seg { display: inline-flex; gap: 2px; padding: 3px; border: 1px solid var(--border); border-radius: 999px; background: var(--surface); }
+.lang-seg button, .seg button { border: 0; background: none; padding: 5px 11px; border-radius: 999px; font-size: .82rem; font-weight: 600; color: var(--muted); }
+.lang-seg button[aria-pressed="true"], .seg button[aria-pressed="true"] { background: var(--text); color: var(--bg); }
+.icon-btn {
+  width: 38px; height: 38px; display: grid; place-items: center;
+  border-radius: 50%; border: 1px solid var(--border); background: var(--surface); color: var(--text);
+}
+.icon-btn svg { width: 18px; height: 18px; }
+.menu-toggle { display: none; }
+.pop-wrap { position: relative; }
+.pop {
+  position: absolute; right: 0; top: calc(100% + 8px); width: 270px; z-index: 40;
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow);
+  padding: 14px; display: grid; gap: 8px;
+}
+.pop-title { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-top: 4px; }
+.check { display: flex; align-items: center; gap: 10px; font-size: .92rem; cursor: pointer; }
+.check input { width: 18px; height: 18px; accent-color: var(--accent); }
+
+/* ---------- Типографика ---------- */
+.eyebrow { font: 600 .75rem/1.2 var(--font-head); letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+h1, h2, h3 { font-family: var(--font-head); line-height: 1.15; letter-spacing: -.01em; }
+h2 { font-size: clamp(1.45rem, 3vw, 2.1rem); font-weight: 700; }
+h3 { font-size: 1.08rem; font-weight: 700; }
+.section { padding: 72px 0; }
+.section + .section { border-top: 1px solid var(--border); }
+.section-head { max-width: 720px; margin-bottom: 32px; }
+.section-head p { color: var(--muted); margin-top: 10px; }
+.prose p + p { margin-top: 12px; }
+.prose ul { padding-left: 20px; margin-top: 8px; }
+.prose li + li { margin-top: 6px; }
+
+/* ---------- Батырмалар ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 12px 20px; border-radius: 12px; font-weight: 600; font-size: .95rem; text-decoration: none;
+  border: 1px solid var(--border); background: var(--surface); color: var(--text);
+  transition: transform .15s, border-color .15s;
+}
+.btn:hover { border-color: var(--text); }
+.btn-primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.btn-primary:hover { border-color: var(--accent); transform: translateY(-1px); }
+.btn svg { width: 16px; height: 16px; }
+
+/* ---------- Басты экран ---------- */
+.hero { padding: 64px 0 40px; }
+.hero h1 { font-size: clamp(2.3rem, 7.2vw, 5.4rem); font-weight: 800; line-height: .98; margin: 16px 0 20px; letter-spacing: -.02em; }
+.hero h1 span { display: block; color: var(--accent); }
+.hero .sub { font-size: clamp(1.05rem, 1.8vw, 1.3rem); color: var(--muted); max-width: 700px; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+
+/* ---------- Карточкалар ---------- */
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); min-width: 0; }
+.grid { display: grid; gap: 16px; }
+.g2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.g5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+
+/* ---------- Модель көрсетілімі ---------- */
+.card.viz { padding: 0; }
+.viz { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: 0; padding: 0; overflow: hidden; margin-top: 44px; }
+.viz canvas { display: block; width: 100%; height: 340px; background: var(--surface-2); touch-action: pan-y; }
+.viz-side { padding: 22px; display: grid; gap: 14px; align-content: start; border-left: 1px solid var(--border); }
+.viz-side h3 { font-size: 1rem; }
+.range { display: grid; gap: 4px; }
+.range-top { display: flex; justify-content: space-between; font-size: .9rem; }
+.range-top output { font-weight: 700; font-variant-numeric: tabular-nums; }
+input[type="range"] { width: 100%; accent-color: var(--accent); height: 28px; }
+.readout { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.readout div { background: var(--surface-2); border-radius: var(--radius-sm); padding: 10px 12px; }
+.readout b { display: block; font: 700 1.25rem/1.2 var(--font-head); font-variant-numeric: tabular-nums; }
+.readout span { font-size: .78rem; color: var(--muted); }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: .8rem; color: var(--muted); }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: -1px; }
+.note { font-size: .8rem; color: var(--muted); border-top: 1px dashed var(--border); padding-top: 10px; }
+
+/* ---------- Оқу жолы ---------- */
+.path { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; counter-reset: step; }
+.path li { counter-increment: step; position: relative; padding: 16px 16px 16px 56px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--surface); min-width: 0; }
+.path li::before {
+  content: counter(step, decimal-leading-zero); position: absolute; left: 16px; top: 16px;
+  font: 700 .8rem/1 var(--font-head); color: var(--muted);
+}
+.path h3 { font-size: .95rem; font-family: var(--font-body); font-weight: 700; letter-spacing: 0; }
+.path p { font-size: .85rem; color: var(--muted); margin-top: 4px; }
+.status { display: inline-flex; align-items: center; gap: 6px; margin-top: 8px; font-size: .74rem; font-weight: 700; letter-spacing: .02em; }
+.status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+.st-ok { color: var(--ok); }
+.st-part { color: var(--warn); }
+.st-ext { color: var(--ext); }
+.st-dev { color: var(--dev); }
+
+/* ---------- Курс карточкасы ---------- */
+.course { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 24px; align-items: center; }
+.course ul { list-style: none; display: grid; gap: 8px; margin: 14px 0 20px; }
+.course li { display: flex; gap: 10px; font-size: .93rem; }
+.course li::before { content: ""; flex: none; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); margin-top: .6em; }
+.course-meta { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-block; padding: 4px 10px; border-radius: 999px; font-size: .78rem; font-weight: 600; background: var(--surface-2); color: var(--muted); }
+.course-art { aspect-ratio: 4 / 3; border-radius: var(--radius-sm); background: var(--surface-2); display: grid; place-items: center; }
+.course-art svg { width: 82%; height: auto; }
+
+/* ---------- Модель кезеңдері ---------- */
+.stage { border-top: 3px solid var(--accent); }
+.stage .n { font: 800 1.8rem/1 var(--font-head); color: var(--accent); }
+.stage h3 { margin: 10px 0 6px; font-size: .98rem; }
+.stage p { font-size: .87rem; color: var(--muted); }
+
+/* ---------- Рубрика ---------- */
+.rubric details { border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--surface); }
+.rubric details + details { margin-top: 10px; }
+.rubric summary { cursor: pointer; padding: 14px 18px; font-weight: 700; display: flex; justify-content: space-between; gap: 12px; list-style: none; }
+.rubric summary::-webkit-details-marker { display: none; }
+.rubric summary::after { content: "+"; font-weight: 400; color: var(--muted); }
+.rubric details[open] summary::after { content: "−"; }
+.rubric ol { list-style: none; padding: 0 18px 16px; display: grid; gap: 8px; }
+.rubric li { display: grid; grid-template-columns: 34px 1fr; gap: 10px; font-size: .9rem; }
+.rubric li b { font-family: var(--font-head); color: var(--accent); }
+.callout { border-left: 4px solid var(--warn); background: var(--surface); padding: 16px 18px; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
+.table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius-sm); }
+table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { background: var(--surface-2); font-size: .8rem; color: var(--muted); }
+tr:last-child td { border-bottom: 0; }
+
+/* ---------- Подвал ---------- */
+.site-foot { border-top: 1px solid var(--border); padding: 40px 0 56px; margin-top: 40px; }
+.foot-grid { display: grid; grid-template-columns: 1fr 1.6fr 1fr; gap: 28px; }
+.foot-grid p + p { margin-top: 8px; }
+.foot-links { display: grid; gap: 6px; align-content: start; }
+
+/* ---------- Бейімделу ---------- */
+@media (max-width: 980px) {
+  .path { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .g5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .g3 { grid-template-columns: 1fr; }
+  .viz { grid-template-columns: 1fr; }
+  .viz-side { border-left: 0; border-top: 1px solid var(--border); }
+  .course { grid-template-columns: 1fr; }
+  .foot-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 820px) {
+  .menu-toggle { display: grid; }
+  .main-nav {
+    display: none; position: absolute; left: 0; right: 0; top: 64px;
+    flex-direction: column; padding: 10px 16px 16px; gap: 2px;
+    background: var(--bg); border-bottom: 1px solid var(--border);
+  }
+  .main-nav.open { display: flex; }
+  .main-nav a { padding: 12px; }
+}
+@media (max-width: 600px) {
+  .wrap { padding: 0 16px; }
+  .head-row { gap: 10px; }
+  .brand-text { display: none; }
+  .lang-seg button { padding: 5px 8px; }
+  .hero { padding: 40px 0 24px; }
+  .hero-actions .btn { flex: 1 1 100%; }
+  .viz canvas { height: 260px; }
+  .path, .g2, .g5 { grid-template-columns: 1fr; }
+  .section { padding: 52px 0; }
+  .card { padding: 18px; }
+  .pop { right: -48px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+:root[data-calm] * { transition: none !important; }
+
+/* ================= Critical Thinking Lab ================= */
+.notice { margin-top: 20px; padding: 14px 16px; border-radius: var(--radius-sm); background: var(--accent-soft); border: 1px solid var(--border); font-size: .92rem; max-width: 820px; }
+.ct { padding-bottom: 40px; }
+.tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; border-bottom: 1px solid var(--border); }
+.tabs button { border: 0; background: none; padding: 10px 14px; font-weight: 600; color: var(--muted); border-bottom: 3px solid transparent; margin-bottom: -1px; }
+.tabs button[aria-selected="true"] { color: var(--text); border-bottom-color: var(--accent); }
+.ct-bar { display: flex; flex-wrap: wrap; align-items: end; gap: 10px; margin-bottom: 16px; }
+.field-inline { display: grid; gap: 4px; font-size: .85rem; color: var(--muted); }
+select, textarea, .inp {
+  font: inherit; color: var(--text); background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 9px 12px;
+}
+select:focus, textarea:focus, .inp:focus { outline: 3px solid var(--accent); outline-offset: 1px; }
+textarea { width: 100%; min-height: 84px; resize: vertical; line-height: 1.5; }
+.inp { width: 160px; font-variant-numeric: tabular-nums; }
+
+.steps { list-style: none; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; margin-bottom: 14px; }
+.steps li { font-size: .74rem; font-weight: 600; color: var(--muted); padding: 8px 6px 6px; border-top: 3px solid var(--border); line-height: 1.25; }
+.steps li b { display: block; font: 700 .9rem var(--font-head); }
+.steps li.done { border-top-color: var(--ok); color: var(--text); }
+.steps li.now { border-top-color: var(--accent); color: var(--text); }
+
+.ct-problem { margin-bottom: 14px; }
+.ct-problem .meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+.ct-problem p.st { font-size: 1.05rem; }
+.ct-stage h2 { font-size: 1.15rem; margin-bottom: 6px; }
+.ct-stage .lead { color: var(--muted); margin-bottom: 14px; font-size: .95rem; }
+.q { margin: 14px 0 8px; font-weight: 600; }
+.opts { display: grid; gap: 6px; }
+.opt { display: flex; gap: 10px; align-items: flex-start; padding: 10px 12px; border: 1px solid var(--border); border-radius: 10px; background: var(--surface); cursor: pointer; }
+.opt input { margin-top: 4px; accent-color: var(--accent); width: 17px; height: 17px; flex: none; }
+.opt.right { border-color: var(--ok); }
+.opt.wrong { border-color: var(--c-ab); }
+.yn { display: flex; gap: 8px; flex-wrap: wrap; }
+.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 12px; }
+.fb { margin-top: 12px; padding: 12px 14px; border-radius: 10px; border: 1px solid var(--border); background: var(--surface-2); font-size: .93rem; }
+.fb.ok { border-color: var(--ok); }
+.fb.bad { border-color: var(--c-ab); }
+.fb p + p { margin-top: 6px; }
+.mark-ok { color: var(--ok); font-weight: 700; }
+.mark-bad { color: var(--c-ab); font-weight: 700; }
+.ai-sol { border: 1px dashed var(--ext); border-radius: 12px; padding: 14px 16px; background: var(--surface-2); font-variant-numeric: tabular-nums; }
+.ai-sol .tag { font-size: .74rem; font-weight: 700; color: var(--ext); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 6px; }
+.ai-sol ol { padding-left: 20px; }
+.sol-list { padding-left: 20px; margin-top: 6px; font-variant-numeric: tabular-nums; }
+.score-table td:nth-child(n+2) { text-align: center; white-space: nowrap; }
+.hist td { font-size: .85rem; white-space: nowrap; }
+.empty { padding: 28px; text-align: center; color: var(--muted); border: 1px dashed var(--border); border-radius: var(--radius-sm); }
+@media (max-width: 700px) {
+  .steps { grid-template-columns: repeat(7, 1fr); gap: 3px; }
+  .steps li { font-size: 0; padding: 6px 0 0; }
+  .steps li b { font-size: .8rem; text-align: center; }
+  .inp { width: 100%; }
+}
+
+/* ================= Виртуальная лаборатория ================= */
+.filters-bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: end; margin: 8px 0 18px; }
+.filters-bar .grow { flex: 1 1 200px; }
+.filters-bar .grow .inp { width: 100%; }
+.lab-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.lab-card { display: flex; flex-direction: column; gap: 10px; }
+.lab-card h3 { font-size: 1.05rem; }
+.lab-card-top { display: flex; justify-content: space-between; align-items: center; }
+.lab-no { font: 800 1.3rem var(--font-head); color: var(--accent); }
+.lab-card-foot { margin-top: auto; display: flex; justify-content: space-between; align-items: center; gap: 10px; padding-top: 8px; }
+.lab-card-foot .status { margin: 0; }
+.planned { margin: 48px 0 24px; }
+.planned h2 { font-size: 1.3rem; margin-bottom: 6px; }
+.planned-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-top: 16px; }
+.planned-grid ul { padding-left: 18px; color: var(--muted); font-size: .9rem; }
+.planned-grid li + li { margin-top: 4px; }
+.planned-grid h3 { font-size: .95rem; margin-bottom: 6px; }
+
+.lab-runner { padding-top: 24px; padding-bottom: 60px; }
+.lab-head { scroll-margin-top: 80px; }
+.back { display: inline-block; margin-bottom: 10px; text-decoration: none; font-weight: 600; }
+.lab-title-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; margin-bottom: 14px; }
+.lab-title-row h1 { font-size: clamp(1.4rem, 3.4vw, 2.2rem); margin-top: 6px; }
+kbd { font: 600 .72rem ui-monospace, monospace; border: 1px solid var(--border); border-radius: 5px; padding: 1px 5px; margin-left: 4px; }
+.steps6 { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.steps li button { all: unset; display: block; width: 100%; cursor: pointer; }
+.steps li button:disabled { cursor: default; }
+.steps li button:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.stack-s > * + * { margin-top: 16px; }
+.safety { border-left: 4px solid var(--c-ab); }
+.model-note { border-left: 4px solid var(--ext); }
+.card h2 { font-size: 1.2rem; margin-bottom: 10px; }
+.card h3 { margin-bottom: 8px; }
+
+.exp { display: grid; grid-template-columns: minmax(240px, 0.8fr) minmax(0, 2fr); gap: 16px; align-items: start; }
+.exp-ctrl { display: grid; gap: 14px; align-content: start; }
+.ctl select { width: 100%; }
+.run-btns { margin-top: 0; }
+.run-btns .btn { flex: 1 1 auto; }
+.clock { display: grid; gap: 2px; padding: 12px 14px; border-radius: var(--radius-sm); background: var(--surface-2); }
+.clock span:first-child { font-size: .78rem; color: var(--muted); }
+.clock b { font: 700 1.6rem var(--font-head); font-variant-numeric: tabular-nums; }
+.exp-view { padding: 10px; }
+.exp-view canvas { display: block; width: 100%; height: 330px; border-radius: var(--radius-sm); background: var(--bg); }
+.view-note { margin-top: 8px; }
+.chart svg { display: block; width: 100%; height: auto; }
+.chart .ax { fill: var(--muted); font-size: 13px; font-family: var(--font-body); }
+.chart .ax-t { fill: var(--text); font-size: 13px; font-weight: 600; font-family: var(--font-body); }
+.icon-x { border: 0; background: none; color: var(--muted); font-size: 1.2rem; line-height: 1; padding: 0 6px; }
+.icon-x:hover { color: var(--c-ab); }
+.qbox + .qbox { margin-top: 16px; padding-top: 16px; border-top: 1px dashed var(--border); }
+.lvl-h { margin-top: 18px; font-size: .95rem; color: var(--accent); }
+.readout.big { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 10px; }
+.explain-box { margin-bottom: 16px; border-left: 4px solid var(--accent); }
+
+/* ---------- Режим «Демонстрация на уроке» ---------- */
+.demo-bar {
+  position: fixed; left: 50%; bottom: 14px; transform: translateX(-50%); z-index: 60;
+  display: flex; gap: 6px; padding: 8px; border-radius: 16px; background: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow);
+}
+.demo-bar button { border: 1px solid var(--border); background: var(--surface-2); color: var(--text); border-radius: 12px; padding: 12px 16px; font-weight: 700; font-size: 1rem; min-width: 52px; }
+.demo-bar button.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.demo-bar button:disabled { opacity: .4; }
+:root[data-demo] { --fs: 21px; }
+:root[data-demo] .site-head, :root[data-demo] .site-foot, :root[data-demo] .back, :root[data-demo] .view-note, :root[data-demo] .model-note, :root[data-demo] .safety { display: none; }
+:root[data-demo] .lab-runner { padding-top: 12px; padding-bottom: 110px; }
+:root[data-demo] .wrap { max-width: 1400px; }
+:root[data-demo] .exp-view canvas { height: 56vh; }
+:root[data-demo] .chart .ax, :root[data-demo] .chart .ax-t { font-size: 16px; }
+
+@media (max-width: 980px) {
+  .lab-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .planned-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .exp { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .lab-grid, .planned-grid { grid-template-columns: 1fr; }
+  .exp-view canvas { height: 260px; }
+  .steps6 li { font-size: 0; padding: 6px 0 0; }
+  .steps6 li b { font-size: .8rem; text-align: center; }
+  .readout.big { grid-template-columns: 1fr; }
+  .demo-bar { left: 8px; right: 8px; transform: none; flex-wrap: wrap; justify-content: center; }
+  .demo-bar button { padding: 10px 12px; font-size: .9rem; }
+}
+@media print {
+  .site-head, .site-foot, .steps, .demo-bar, .lab-head .btn, .row { display: none !important; }
+  body { background: #fff; color: #000; }
+  .card { box-shadow: none; border: 1px solid #999; }
+}
+
+</style>
+</head>
+<body data-page="lab">
+<a class="skip" href="#main" data-i="12">Мазмұнға өту</a>
+<header class="site-head">
+  <div class="wrap head-row">
+    <a class="brand" href="../" aria-label="NURSERIK CHEMISTRY — басты бет" data-ia="0">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M16 3.5 26.8 9.75v12.5L16 28.5 5.2 22.25V9.75Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+        <circle cx="16" cy="16" r="4.2" fill="var(--accent)"/>
+        <circle cx="16" cy="3.5" r="2.4" fill="var(--c-a)"/>
+        <circle cx="26.8" cy="22.25" r="2.4" fill="var(--c-b)"/>
+      </svg>
+      <span class="brand-text">NURSERIK <b>CHEMISTRY</b></span>
+    </a>
+
+    <nav class="main-nav" id="mainNav" aria-label="Негізгі мәзір" data-ia="1">
+      <a href="../kinetics/" data-i="13">Курс</a>
+      <a href="../lab/" data-nav="lab" data-i="14">Зертхана</a>
+      <a href="../trainer/" data-nav="trainer" data-i="15">Тренажер</a>
+      <a href="../research/" data-nav="research" data-i="16">Зерттеу</a>
+    </nav>
+
+    <div class="head-tools">
+      <div class="lang-seg" role="group" aria-label="Тіл" data-ia="2">
+        <button type="button" data-lang="kk" aria-pressed="true">Қаз</button>
+        <button type="button" data-lang="ru" aria-pressed="false">Рус</button>
+        <button type="button" data-lang="en" aria-pressed="false">Eng</button>
+      </div>
+      <div class="pop-wrap">
+        <button class="icon-btn" type="button" id="prefsBtn" aria-expanded="false" aria-controls="prefs" aria-label="Көрініс және қолжетімділік" data-ia="3">
+          <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="3.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M10 1.8v2.6M10 15.6v2.6M18.2 10h-2.6M4.4 10H1.8M15.8 4.2l-1.8 1.8M6 14l-1.8 1.8M15.8 15.8 14 14M6 6 4.2 4.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </button>
+        <div class="pop" id="prefs" hidden>
+          <p class="pop-title" data-i="17">Тақырып</p>
+          <div class="seg" role="group" aria-label="Тақырып" data-ia="4">
+            <button type="button" data-theme-set="system" data-i="18">Жүйелік</button>
+            <button type="button" data-theme-set="light" data-i="19">Жарық</button>
+            <button type="button" data-theme-set="dark" data-i="20">Қараңғы</button>
+          </div>
+          <p class="pop-title" data-i="21">Қолжетімділік</p>
+          <label class="check"><input type="checkbox" data-a11y="large"><span data-i="22">Үлкен қаріп</span></label>
+          <label class="check"><input type="checkbox" data-a11y="contrast"><span data-i="23">Жоғары контраст</span></label>
+          <label class="check"><input type="checkbox" data-a11y="calm"><span data-i="24">Анимацияны азайту</span></label>
+        </div>
+      </div>
+      <button class="icon-btn menu-toggle" type="button" id="menuToggle" aria-expanded="false" aria-controls="mainNav" aria-label="Мәзір" data-ia="5">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 6h14M3 10h14M3 14h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+
+<main id="main">
+  <section id="labCatalog" class="wrap lab-catalog">
+    <div class="hero" style="padding-bottom:16px">
+      <p class="eyebrow">Virtual Chemistry Laboratory</p>
+      <h1 style="font-size:clamp(1.7rem,4.2vw,3rem)" data-i="25">Виртуалды химиялық зертхана</h1>
+      <p class="sub" data-i="26">Шарттарды өзіңіз таңдап, тәжірибе жүргізіңіз, кесте мен график құрып, нәтижені түсіндіріңіз. Әр модельдің жеңілдетулері жұмыстың ішінде жазылған.</p>
+      <p id="labProgress" class="muted" style="margin-top:12px"></p>
+    </div>
+    <div class="filters-bar">
+      <label class="field-inline"><span data-i="52">Сынып</span>
+        <select id="fGrade"><option value="" data-i="27">Барлығы</option><option value="10">10</option></select>
+      </label>
+      <label class="field-inline"><span data-i="53">Жұмыс түрі</span>
+        <select id="fKind">
+          <option value="" data-i="28">Барлығы</option>
+          <option value="lab" data-i="29">Зертханалық жұмыс</option>
+          <option value="data" data-i="30">Деректерді талдау</option>
+          <option value="research" data-i="31">Зерттеу</option>
+        </select>
+      </label>
+      <label class="field-inline"><span data-i="54">Күрделілігі</span>
+        <select id="fLevel">
+          <option value="" data-i="32">Барлығы</option>
+          <option value="base" data-i="33">Негізгі</option>
+          <option value="adv" data-i="34">Жоғары</option>
+          <option value="res" data-i="35">Зерттеушілік</option>
+        </select>
+      </label>
+      <label class="field-inline"><span data-i="55">Күйі</span>
+        <select id="fStatus">
+          <option value="" data-i="36">Барлығы</option>
+          <option value="new" data-i="37">Басталмаған</option>
+          <option value="progress" data-i="38">Орындалуда</option>
+          <option value="done" data-i="39">Аяқталған</option>
+        </select>
+      </label>
+      <label class="field-inline grow"><span data-i="56">Іздеу</span>
+        <input type="search" id="fSearch" class="inp" placeholder="Мысалы: катализатор" data-ip="6">
+      </label>
+    </div>
+    <div id="labGrid" class="lab-grid"></div>
+    <div class="planned">
+      <h2 data-i="40">Әзірленуде</h2>
+      <p class="muted" data-i="41">Бұл тақырыптар әлі іске қосылған жоқ — сондықтан оларда «Бастау» батырмасы жоқ. 7–11-сыныптардың ресми тізімі бойынша кезекпен қосылады.</p>
+      <div id="labPlanned" class="planned-grid"></div>
+    </div>
+  </section>
+
+  <section id="labRunner" class="wrap lab-runner" hidden>
+    <div id="labHead" class="lab-head"></div>
+    <ol class="steps steps6" id="labSteps" aria-label="Кезеңдер" data-ia="7"></ol>
+    <div id="explainBox" class="card explain-box" hidden></div>
+    <div id="labBody"></div>
+  </section>
+
+  <div class="demo-bar" id="demoBar" hidden role="toolbar" aria-label="Сабақта көрсету режимі" data-ia="8">
+    <button type="button" id="demoPrev" aria-label="Алдыңғы жұмыс" data-ia="9">←</button>
+    <button type="button" id="demoRun" class="primary" data-i="42">Іске қосу / Пауза</button>
+    <button type="button" id="demoReset" data-i="43">Қайта</button>
+    <button type="button" id="demoExplain" data-i="44">Түсіндірме</button>
+    <button type="button" id="demoNext" aria-label="Келесі жұмыс" data-ia="10">→</button>
+    <button type="button" id="demoExit" data-i="45">Шығу</button>
+  </div>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap foot-grid">
+    <div>
+      <p class="brand-text">NURSERIK <b>CHEMISTRY</b></p>
+      <p class="muted small" data-i="46">Химияны өз бетімен оқуға және сыни ойлауды дамытуға арналған платформа.</p>
+    </div>
+    <div class="small">
+      <p data-i="47">Білім беру тұжырымдамасының авторы: <b>Хуантхан Нурсерик</b>, химия пәнінің мұғалімі.</p>
+      <p class="muted" data-i="48">Платформа магистрлік педагогикалық зерттеу аясында дамып келеді. Сайт ИИ-құралдардың (Claude) көмегімен әзірленді; сыртқы кітапханалар қолданылмайды, қаріптер — Google Fonts.</p>
+    </div>
+    <nav class="foot-links small" aria-label="Төменгі мәзір" data-ia="11">
+      <a href="../kinetics/" data-i="49">Химиялық кинетика курсы</a>
+      <a href="../lab/" data-i="50">Виртуалды зертхана</a>
+      <a href="../research/" data-i="51">Зерттеу туралы</a>
+      <a href="https://github.com/miraskees-coder/nurserik-himia">GitHub</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+var I18N = {"ru":["NURSERIK CHEMISTRY — главная","Главное меню","Язык","Вид и доступность","Тема","Меню","Например: катализатор","Этапы","Режим демонстрации на уроке","Предыдущая работа","Следующая работа","Нижнее меню","Перейти к содержанию","Курс","Лаборатория","Тренажёр","Исследование","Тема","Системная","Светлая","Тёмная","Доступность","Крупный шрифт","Высокий контраст","Меньше анимации","Виртуальная химическая лаборатория","Выбирайте условия, проводите опыты, стройте таблицы и графики, объясняйте результат. Упрощения каждой модели описаны внутри работы.","Все","Все","Лабораторная работа","Анализ данных","Исследование","Все","Базовый","Повышенный","Исследовательский","Все","Не начата","В процессе","Завершена","В разработке","Эти темы ещё не запущены — поэтому у них нет кнопки «Начать». Они будут добавляться по официальному перечню 7–11 классов.","Пуск / Пауза","Сброс","Объяснение","Выход","Платформа для самостоятельного изучения химии и развития критического мышления.","Автор образовательной концепции: <b>Хуантхан Нурсерик<\/b>, учитель химии.","Платформа развивается в рамках магистерского педагогического исследования. Сайт разработан с помощью ИИ-инструментов (Claude); внешние библиотеки не используются, шрифты — Google Fonts.","Курс «Химическая кинетика»","Виртуальная лаборатория","Об исследовании","Класс","Тип работы","Сложность","Статус","Поиск"],"en":["NURSERIK CHEMISTRY — home","Main menu","Language","Display and accessibility","Theme","Menu","e.g. catalyst","Stages","Classroom demo mode","Previous lab","Next lab","Footer menu","Skip to content","Course","Lab","Trainer","Research","Theme","System","Light","Dark","Accessibility","Larger text","High contrast","Reduce motion","Virtual Chemistry Laboratory","Choose the conditions, run experiments, build tables and graphs, and explain the results. Each model's simplifications are described inside the lab.","All","All","Lab work","Data analysis","Investigation","All","Basic","Advanced","Research","All","Not started","In progress","Completed","In development","These topics are not live yet, which is why they have no “Start” button. They will be added in turn from the official grade 7–11 list.","Run / Pause","Reset","Explain","Exit","A platform for learning chemistry independently and developing critical thinking.","Author of the educational concept: <b>Nurserik Khuantkhan<\/b>, chemistry teacher.","The platform is being developed as part of a master's research project in education. The site was built with the help of AI tools (Claude); no external libraries are used; fonts are from Google Fonts.","Chemical kinetics course","Virtual lab","About the research","Grade","Type","Difficulty","Status","Search"]};
+/* ================= Платформа: тіл, тақырып, қолжетімділік, мәзір ================= */
+var LANG = "kk";
+var KK = {};
+function L(kk, ru, en) { return LANG === "ru" ? ru : LANG === "en" ? en : kk; }
+function safe(name, fn) { try { fn(); } catch (e) { if (window.console) console.error("[" + name + "]", e); } }
+function $(id) { return document.getElementById(id); }
+function store(key, val) {
+  try { if (val === undefined) return localStorage.getItem(key); localStorage.setItem(key, val); } catch (e) {}
+  return null;
+}
+function fmt(x, d) {
+  if (typeof x !== "number" || !isFinite(x)) return "—";
+  var s = Math.abs(x).toFixed(d == null ? 2 : d);
+  if (s.indexOf(".") >= 0) s = s.replace(/0+$/, "").replace(/\.$/, "");
+  var p = s.split("."), en = LANG === "en";
+  if (p[0].length > (en ? 3 : 4)) p[0] = p[0].replace(/\B(?=(\d{3})+(?!\d))/g, en ? "," : " ");
+  return (x < 0 && s !== "0" ? "−" : "") + p[0] + (p[1] ? (en ? "." : ",") + p[1] : "");
+}
+
+var ATTRS = [["data-ia", "aria-label"], ["data-it", "title"], ["data-ip", "placeholder"]];
+var PAGE_TITLE = null;
+
+function setLang(lang, silent) {
+  if (lang !== "kk" && !I18N[lang]) lang = "kk";
+  LANG = lang;
+  var dict = I18N[lang];
+  document.querySelectorAll("[data-i]").forEach(function (el) {
+    var i = el.getAttribute("data-i"), v = lang === "kk" ? KK["t" + i] : dict[i];
+    if (v != null && el.innerHTML !== v) el.innerHTML = v;
+  });
+  ATTRS.forEach(function (p) {
+    document.querySelectorAll("[" + p[0] + "]").forEach(function (el) {
+      var i = el.getAttribute(p[0]), v = lang === "kk" ? KK["a" + i] : dict[i];
+      if (v != null) el.setAttribute(p[1], v);
+    });
+  });
+  document.documentElement.lang = lang;
+  if (PAGE_TITLE) document.title = L(PAGE_TITLE[0], PAGE_TITLE[1], PAGE_TITLE[2]);
+  document.querySelectorAll(".lang-seg button").forEach(function (b) {
+    b.setAttribute("aria-pressed", String(b.getAttribute("data-lang") === lang));
+  });
+  store("nc-lang", lang);
+  if (!silent) document.dispatchEvent(new CustomEvent("langchange", { detail: { lang: lang } }));
+}
+function onLang(fn) { document.addEventListener("langchange", function () { safe("langchange", fn); }); }
+
+safe("i18n", function () {
+  var t = document.querySelector('meta[name="nc-title"]');
+  if (t) PAGE_TITLE = t.getAttribute("content").split("‖");
+  document.querySelectorAll("[data-i]").forEach(function (el) { KK["t" + el.getAttribute("data-i")] = el.innerHTML; });
+  ATTRS.forEach(function (p) {
+    document.querySelectorAll("[" + p[0] + "]").forEach(function (el) { KK["a" + el.getAttribute(p[0])] = el.getAttribute(p[1]); });
+  });
+  document.querySelectorAll(".lang-seg button").forEach(function (b) {
+    b.addEventListener("click", function () { setLang(b.getAttribute("data-lang")); });
+  });
+  var saved = store("nc-lang");
+  setLang(saved === "ru" || saved === "en" ? saved : "kk", true);
+});
+
+/* ---------- Тақырып және қолжетімділік ---------- */
+safe("prefs", function () {
+  var root = document.documentElement, btn = $("prefsBtn"), pop = $("prefs");
+  function applyTheme(v) {
+    if (v === "light" || v === "dark") root.setAttribute("data-theme", v); else root.removeAttribute("data-theme");
+    document.querySelectorAll("[data-theme-set]").forEach(function (b) {
+      b.setAttribute("aria-pressed", String(b.getAttribute("data-theme-set") === (v || "system")));
+    });
+  }
+  var flags = { large: "data-large", contrast: "data-contrast", calm: "data-calm" };
+  function applyA11y(key, on) {
+    if (on) root.setAttribute(flags[key], ""); else root.removeAttribute(flags[key]);
+  }
+  applyTheme(store("nc-theme") || "system");
+  document.querySelectorAll("[data-a11y]").forEach(function (c) {
+    var k = c.getAttribute("data-a11y");
+    c.checked = store("nc-" + k) === "1";
+    applyA11y(k, c.checked);
+    c.addEventListener("change", function () {
+      applyA11y(k, c.checked);
+      store("nc-" + k, c.checked ? "1" : "0");
+      document.dispatchEvent(new CustomEvent("prefschange"));
+    });
+  });
+  document.querySelectorAll("[data-theme-set]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var v = b.getAttribute("data-theme-set");
+      store("nc-theme", v);
+      applyTheme(v);
+      document.dispatchEvent(new CustomEvent("prefschange"));
+    });
+  });
+  function toggle(open) {
+    pop.hidden = !open;
+    btn.setAttribute("aria-expanded", String(open));
+  }
+  btn.addEventListener("click", function (e) { e.stopPropagation(); toggle(pop.hidden); });
+  pop.addEventListener("click", function (e) { e.stopPropagation(); });
+  document.addEventListener("click", function () { if (!pop.hidden) toggle(false); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !pop.hidden) { toggle(false); btn.focus(); } });
+});
+
+/* ---------- Мобильді мәзір және белсенді бөлім ---------- */
+safe("menu", function () {
+  var nav = $("mainNav"), btn = $("menuToggle");
+  btn.addEventListener("click", function () {
+    var open = !nav.classList.contains("open");
+    nav.classList.toggle("open", open);
+    btn.setAttribute("aria-expanded", String(open));
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && nav.classList.contains("open")) { nav.classList.remove("open"); btn.setAttribute("aria-expanded", "false"); btn.focus(); }
+  });
+  var page = document.body.getAttribute("data-page");
+  var cur = page && nav.querySelector('[data-nav="' + page + '"]');
+  if (cur) cur.setAttribute("aria-current", "page");
+});
+
+function reducedMotion() {
+  var calm = document.documentElement.hasAttribute("data-calm");
+  try { return calm || window.matchMedia("(prefers-reduced-motion: reduce)").matches; } catch (e) { return calm; }
+}
+
+/* ================= Расчётные модели виртуальной лаборатории =================
+   Детерминированные: одни и те же параметры → один и тот же результат.
+   Коэффициенты — учебные (подобраны под школьный опыт), что указано на страницах.
+   Описание и допущения — docs/CHEMISTRY_MODELS.md, тесты — tests/lab-models.test.mjs. */
+var NCLabModels = (function () {
+  "use strict";
+  var R = 8.314, VM20 = 24.05; // Дж/(моль·К); молярный объём газа при 20 °C и 1 атм, л/моль
+
+  function kArr(k20, Ea, tC) { return k20 * Math.exp(-Ea / R * (1 / (tC + 273.15) - 1 / 293.15)); }
+
+  /* ---------- 1. Na₂S₂O₃ + 2HCl → 2NaCl + S↓ + SO₂↑ + H₂O («исчезающий крест») ----------
+     Учебная модель: кислота в избытке, скорость образования серы v = k(T)·[S₂O₃²⁻].
+     Крест перестаёт быть виден, когда образовалось S* = 0,002 моль/л серы. */
+  var THIO = { Sstar: 0.002, k20: 6.67e-4, Ea: 50000, Cmin: 0.01, Cmax: 0.15, Tmin: 10, Tmax: 60 };
+  function thiosulfate(p) {
+    var C = +p.C, T = +p.T;
+    if (!(C >= THIO.Cmin && C <= THIO.Cmax && T >= THIO.Tmin && T <= THIO.Tmax)) return { ok: false, reason: "range" };
+    var k = kArr(THIO.k20, THIO.Ea, T), x = THIO.Sstar / C;
+    var t = -Math.log(1 - x) / k;
+    return {
+      ok: true, k: k, t: t, inv: 1000 / t, v: THIO.Sstar / t, end: t,
+      progress: function (tt) { return Math.min(1, C * (1 - Math.exp(-k * tt)) / THIO.Sstar); },
+      rate: function (tt) { return k * C * Math.exp(-k * tt); }
+    };
+  }
+
+  /* ---------- 2. 2H₂O₂ → 2H₂O + O₂↑ (катализ) ----------
+     1-й порядок по H₂O₂. 10 мл раствора, 20 °C, 1 атм. Константы — учебные.
+     Eₐ — приблизительные литературные значения для энергетического профиля. */
+  var H2O2 = {
+    Vsol: 0.010, Cmin: 0.3, Cmax: 1.5,
+    k: { none: 2e-7, mno2: 0.012, catalase: 0.04 },
+    Ea: { none: 75, mno2: 58, catalase: 23 }, dH: -98
+  };
+  function peroxide(p) {
+    var C0 = +p.C0, cat = p.cat;
+    if (!(C0 >= H2O2.Cmin && C0 <= H2O2.Cmax) || !(cat in H2O2.k)) return { ok: false, reason: "range" };
+    var k = H2O2.k[cat];
+    var Vmax = C0 * H2O2.Vsol / 2 * VM20 * 1000; // мл O₂ при полном разложении
+    var end = Math.min(600, 6 / k);
+    var V = function (tt) { return Vmax * (1 - Math.exp(-k * tt)); };
+    var t20 = k > 1e-5 ? -Math.log(1 - 20 / Vmax) / k : Infinity;
+    return {
+      ok: true, k: k, Vmax: Vmax, end: end, half: Math.LN2 / k, V: V, V60: V(60), t20: 20 < Vmax ? t20 : Infinity,
+      progress: function (tt) { return 1 - Math.exp(-k * tt); },
+      rate: function (tt) { return Vmax * k * Math.exp(-k * tt); }, // мл/с
+      C: function (tt) { return C0 * Math.exp(-k * tt); }
+    };
+  }
+
+  /* ---------- 3. CaCO₃ + 2HCl → CaCl₂ + H₂O + CO₂↑ (площадь поверхности) ----------
+     Гетерогенная реакция: dn/dt = −kS·S·[HCl]; S = S₀·(m/m₀)^(2/3) (частицы равномерно уменьшаются).
+     S₀ = 3m₀/(ρr) — поверхность шариков радиуса r. Масса сосуда убывает на массу улетевшего CO₂. */
+  var MARBLE = {
+    rho: 2.71, M: 100.09, MCO2: 44.01, ks: 2.3e-6, Vacid: 50, tmax: 1800,
+    r: { chunk: 0.4, grain: 0.1, powder: 0.005 }, flask: 120
+  };
+  function marble(p) {
+    var m0 = +p.m0, C = +p.C, size = p.size, closed = !!p.closed;
+    if (!(m0 >= 0.5 && m0 <= 2 && C >= 0.5 && C <= 2) || !(size in MARBLE.r)) return { ok: false, reason: "range" };
+    var V = MARBLE.Vacid / 1000, n0 = m0 / MARBLE.M, h0 = C * V;
+    var S0 = 3 * m0 / (MARBLE.rho * MARBLE.r[size]);
+    var n = n0, h = h0, t = 0, dt = 0.05, series = [[0, 0]], nextRec = 1;
+    function rate(nn, hh) { return nn <= 0 || hh <= 0 ? 0 : MARBLE.ks * S0 * Math.pow(nn / n0, 2 / 3) * (hh / V); }
+    while (t < MARBLE.tmax && n > n0 * 1e-6 && h > h0 * 1e-6) {
+      // RK4 по количеству CaCO₃; HCl расходуется вдвое быстрее (стехиометрия 1 : 2).
+      var k1 = rate(n, h), k2 = rate(n - k1 * dt / 2, h - k1 * dt), k3 = rate(n - k2 * dt / 2, h - k2 * dt), k4 = rate(n - k3 * dt, h - 2 * k3 * dt);
+      var dn = Math.min(n, h / 2, (k1 + 2 * k2 + 2 * k3 + k4) / 6 * dt);
+      n -= dn; h -= 2 * dn; t += dt;
+      if (dt < 1 && t > 20) dt = Math.min(1, dt * 1.02);
+      if (t >= nextRec) { series.push([t, (n0 - n) * MARBLE.MCO2]); nextRec = t < 60 ? t + 1 : t + 5; }
+    }
+    var reacted = n0 - n, mCO2 = reacted * MARBLE.MCO2, final = series[series.length - 1];
+    if (final[0] < t) series.push([t, mCO2]);
+    var t90 = null;
+    for (var i = 0; i < series.length; i++) if (series[i][1] >= 0.9 * mCO2) { t90 = series[i][0]; break; }
+    var limiting = n <= n0 * 1e-6 ? "CaCO3" : h <= h0 * 1e-6 ? "HCl" : "none";
+    var massStart = MARBLE.flask + m0 + MARBLE.Vacid * 1.02 + 0; // г: колба + мрамор + кислота (ρ ≈ 1,02 г/мл)
+    return {
+      ok: true, end: t, complete: limiting !== "none", limiting: limiting, mCO2: mCO2, VCO2: reacted * VM20 * 1000, t90: t90, S0: S0,
+      massStart: massStart, massEnd: closed ? massStart : massStart - mCO2,
+      lost: function (tt) { return interp(series, tt); },
+      progress: function (tt) { return mCO2 > 0 ? interp(series, tt) / mCO2 : 0; },
+      rate: function (tt) { var a = interp(series, Math.max(0, tt - 1)), b = interp(series, tt + 1); return (b - a) / 2; },
+      left: function (tt) { return Math.max(0, m0 - interp(series, tt) / MARBLE.MCO2 * MARBLE.M); }
+    };
+  }
+  function interp(s, t) {
+    if (t <= s[0][0]) return s[0][1];
+    for (var i = 1; i < s.length; i++) if (t <= s[i][0]) { var a = s[i - 1], b = s[i]; return a[1] + (b[1] - a[1]) * (t - a[0]) / (b[0] - a[0]); }
+    return s[s.length - 1][1];
+  }
+
+  /* ---------- 4. Данные «концентрация — время» для анализа (L5) ----------
+     Расчёт по 1-му порядку, значения округлены до 3 знаков, как в лабораторном журнале. */
+  function dataset(seed) {
+    var a = seed >>> 0;
+    function r() { a = (a * 1664525 + 1013904223) >>> 0; return a / 4294967296; }
+    var C0 = +(0.5 + Math.floor(r() * 11) * 0.05).toFixed(2), k = +(0.010 + Math.floor(r() * 5) * 0.005).toFixed(3), step = 20;
+    var rows = [];
+    for (var i = 0; i <= 5; i++) rows.push([i * step, +(C0 * Math.exp(-k * i * step)).toFixed(3)]);
+    return { C0: C0, k: k, rows: rows };
+  }
+
+  return { R: R, VM20: VM20, THIO: THIO, H2O2: H2O2, MARBLE: MARBLE, kArr: kArr, thiosulfate: thiosulfate, peroxide: peroxide, marble: marble, dataset: dataset };
+})();
+
+/* ================= Описания лабораторных работ =================
+   Каждая работа — данные + функции модели. Каталог строится только из этого списка,
+   поэтому на сайте не бывает карточек без работающей лаборатории. */
+var NCLabs = (function () {
+  "use strict";
+  var M = NCLabModels;
+  function f(x, d) { return fmt(x, d); }
+  var S = [" с", " с", " s"], ML = [" мл", " мл", " mL"], G = [" г", " г", " g"], MOL = [" моль/л", " моль/л", " mol/L"];
+  function u(a) { return L(a[0], a[1], a[2]); }
+
+  var THIO_MODEL = {
+    type: ["Есептік модель (оқу коэффициенттері)", "Расчётная модель (учебные коэффициенты)", "Computational model (teaching coefficients)"],
+    notes: [
+      ["Реакция: Na₂S₂O₃ + 2HCl → 2NaCl + S↓ + SO₂↑ + H₂O. Қышқыл артық мөлшерде.", "Реакция: Na₂S₂O₃ + 2HCl → 2NaCl + S↓ + SO₂↑ + H₂O. Кислота в избытке.", "Reaction: Na₂S₂O₃ + 2HCl → 2NaCl + S↓ + SO₂↑ + H₂O. Acid in excess."],
+      ["Күкірттің түзілу жылдамдығы v = k·[S₂O₃²⁻] деп алынған (тиосульфат бойынша 1-рет — оқу моделі).", "Скорость образования серы принята v = k·[S₂O₃²⁻] (1-й порядок по тиосульфату — учебная модель).", "Rate of sulfur formation taken as v = k·[S₂O₃²⁻] (first order in thiosulfate — a teaching model)."],
+      ["Крест 0,002 моль/л күкірт түзілгенде көрінбей қалады деп есептеледі.", "Считается, что крест перестаёт быть виден, когда образовалось 0,002 моль/л серы.", "The cross is taken to vanish once 0.002 mol/L of sulfur has formed."],
+      ["k(T) — Аррениус теңдеуі бойынша, Eₐ = 50 кДж/моль (оқу мәні). Сандар нақты өлшеу емес.", "k(T) — по уравнению Аррениуса, Eₐ = 50 кДж/моль (учебное значение). Числа — не реальные измерения.", "k(T) follows the Arrhenius equation with Eₐ = 50 kJ/mol (a teaching value). The numbers are not real measurements."],
+      ["Оң жақтағы бөлшектер — сапалық көрнекілік: саны C-ға, жылдамдығы √T-ға, жарқыл жиілігі есептелген жылдамдыққа пропорционал.", "Частицы справа — качественная иллюстрация: их число ∝ C, скорость ∝ √T, частота вспышек ∝ рассчитанной скорости.", "The particles on the right are a qualitative illustration: their number ∝ C, speed ∝ √T, flash frequency ∝ the calculated rate."]
+    ]
+  };
+  var THIO_THEORY = [
+    "<p>Натрий тиосульфаты қышқылмен әрекеттескенде күкірт бөлінеді, ерітінді лайланады. Стақан астындағы крест көрінбей қалғанға дейінгі уақыт t реакция жылдамдығына кері пропорционал: v ∝ 1/t.</p><p>Соқтығысу теориясы бойынша концентрация артса, көлем бірлігіндегі бөлшектер көбейіп, тиімді соқтығысулар жиілейді.</p>",
+    "<p>При взаимодействии тиосульфата натрия с кислотой выделяется сера, раствор мутнеет. Время t до исчезновения креста под стаканом обратно пропорционально скорости: v ∝ 1/t.</p><p>По теории столкновений при росте концентрации в единице объёма больше частиц, поэтому эффективные столкновения происходят чаще.</p>",
+    "<p>When sodium thiosulfate reacts with acid, sulfur forms and the solution turns cloudy. The time t until the cross under the beaker disappears is inversely proportional to the rate: v ∝ 1/t.</p><p>According to collision theory, a higher concentration means more particles per unit volume, so effective collisions happen more often.</p>"
+  ];
+  var THIO_SAFETY = [
+    "<p>Тәжірибе тек виртуалды. Нақты зертханада SO₂ тыныс жолын тітіркендіреді — тартпа шкаф, көзілдірік және мұғалімнің бақылауы қажет.</p>",
+    "<p>Опыт только виртуальный. В реальной лаборатории SO₂ раздражает дыхательные пути — нужны вытяжной шкаф, очки и контроль учителя.</p>",
+    "<p>This experiment is virtual only. In a real lab, SO₂ irritates the airways: a fume cupboard, goggles and teacher supervision are required.</p>"
+  ];
+
+  var list = [
+    {
+      id: "k-conc", no: "L1", grade: 10, kind: "lab", level: "base", minutes: 25, minRuns: 3, mode: function () { return "cross"; },
+      title: ["Концентрацияның реакция жылдамдығына әсері", "Влияние концентрации на скорость реакции", "Effect of concentration on reaction rate"],
+      topic: ["Химиялық кинетика", "Химическая кинетика", "Chemical kinetics"],
+      goal: ["Na₂S₂O₃ концентрациясы мен реакция жылдамдығы арасындағы тәуелділікті тәжірибе арқылы анықтау.", "Экспериментально установить зависимость скорости реакции от концентрации Na₂S₂O₃.", "Find out by experiment how the reaction rate depends on the concentration of Na₂S₂O₃."],
+      theory: THIO_THEORY, safety: THIO_SAFETY, model: THIO_MODEL,
+      equipment: [["Химиялық стақан, 100 мл", "Химический стакан, 100 мл", "Beaker, 100 mL"], ["Қара крест салынған қағаз", "Лист с чёрным крестом", "Sheet with a black cross"], ["Na₂S₂O₃ ерітіндісі, 0,03–0,15 моль/л", "Раствор Na₂S₂O₃, 0,03–0,15 моль/л", "Na₂S₂O₃ solution, 0.03–0.15 mol/L"], ["HCl ерітіндісі (артық мөлшерде)", "Раствор HCl (в избытке)", "HCl solution (in excess)"], ["Секундомер", "Секундомер", "Stopwatch"]],
+      controls: [{ id: "C", type: "range", min: 0.03, max: 0.15, step: 0.01, value: 0.06, dec: 2, label: ["Na₂S₂O₃ концентрациясы", "Концентрация Na₂S₂O₃", "Na₂S₂O₃ concentration"], unit: MOL }],
+      fixed: { T: 20 },
+      simulate: function (p) { return M.thiosulfate({ C: p.C, T: 20 }); },
+      summary: function (p, r) { return { t: +r.t.toFixed(2), inv: +r.inv.toFixed(3), v: r.v }; },
+      columns: function () { return [L("C(Na₂S₂O₃), моль/л", "C(Na₂S₂O₃), моль/л", "C(Na₂S₂O₃), mol/L"), L("t, с", "t, с", "t, s"), "1000/t", L("v, ×10⁻⁵ моль/(л·с)", "v, ×10⁻⁵ моль/(л·с)", "v, ×10⁻⁵ mol/(L·s)")]; },
+      row: function (p, r) { return [f(+p.C, 2), f(r.t, 1), f(r.inv, 2), f(r.v * 1e5, 2)]; },
+      metric: function (p, r) { return { label: ["Крест жоғалу уақыты", "Время исчезновения креста", "Time for the cross to vanish"], value: r.t, text: f(r.t, 1) + u(S) }; },
+      chart: { kind: "scatter", fit: true, origin: true, title: ["1000/t — C тәуелділігі", "Зависимость 1000/t от C", "1000/t against C"], x: function (p) { return +p.C; }, y: function (p, r) { return r.inv; }, xLabel: ["C, моль/л", "C, моль/л", "C, mol/L"], yLabel: ["1000/t", "1000/t", "1000/t"] },
+      viewNote: ["Сол жақта — стақан мен крест, оң жақта — бөлшектердің үлкейтілген көрінісі.", "Слева — стакан с крестом, справа — увеличенный вид частиц.", "Left: beaker over the cross. Right: zoomed view of the particles."],
+      prediction: { q: ["Na₂S₂O₃ концентрациясын арттырсақ, крест жоғалатын уақыт қалай өзгереді?", "Как изменится время исчезновения креста при увеличении концентрации Na₂S₂O₃?", "How will the time for the cross to vanish change if the Na₂S₂O₃ concentration increases?"],
+        opts: [["Азаяды", "Уменьшится", "It will decrease"], ["Артады", "Увеличится", "It will increase"], ["Өзгермейді", "Не изменится", "It will not change"]], correct: 0 },
+      questions: [
+        { id: "q1", level: "base", type: "choice", q: ["Концентрацияны екі есе арттырғанда t шамамен қалай өзгерді?", "Как примерно изменилось t при увеличении концентрации вдвое?", "Roughly how did t change when the concentration doubled?"],
+          opts: [["Шамамен 2 есе азайды", "Уменьшилось примерно в 2 раза", "It fell about twofold"], ["2 есе артты", "Увеличилось в 2 раза", "It doubled"], ["4 есе азайды", "Уменьшилось в 4 раза", "It fell fourfold"], ["Өзгермеді", "Не изменилось", "No change"]], correct: 0,
+          explain: ["Бұл модельде v ∝ C, сондықтан t ∝ 1/C.", "В этой модели v ∝ C, поэтому t ∝ 1/C.", "In this model v ∝ C, so t ∝ 1/C."] },
+        { id: "q2", level: "base", type: "num", q: ["1-тәжірибе: күкірттің орташа түзілу жылдамдығын есептеңіз, v = 0,002 / t.", "Опыт 1: вычислите среднюю скорость образования серы, v = 0,002 / t.", "Run 1: calculate the average rate of sulfur formation, v = 0.002 / t."],
+          unit: ["моль/(л·с)", "моль/(л·с)", "mol/(L·s)"], dec: 6, tol: 0.03, answer: function (st, sim) { return st.runs[0] ? 0.002 / sim(st.runs[0].p).t : null; },
+          explain: ["v = ΔC/Δt: 0,002 моль/л күкірт t секундта түзілді.", "v = ΔC/Δt: 0,002 моль/л серы образовалось за t секунд.", "v = ΔC/Δt: 0.002 mol/L of sulfur formed in t seconds."] },
+        { id: "q3", level: "adv", type: "choice", q: ["1000/t — C графигі координат басынан өтетін түзу. Бұл не білдіреді?", "График 1000/t от C — прямая через начало координат. Что это означает?", "The graph of 1000/t against C is a straight line through the origin. What does that mean?"],
+          opts: [["Жылдамдық Na₂S₂O₃ концентрациясына тура пропорционал (1-рет)", "Скорость прямо пропорциональна концентрации Na₂S₂O₃ (1-й порядок)", "The rate is directly proportional to [Na₂S₂O₃] (first order)"], ["Жылдамдық концентрацияға тәуелсіз", "Скорость не зависит от концентрации", "The rate does not depend on concentration"], ["Реакция 2-ретті", "Реакция второго порядка", "The reaction is second order"]], correct: 0,
+          explain: ["Түзу пропорционалдық v ∝ C береді. Бірақ бұл — тиосульфат бойынша рет қана; басқа реакцияларда тәуелділік басқаша болуы мүмкін.", "Прямая пропорциональность даёт v ∝ C. Но это порядок только по тиосульфату; у других реакций зависимость может быть иной.", "Direct proportionality means v ∝ C. But that is the order in thiosulfate only; other reactions can behave differently."] },
+        { id: "q4", level: "adv", type: "open", q: ["Неге концентрация артқанда жылдамдық артады? Соқтығысу теориясымен түсіндіріңіз.", "Почему при росте концентрации скорость растёт? Объясните по теории столкновений.", "Why does the rate rise with concentration? Explain using collision theory."],
+          explain: ["Күтілетін идея: көлем бірлігінде бөлшек көп → соқтығысу жиілігі артады → тиімді соқтығысулар саны артады; энергиялар таралуы өзгермейді.", "Ожидаемая идея: больше частиц в единице объёма → чаще столкновения → больше эффективных столкновений; распределение энергий не меняется.", "Expected idea: more particles per unit volume → more frequent collisions → more effective collisions; the energy distribution is unchanged."] },
+        { id: "q5", level: "res", type: "choice", q: ["Осы тәжірибеден H⁺ бойынша реакция ретін анықтауға бола ма?", "Можно ли по этому опыту определить порядок реакции по H⁺?", "Can this experiment tell us the reaction order with respect to H⁺?"],
+          opts: [["Жоқ: қышқыл артық және оның концентрациясы өзгертілген жоқ", "Нет: кислота в избытке, и её концентрацию не меняли", "No: the acid is in excess and its concentration was not varied"], ["Иә, график соны көрсетеді", "Да, график это показывает", "Yes, the graph shows it"]], correct: 0,
+          explain: ["Деректер жеткіліксіз: H⁺ бойынша ретті табу үшін тек HCl концентрациясын өзгерту керек.", "Данных недостаточно: чтобы найти порядок по H⁺, нужно менять только концентрацию HCl.", "The data are insufficient: to find the order in H⁺ you must vary only the HCl concentration."] },
+        { id: "q6", level: "res", type: "open", q: ["Нақты тәжірибеде қандай өлшеу қателері болуы мүмкін және оларды қалай азайтуға болады?", "Какие ошибки измерения возможны в реальном опыте и как их уменьшить?", "What measurement errors could occur in a real experiment, and how could you reduce them?"],
+          explain: ["Мысалы: «көрінбей қалды» сәтін әр адам әртүрлі анықтайды, температура тұрақты емес, араластыру әртүрлі. Қайталау және бір бақылаушы көмектеседі.", "Например: момент «исчез» каждый определяет по-своему, температура непостоянна, перемешивание разное. Помогают повторы и один наблюдатель.", "For example: people judge “vanished” differently, temperature drifts, stirring varies. Repeats and a single observer help."] }
+      ],
+      conclusionHint: ["Тәжірибе нәтижесін, оны растайтын деректерді және түсіндірмесін жазыңыз.", "Запишите результат, подтверждающие его данные и объяснение.", "Write the result, the data that support it and the explanation."],
+      explain: ["<p>Концентрация артқанда көлем бірлігіндегі бөлшектер көбейеді, тиімді соқтығысулар жиілейді — күкірт тезірек жиналып, крест ертерек жоғалады. Бұл модельде 1000/t концентрацияға шамамен тура пропорционал (кіші концентрацияда ауытқуы ~3 %-ға дейін).</p>", "<p>С ростом концентрации в единице объёма больше частиц, эффективные столкновения чаще — сера накапливается быстрее, и крест исчезает раньше. В этой модели 1000/t почти прямо пропорционально концентрации (при малых C отклонение до ~3 %).</p>", "<p>A higher concentration puts more particles in each unit of volume, so effective collisions are more frequent: sulfur builds up faster and the cross disappears sooner. In this model 1000/t is almost directly proportional to concentration (up to ~3% off at low C).</p>"]
+    },
+    {
+      id: "k-temp", no: "L2", grade: 10, kind: "lab", level: "base", minutes: 25, minRuns: 3, mode: function () { return "cross"; },
+      title: ["Температураның реакция жылдамдығына әсері", "Влияние температуры на скорость реакции", "Effect of temperature on reaction rate"],
+      topic: ["Химиялық кинетика", "Химическая кинетика", "Chemical kinetics"],
+      goal: ["Температура реакция жылдамдығын қалай өзгертетінін анықтап, температуралық коэффициентті бағалау.", "Установить, как температура меняет скорость реакции, и оценить температурный коэффициент.", "Find out how temperature changes the reaction rate and estimate the temperature coefficient."],
+      theory: [THIO_THEORY[0] + "<p>Вант-Гофф ережесі: v₂/v₁ = γ^((t₂−t₁)/10). Температура артқанда энергиясы Eₐ-дан жоғары бөлшектер үлесі күрт өседі.</p>", THIO_THEORY[1] + "<p>Правило Вант-Гоффа: v₂/v₁ = γ^((t₂−t₁)/10). При нагревании резко растёт доля частиц с энергией выше Eₐ.</p>", THIO_THEORY[2] + "<p>Van 't Hoff's rule: v₂/v₁ = γ^((t₂−t₁)/10). Heating sharply increases the share of particles with energy above Eₐ.</p>"],
+      safety: THIO_SAFETY, model: THIO_MODEL,
+      equipment: [["Су моншасы (10–60 °C)", "Водяная баня (10–60 °C)", "Water bath (10–60 °C)"], ["Термометр", "Термометр", "Thermometer"], ["Na₂S₂O₃ ерітіндісі, 0,10 моль/л", "Раствор Na₂S₂O₃, 0,10 моль/л", "Na₂S₂O₃ solution, 0.10 mol/L"], ["HCl ерітіндісі (артық)", "Раствор HCl (в избытке)", "HCl solution (in excess)"], ["Секундомер", "Секундомер", "Stopwatch"]],
+      controls: [{ id: "T", type: "range", min: 10, max: 60, step: 5, value: 20, dec: 0, label: ["Температура", "Температура", "Temperature"], unit: ["°C", "°C", "°C"] }],
+      simulate: function (p) { return M.thiosulfate({ C: 0.1, T: p.T }); },
+      summary: function (p, r) { return { t: +r.t.toFixed(2), inv: +r.inv.toFixed(3), k: r.k }; },
+      columns: function () { return [L("t, °C", "t, °C", "t, °C"), L("уақыт, с", "время, с", "time, s"), "1000/t", L("k/k(20 °C)", "k/k(20 °C)", "k/k(20 °C)")]; },
+      row: function (p, r) { return [String(p.T), f(r.t, 1), f(r.inv, 2), f(r.k / M.THIO.k20, 2)]; },
+      metric: function (p, r) { return { label: ["Крест жоғалу уақыты", "Время исчезновения креста", "Time for the cross to vanish"], value: r.t, text: f(r.t, 1) + u(S) }; },
+      chart: { kind: "scatter", fit: false, title: ["1000/t — температура", "1000/t от температуры", "1000/t against temperature"], x: function (p) { return +p.T; }, y: function (p, r) { return r.inv; }, xLabel: ["t, °C", "t, °C", "t, °C"], yLabel: ["1000/t", "1000/t", "1000/t"] },
+      extra: function (p) {
+        var r = M.thiosulfate({ C: 0.1, T: p.T }), share = Math.exp(-M.THIO.Ea / M.R * (1 / (p.T + 273.15) - 1 / 293.15));
+        return "<h3>" + L("Энергиясы Eₐ-дан жоғары бөлшектер", "Частицы с энергией выше Eₐ", "Particles above Eₐ") + "</h3><p>" +
+          L("Таңдалған температурада олардың үлесі 20 °C-тағыдан ", "При выбранной температуре их доля в ", "At the chosen temperature their share is ") + "<b>" + fmt(share, 2) + "</b>" +
+          L(" есе көп (e^(−Eₐ/RT) бойынша). Бөлшектердің орташа жылдамдығы тек ", " раза больше, чем при 20 °C (по e^(−Eₐ/RT)). А средняя скорость частиц выросла лишь в ", " times larger than at 20 °C (from e^(−Eₐ/RT)). Yet the mean particle speed rose only ") +
+          "<b>" + fmt(Math.sqrt((p.T + 273.15) / 293.15), 3) + "</b>" + L(" есе өсті.", " раза.", " times.") + "</p>";
+      },
+      viewNote: ["Жарқылдар жиілігі есептелген жылдамдыққа пропорционал (сапалық көрнекілік).", "Частота вспышек пропорциональна рассчитанной скорости (качественная иллюстрация).", "The flash rate is proportional to the calculated rate (a qualitative illustration)."],
+      prediction: { q: ["Температураны 20-дан 30 °C-қа көтерсек, крест жоғалу уақыты қалай өзгереді?", "Как изменится время исчезновения креста при нагревании с 20 до 30 °C?", "How will the time for the cross to vanish change when heated from 20 to 30 °C?"],
+        opts: [["Шамамен 2 есе азаяды", "Уменьшится примерно в 2 раза", "It will fall about twofold"], ["Шамамен 1,5 % азаяды", "Уменьшится примерно на 1,5 %", "It will fall by about 1.5%"], ["Артады", "Увеличится", "It will increase"]], correct: 0 },
+      questions: [
+        { id: "q1", level: "base", type: "num", q: ["Ең суық және ең ыстық тәжірибелеріңіздегі уақыттар қатынасын табыңыз: t(суық)/t(ыстық).", "Найдите отношение времён в самом холодном и самом горячем опытах: t(холодн.)/t(горяч.).", "Find the ratio of times in your coldest and hottest runs: t(cold)/t(hot)."],
+          unit: ["есе", "раз", "×"], dec: 2, tol: 0.03, answer: function (st, sim) {
+            if (st.runs.length < 2) return null;
+            var a = st.runs.slice().sort(function (x, y) { return x.p.T - y.p.T; });
+            return sim(a[0].p).t / sim(a[a.length - 1].p).t;
+          }, explain: ["Уақыт жылдамдыққа кері пропорционал, сондықтан бұл сан жылдамдық неше есе өскенін көрсетеді.", "Время обратно пропорционально скорости, поэтому это число показывает, во сколько раз выросла скорость.", "Time is inversely proportional to rate, so this number shows how many times the rate increased."] },
+        { id: "q2", level: "base", type: "choice", q: ["Әр 10 °C-та жылдамдық шамамен неше есе өсті?", "Примерно во сколько раз растёт скорость на каждые 10 °C?", "Roughly how many times does the rate grow per 10 °C?"],
+          opts: [["≈ 2", "≈ 2", "≈ 2"], ["≈ 1,03", "≈ 1,03", "≈ 1.03"], ["≈ 10", "≈ 10", "≈ 10"]], correct: 0,
+          explain: ["Eₐ = 50 кДж/моль болғанда γ ≈ 2 — Вант-Гофф ережесіндегі 2–4 аралығына сәйкес.", "При Eₐ = 50 кДж/моль γ ≈ 2 — в пределах 2–4 из правила Вант-Гоффа.", "With Eₐ = 50 kJ/mol, γ ≈ 2 — within the 2–4 range of Van 't Hoff's rule."] },
+        { id: "q3", level: "adv", type: "choice", q: ["Неге 10 °C қыздыру бөлшектердің жылдамдығын небәрі ~1,7 %-ға арттырады, ал реакция ~2 есе тездейді?", "Почему нагрев на 10 °C увеличивает скорость частиц лишь на ~1,7 %, а реакция ускоряется ~в 2 раза?", "Why does heating by 10 °C raise particle speed by only ~1.7% while the reaction becomes ~2× faster?"],
+          opts: [["Eₐ-дан асатын бөлшектер үлесі экспоненциалды өседі", "Доля частиц с E > Eₐ растёт экспоненциально", "The share of particles above Eₐ grows exponentially"], ["Соқтығысу саны 2 есе артады", "Число столкновений растёт в 2 раза", "The number of collisions doubles"], ["Eₐ азаяды", "Eₐ уменьшается", "Eₐ decreases"]], correct: 0,
+          explain: ["Соқтығысу жиілігі аз өзгереді; негізгі әсер — e^(−Eₐ/RT) көбейткіші.", "Частота столкновений меняется мало; главный эффект — множитель e^(−Eₐ/RT).", "Collision frequency barely changes; the main effect is the factor e^(−Eₐ/RT)."] },
+        { id: "q4", level: "res", type: "choice", q: ["Оқушы 30 °C-та C = 0,05, ал 20 °C-та C = 0,10 моль/л алып, уақыттар бірдей шықты деп «температура әсер етпейді» деген қорытынды жасады. Дұрыс па?", "Ученик взял C = 0,05 при 30 °C и C = 0,10 моль/л при 20 °C, получил одинаковое время и сделал вывод «температура не влияет». Верно ли это?", "A student used C = 0.05 at 30 °C and C = 0.10 mol/L at 20 °C, got the same time and concluded “temperature has no effect”. Is that right?"],
+          opts: [["Жоқ: бір мезгілде екі фактор өзгерді, олардың әсері бір-бірін теңестірді", "Нет: менялись сразу два фактора, и их влияния компенсировали друг друга", "No: two factors changed at once and their effects cancelled out"], ["Иә, уақыттар бірдей", "Да, время одинаковое", "Yes, the times are equal"]], correct: 0,
+          explain: ["Деректер қарама-қайшы емес, тәжірибе дұрыс жоспарланбаған: бір фактордан басқаның бәрі тұрақты болуы керек.", "Данные не противоречивы — опыт неверно спланирован: все факторы, кроме одного, должны быть постоянны.", "The data aren't contradictory — the experiment was badly planned: everything except one factor must be held constant."] },
+        { id: "q5", level: "res", type: "open", q: ["Ферментпен жүретін реакцияда температураны 80 °C-қа көтерсе, Вант-Гофф ережесі орындала ма? Неге?", "Выполнится ли правило Вант-Гоффа для ферментативной реакции при нагреве до 80 °C? Почему?", "Would Van 't Hoff's rule hold for an enzyme reaction heated to 80 °C? Why?"],
+          explain: ["Жоқ: ақуыз денатурацияланып, фермент белсенділігін жоғалтады — ереженің қолданылу шегі бар.", "Нет: белок денатурирует, фермент теряет активность — у правила есть границы применимости.", "No: the protein denatures and the enzyme loses activity — the rule has limits of applicability."] }
+      ],
+      conclusionHint: ["Температура мен жылдамдық арасындағы тәуелділікті, γ мәнін және оның себебін жазыңыз.", "Запишите зависимость скорости от температуры, значение γ и причину.", "Write how rate depends on temperature, your value of γ and the reason."],
+      explain: ["<p>Қыздырғанда бөлшектердің орташа жылдамдығы аз өседі, бірақ энергиясы Eₐ-дан жоғары бөлшектер үлесі экспоненциалды артады. Сондықтан әр 10 °C-та жылдамдық шамамен екі есе артады.</p>", "<p>При нагревании средняя скорость частиц растёт мало, но доля частиц с энергией выше Eₐ увеличивается экспоненциально. Поэтому на каждые 10 °C скорость растёт примерно вдвое.</p>", "<p>Heating barely changes the average particle speed, but the share of particles above Eₐ rises exponentially. That is why the rate roughly doubles every 10 °C.</p>"]
+    },
+    {
+      id: "k-surface", no: "L3", grade: 10, kind: "lab", level: "adv", minutes: 30, minRuns: 2, mode: function () { return "chips"; },
+      title: ["Беттің ауданының реакция жылдамдығына әсері", "Влияние площади поверхности на скорость реакции", "Effect of surface area on reaction rate"],
+      topic: ["Химиялық кинетика · гетерогенді реакциялар", "Химическая кинетика · гетерогенные реакции", "Chemical kinetics · heterogeneous reactions"],
+      goal: ["Мәрмәр кесектері мен ұнтағының HCl-мен әрекеттесу жылдамдығын салыстырып, бет ауданының әсерін және масса сақталу заңын тексеру.", "Сравнить скорость реакции кусков и порошка мрамора с HCl, проверить влияние площади поверхности и закон сохранения массы.", "Compare how fast marble lumps and powder react with HCl, and check the effect of surface area and the law of conservation of mass."],
+      theory: ["<p>CaCO₃ + 2HCl → CaCl₂ + H₂O + CO₂↑. Реакция фазалар шекарасында жүреді: затты ұсақтағанда жанасу беті көбейеді. Ашық колбада CO₂ ұшып кетеді — таразы көрсеткіші азаяды; жабық колбада масса сақталады.</p>", "<p>CaCO₃ + 2HCl → CaCl₂ + H₂O + CO₂↑. Реакция идёт на границе фаз: при измельчении площадь контакта растёт. В открытой колбе CO₂ улетает — показания весов уменьшаются; в закрытой колбе масса сохраняется.</p>", "<p>CaCO₃ + 2HCl → CaCl₂ + H₂O + CO₂↑. The reaction takes place at the phase boundary, so grinding increases the contact area. In an open flask CO₂ escapes and the balance reading drops; in a sealed flask the mass stays constant.</p>"],
+      safety: ["<p>Виртуалды тәжірибе. Нақты жағдайда HCl — күйдіргіш; көзілдірік пен қолғап міндетті. Жабық ыдыста газ қысымы артады — оны тек мұғалім көрсетеді.</p>", "<p>Виртуальный опыт. В реальности HCl — едкое вещество; очки и перчатки обязательны. В закрытом сосуде растёт давление газа — такой опыт показывает только учитель.</p>", "<p>Virtual experiment. In reality HCl is corrosive; goggles and gloves are required. Gas pressure builds up in a sealed vessel, so only the teacher may demonstrate that version.</p>"],
+      model: { type: ["Есептік модель (оқу коэффициенттері)", "Расчётная модель (учебные коэффициенты)", "Computational model (teaching coefficients)"], notes: [
+        ["dn/dt = −k·S·[HCl]; бөлшектер шар тәрізді, біркелкі кішірейеді: S = S₀·(m/m₀)^(2/3).", "dn/dt = −k·S·[HCl]; частицы — шары, равномерно уменьшаются: S = S₀·(m/m₀)^(2/3).", "dn/dt = −k·S·[HCl]; particles are spheres that shrink evenly: S = S₀·(m/m₀)^(2/3)."],
+        ["Бөлшек радиусы: кесек 4 мм, түйіршік 1 мм, ұнтақ 0,05 мм; кальциттің тығыздығы 2,71 г/см³.", "Радиус частиц: кусок 4 мм, гранула 1 мм, порошок 0,05 мм; плотность кальцита 2,71 г/см³.", "Particle radius: lump 4 mm, granule 1 mm, powder 0.05 mm; calcite density 2.71 g/cm³."],
+        ["Стехиометрия мен масса сақталуы дәл есептеледі; k — оқу коэффициенті. HCl көлемі 50 мл, 20 °C.", "Стехиометрия и сохранение массы рассчитываются точно; k — учебный коэффициент. Объём HCl 50 мл, 20 °C.", "Stoichiometry and mass conservation are exact; k is a teaching coefficient. HCl volume 50 mL, 20 °C."],
+        ["Модельдеу 30 минутпен шектелген.", "Моделирование ограничено 30 минутами.", "The simulation is limited to 30 minutes."]] },
+      equipment: [["Колба, 250 мл", "Колба, 250 мл", "Flask, 250 mL"], ["Электрондық таразы", "Электронные весы", "Electronic balance"], ["Мәрмәр (CaCO₃): кесек, түйіршік, ұнтақ", "Мрамор (CaCO₃): куски, гранулы, порошок", "Marble (CaCO₃): lumps, granules, powder"], ["HCl ерітіндісі, 50 мл", "Раствор HCl, 50 мл", "HCl solution, 50 mL"], ["Тығын (жабық колба үшін)", "Пробка (для закрытой колбы)", "Stopper (for the sealed flask)"]],
+      controls: [
+        { id: "size", type: "select", value: "chunk", label: ["CaCO₃ түрі", "Форма CaCO₃", "Form of CaCO₃"], options: [{ v: "chunk", t: ["Кесектер (4 мм)", "Куски (4 мм)", "Lumps (4 mm)"] }, { v: "grain", t: ["Түйіршіктер (1 мм)", "Гранулы (1 мм)", "Granules (1 mm)"] }, { v: "powder", t: ["Ұнтақ (0,05 мм)", "Порошок (0,05 мм)", "Powder (0.05 mm)"] }] },
+        { id: "m0", type: "range", min: 0.5, max: 2, step: 0.5, value: 1, dec: 1, label: ["CaCO₃ массасы", "Масса CaCO₃", "Mass of CaCO₃"], unit: G },
+        { id: "C", type: "range", min: 0.5, max: 2, step: 0.5, value: 1, dec: 1, label: ["HCl концентрациясы", "Концентрация HCl", "HCl concentration"], unit: MOL },
+        { id: "closed", type: "check", value: false, label: ["Колба жабық (тығынмен)", "Колба закрыта (пробкой)", "Flask sealed (stopper)"] }
+      ],
+      simulate: function (p) { return M.marble(p); },
+      summary: function (p, r) { return { mCO2: +r.mCO2.toFixed(4), t90: r.t90, complete: r.complete, limiting: r.limiting, massEnd: +r.massEnd.toFixed(2) }; },
+      columns: function () { return [L("CaCO₃ түрі", "Форма CaCO₃", "CaCO₃ form"), L("m(CaCO₃), г", "m(CaCO₃), г", "m(CaCO₃), g"), L("C(HCl), моль/л", "C(HCl), моль/л", "C(HCl), mol/L"), L("Колба", "Колба", "Flask"), L("m(CO₂), г", "m(CO₂), г", "m(CO₂), g"), L("t₉₀, с", "t₉₀, с", "t₉₀, s"), L("Шектеуші зат", "Лимитирующий реагент", "Limiting reagent")]; },
+      row: function (p, r) {
+        var sz = { chunk: ["кесек", "куски", "lumps"], grain: ["түйіршік", "гранулы", "granules"], powder: ["ұнтақ", "порошок", "powder"] }[p.size];
+        var lim = r.limiting === "CaCO3" ? "CaCO₃" : r.limiting === "HCl" ? "HCl" : L("30 мин ішінде аяқталмады", "не завершилась за 30 мин", "not finished in 30 min");
+        return [u(sz), f(+p.m0, 1), f(+p.C, 1), p.closed ? L("жабық", "закрыта", "sealed") : L("ашық", "открыта", "open"), f(r.mCO2, 3), r.t90 == null || !r.complete ? "> 1800" : f(r.t90, 0), lim];
+      },
+      metric: function (p, r) { return { label: ["90 % CO₂ бөліну уақыты", "Время выделения 90 % CO₂", "Time to release 90% of the CO₂"], value: r.complete ? r.t90 : Infinity, text: r.complete ? f(r.t90, 0) + u(S) : "> 1800" + u(S) }; },
+      chart: { kind: "curves", title: ["Бөлінген CO₂ массасы — уақыт", "Масса выделившегося CO₂ — время", "Mass of CO₂ released vs time"], y: function (p, r, t) { return r.lost(t); }, xLabel: ["t, с", "t, с", "t, s"], yLabel: ["m(CO₂), г", "m(CO₂), г", "m(CO₂), g"] },
+      viewNote: ["Таразы колбаның, мәрмәрдің және қышқылдың жалпы массасын көрсетеді.", "Весы показывают общую массу колбы, мрамора и кислоты.", "The balance shows the total mass of flask, marble and acid."],
+      prediction: { q: ["Бірдей массадағы мәрмәр ұнтағы мен кесектерінің қайсысы HCl-мен тезірек әрекеттеседі?", "Что быстрее прореагирует с HCl при одинаковой массе: порошок или куски мрамора?", "For the same mass, which reacts faster with HCl: marble powder or lumps?"],
+        opts: [["Ұнтақ", "Порошок", "Powder"], ["Кесектер", "Куски", "Lumps"], ["Бірдей", "Одинаково", "The same"]], correct: 0 },
+      questions: [
+        { id: "q1", level: "base", type: "num", q: ["1-тәжірибе: теңдеу бойынша бөлінетін CO₂-нің ең көп массасын есептеңіз.", "Опыт 1: рассчитайте по уравнению максимальную массу CO₂.", "Run 1: use the equation to calculate the maximum mass of CO₂."],
+          unit: ["г", "г", "g"], dec: 3, tol: 0.02, answer: function (st) {
+            var r = st.runs[0]; if (!r) return null;
+            return Math.min(r.p.m0 / M.MARBLE.M, r.p.C * M.MARBLE.Vacid / 1000 / 2) * M.MARBLE.MCO2;
+          }, explain: ["n(CaCO₃) = m/100,09; n(HCl) = C·0,05 л; HCl екі есе көп жұмсалады. Шектеуші зат бойынша n(CO₂) × 44,01.", "n(CaCO₃) = m/100,09; n(HCl) = C·0,05 л; HCl расходуется вдвое больше. По лимитирующему реагенту n(CO₂) × 44,01.", "n(CaCO₃) = m/100.09; n(HCl) = C·0.05 L; twice as much HCl is used. From the limiting reagent, n(CO₂) × 44.01."] },
+        { id: "q2", level: "base", type: "choice", q: ["Жабық колбада таразы көрсеткіші неге өзгермейді?", "Почему в закрытой колбе показания весов не меняются?", "Why does the balance reading stay the same with a sealed flask?"],
+          opts: [["Масса сақталу заңы: CO₂ ыдыстан шықпайды", "Закон сохранения массы: CO₂ не покидает сосуд", "Conservation of mass: the CO₂ cannot leave"], ["Реакция жүрмейді", "Реакция не идёт", "No reaction takes place"], ["CO₂-нің массасы жоқ", "У CO₂ нет массы", "CO₂ has no mass"]], correct: 0,
+          explain: ["Жабық жүйеде реакцияға дейінгі және кейінгі масса тең.", "В закрытой системе масса до и после реакции одинакова.", "In a closed system the mass before and after the reaction is the same."] },
+        { id: "q3", level: "adv", type: "choice", q: ["Ұнтақ кесектерге қарағанда неге тезірек әрекеттеседі?", "Почему порошок реагирует быстрее кусков?", "Why does powder react faster than lumps?"],
+          opts: [["Жанасу беті үлкен, бір уақытта көп бөлшек соқтығысады", "Больше поверхность контакта — одновременно сталкивается больше частиц", "Larger contact surface, so more particles collide at once"], ["Ұнтақтың химиялық құрамы басқа", "У порошка другой состав", "The powder has a different composition"], ["Ұнтақ Eₐ-ны төмендетеді", "Порошок снижает Eₐ", "Powder lowers Eₐ"]], correct: 0,
+          explain: ["Бірдей массада r 80 есе кіші болса, бет ауданы 80 есе үлкен.", "При той же массе и радиусе в 80 раз меньше площадь в 80 раз больше.", "For the same mass, a radius 80 times smaller gives 80 times more surface."] },
+        { id: "q4", level: "res", type: "choice", q: ["2 г CaCO₃ және 0,5 моль/л HCl алғанда мәрмәрдің бір бөлігі әрекеттеспей қалды. Неге?", "При 2 г CaCO₃ и 0,5 моль/л HCl часть мрамора осталась. Почему?", "With 2 g CaCO₃ and 0.5 mol/L HCl, some marble was left over. Why?"],
+          opts: [["HCl жетпеді — ол шектеуші зат", "Не хватило HCl — она лимитирующий реагент", "There was not enough HCl — it is the limiting reagent"], ["Реакция тым баяу", "Реакция слишком медленная", "The reaction is too slow"], ["Мәрмәр еріп кетпейді", "Мрамор не растворяется", "Marble does not dissolve"]], correct: 0,
+          explain: ["n(HCl) = 0,025 моль тек 0,0125 моль (1,25 г) CaCO₃-пен әрекеттеседі.", "n(HCl) = 0,025 моль реагирует лишь с 0,0125 моль (1,25 г) CaCO₃.", "n(HCl) = 0.025 mol reacts with only 0.0125 mol (1.25 g) of CaCO₃."] },
+        { id: "q5", level: "res", type: "open", q: ["Неге көмір шаңы немесе ұн жарылуы мүмкін? Осы тәжірибемен байланыстырыңыз.", "Почему угольная пыль или мука могут взрываться? Свяжите с этим опытом.", "Why can coal dust or flour explode? Link it to this experiment."],
+          explain: ["Ұсақ бөлшектердің бет ауданы өте үлкен — тотығу бір сәтте жүріп, жылу мен газ күрт бөлінеді.", "У мелких частиц огромная площадь поверхности — окисление идёт почти мгновенно с резким выделением тепла и газа.", "Fine particles have a huge surface area, so oxidation is almost instant and releases heat and gas suddenly."] }
+      ],
+      conclusionHint: ["Бет ауданының әсері және масса сақталуы туралы деректерге сүйеніп қорытынды жазыңыз.", "Сделайте вывод о влиянии площади поверхности и о сохранении массы, опираясь на данные.", "Write a data-based conclusion about the effect of surface area and conservation of mass."],
+      explain: ["<p>Гетерогенді реакция тек бетте жүреді: ұнтақтың беті кесектерден ондаған есе үлкен, сондықтан CO₂ тез бөлінеді. Бөлінетін CO₂ мөлшері бет ауданына емес, шектеуші затқа тәуелді.</p>", "<p>Гетерогенная реакция идёт только на поверхности: у порошка она в десятки раз больше, чем у кусков, поэтому CO₂ выделяется быстро. Количество CO₂ зависит не от площади, а от лимитирующего реагента.</p>", "<p>A heterogeneous reaction happens only at the surface. Powder has tens of times more surface than lumps, so CO₂ comes off quickly. How much CO₂ forms depends on the limiting reagent, not on the surface area.</p>"]
+    },
+    {
+      id: "k-cat", no: "L4", grade: 10, kind: "lab", level: "base", minutes: 25, minRuns: 2, mode: function () { return "gas"; },
+      title: ["Катализатордың реакция жылдамдығына әсері", "Влияние катализатора на скорость реакции", "Effect of a catalyst on reaction rate"],
+      topic: ["Химиялық кинетика · катализ", "Химическая кинетика · катализ", "Chemical kinetics · catalysis"],
+      goal: ["H₂O₂ ыдырауының жылдамдығын катализаторсыз, MnO₂-мен және каталаза ферментімен салыстыру.", "Сравнить скорость разложения H₂O₂ без катализатора, с MnO₂ и с ферментом каталазой.", "Compare how fast H₂O₂ decomposes without a catalyst, with MnO₂ and with the enzyme catalase."],
+      theory: ["<p>2H₂O₂ → 2H₂O + O₂↑, ΔH = −98 кДж/моль H₂O₂. Катализатор активтендіру энергиясы төмен жаңа жол ашады, бірақ ΔH-ты өзгертпейді және реакция соңында өзгеріссіз қалады. Бөлінген O₂ көлемі газ шприцімен өлшенеді.</p>", "<p>2H₂O₂ → 2H₂O + O₂↑, ΔH = −98 кДж/моль H₂O₂. Катализатор открывает путь с меньшей энергией активации, не меняет ΔH и в конце реакции остаётся неизменным. Объём выделившегося O₂ измеряют газовым шприцем.</p>", "<p>2H₂O₂ → 2H₂O + O₂↑, ΔH = −98 kJ per mol of H₂O₂. A catalyst opens a pathway with lower activation energy, leaves ΔH unchanged and is itself unchanged at the end. The volume of O₂ released is measured with a gas syringe.</p>"],
+      safety: ["<p>Виртуалды тәжірибе. 3 % H₂O₂ терімен жанасқанда ағартады; концентрлі H₂O₂ қауіпті. Көзілдірік міндетті.</p>", "<p>Виртуальный опыт. 3 % H₂O₂ отбеливает кожу при контакте; концентрированный H₂O₂ опасен. Очки обязательны.</p>", "<p>Virtual experiment. 3% H₂O₂ bleaches skin on contact; concentrated H₂O₂ is dangerous. Goggles are required.</p>"],
+      model: { type: ["Есептік модель (оқу коэффициенттері)", "Расчётная модель (учебные коэффициенты)", "Computational model (teaching coefficients)"], notes: [
+        ["H₂O₂ бойынша 1-рет: C = C₀·e^(−kt). 10 мл ерітінді, 20 °C, 1 атм; Vₘ = 24,05 л/моль.", "1-й порядок по H₂O₂: C = C₀·e^(−kt). 10 мл раствора, 20 °C, 1 атм; Vₘ = 24,05 л/моль.", "First order in H₂O₂: C = C₀·e^(−kt). 10 mL of solution, 20 °C, 1 atm; Vₘ = 24.05 L/mol."],
+        ["k мәндері — оқу мәндері (катализаторсыз 2·10⁻⁷, MnO₂ 0,012, каталаза 0,04 с⁻¹). Нақты k катализатор мөлшеріне де тәуелді.", "Значения k — учебные (без катализатора 2·10⁻⁷, MnO₂ 0,012, каталаза 0,04 с⁻¹). Реальная k зависит и от количества катализатора.", "The k values are teaching values (none 2·10⁻⁷, MnO₂ 0.012, catalase 0.04 s⁻¹). Real k also depends on the amount of catalyst."],
+        ["Энергетикалық профильдегі Eₐ — жуық әдеби мәндер: 75 / 58 / 23 кДж/моль.", "Eₐ на энергетическом профиле — приблизительные литературные значения: 75 / 58 / 23 кДж/моль.", "The Eₐ values on the energy profile are approximate literature values: 75 / 58 / 23 kJ/mol."]] },
+      equipment: [["Колба", "Колба", "Flask"], ["Газ шприцы, 120 мл", "Газовый шприц, 120 мл", "Gas syringe, 120 mL"], ["H₂O₂ ерітіндісі, 10 мл", "Раствор H₂O₂, 10 мл", "H₂O₂ solution, 10 mL"], ["MnO₂ ұнтағы", "Порошок MnO₂", "MnO₂ powder"], ["Шикі картоп тілімі (каталаза)", "Ломтик сырого картофеля (каталаза)", "Slice of raw potato (catalase)"]],
+      controls: [
+        { id: "cat", type: "select", value: "none", label: ["Катализатор", "Катализатор", "Catalyst"], options: [{ v: "none", t: ["Жоқ", "Нет", "None"] }, { v: "mno2", t: ["MnO₂", "MnO₂", "MnO₂"] }, { v: "catalase", t: ["Каталаза (картоп)", "Каталаза (картофель)", "Catalase (potato)"] }] },
+        { id: "C0", type: "range", min: 0.3, max: 1.5, step: 0.1, value: 0.9, dec: 1, label: ["H₂O₂ концентрациясы", "Концентрация H₂O₂", "H₂O₂ concentration"], unit: MOL }
+      ],
+      simulate: function (p) { return M.peroxide(p); },
+      summary: function (p, r) { return { V60: +r.V60.toFixed(2), Vmax: +r.Vmax.toFixed(1), half: isFinite(r.half) ? +r.half.toFixed(1) : null }; },
+      columns: function () { return [L("Катализатор", "Катализатор", "Catalyst"), L("C(H₂O₂), моль/л", "C(H₂O₂), моль/л", "C(H₂O₂), mol/L"), L("V(O₂) 60 с-та, мл", "V(O₂) за 60 с, мл", "V(O₂) at 60 s, mL"), L("t½, с", "t½, с", "t½, s")]; },
+      row: function (p, r) {
+        var c = { none: ["жоқ", "нет", "none"], mno2: ["MnO₂", "MnO₂", "MnO₂"], catalase: ["каталаза", "каталаза", "catalase"] }[p.cat];
+        return [u(c), f(+p.C0, 1), f(r.V60, 1), r.half > 1e5 ? "> 10⁵" : f(r.half, 1)];
+      },
+      metric: function (p, r) { return { label: ["60 с ішінде бөлінген O₂", "O₂ за 60 с", "O₂ released in 60 s"], value: r.V60, text: f(r.V60, 1) + u(ML) }; },
+      chart: { kind: "curves", title: ["O₂ көлемі — уақыт", "Объём O₂ — время", "O₂ volume vs time"], y: function (p, r, t) { return r.V(t); }, xLabel: ["t, с", "t, с", "t, s"], yLabel: ["V(O₂), мл", "V(O₂), мл", "V(O₂), mL"] },
+      extra: function (p) {
+        var Ea = M.H2O2.Ea, cur = Ea[p.cat], dH = 98, X0 = 40, X1 = 420, Y0 = 200, s = 1.4;
+        function y(e) { return Y0 - 60 - e * s; }
+        function path(e) { return "M" + X0 + " " + y(0) + " L110 " + y(0) + " C170 " + y(0) + " 190 " + y(e) + " 230 " + y(e) + " C270 " + y(e) + " 290 " + y(-dH) + " 350 " + y(-dH) + " L" + X1 + " " + y(-dH); }
+        var g = '<h3>' + L("Энергетикалық профиль", "Энергетический профиль", "Energy profile") + '</h3><div class="chart"><svg viewBox="0 0 460 230" role="img" aria-label="' + L("Энергетикалық профиль", "Энергетический профиль", "Energy profile") + '">';
+        ["none", "mno2", "catalase"].forEach(function (k) {
+          var on = k === p.cat;
+          g += '<path d="' + path(Ea[k]) + '" fill="none" stroke="' + (on ? "var(--accent)" : "var(--border)") + '" stroke-width="' + (on ? 3.5 : 2) + '"' + (on ? "" : ' stroke-dasharray="5 5"') + "/>";
+        });
+        g += '<line x1="230" x2="230" y1="' + y(0) + '" y2="' + y(cur) + '" stroke="var(--c-ab)" stroke-width="2"/>';
+        g += '<text x="238" y="' + ((y(0) + y(cur)) / 2) + '" class="ax-t" style="fill:var(--c-ab)">Eₐ ≈ ' + cur + L(" кДж/моль", " кДж/моль", " kJ/mol") + "</text>";
+        g += '<line x1="390" x2="390" y1="' + y(0) + '" y2="' + y(-dH) + '" stroke="var(--ok)" stroke-width="2"/><text x="396" y="' + ((y(0) + y(-dH)) / 2) + '" class="ax-t" style="fill:var(--ok)">ΔH = −98</text>';
+        g += '<text x="' + X0 + '" y="' + (y(0) - 8) + '" class="ax">H₂O₂</text><text x="' + X1 + '" y="' + (y(-dH) - 8) + '" class="ax" text-anchor="end">H₂O + ½O₂</text></svg></div>';
+        return g + '<p class="muted small">' + L("Үзік сызықтар — басқа жолдар. ΔH барлық жағдайда бірдей.", "Пунктир — другие пути. ΔH во всех случаях одинаков.", "Dashed lines show the other pathways. ΔH is the same in every case.") + "</p>";
+      },
+      viewNote: ["Көпіршіктер саны есептелген жылдамдыққа пропорционал.", "Число пузырьков пропорционально рассчитанной скорости.", "The number of bubbles is proportional to the calculated rate."],
+      prediction: { q: ["MnO₂ қосқанда 60 секундта бөлінетін O₂ көлемі және ең соңындағы O₂ көлемі қалай өзгереді?", "Как изменятся объём O₂ за 60 секунд и итоговый объём O₂ при добавлении MnO₂?", "How will the O₂ volume after 60 s and the final O₂ volume change when MnO₂ is added?"],
+        opts: [["60 с-тағы көлем артады, соңғы көлем өзгермейді", "Объём за 60 с вырастет, итоговый не изменится", "The 60 s volume rises; the final volume is unchanged"], ["Екеуі де артады", "Оба вырастут", "Both rise"], ["Ештеңе өзгермейді", "Ничего не изменится", "Nothing changes"]], correct: 0 },
+      questions: [
+        { id: "q1", level: "base", type: "num", q: ["1-тәжірибе: H₂O₂ толық ыдырағанда бөлінетін O₂ көлемін есептеңіз (10 мл ерітінді, Vₘ = 24,05 л/моль).", "Опыт 1: рассчитайте объём O₂ при полном разложении H₂O₂ (10 мл раствора, Vₘ = 24,05 л/моль).", "Run 1: calculate the O₂ volume for complete decomposition of the H₂O₂ (10 mL of solution, Vₘ = 24.05 L/mol)."],
+          unit: ["мл", "мл", "mL"], dec: 1, tol: 0.02, answer: function (st) { var r = st.runs[0]; return r ? r.p.C0 * 0.01 / 2 * M.VM20 * 1000 : null; },
+          explain: ["n(H₂O₂) = C·V; n(O₂) = n(H₂O₂)/2; V = n·Vₘ.", "n(H₂O₂) = C·V; n(O₂) = n(H₂O₂)/2; V = n·Vₘ.", "n(H₂O₂) = C·V; n(O₂) = n(H₂O₂)/2; V = n·Vₘ."] },
+        { id: "q2", level: "base", type: "choice", q: ["Реакциядан кейін MnO₂ массасы қалай өзгереді?", "Как изменится масса MnO₂ после реакции?", "How does the mass of MnO₂ change after the reaction?"],
+          opts: [["Өзгермейді", "Не изменится", "It does not change"], ["Азаяды", "Уменьшится", "It decreases"], ["Артады", "Увеличится", "It increases"]], correct: 0,
+          explain: ["Катализатор реакцияда жұмсалмайды.", "Катализатор в реакции не расходуется.", "A catalyst is not used up in the reaction."] },
+        { id: "q3", level: "adv", type: "choice", q: ["Катализатор ΔH-ты өзгерте ме?", "Меняет ли катализатор ΔH?", "Does a catalyst change ΔH?"],
+          opts: [["Жоқ — тек Eₐ-ны төмендетеді", "Нет — только снижает Eₐ", "No — it only lowers Eₐ"], ["Иә, ΔH азаяды", "Да, ΔH уменьшается", "Yes, ΔH decreases"]], correct: 0,
+          explain: ["ΔH бастапқы және соңғы күйлерге ғана тәуелді.", "ΔH зависит только от начального и конечного состояний.", "ΔH depends only on the initial and final states."] },
+        { id: "q4", level: "res", type: "choice", q: ["Картопты қайнатып, содан кейін H₂O₂-ге салса не болады?", "Что будет, если картофель сначала сварить, а потом положить в H₂O₂?", "What happens if the potato is boiled first and then put into the H₂O₂?"],
+          opts: [["Ыдырау баяулайды: фермент денатурацияланған", "Разложение замедлится: фермент денатурирован", "Decomposition slows down: the enzyme is denatured"], ["Одан да тездейді", "Ускорится ещё сильнее", "It speeds up even more"], ["Ештеңе өзгермейді", "Ничего не изменится", "Nothing changes"]], correct: 0,
+          explain: ["Каталаза — ақуыз; қыздырғанда оның құрылымы бұзылады. Бұл модельде есептелмейді — бұл тұжырым теорияға сүйенеді.", "Каталаза — белок; при нагревании её структура разрушается. В этой модели это не рассчитывается — вывод опирается на теорию.", "Catalase is a protein; heating destroys its structure. This model does not calculate that — the conclusion rests on theory."] },
+        { id: "q5", level: "res", type: "open", q: ["Нақты катализаторлардың тиімділігін әділ салыстыру үшін қандай шарттарды бірдей ұстау керек?", "Какие условия нужно сохранить одинаковыми, чтобы честно сравнить эффективность катализаторов?", "Which conditions must be kept the same to compare catalysts fairly?"],
+          explain: ["H₂O₂ концентрациясы мен көлемі, температура, катализатордың массасы мен бет ауданы, өлшеу уақыты.", "Концентрация и объём H₂O₂, температура, масса и площадь поверхности катализатора, время измерения.", "H₂O₂ concentration and volume, temperature, catalyst mass and surface area, measurement time."] }
+      ],
+      conclusionHint: ["Катализатор жылдамдыққа және өнімнің соңғы мөлшеріне қалай әсер ететінін деректермен жазыңыз.", "Опишите с данными, как катализатор влияет на скорость и на итоговое количество продукта.", "Describe, with data, how the catalyst affects the rate and the final amount of product."],
+      explain: ["<p>Катализатор Eₐ-сы төмен жол ұсынады, сондықтан O₂ әлдеқайда тез бөлінеді. Соңғы O₂ көлемі тек H₂O₂ мөлшеріне тәуелді — катализатор тепе-теңдікті де, ΔH-ты да өзгертпейді.</p>", "<p>Катализатор даёт путь с меньшей Eₐ, поэтому O₂ выделяется гораздо быстрее. Итоговый объём O₂ зависит только от количества H₂O₂ — катализатор не меняет ни равновесие, ни ΔH.</p>", "<p>The catalyst offers a lower-Eₐ pathway, so O₂ comes off much faster. The final O₂ volume depends only on the amount of H₂O₂ — the catalyst changes neither the equilibrium nor ΔH.</p>"]
+    },
+    {
+      id: "k-data", no: "L5", grade: 10, kind: "data", level: "adv", minutes: 20, minRuns: 0, mode: function () { return "gas"; },
+      title: ["Тәжірибе деректері бойынша жылдамдықты анықтау", "Определение скорости реакции по экспериментальным данным", "Finding the reaction rate from experimental data"],
+      topic: ["Химиялық кинетика · деректерді өңдеу", "Химическая кинетика · обработка данных", "Chemical kinetics · data processing"],
+      goal: ["«Концентрация — уақыт» кестесі бойынша орташа жылдамдықты есептеп, оның өзгерісін түсіндіру.", "По таблице «концентрация — время» вычислить средние скорости и объяснить их изменение.", "Calculate average rates from a concentration–time table and explain how they change."],
+      theory: ["<p>Орташа жылдамдық v = −ΔC/Δt = (C₁ − C₂)/(t₂ − t₁). Бастапқы зат жұмсалған сайын жылдамдық азаяды. 1-ретті реакцияда ln C уақытқа сызықты тәуелді.</p>", "<p>Средняя скорость v = −ΔC/Δt = (C₁ − C₂)/(t₂ − t₁). По мере расходования исходного вещества скорость уменьшается. Для реакции 1 порядка ln C линейно зависит от времени.</p>", "<p>Average rate v = −ΔC/Δt = (C₁ − C₂)/(t₂ − t₁). As the reactant is used up, the rate falls. For a first-order reaction, ln C depends linearly on time.</p>"],
+      safety: ["<p>Бұл жұмыс тек деректермен жүреді.</p>", "<p>Работа выполняется только с данными.</p>", "<p>This task uses data only.</p>"],
+      model: { type: ["Есептік модель бойынша жасалған деректер", "Данные, рассчитанные по модели", "Data generated from a model"], notes: [
+        ["Деректер H₂O₂ ыдырауының 1-ретті моделі бойынша есептелген (C₀ және k әр нұсқада әртүрлі), 3 таңбаға дейін дөңгелектелген. Бұл нақты өлшеу емес.", "Данные рассчитаны по модели 1 порядка для разложения H₂O₂ (C₀ и k в каждом варианте свои), округлены до 3 знаков. Это не реальные измерения.", "The data are calculated from a first-order model of H₂O₂ decomposition (C₀ and k differ per version) and rounded to 3 decimals. They are not real measurements."]] },
+      equipment: [["Деректер кестесі", "Таблица данных", "Data table"], ["Калькулятор", "Калькулятор", "Calculator"]],
+      controls: [], simulate: function () { return { ok: false }; },
+      dataNote: ["Әр аралық үшін орташа жылдамдықты есептеңіз (үтір де, нүкте де болады). «Жаңа деректер» басқа нұсқа береді.", "Вычислите среднюю скорость для каждого интервала (можно с запятой или точкой). «Новые данные» дадут другой вариант.", "Calculate the average rate for each interval (comma or dot both work). “New data” gives another version."],
+      prediction: { q: ["Уақыт өткен сайын орташа жылдамдық қалай өзгереді деп ойлайсыз?", "Как, по-вашему, будет меняться средняя скорость со временем?", "How do you expect the average rate to change over time?"],
+        opts: [["Азаяды", "Уменьшаться", "It will decrease"], ["Тұрақты болады", "Оставаться постоянной", "It will stay constant"], ["Артады", "Увеличиваться", "It will increase"]], correct: 0 },
+      questions: [
+        { id: "q1", level: "base", type: "choice", q: ["Орташа жылдамдық неге азаяды?", "Почему средняя скорость уменьшается?", "Why does the average rate fall?"],
+          opts: [["H₂O₂ концентрациясы азаяды", "Уменьшается концентрация H₂O₂", "The H₂O₂ concentration decreases"], ["Температура төмендейді", "Падает температура", "The temperature drops"], ["Катализатор жұмсалады", "Расходуется катализатор", "The catalyst is used up"]], correct: 0,
+          explain: ["Жылдамдық бастапқы зат концентрациясына тәуелді.", "Скорость зависит от концентрации исходного вещества.", "The rate depends on the reactant concentration."] },
+        { id: "q2", level: "adv", type: "num", q: ["Алғашқы аралық бойынша k = ln(C₀/C₁)/Δt мәнін есептеңіз.", "По первому интервалу вычислите k = ln(C₀/C₁)/Δt.", "From the first interval, calculate k = ln(C₀/C₁)/Δt."],
+          unit: ["с⁻¹", "с⁻¹", "s⁻¹"], dec: 4, tol: 0.05, answer: function (st) { var D = NCLabModels.dataset(st.dataSeed); return Math.log(D.rows[0][1] / D.rows[1][1]) / (D.rows[1][0] - D.rows[0][0]); },
+          explain: ["1-ретті реакцияда C = C₀·e^(−kt), сондықтан k = ln(C₀/C)/t.", "Для 1 порядка C = C₀·e^(−kt), поэтому k = ln(C₀/C)/t.", "For first order C = C₀·e^(−kt), so k = ln(C₀/C)/t."] },
+        { id: "q3", level: "adv", type: "choice", q: ["Реакция 1-ретті екенін қалай тексеруге болады?", "Как проверить, что реакция первого порядка?", "How can you check that the reaction is first order?"],
+          opts: [["ln C — t графигі түзу болуы керек", "График ln C от t должен быть прямой", "A graph of ln C against t should be a straight line"], ["C — t графигі түзу болуы керек", "График C от t должен быть прямой", "A graph of C against t should be a straight line"], ["Жылдамдық тұрақты болуы керек", "Скорость должна быть постоянной", "The rate should be constant"]], correct: 0,
+          explain: ["C — t түзуі 0-ретке, ln C — t түзуі 1-ретке тән.", "Прямая C от t — признак 0 порядка, прямая ln C от t — 1 порядка.", "A straight C–t line points to zero order; a straight ln C–t line points to first order."] },
+        { id: "q4", level: "res", type: "choice", q: ["Осы кестеден активтендіру энергиясын табуға бола ма?", "Можно ли по этой таблице найти энергию активации?", "Can you find the activation energy from this table?"],
+          opts: [["Жоқ: деректер бір температурада алынған", "Нет: данные получены при одной температуре", "No: the data were taken at a single temperature"], ["Иә, k арқылы", "Да, через k", "Yes, via k"]], correct: 0,
+          explain: ["Eₐ үшін кемінде екі температурадағы k керек (Аррениус теңдеуі).", "Для Eₐ нужна k хотя бы при двух температурах (уравнение Аррениуса).", "Eₐ needs k at two or more temperatures (Arrhenius equation)."] },
+        { id: "q5", level: "res", type: "open", q: ["Есептеулеріңіздің дұрыстығын қалай тексересіз?", "Как вы проверите правильность своих расчётов?", "How would you check that your calculations are right?"],
+          explain: ["Мысалы: бірліктерді тексеру, жылдамдық уақыт өте азаюы керек, k әр аралықта шамамен бірдей шығуы керек.", "Например: проверить единицы; скорость должна уменьшаться со временем; k на разных интервалах должна получаться примерно одинаковой.", "For example: check the units; the rate should fall over time; k should come out about the same on every interval."] }
+      ],
+      conclusionHint: ["Жылдамдық қалай өзгергенін, неге солай болатынын және реакция реті туралы не айтуға болатынын жазыңыз.", "Напишите, как менялась скорость, почему, и что можно сказать о порядке реакции.", "Write how the rate changed, why, and what you can say about the reaction order."],
+      explain: ["<p>Бастапқы зат жұмсалған сайын концентрация, демек жылдамдық та азаяды. 1-ретті реакцияда k тұрақты, ал әр бірдей уақыт аралығында концентрация бірдей есе кемиді.</p>", "<p>По мере расходования вещества концентрация, а значит и скорость, уменьшается. Для 1 порядка k постоянна, а за равные промежутки концентрация убывает в одно и то же число раз.</p>", "<p>As the reactant is used up, its concentration — and therefore the rate — falls. In a first-order reaction k is constant and the concentration drops by the same factor in equal time intervals.</p>"],
+      viewNote: ["", "", ""]
+    },
+    {
+      id: "k-research", no: "L6", grade: 10, kind: "research", level: "res", minutes: 40, minRuns: 4, mode: function (p) { return p.sys === "thio" ? "cross" : p.sys === "h2o2" ? "gas" : "chips"; },
+      title: ["Жылдамдық факторларын кешенді зерттеу", "Комплексное исследование факторов скорости реакции", "Investigating the factors that affect reaction rate"],
+      topic: ["Химиялық кинетика · зерттеу", "Химическая кинетика · исследование", "Chemical kinetics · investigation"],
+      goal: ["Реакциялық жүйе мен факторды өзіңіз таңдап, тәжірибелер сериясын жоспарлау, нәтижелерді салыстыру және дәлелді қорытынды жасау.", "Самостоятельно выбрать реакционную систему и фактор, спланировать серию опытов, сравнить результаты и сделать обоснованный вывод.", "Choose a reaction system and a factor yourself, plan a series of runs, compare the results and draw a justified conclusion."],
+      theory: ["<p>Әділ тәжірибе: бір уақытта тек бір фактор өзгереді, қалғандары тұрақты. Әр реакцияның өз кинетикалық заңдылығы бар — бір жүйеде алынған тәуелділікті басқасына автоматты түрде тасымалдауға болмайды.</p>", "<p>Честный эксперимент: одновременно меняется только один фактор, остальные постоянны. У каждой реакции своя кинетическая закономерность — зависимость, полученную на одной системе, нельзя автоматически переносить на другую.</p>", "<p>A fair test changes only one factor at a time and keeps the rest constant. Each reaction has its own kinetics, so a dependence found for one system cannot simply be carried over to another.</p>"],
+      safety: ["<p>Барлық тәжірибелер — виртуалды. Нақты зертханада әр жүйенің қауіпсіздік ережелері L1–L4 жұмыстарында берілген.</p>", "<p>Все опыты — виртуальные. Правила безопасности для каждой системы в реальной лаборатории приведены в работах L1–L4.</p>", "<p>All experiments are virtual. Real-lab safety rules for each system are given in labs L1–L4.</p>"],
+      model: { type: ["Есептік модельдер (оқу коэффициенттері)", "Расчётные модели (учебные коэффициенты)", "Computational models (teaching coefficients)"], notes: [["L1–L4 жұмыстарындағы модельдер қолданылады — олардың шектеулері сол жұмыстарда сипатталған.", "Используются модели из работ L1–L4 — их ограничения описаны там.", "The models from labs L1–L4 are used; their limitations are described there."]] },
+      equipment: [["L1–L4 жұмыстарының жабдығы", "Оборудование работ L1–L4", "Equipment from labs L1–L4"]],
+      controls: [
+        { id: "sys", type: "select", value: "thio", label: ["Реакциялық жүйе", "Реакционная система", "Reaction system"], options: [{ v: "thio", t: ["Na₂S₂O₃ + HCl", "Na₂S₂O₃ + HCl", "Na₂S₂O₃ + HCl"] }, { v: "h2o2", t: ["H₂O₂ ыдырауы", "Разложение H₂O₂", "H₂O₂ decomposition"] }, { v: "marble", t: ["CaCO₃ + HCl", "CaCO₃ + HCl", "CaCO₃ + HCl"] }] },
+        { id: "C", type: "range", min: 0.03, max: 0.15, step: 0.01, value: 0.1, dec: 2, label: ["C(Na₂S₂O₃)", "C(Na₂S₂O₃)", "C(Na₂S₂O₃)"], unit: MOL, show: function (p) { return p.sys === "thio"; } },
+        { id: "T", type: "range", min: 10, max: 60, step: 5, value: 20, dec: 0, label: ["Температура", "Температура", "Temperature"], unit: ["°C", "°C", "°C"], show: function (p) { return p.sys === "thio"; } },
+        { id: "cat", type: "select", value: "none", label: ["Катализатор", "Катализатор", "Catalyst"], options: [{ v: "none", t: ["Жоқ", "Нет", "None"] }, { v: "mno2", t: ["MnO₂", "MnO₂", "MnO₂"] }, { v: "catalase", t: ["Каталаза", "Каталаза", "Catalase"] }], show: function (p) { return p.sys === "h2o2"; } },
+        { id: "C0", type: "range", min: 0.3, max: 1.5, step: 0.1, value: 0.9, dec: 1, label: ["C(H₂O₂)", "C(H₂O₂)", "C(H₂O₂)"], unit: MOL, show: function (p) { return p.sys === "h2o2"; } },
+        { id: "size", type: "select", value: "grain", label: ["CaCO₃ түрі", "Форма CaCO₃", "Form of CaCO₃"], options: [{ v: "chunk", t: ["Кесектер", "Куски", "Lumps"] }, { v: "grain", t: ["Түйіршіктер", "Гранулы", "Granules"] }, { v: "powder", t: ["Ұнтақ", "Порошок", "Powder"] }], show: function (p) { return p.sys === "marble"; } },
+        { id: "m0", type: "range", min: 0.5, max: 2, step: 0.5, value: 1, dec: 1, label: ["m(CaCO₃)", "m(CaCO₃)", "m(CaCO₃)"], unit: G, show: function (p) { return p.sys === "marble"; } },
+        { id: "Ch", type: "range", min: 0.5, max: 2, step: 0.5, value: 1, dec: 1, label: ["C(HCl)", "C(HCl)", "C(HCl)"], unit: MOL, show: function (p) { return p.sys === "marble"; } }
+      ],
+      simulate: function (p) {
+        if (p.sys === "thio") return M.thiosulfate({ C: p.C, T: p.T });
+        if (p.sys === "h2o2") return M.peroxide({ C0: p.C0, cat: p.cat });
+        return M.marble({ m0: p.m0, C: p.Ch, size: p.size, closed: false });
+      },
+      summary: function (p, r) { var m = this.metric(p, r); return { metric: isFinite(m.value) ? +m.value.toFixed(3) : null }; },
+      columns: function () { return [L("Жүйе", "Система", "System"), L("Шарттар", "Условия", "Conditions"), L("Нәтиже", "Результат", "Result")]; },
+      row: function (p, r) {
+        var cond = p.sys === "thio" ? "C = " + fmt(+p.C, 2) + ", t = " + p.T + " °C" : p.sys === "h2o2" ? "C₀ = " + fmt(+p.C0, 1) + ", " + L("кат.: ", "кат.: ", "cat.: ") + p.cat : "m = " + fmt(+p.m0, 1) + L(" г, ", " г, ", " g, ") + "C = " + fmt(+p.Ch, 1) + ", " + p.size;
+        var sys = { thio: "Na₂S₂O₃ + HCl", h2o2: "H₂O₂", marble: "CaCO₃ + HCl" }[p.sys];
+        return [sys, cond, this.metric(p, r).text];
+      },
+      metric: function (p, r) {
+        if (p.sys === "thio") return { label: ["Крест жоғалу уақыты", "Время исчезновения креста", "Time for the cross to vanish"], value: r.t, text: "t = " + fmt(r.t, 1) + u(S) };
+        if (p.sys === "h2o2") return { label: ["60 с ішіндегі O₂", "O₂ за 60 с", "O₂ in 60 s"], value: r.V60, text: "V₆₀ = " + fmt(r.V60, 1) + u(ML) };
+        return { label: ["90 % CO₂ уақыты", "Время 90 % CO₂", "Time to 90% CO₂"], value: r.complete ? r.t90 : Infinity, text: r.complete ? "t₉₀ = " + fmt(r.t90, 0) + u(S) : "t₉₀ > 1800" + u(S) };
+      },
+      chart: { kind: "curves", title: ["Әрекеттесу барысы (0–1)", "Ход реакции (0–1)", "Reaction progress (0–1)"], y: function (p, r, t) { return r.progress(t); }, xLabel: ["t, с", "t, с", "t, s"], yLabel: ["Үлес", "Доля", "Fraction"] },
+      viewNote: ["Жүйені ауыстырсаңыз, көрініс те ауысады. Тәжірибелерді «Екі тәжірибені салыстыру» бөлімінде тексеріңіз.", "При смене системы меняется и вид. Проверяйте опыты в блоке «Сравнение двух опытов».", "Switching the system switches the view too. Check your runs in “Compare two runs”."],
+      prediction: { q: ["Қай фактор таңдалған жүйеде жылдамдыққа ең күшті әсер етеді деп ойлайсыз? Жоспарыңызды «Неге» өрісіне жазыңыз.", "Какой фактор, по-вашему, сильнее всего влияет на скорость в выбранной системе? Запишите план в поле «Почему».", "Which factor do you think affects the rate most in your chosen system? Write your plan in the “Why” box."],
+        opts: [["Температура", "Температура", "Temperature"], ["Концентрация", "Концентрация", "Concentration"], ["Беттің ауданы / катализатор", "Площадь поверхности / катализатор", "Surface area / catalyst"], ["Жүйеге байланысты — тәжірибе көрсетеді", "Зависит от системы — покажет опыт", "It depends on the system — the experiment will show"]], correct: 3 },
+      questions: [
+        { id: "q1", level: "base", type: "choice", q: ["Әділ салыстыру үшін екі тәжірибеде нешеу шарт өзгеруі керек?", "Сколько условий должно отличаться в двух опытах для честного сравнения?", "How many conditions should differ between two runs for a fair comparison?"],
+          opts: [["Біреуі ғана", "Только одно", "Only one"], ["Екеуі", "Два", "Two"], ["Бәрі", "Все", "All of them"]], correct: 0,
+          explain: ["Тек бір фактор өзгерсе, нәтиженің айырмашылығын сол факторға жатқызуға болады.", "Только тогда различие в результате можно приписать этому фактору.", "Only then can the difference in results be attributed to that factor."] },
+        { id: "q2", level: "adv", type: "choice", q: ["Оқушы: «Na₂S₂O₃ жүйесінде C екі есе артқанда жылдамдық 2 есе артты, сондықтан CaCO₃ + HCl жүйесінде де HCl концентрациясы екі есе артса, 2 есе артады». Дұрыс па?", "Ученик: «В системе Na₂S₂O₃ при удвоении C скорость выросла в 2 раза, значит в системе CaCO₃ + HCl при удвоении C(HCl) тоже вырастет в 2 раза». Верно ли?", "A student says: “Doubling C doubled the rate for Na₂S₂O₃, so doubling C(HCl) will also double the rate for CaCO₃ + HCl.” Is that right?"],
+          opts: [["Жоқ — әр жүйенің өз заңдылығын тексеру керек", "Нет — закономерность каждой системы нужно проверять отдельно", "No — each system's behaviour must be checked separately"], ["Иә, бұл әмбебап заң", "Да, это универсальный закон", "Yes, it is a universal law"]], correct: 0,
+          explain: ["Бұл — негізсіз жалпылау. Гетерогенді жүйеде бет ауданы мен шектеуші зат та әсер етеді.", "Это неправомерное обобщение. В гетерогенной системе влияют ещё площадь поверхности и лимитирующий реагент.", "That is an unjustified generalisation. In a heterogeneous system the surface area and limiting reagent also matter."] },
+        { id: "q3", level: "res", type: "choice", q: ["Деректер: A тәжірибесі — 20 °C, C = 0,10, t = 30 с; B тәжірибесі — t = 15 с, шарттары жазылмаған. «Температура жылдамдықты 2 есе арттырды» деген қорытынды жасауға бола ма?", "Данные: опыт A — 20 °C, C = 0,10, t = 30 с; опыт B — t = 15 с, условия не записаны. Можно ли сделать вывод «температура ускорила реакцию в 2 раза»?", "Data: run A — 20 °C, C = 0.10, t = 30 s; run B — t = 15 s, conditions not recorded. Can you conclude “temperature doubled the rate”?"],
+          opts: [["Жоқ — деректер жеткіліксіз", "Нет — данных недостаточно", "No — the data are insufficient"], ["Иә", "Да", "Yes"]], correct: 0,
+          explain: ["B тәжірибесінің шарттары белгісіз: жылдамдыққа температура да, концентрация да әсер етуі мүмкін.", "Условия опыта B неизвестны: на скорость могли повлиять и температура, и концентрация.", "Run B's conditions are unknown; temperature or concentration could have caused the change."] },
+        { id: "q4", level: "res", type: "open", q: ["Зерттеу жоспарыңызды сипаттаңыз: қай фактор, қандай мәндер, нені тұрақты ұстадыңыз және неге?", "Опишите план исследования: какой фактор, какие значения, что держали постоянным и почему?", "Describe your plan: which factor, which values, what you kept constant and why?"],
+          explain: ["Жоспарда өзгеретін фактор, тұрақты шарттар, тәжірибелер саны және өлшенетін шама болуы керек.", "В плане должны быть изменяемый фактор, постоянные условия, число опытов и измеряемая величина.", "The plan should state the variable factor, the controlled conditions, the number of runs and what was measured."] },
+        { id: "q5", level: "res", type: "open", q: ["Нәтижеңізге қаншалықты сенуге болады? Қандай шектеулер бар (модель, тәжірибе саны)?", "Насколько можно доверять результату? Какие есть ограничения (модель, число опытов)?", "How far can you trust your result? What are the limitations (model, number of runs)?"],
+          explain: ["Мысалы: модель жеңілдетілген, коэффициенттері оқу мақсатында алынған; нақты тәжірибеде қайталау мен өлшеу қателігін бағалау керек.", "Например: модель упрощена, коэффициенты учебные; в реальном опыте нужны повторы и оценка погрешности.", "For example: the model is simplified with teaching coefficients; a real experiment needs repeats and an error estimate."] }
+      ],
+      conclusionHint: ["Қай факторды зерттегеніңізді, қандай тәуелділік алғаныңызды және оны қай тәжірибелер растайтынын жазыңыз.", "Напишите, какой фактор исследовали, какую зависимость получили и какие опыты её подтверждают.", "Write which factor you investigated, what dependence you found and which runs support it."],
+      explain: ["<p>Зерттеуде маңыздысы — басқару айнымалылары: бір фактор өзгереді, қалғаны тұрақты. Салыстыру блогы бірнеше шарт өзгерген жұптарды ескертеді.</p>", "<p>Главное в исследовании — контроль переменных: меняется один фактор, остальные постоянны. Блок сравнения предупреждает о парах, где изменилось несколько условий.</p>", "<p>The key to an investigation is controlling variables: change one factor and keep the rest constant. The comparison panel warns about pairs where several conditions changed.</p>"]
+    }
+  ];
+
+  // Запланированные темы других классов (не карточки, а план разработки).
+  var planned = [
+    { grade: 7, items: [["Қоспаларды бөлу (ас тұзын тазарту)", "Разделение смесей (очистка соли)", "Separating mixtures (purifying salt)"], ["Физикалық және химиялық құбылыстар", "Физические и химические явления", "Physical and chemical changes"], ["Индикаторлар: қышқылдық және сілтілік орта", "Индикаторы: кислая и щелочная среда", "Indicators: acidic and alkaline solutions"], ["Мырыштың тұз қышқылымен әрекеттесуі; сутекті анықтау", "Цинк и соляная кислота; обнаружение водорода", "Zinc and hydrochloric acid; testing for hydrogen"], ["Карбонаттардың қышқылдармен әрекеттесуі", "Реакции карбонатов с кислотами", "Carbonates reacting with acids"]] },
+    { grade: 8, items: [["Массалық үлесі берілген ерітінді дайындау", "Приготовление раствора заданной массовой доли", "Making a solution of given mass fraction"], ["Ерігіштік және температура", "Растворимость и температура", "Solubility and temperature"], ["Оксидтердің қасиеттері", "Свойства оксидов", "Properties of oxides"], ["Экзо- және эндотермиялық үдерістер", "Экзо- и эндотермические процессы", "Exothermic and endothermic processes"]] },
+    { grade: 9, items: [["Электролиттер және электр өткізгіштік", "Электролиты и электропроводность", "Electrolytes and conductivity"], ["Ион алмасу реакциялары", "Реакции ионного обмена", "Ion-exchange reactions"], ["Иондарға сапалық реакциялар (белгісіз үлгі)", "Качественные реакции на ионы (неизвестный образец)", "Qualitative tests for ions (unknown sample)"], ["Тотығу-тотықсыздану реакциялары", "Окислительно-восстановительные реакции", "Redox reactions"]] },
+    { grade: 11, items: [["Химиялық тепе-теңдік және оның ығысуы", "Химическое равновесие и его смещение", "Chemical equilibrium and its shift"], ["Электролиз", "Электролиз", "Electrolysis"], ["Органикалық қосылыстарға сапалық реакциялар", "Качественные реакции органических соединений", "Qualitative tests for organic compounds"]] }
+  ];
+
+  return { VERSION: "1.0.0", list: list, planned: planned };
+})();
+
+/* ================= Виртуальная лаборатория: каталог и шаблон работы =================
+   Зависит от site.js (L, LANG, $, safe, store, onLang, fmt, reducedMotion), models.js, labs.js (NCLabs). */
+safe("lab", function () {
+  var M = NCLabModels, LABS = NCLabs.list, PLANNED = NCLabs.planned;
+  var STAGES = [["Дайындық", "Подготовка", "Preparation"], ["Болжам", "Прогноз", "Prediction"], ["Тәжірибе", "Опыт", "Experiment"],
+    ["Талдау", "Анализ", "Analysis"], ["Қорытынды", "Вывод", "Conclusion"], ["Нәтиже", "Результат", "Result"]];
+  function T3(a) { return a ? L(a[0], a[1], a[2]) : ""; }
+  function esc(s) { return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+  function load(k, d) { try { var v = JSON.parse(store(k) || "null"); return v == null ? d : v; } catch (e) { return d; } }
+  function byId(id) { for (var i = 0; i < LABS.length; i++) if (LABS[i].id === id) return LABS[i]; return null; }
+  function param() { try { return new URLSearchParams(location.search).get("lab"); } catch (e) { var m = /[?&]lab=([^&]+)/.exec(location.search); return m && decodeURIComponent(m[1]); } }
+  function fmtN(x, d) { return fmt(x, d == null ? 3 : d); }
+  function parseNum(v) {
+    var s = String(v == null ? "" : v).trim().replace(/[\s ]/g, "").replace(/−/g, "-").replace(",", ".");
+    s = s.replace(/[·x×*]10\^?(-?\d+)$/i, "e$1");
+    return /^[-+]?(\d+\.?\d*|\.\d+)(e[-+]?\d+)?$/i.test(s) ? parseFloat(s) : NaN;
+  }
+  function gradeLabel(g) { return g + L(" сынып", " класс", " grade"); }
+
+  var lab = byId(param()), st = null;
+
+  /* ================= Каталог ================= */
+  function statusOf(id) {
+    var s = load("nc-lab-" + id, null), h = load("nc-lab-history", []);
+    if (s && !s.finished && (s.stage > 0 || (s.runs && s.runs.length))) return "progress";
+    if (h.some(function (r) { return r.lab === id; })) return "done";
+    return "new";
+  }
+  var STATUS = { "new": ["Басталмаған", "Не начата", "Not started"], progress: ["Орындалуда", "В процессе", "In progress"], done: ["Аяқталған", "Завершена", "Completed"] };
+  var KIND = { lab: ["Зертханалық жұмыс", "Лабораторная работа", "Lab work"], data: ["Деректерді талдау", "Анализ данных", "Data analysis"], research: ["Зерттеу", "Исследование", "Investigation"] };
+  var LEVEL = { base: ["Негізгі", "Базовый", "Basic"], adv: ["Жоғары", "Повышенный", "Advanced"], res: ["Зерттеушілік", "Исследовательский", "Research"] };
+  var flt = { grade: "", kind: "", level: "", status: "", q: "" };
+
+  function renderCatalog() {
+    $("labRunner").hidden = true;
+    $("labCatalog").hidden = false;
+    var list = LABS.filter(function (l) {
+      if (flt.grade && String(l.grade) !== flt.grade) return false;
+      if (flt.kind && l.kind !== flt.kind) return false;
+      if (flt.level && l.level !== flt.level) return false;
+      if (flt.status && statusOf(l.id) !== flt.status) return false;
+      if (flt.q) { var hay = [l.title, l.topic, l.goal].map(function (t) { return t.join(" "); }).join(" ").toLowerCase(); if (hay.indexOf(flt.q.toLowerCase()) < 0) return false; }
+      return true;
+    });
+    var done = LABS.filter(function (l) { return statusOf(l.id) === "done"; }).length;
+    $("labProgress").innerHTML = L("Аяқталған жұмыстар: ", "Завершено работ: ", "Labs completed: ") + "<b>" + done + " / " + LABS.length + "</b> " +
+      '<span class="muted small">' + L("(осы браузерде)", "(в этом браузере)", "(in this browser)") + "</span>";
+    $("labGrid").innerHTML = list.length ? list.map(function (l, i) {
+      var s = statusOf(l.id);
+      return '<article class="card lab-card"><div class="lab-card-top"><span class="lab-no">' + esc(l.no) + '</span><span class="chip">' + gradeLabel(l.grade) + "</span></div>" +
+        "<h3>" + esc(T3(l.title)) + "</h3>" + '<p class="muted small">' + esc(T3(l.topic)) + "</p>" +
+        '<div class="course-meta"><span class="chip">' + esc(T3(KIND[l.kind])) + '</span><span class="chip">' + esc(T3(LEVEL[l.level])) + '</span><span class="chip">≈ ' + l.minutes + L(" мин", " мин", " min") + "</span></div>" +
+        '<div class="lab-card-foot"><span class="status st-' + (s === "done" ? "ok" : s === "progress" ? "part" : "dev") + '">' + esc(T3(STATUS[s])) + "</span>" +
+        '<a class="btn btn-primary" href="?lab=' + l.id + '">' + (s === "progress" ? L("Жалғастыру", "Продолжить", "Continue") : L("Бастау", "Начать", "Start")) + "</a></div></article>";
+    }).join("") : '<p class="empty">' + L("Сүзгіге сәйкес жұмыс жоқ.", "Нет работ, подходящих под фильтр.", "No labs match the filter.") + "</p>";
+    $("labPlanned").innerHTML = PLANNED.map(function (g) {
+      return "<div><h3>" + gradeLabel(g.grade) + "</h3><ul>" + g.items.map(function (t) { return "<li>" + esc(T3(t)) + "</li>"; }).join("") + "</ul></div>";
+    }).join("");
+  }
+  function bindCatalog() {
+    [["fGrade", "grade"], ["fKind", "kind"], ["fLevel", "level"], ["fStatus", "status"]].forEach(function (x) {
+      $(x[0]).addEventListener("change", function () { flt[x[1]] = $(x[0]).value; renderCatalog(); });
+    });
+    $("fSearch").addEventListener("input", function () { flt.q = $("fSearch").value.trim(); renderCatalog(); });
+  }
+
+  /* ================= Состояние работы ================= */
+  function fresh() {
+    var p = {};
+    lab.controls.forEach(function (c) { p[c.id] = c.value; });
+    return { lab: lab.id, version: NCLabs.VERSION, stage: 0, visited: 0, started: new Date().toISOString(), params: p, runs: [],
+      pred: { choice: null, text: "" }, answers: {}, checked: false, concl: { text: "", evidence: [] }, finished: null,
+      dataSeed: (Math.random() * 4294967296) >>> 0, data: {} };
+  }
+  function save() { store("nc-lab-" + lab.id, JSON.stringify(st)); }
+  function simulate(p) { return lab.simulate(p); }
+
+  /* ================= Отрисовка работы ================= */
+  function renderRunner() {
+    $("labCatalog").hidden = true;
+    $("labRunner").hidden = false;
+    document.title = T3(lab.title) + " — NURSERIK CHEMISTRY";
+    var idx = LABS.indexOf(lab);
+    $("labHead").innerHTML = '<a class="back" href="./">← ' + L("Барлық жұмыстар", "Все работы", "All labs") + "</a>" +
+      '<div class="lab-title-row"><div><p class="eyebrow">' + esc(lab.no) + " · " + lab.grade + L(" сынып", " класс", " grade") + " · " + esc(T3(lab.topic)) + "</p><h1>" + esc(T3(lab.title)) + "</h1></div>" +
+      '<button class="btn" type="button" id="demoBtn" aria-pressed="' + demoOn() + '">' + L("Сабақта көрсету", "Демонстрация на уроке", "Classroom demo") + ' <kbd>D</kbd></button></div>';
+    $("demoBtn").addEventListener("click", function () { setDemo(!demoOn()); });
+    $("labSteps").innerHTML = STAGES.map(function (s, i) {
+      var cls = i < st.stage || st.finished ? "done" : i === st.stage ? "now" : "";
+      var can = i <= st.visited;
+      return '<li class="' + cls + '"><button type="button" data-goto="' + i + '"' + (can ? "" : " disabled") + (i === st.stage ? ' aria-current="step"' : "") + "><b>" + (i + 1) + "</b>" + esc(T3(s)) + "</button></li>";
+    }).join("");
+    $("labSteps").querySelectorAll("[data-goto]").forEach(function (b) { b.addEventListener("click", function () { go(+b.getAttribute("data-goto")); }); });
+    var body = $("labBody");
+    stopAnim();
+    body.innerHTML = [stPrep, stPred, stRun, stAnalysis, stConcl, stResult][st.stage]();
+    [bindPrep, bindPred, bindRun, bindAnalysis, bindConcl, bindResult][st.stage]();
+    $("demoPrev").disabled = idx <= 0;
+    $("demoNext").disabled = idx >= LABS.length - 1;
+  }
+  function go(i) { st.stage = i; st.visited = Math.max(st.visited, i); save(); renderRunner(); try { $("labHead").scrollIntoView({ block: "start" }); } catch (e) {} }
+  function nextBtn(ok, why) {
+    return '<div class="row"><button class="btn btn-primary" type="button" id="nextStage"' + (ok ? "" : " disabled") + ">" + L("Келесі кезең →", "Следующий этап →", "Next stage →") + "</button>" +
+      (!ok && why ? '<span class="muted small">' + why + "</span>" : "") + "</div>";
+  }
+  function bindNext() { var b = $("nextStage"); if (b) b.addEventListener("click", function () { go(st.stage + 1); }); }
+
+  // 1. Подготовка
+  function stPrep() {
+    return '<div class="grid g2"><div class="card prose"><h2>' + L("Мақсаты", "Цель", "Aim") + "</h2><p>" + esc(T3(lab.goal)) + "</p>" +
+      "<h3>" + L("Қысқаша теория", "Кратко о теории", "Theory in brief") + "</h3>" + T3(lab.theory) + "</div>" +
+      '<div class="stack-s"><div class="card prose"><h3>' + L("Виртуалды жабдық", "Виртуальное оборудование", "Virtual equipment") + "</h3><ul>" + lab.equipment.map(function (e) { return "<li>" + esc(T3(e)) + "</li>"; }).join("") + "</ul></div>" +
+      '<div class="card prose safety"><h3>' + L("Қауіпсіздік", "Безопасность", "Safety") + "</h3>" + T3(lab.safety) + "</div>" +
+      '<div class="card prose model-note"><h3>' + L("Модель туралы", "О модели", "About the model") + '</h3><p><span class="chip">' + esc(T3(lab.model.type)) + "</span></p><ul>" +
+      lab.model.notes.map(function (n) { return "<li>" + T3(n) + "</li>"; }).join("") + "</ul></div></div></div>" + nextBtn(true);
+  }
+  function bindPrep() { bindNext(); }
+
+  // 2. Прогноз
+  function stPred() {
+    var P = lab.prediction, h = '<div class="card"><h2>' + L("Болжам жасаңыз", "Сделайте прогноз", "Make a prediction") + '</h2><p class="lead muted">' +
+      L("Тәжірибеге дейін жауап беріңіз. Дұрыс жауап тәжірибеден кейін ашылады.", "Ответьте до опыта. Правильный ответ откроется после эксперимента.", "Answer before the experiment. The right answer is revealed afterwards.") + "</p>" +
+      '<p class="q">' + esc(T3(P.q)) + '</p><div class="opts">';
+    P.opts.forEach(function (o, i) { h += '<label class="opt"><input type="radio" name="pred" value="' + i + '"' + (st.pred.choice === i ? " checked" : "") + "><span>" + esc(T3(o)) + "</span></label>"; });
+    h += '</div><p class="q"><label for="predWhy">' + L("Неге солай ойлайсыз?", "Почему вы так думаете?", "Why do you think so?") + '</label></p><textarea id="predWhy">' + esc(st.pred.text) + "</textarea>";
+    if (demoOn()) h += '<div class="row"><button class="btn" type="button" id="revealPred">' + L("Дұрыс жауапты көрсету", "Показать правильный ответ", "Show the right answer") + '</button><span id="predAns" class="muted" hidden>' + esc(T3(P.opts[P.correct])) + "</span></div>";
+    return h + "</div>" + nextBtn(st.pred.choice != null && st.pred.text.trim().length >= 5, L("Жауапты таңдап, себебін жазыңыз.", "Выберите ответ и напишите причину.", "Choose an answer and give a reason."));
+  }
+  function bindPred() {
+    document.querySelectorAll('input[name="pred"]').forEach(function (el) { el.addEventListener("change", function () { st.pred.choice = +el.value; save(); refreshNext(); }); });
+    $("predWhy").addEventListener("input", function () { st.pred.text = $("predWhy").value; save(); refreshNext(); });
+    if ($("revealPred")) $("revealPred").addEventListener("click", function () { $("predAns").hidden = !$("predAns").hidden; });
+    bindNext();
+  }
+  function refreshNext() {
+    var b = $("nextStage"); if (!b) return;
+    var ok = st.stage === 1 ? st.pred.choice != null && st.pred.text.trim().length >= 5
+      : st.stage === 2 ? st.runs.length >= lab.minRuns
+      : st.stage === 4 ? st.concl.text.trim().length >= 20 && st.concl.evidence.length > 0 : true;
+    b.disabled = !ok;
+    var hint = b.nextElementSibling; if (hint) hint.hidden = ok;
+  }
+
+  // 3. Опыт
+  var anim = { raf: 0, t: 0, res: null, p: null, running: false, last: 0, speed: 1, done: false };
+  function stRun() {
+    if (lab.kind === "data") return stData();
+    var h = '<div class="exp"><div class="card exp-ctrl"><h2>' + L("Шарттар", "Условия", "Conditions") + "</h2>";
+    lab.controls.forEach(function (c) {
+      var vis = !c.show || c.show(st.params);
+      h += '<div class="ctl"' + (vis ? "" : " hidden") + ' data-ctl="' + c.id + '">';
+      if (c.type === "range") h += '<div class="range-top"><label for="c_' + c.id + '">' + esc(T3(c.label)) + '</label><output id="o_' + c.id + '"></output></div><input type="range" id="c_' + c.id + '" min="' + c.min + '" max="' + c.max + '" step="' + c.step + '" value="' + st.params[c.id] + '">';
+      else if (c.type === "select") h += '<label class="field-inline">' + esc(T3(c.label)) + '<select id="c_' + c.id + '">' + c.options.map(function (o) { return '<option value="' + o.v + '"' + (String(st.params[c.id]) === String(o.v) ? " selected" : "") + ">" + esc(T3(o.t)) + "</option>"; }).join("") + "</select></label>";
+      else if (c.type === "check") h += '<label class="check"><input type="checkbox" id="c_' + c.id + '"' + (st.params[c.id] ? " checked" : "") + "><span>" + esc(T3(c.label)) + "</span></label>";
+      h += "</div>";
+    });
+    h += '<div class="row run-btns"><button class="btn btn-primary" type="button" id="runBtn">' + L("Іске қосу", "Запустить", "Run") + '</button><button class="btn" type="button" id="pauseBtn" disabled>' + L("Пауза", "Пауза", "Pause") + '</button><button class="btn" type="button" id="resetBtn">' + L("Тазалау", "Сбросить", "Reset") + "</button></div>" +
+      '<div class="clock"><span>' + L("Секундомер", "Секундомер", "Stopwatch") + '</span><b id="clock">0,0 ' + L("с", "с", "s") + '</b><span class="muted small" id="speedNote"></span></div>' +
+      '<p class="muted small" id="runMsg" aria-live="polite"></p></div>' +
+      '<div class="card exp-view"><canvas id="labCanvas" role="img" aria-label="' + esc(L("Виртуалды тәжірибе", "Виртуальный опыт", "Virtual experiment")) + '"></canvas><p class="muted small view-note">' + esc(T3(lab.viewNote)) + "</p></div></div>";
+    h += '<div class="grid g2" style="margin-top:16px"><div class="card"><h3>' + L("Бақылау кестесі", "Таблица наблюдений", "Observation table") + '</h3><div class="table-wrap" id="runTable"></div></div>' +
+      '<div class="card"><h3>' + esc(T3(lab.chart.title)) + '</h3><div id="runChart" class="chart"></div><p class="muted small" id="fitNote"></p></div></div>';
+    h += '<div class="card" style="margin-top:16px"><h3>' + L("Екі тәжірибені салыстыру", "Сравнение двух опытов", "Compare two runs") + '</h3><div class="row"><select id="cmpA"></select><span>↔</span><select id="cmpB"></select></div><div id="cmpOut" class="fb" hidden></div></div>';
+    if (lab.extra) h += '<div class="card" style="margin-top:16px" id="extraBox"></div>';
+    return h + nextBtn(st.runs.length >= lab.minRuns, L("Кемінде ", "Проведите не менее ", "Do at least ") + lab.minRuns + L(" тәжірибе жасаңыз.", " опытов.", " runs."));
+  }
+  function bindRun() {
+    if (lab.kind === "data") return bindData();
+    lab.controls.forEach(function (c) {
+      var el = $("c_" + c.id);
+      var upd = function () {
+        st.params[c.id] = c.type === "check" ? el.checked : c.type === "range" ? +el.value : el.value;
+        if (c.type === "range") $("o_" + c.id).textContent = fmtN(+el.value, c.dec) + " " + T3(c.unit);
+        lab.controls.forEach(function (d) { var box = document.querySelector('[data-ctl="' + d.id + '"]'); if (box) box.hidden = !!(d.show && !d.show(st.params)); });
+        save();
+        if (!anim.running) { anim.res = null; anim.t = 0; drawFrame(); }
+        renderExtra();
+      };
+      el.addEventListener(c.type === "range" ? "input" : "change", upd);
+      if (c.type === "range") $("o_" + c.id).textContent = fmtN(+el.value, c.dec) + " " + T3(c.unit);
+    });
+    $("runBtn").addEventListener("click", startRun);
+    $("pauseBtn").addEventListener("click", togglePause);
+    $("resetBtn").addEventListener("click", resetRun);
+    ["cmpA", "cmpB"].forEach(function (id) { $(id).addEventListener("change", renderCompare); });
+    sizeCanvas();
+    drawFrame();
+    renderRunData();
+    renderExtra();
+    bindNext();
+  }
+  function renderExtra() { if (lab.extra && $("extraBox")) $("extraBox").innerHTML = lab.extra(st.params, LANG); }
+
+  function startRun() {
+    var p = JSON.parse(JSON.stringify(st.params)), res = simulate(p);
+    if (!res.ok) { $("runMsg").textContent = L("Параметрлер рұқсат етілген ауқымнан тыс.", "Параметры вне допустимого диапазона.", "Parameters are outside the allowed range."); return; }
+    anim.p = p; anim.res = res; anim.t = 0; anim.done = false; anim.running = true; anim.last = 0;
+    anim.speed = Math.max(1, res.end / 8);
+    $("speedNote").textContent = anim.speed > 1.01 ? "× " + fmtN(anim.speed, 0) + " " + L("жылдамдатылған", "ускорено", "sped up") : "";
+    $("runBtn").disabled = true; $("pauseBtn").disabled = false;
+    $("pauseBtn").textContent = L("Пауза", "Пауза", "Pause");
+    $("runMsg").textContent = L("Тәжірибе жүріп жатыр…", "Идёт опыт…", "Experiment running…");
+    loop();
+  }
+  function togglePause() {
+    if (!anim.res || anim.done) return;
+    anim.running = !anim.running;
+    $("pauseBtn").textContent = anim.running ? L("Пауза", "Пауза", "Pause") : L("Жалғастыру", "Продолжить", "Resume");
+    if (anim.running) { anim.last = 0; loop(); }
+  }
+  function resetRun() { stopAnim(); anim.res = null; anim.t = 0; anim.done = false; $("runBtn").disabled = false; $("pauseBtn").disabled = true; $("clock").textContent = "0,0 " + L("с", "с", "s"); $("runMsg").textContent = ""; drawFrame(); }
+  function stopAnim() { anim.running = false; if (anim.raf) cancelAnimationFrame(anim.raf); anim.raf = 0; }
+  function loop() {
+    anim.raf = requestAnimationFrame(function (ts) {
+      anim.raf = 0;
+      if (!anim.running) return;
+      var dt = anim.last ? Math.min(0.1, (ts - anim.last) / 1000) : 0;
+      anim.last = ts;
+      anim.t = Math.min(anim.res.end, anim.t + dt * anim.speed);
+      drawFrame();
+      $("clock").textContent = fmtN(anim.t, 1) + " " + L("с", "с", "s");
+      if (anim.t >= anim.res.end) return finishRun();
+      loop();
+    });
+  }
+  function finishRun() {
+    anim.running = false; anim.done = true;
+    st.runs.push({ p: anim.p, at: new Date().toISOString(), summary: lab.summary(anim.p, anim.res) });
+    save();
+    $("runBtn").disabled = false; $("pauseBtn").disabled = true;
+    $("runMsg").textContent = L("Тәжірибе аяқталды, нәтиже кестеге жазылды.", "Опыт завершён, результат записан в таблицу.", "Run complete; the result was added to the table.");
+    renderRunData();
+    refreshNext();
+  }
+  function renderRunData() {
+    var cols = lab.columns(LANG), rows = st.runs.map(function (r, i) { return lab.row(r.p, simulate(r.p), LANG); });
+    $("runTable").innerHTML = st.runs.length ? "<table><thead><tr><th>№</th>" + cols.map(function (c) { return "<th>" + esc(c) + "</th>"; }).join("") + "<th></th></tr></thead><tbody>" +
+      rows.map(function (r, i) { return "<tr><td>" + (i + 1) + "</td>" + r.map(function (c) { return "<td>" + esc(c) + "</td>"; }).join("") + '<td><button class="icon-x" type="button" data-del="' + i + '" aria-label="' + esc(L("Жою", "Удалить", "Delete")) + '">×</button></td></tr>'; }).join("") + "</tbody></table>"
+      : '<p class="empty">' + L("Әзірге тәжірибе жоқ. Шарттарды таңдап, «Іске қосу» басыңыз.", "Опытов пока нет. Выберите условия и нажмите «Запустить».", "No runs yet. Choose conditions and press “Run”.") + "</p>";
+    $("runTable").querySelectorAll("[data-del]").forEach(function (b) { b.addEventListener("click", function () { st.runs.splice(+b.getAttribute("data-del"), 1); save(); renderRunData(); refreshNext(); }); });
+    drawChart();
+    var opts = st.runs.map(function (r, i) { return '<option value="' + i + '">' + L("Тәжірибе ", "Опыт ", "Run ") + (i + 1) + "</option>"; }).join("");
+    $("cmpA").innerHTML = opts; $("cmpB").innerHTML = opts;
+    if (st.runs.length > 1) { $("cmpA").value = String(st.runs.length - 2); $("cmpB").value = String(st.runs.length - 1); }
+    renderCompare();
+  }
+  function renderCompare() {
+    var out = $("cmpOut");
+    if (st.runs.length < 2) { out.hidden = true; return; }
+    var a = st.runs[+$("cmpA").value], b = st.runs[+$("cmpB").value];
+    if (!a || !b || a === b) { out.hidden = true; return; }
+    var diff = lab.controls.filter(function (c) { return (!c.show || c.show(a.p) || c.show(b.p)) && String(a.p[c.id]) !== String(b.p[c.id]); });
+    var ma = lab.metric(a.p, simulate(a.p)), mb = lab.metric(b.p, simulate(b.p));
+    var h = "<p><b>" + L("Өзгерген шарттар: ", "Изменённые условия: ", "Changed conditions: ") + "</b>" + (diff.length ? diff.map(function (c) { return esc(T3(c.label)); }).join(", ") : L("жоқ", "нет", "none")) + "</p>";
+    h += "<p>" + esc(T3(ma.label)) + ": " + esc(ma.text) + " ↔ " + esc(mb.text) + (ma.value > 0 && mb.value > 0 && isFinite(ma.value) && isFinite(mb.value) ? " (" + L("қатынасы ", "отношение ", "ratio ") + fmtN(mb.value / ma.value, 2) + ")" : "") + "</p>";
+    if (diff.length > 1) h += '<p class="mark-bad">' + L("Бірден бірнеше шарт өзгерген — қай фактор әсер еткенін бұл жұпқа қарап айту мүмкін емес.", "Изменено сразу несколько условий — по этой паре нельзя сказать, какой фактор повлиял.", "Several conditions changed at once — this pair cannot tell you which factor had the effect.") + "</p>";
+    else if (diff.length === 1) h += '<p class="mark-ok">' + L("Тек бір шарт өзгерген — бұл жұп сол фактордың әсерін көрсетеді.", "Изменено одно условие — эта пара показывает влияние именно этого фактора.", "Only one condition changed — this pair shows the effect of that factor.") + "</p>";
+    out.innerHTML = h; out.hidden = false;
+  }
+
+  /* ---------- Данные «концентрация — время» (L5) ---------- */
+  function stData() {
+    var D = M.dataset(st.dataSeed), h = '<div class="card"><h2>' + L("Тәжірибе деректері", "Данные опыта", "Experimental data") + '</h2><p class="muted">' + esc(T3(lab.dataNote)) + "</p>";
+    h += '<div class="grid g2"><div class="table-wrap"><table><thead><tr><th>t, ' + L("с", "с", "s") + "</th><th>C(H₂O₂), " + L("моль/л", "моль/л", "mol/L") + "</th><th>" + L("Аралық", "Интервал", "Interval") + "</th><th>v<sub>" + L("орт", "ср", "avg") + "</sub>, " + L("моль/(л·с)", "моль/(л·с)", "mol/(L·s)") + "</th></tr></thead><tbody>";
+    D.rows.forEach(function (r, i) {
+      h += "<tr><td>" + r[0] + "</td><td>" + fmtN(r[1], 3) + "</td>";
+      if (i < D.rows.length - 1) {
+        var v = st.data["v" + i] || "", ck = st.data["c" + i];
+        h += "<td>" + r[0] + "–" + D.rows[i + 1][0] + '</td><td><input class="inp" type="text" inputmode="decimal" data-v="' + i + '" value="' + esc(v) + '" aria-label="v ' + (i + 1) + '">' + (ck == null ? "" : ck ? ' <span class="mark-ok">✓</span>' : ' <span class="mark-bad">✗</span>') + "</td>";
+      } else h += "<td></td><td></td>";
+      h += "</tr>";
+    });
+    h += '</tbody></table></div><div id="runChart" class="chart"></div></div><div class="row"><button class="btn btn-primary" type="button" id="checkData">' + L("Есептеулерді тексеру", "Проверить расчёты", "Check calculations") + '</button><button class="btn" type="button" id="newData">' + L("Жаңа деректер", "Новые данные", "New data") + '</button><span class="muted small" id="dataMsg"></span></div></div>';
+    var ok = [0, 1, 2, 3, 4].every(function (i) { return st.data["c" + i]; });
+    return h + nextBtn(ok, L("Барлық аралықтар үшін жылдамдықты дұрыс есептеңіз.", "Правильно рассчитайте скорость на всех интервалах.", "Calculate the rate correctly for every interval."));
+  }
+  function bindData() {
+    document.querySelectorAll("[data-v]").forEach(function (el) { el.addEventListener("input", function () { st.data["v" + el.getAttribute("data-v")] = el.value; save(); }); });
+    $("checkData").addEventListener("click", function () {
+      var D = M.dataset(st.dataSeed), wrong = 0;
+      for (var i = 0; i < 5; i++) {
+        var x = parseNum(st.data["v" + i]), v = (D.rows[i][1] - D.rows[i + 1][1]) / (D.rows[i + 1][0] - D.rows[i][0]);
+        st.data["c" + i] = isFinite(x) && Math.abs(x - v) / v <= 0.03;
+        if (!st.data["c" + i]) wrong++;
+      }
+      st.data.attempts = (st.data.attempts || 0) + 1;
+      save(); renderRunner();
+      if (wrong) $("dataMsg").textContent = L("Қате: ", "Ошибок: ", "Errors: ") + wrong + ". " + L("Кеңес: v = (C₁ − C₂) / (t₂ − t₁).", "Подсказка: v = (C₁ − C₂) / (t₂ − t₁).", "Hint: v = (C₁ − C₂) / (t₂ − t₁).");
+    });
+    $("newData").addEventListener("click", function () { st.dataSeed = (Math.random() * 4294967296) >>> 0; st.data = {}; save(); renderRunner(); });
+    var D = M.dataset(st.dataSeed);
+    $("runChart").innerHTML = svgChart({ series: [{ pts: D.rows, color: "var(--accent)", line: true, dots: true }], xLabel: "t, " + L("с", "с", "s"), yLabel: "C, " + L("моль/л", "моль/л", "mol/L") });
+    bindNext();
+  }
+
+  /* ---------- График ---------- */
+  function drawChart() {
+    var c = lab.chart, el = $("runChart"), note = $("fitNote");
+    if (!st.runs.length) { el.innerHTML = '<p class="empty">' + L("Деректер пайда болғанда график сызылады.", "График появится, когда будут данные.", "The graph appears once there is data.") + "</p>"; if (note) note.textContent = ""; return; }
+    var colors = ["var(--accent)", "var(--c-a)", "var(--c-b)", "var(--c-ab)", "var(--ok)", "var(--ext)"];
+    var series;
+    if (c.kind === "scatter") {
+      var pts = st.runs.map(function (r) { var res = simulate(r.p); return [c.x(r.p, res), c.y(r.p, res)]; });
+      series = [{ pts: pts, color: "var(--accent)", dots: true }];
+      if (c.fit && pts.length >= 2) {
+        var f = linfit(pts);
+        if (f) {
+          var xs = pts.map(function (q) { return q[0]; }), x0 = c.origin ? 0 : Math.min.apply(null, xs), x1 = Math.max.apply(null, xs);
+          series.push({ pts: [[x0, f.a * x0 + f.b], [x1, f.a * x1 + f.b]], color: "var(--c-ab)", line: true, dash: true });
+          if (note) note.textContent = L("Түзу: ", "Прямая: ", "Line: ") + "y = " + fmtN(f.a, 3) + "·x " + (f.b < 0 ? "− " : "+ ") + fmtN(Math.abs(f.b), 3) + ";  R² = " + fmtN(f.r2, 4);
+        }
+      } else if (note) note.textContent = "";
+    } else {
+      series = st.runs.map(function (r, i) {
+        var res = simulate(r.p), n = 60, pts = [];
+        for (var k = 0; k <= n; k++) { var t = res.end * k / n; pts.push([t, c.y(r.p, res, t)]); }
+        return { pts: pts, color: colors[i % colors.length], line: true, label: (i + 1) + "" };
+      });
+      if (note) note.textContent = L("Сызықтағы сан — тәжірибе нөмірі.", "Число у линии — номер опыта.", "The number by each line is the run number.");
+    }
+    el.innerHTML = svgChart({ series: series, xLabel: T3(c.xLabel), yLabel: T3(c.yLabel), xZero: true });
+  }
+  function linfit(pts) {
+    var n = pts.length, sx = 0, sy = 0, sxx = 0, sxy = 0;
+    pts.forEach(function (p) { sx += p[0]; sy += p[1]; sxx += p[0] * p[0]; sxy += p[0] * p[1]; });
+    var d = n * sxx - sx * sx; if (!d) return null;
+    var a = (n * sxy - sx * sy) / d, b = (sy - a * sx) / n, my = sy / n, ssr = 0, sst = 0;
+    pts.forEach(function (p) { var f = a * p[0] + b; ssr += (p[1] - f) * (p[1] - f); sst += (p[1] - my) * (p[1] - my); });
+    return { a: a, b: b, r2: sst ? 1 - ssr / sst : 1 };
+  }
+  function svgChart(o) {
+    var W = 560, H = 320, x0 = 62, x1 = 540, y0 = 270, y1 = 18;
+    var all = []; o.series.forEach(function (s) { all = all.concat(s.pts); });
+    var xs = all.map(function (p) { return p[0]; }), ys = all.map(function (p) { return p[1]; });
+    var xmin = o.xZero ? 0 : Math.min.apply(null, xs), xmax = Math.max.apply(null, xs), ymin = 0, ymax = Math.max.apply(null, ys);
+    if (xmax === xmin) { xmax = xmin + 1; }
+    if (ymax <= 0) ymax = 1;
+    xmax = nice(xmax); ymax = nice(ymax * 1.08);
+    function sx(v) { return x0 + (v - xmin) / (xmax - xmin) * (x1 - x0); }
+    function sy(v) { return y0 - (v - ymin) / (ymax - ymin) * (y0 - y1); }
+    var g = '<svg viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="' + esc(o.yLabel + " — " + o.xLabel) + '">';
+    for (var i = 0; i <= 4; i++) {
+      var yv = ymin + (ymax - ymin) * i / 4, xv = xmin + (xmax - xmin) * i / 4;
+      g += '<line x1="' + x0 + '" x2="' + x1 + '" y1="' + sy(yv) + '" y2="' + sy(yv) + '" stroke="var(--border)"/>';
+      g += '<text x="' + (x0 - 8) + '" y="' + (sy(yv) + 4) + '" text-anchor="end" class="ax">' + esc(fmtN(yv, ymax < 1 ? 3 : ymax < 10 ? 2 : 0)) + "</text>";
+      g += '<text x="' + sx(xv) + '" y="' + (y0 + 18) + '" text-anchor="middle" class="ax">' + esc(fmtN(xv, xmax < 1 ? 2 : xmax < 10 ? 1 : 0)) + "</text>";
+    }
+    g += '<line x1="' + x0 + '" x2="' + x1 + '" y1="' + y0 + '" y2="' + y0 + '" stroke="var(--muted)"/><line x1="' + x0 + '" x2="' + x0 + '" y1="' + y1 + '" y2="' + y0 + '" stroke="var(--muted)"/>';
+    g += '<text x="' + ((x0 + x1) / 2) + '" y="' + (H - 6) + '" text-anchor="middle" class="ax-t">' + esc(o.xLabel) + "</text>";
+    g += '<text x="14" y="' + ((y0 + y1) / 2) + '" text-anchor="middle" class="ax-t" transform="rotate(-90 14 ' + ((y0 + y1) / 2) + ')">' + esc(o.yLabel) + "</text>";
+    o.series.forEach(function (s) {
+      if (s.line) g += '<path d="' + s.pts.map(function (p, i) { return (i ? "L" : "M") + sx(p[0]).toFixed(1) + " " + sy(p[1]).toFixed(1); }).join(" ") + '" fill="none" stroke="' + s.color + '" stroke-width="2.5"' + (s.dash ? ' stroke-dasharray="7 5"' : "") + "/>";
+      if (s.dots) s.pts.forEach(function (p) { g += '<circle cx="' + sx(p[0]) + '" cy="' + sy(p[1]) + '" r="6" fill="' + s.color + '" stroke="var(--surface)" stroke-width="2"/>'; });
+      if (s.label) { var e = s.pts[s.pts.length - 1]; g += '<text x="' + (sx(e[0]) - 4) + '" y="' + (sy(e[1]) - 6) + '" text-anchor="end" class="ax-t" style="fill:' + s.color + '">' + s.label + "</text>"; }
+    });
+    return g + "</svg>";
+  }
+  function nice(v) { var e = Math.pow(10, Math.floor(Math.log10(v))), f = v / e; return (f <= 1 ? 1 : f <= 2 ? 2 : f <= 2.5 ? 2.5 : f <= 5 ? 5 : 10) * e; }
+
+  /* ---------- Визуализация опыта (canvas) ---------- */
+  var cv, ctx, W = 0, Hc = 0, dpr = 1, parts = [], flashes = [], lastDraw = 0, collisions = 0;
+  function sizeCanvas() {
+    cv = $("labCanvas"); if (!cv) return;
+    ctx = cv.getContext("2d");
+    var w = cv.clientWidth, h = cv.clientHeight;
+    if (w < 40 || h < 40) return;
+    dpr = Math.min(2, window.devicePixelRatio || 1);
+    cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr); W = w; Hc = h;
+    parts = [];
+  }
+  function css(v) { return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+  function drawFrame() {
+    if (!cv || !W) return;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, W, Hc);
+    var p = anim.p && anim.res ? anim.p : st.params, res = anim.res, t = anim.t;
+    var mode = lab.mode(p);
+    var now = performance.now(), dt = lastDraw ? Math.min(0.05, (now - lastDraw) / 1000) : 0; lastDraw = now;
+    if (mode === "cross") drawCross(p, res, t, dt);
+    else if (mode === "gas") drawGas(p, res, t, dt);
+    else drawChips(p, res, t, dt);
+  }
+  function beaker(x, y, w, h, fill, level) {
+    ctx.fillStyle = fill; ctx.fillRect(x + 3, y + h * (1 - level), w - 6, h * level - 3);
+    ctx.strokeStyle = css("--muted"); ctx.lineWidth = 2.5;
+    ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x, y + h); ctx.lineTo(x + w, y + h); ctx.lineTo(x + w, y); ctx.stroke();
+  }
+  function label(text, x, y, align, size) {
+    ctx.fillStyle = css("--text"); ctx.font = "600 " + (size || 13) + "px 'Golos Text', system-ui"; ctx.textAlign = align || "left"; ctx.textBaseline = "alphabetic";
+    ctx.fillText(text, x, y);
+  }
+  // Na₂S₂O₃ + HCl: стакан над крестом + увеличенный вид частиц.
+  function drawCross(p, res, t, dt) {
+    var half = W > 520 ? W * 0.5 : W, bx = 20, bw = Math.min(170, half - 60), bh = Math.min(170, Hc - 80), by = Hc - bh - 40;
+    var prog = res ? res.progress(t) : 0;
+    ctx.fillStyle = css("--surface-2"); ctx.fillRect(bx - 10, by + bh + 4, bw + 20, 26);
+    ctx.strokeStyle = "#111"; ctx.lineWidth = 7; ctx.globalAlpha = 1;
+    var cx = bx + bw / 2, cy = by + bh * 0.62;
+    ctx.beginPath(); ctx.moveTo(cx - 34, cy - 34); ctx.lineTo(cx + 34, cy + 34); ctx.moveTo(cx + 34, cy - 34); ctx.lineTo(cx - 34, cy + 34); ctx.stroke();
+    ctx.globalAlpha = Math.min(0.97, prog * 0.97);
+    ctx.fillStyle = "#E9DB9A"; ctx.fillRect(bx + 3, by + bh * 0.15, bw - 6, bh * 0.85 - 3);
+    ctx.globalAlpha = 1;
+    ctx.fillStyle = "rgba(160,200,255,.12)"; ctx.fillRect(bx + 3, by + bh * 0.15, bw - 6, bh * 0.85 - 3);
+    beaker(bx, by, bw, bh, "rgba(0,0,0,0)", 0);
+    label(L("Лайлану: ", "Помутнение: ", "Cloudiness: ") + Math.round(prog * 100) + "%", bx, by - 10);
+    if (res && t >= res.end) label(L("Крест көрінбейді!", "Крест не виден!", "Cross no longer visible!"), bx, by - 30, "left", 14);
+    if (W <= 520) return;
+    // Увеличенный вид: число частиц ∝ C, скорость ∝ √T, вспышки ∝ скорости реакции (масштабировано).
+    var zx = half + 10, zy = 20, zw = W - zx - 16, zh = Hc - 60;
+    ctx.strokeStyle = css("--border"); ctx.lineWidth = 1.5; ctx.strokeRect(zx, zy, zw, zh);
+    label(L("Үлкейтілген көрініс (сапалық)", "Увеличенный вид (качественно)", "Zoomed view (qualitative)"), zx + 6, zy + zh + 18, "left", 12);
+    var n = Math.round(8 + (+p.C) / 0.15 * 34), sp = 40 * Math.sqrt((+p.T + 273.15) / 293.15);
+    while (parts.length < n) parts.push({ x: zx + 8 + Math.random() * (zw - 16), y: zy + 8 + Math.random() * (zh - 16), a: Math.random() * 6.283 });
+    parts.length = n;
+    var acol = css("--c-a"), hcol = css("--c-b");
+    parts.forEach(function (q, i) {
+      q.a += (Math.random() - 0.5) * 0.6 * (dt * 10);
+      q.x += Math.cos(q.a) * sp * dt; q.y += Math.sin(q.a) * sp * dt;
+      if (q.x < zx + 6 || q.x > zx + zw - 6) q.a = Math.PI - q.a;
+      if (q.y < zy + 6 || q.y > zy + zh - 6) q.a = -q.a;
+      q.x = Math.max(zx + 6, Math.min(zx + zw - 6, q.x)); q.y = Math.max(zy + 6, Math.min(zy + zh - 6, q.y));
+      ctx.fillStyle = i % 3 ? acol : hcol;
+      ctx.beginPath(); ctx.arc(q.x, q.y, 5, 0, 6.283); ctx.fill();
+    });
+    if (res && anim.running) {
+      var lam = res.rate(t) / (M.THIO.k20 * 0.15) * 4; // вспышек в секунду: 4 при C = 0,15 моль/л и 20 °C
+      if (Math.random() < lam * dt) { var q = parts[Math.floor(Math.random() * parts.length)]; flashes.push({ x: q.x, y: q.y, life: 0.5 }); collisions++; }
+    }
+    flashes = flashes.filter(function (f) { f.life -= dt; return f.life > 0; });
+    flashes.forEach(function (f) { ctx.globalAlpha = f.life * 2; ctx.fillStyle = css("--c-ab"); ctx.beginPath(); ctx.arc(f.x, f.y, 14 * (1 - f.life), 0, 6.283); ctx.fill(); ctx.globalAlpha = 1; });
+    var leg = L("● S₂O₃²⁻  ● H⁺   ✺ тиімді соқтығысу", "● S₂O₃²⁻  ● H⁺   ✺ эффективное столкновение", "● S₂O₃²⁻  ● H⁺   ✺ effective collision");
+    label(leg, zx + 6, zy + 16, "left", 11);
+  }
+  // 2H₂O₂: колба + газовый шприц.
+  function drawGas(p, res, t, dt) {
+    var bx = 30, bw = Math.min(150, W * 0.3), bh = Math.min(160, Hc - 90), by = Hc - bh - 30;
+    beaker(bx, by, bw, bh, "rgba(140,190,255,.35)", 0.55);
+    var cat = p.cat;
+    if (cat === "mno2") { ctx.fillStyle = "#2B2B2B"; for (var i = 0; i < 18; i++) ctx.fillRect(bx + 10 + (i * 37) % (bw - 20), by + bh - 8 - (i % 3) * 3, 4, 4); }
+    if (cat === "catalase") { ctx.fillStyle = "#E8D9A8"; ctx.fillRect(bx + bw / 2 - 22, by + bh - 14, 44, 10); }
+    var rate = res ? res.rate(t) : 0, V = res ? res.V(t) : 0;
+    if (res && anim.running && Math.random() < Math.min(1, rate * dt * 4)) flashes.push({ x: bx + 15 + Math.random() * (bw - 30), y: by + bh - 12, life: 1 });
+    flashes = flashes.filter(function (f) { f.y -= 60 * dt; f.life -= dt * 1.2; return f.life > 0 && f.y > by + bh * 0.45; });
+    ctx.strokeStyle = css("--text"); ctx.lineWidth = 1.5;
+    flashes.forEach(function (f) { ctx.beginPath(); ctx.arc(f.x, f.y, 4, 0, 6.283); ctx.stroke(); });
+    // Шприц: шкала 0–120 мл.
+    var sx = bx + bw + 40, sw = Math.max(160, W - sx - 30), sy = by + 10, sh = 36;
+    ctx.strokeStyle = css("--muted"); ctx.lineWidth = 2; ctx.strokeRect(sx, sy, sw, sh);
+    ctx.beginPath(); ctx.moveTo(bx + bw / 2, by); ctx.lineTo(bx + bw / 2, sy + sh / 2); ctx.lineTo(sx, sy + sh / 2); ctx.stroke();
+    var frac = Math.min(1, V / 120);
+    ctx.fillStyle = "rgba(120,200,255,.35)"; ctx.fillRect(sx + 2, sy + 2, (sw - 4) * frac, sh - 4);
+    ctx.fillStyle = css("--muted"); ctx.fillRect(sx + 2 + (sw - 4) * frac, sy - 4, 6, sh + 8);
+    for (var m = 0; m <= 120; m += 20) { var xx = sx + 2 + (sw - 4) * m / 120; ctx.fillRect(xx, sy + sh, 1.5, 8); label(String(m), xx, sy + sh + 22, "center", 11); }
+    label("V(O₂) = " + fmtN(V, 1) + L(" мл", " мл", " mL"), sx, sy - 12, "left", 15);
+    label(L("Газ шприцы, мл", "Газовый шприц, мл", "Gas syringe, mL"), sx, sy + sh + 40, "left", 12);
+  }
+  // CaCO₃ + HCl: колба на весах.
+  function drawChips(p, res, t, dt) {
+    var bx = 40, bw = Math.min(170, W * 0.4), bh = Math.min(160, Hc - 110), by = Hc - bh - 70;
+    beaker(bx, by, bw, bh, "rgba(140,190,255,.30)", 0.55);
+    var left = res ? res.left(t) : +p.m0, kfr = Math.cbrt(Math.max(0, left / +p.m0));
+    var size = p.size, R0 = size === "chunk" ? 14 : size === "grain" ? 6 : 2, N = size === "chunk" ? 4 : size === "grain" ? 14 : 90;
+    N = Math.round(N * (+p.m0));
+    ctx.fillStyle = "#F2EEE6"; ctx.strokeStyle = "#9A948A"; ctx.lineWidth = 1;
+    for (var i = 0; i < N; i++) {
+      var r = R0 * kfr; if (r < 0.6) continue;
+      var x = bx + 12 + ((i * 53) % (bw - 24)), y = by + bh - 6 - r - ((i * 7) % 4) * (r * 0.8);
+      ctx.beginPath(); ctx.arc(x, y, r, 0, 6.283); ctx.fill(); if (r > 2) ctx.stroke();
+    }
+    var rate = res ? res.rate(t) : 0;
+    if (res && anim.running && Math.random() < Math.min(1, rate * 400 * dt)) flashes.push({ x: bx + 15 + Math.random() * (bw - 30), y: by + bh - 12, life: 1 });
+    flashes = flashes.filter(function (f) { f.y -= 50 * dt; f.life -= dt * 1.2; return f.life > 0 && f.y > by + bh * 0.45; });
+    ctx.strokeStyle = css("--text");
+    flashes.forEach(function (f) { ctx.beginPath(); ctx.arc(f.x, f.y, 3.5, 0, 6.283); ctx.stroke(); });
+    if (p.closed) { ctx.fillStyle = css("--muted"); ctx.fillRect(bx - 2, by - 8, bw + 4, 10); label(L("жабық", "закрыто", "sealed"), bx + bw / 2, by - 14, "center", 12); }
+    // Весы.
+    ctx.fillStyle = css("--surface-2"); ctx.fillRect(bx - 20, by + bh + 4, bw + 40, 14);
+    ctx.fillStyle = "#14161F"; ctx.fillRect(bx + bw / 2 - 70, by + bh + 22, 140, 34);
+    var lost = res ? res.lost(t) : 0, mass = res ? (p.closed ? res.massStart : res.massStart - lost) : (M.MARBLE.flask + +p.m0 + M.MARBLE.Vacid * 1.02);
+    ctx.fillStyle = "#7CFFB2"; ctx.font = "700 18px ui-monospace, monospace"; ctx.textAlign = "center"; ctx.fillText(mass.toFixed(2) + " g", bx + bw / 2, by + bh + 46);
+    var tx = bx + bw + 50;
+    if (W > 420) {
+      label(L("Бөлінген CO₂: ", "Выделилось CO₂: ", "CO₂ released: ") + fmtN(lost, 3) + L(" г", " г", " g"), tx, by + 20, "left", 14);
+      label(L("Қалған CaCO₃: ", "Осталось CaCO₃: ", "CaCO₃ left: ") + fmtN(left, 3) + L(" г", " г", " g"), tx, by + 44, "left", 14);
+    }
+  }
+
+  /* ================= Анализ ================= */
+  function stAnalysis() {
+    var P = lab.prediction, h = "";
+    h += '<div class="card"><h2>' + L("Болжамды тексеру", "Проверка прогноза", "Checking the prediction") + "</h2><p>" + L("Сіздің болжамыңыз: ", "Ваш прогноз: ", "Your prediction: ") + "<b>" + esc(st.pred.choice == null ? "—" : T3(P.opts[st.pred.choice])) + "</b>. " +
+      (st.pred.choice === P.correct ? '<span class="mark-ok">' + L("Тәжірибе оны растады.", "Опыт его подтвердил.", "The experiment confirmed it.") + "</span>" : '<span class="mark-bad">' + L("Тәжірибе басқа нәтиже көрсетті: ", "Опыт показал другое: ", "The experiment showed something else: ") + esc(T3(P.opts[P.correct])) + ".</span>") + "</p></div>";
+    h += '<div class="card" style="margin-top:16px"><h2>' + L("Сұрақтар", "Вопросы", "Questions") + '</h2><p class="muted small">' + L("Алдымен өзіңіз жауап беріңіз — дұрыс жауаптар «Тексеру» батырмасынан кейін ғана ашылады.", "Сначала ответьте сами — правильные ответы откроются только после «Проверить».", "Answer on your own first — the right answers appear only after “Check”.") + "</p>";
+    ["base", "adv", "res"].forEach(function (lv) {
+      var qs = lab.questions.filter(function (q) { return q.level === lv; });
+      if (!qs.length) return;
+      h += '<h3 class="lvl-h">' + esc(T3(LEVEL[lv])) + "</h3>";
+      qs.forEach(function (q) { h += question(q); });
+    });
+    h += st.checked ? "" : '<div class="row"><button class="btn btn-primary" type="button" id="checkQ">' + L("Тексеру", "Проверить", "Check") + '</button><span class="muted small" id="qMsg"></span></div>';
+    h += "</div>";
+    return h + nextBtn(st.checked, L("Алдымен жауаптарды тексеріңіз.", "Сначала проверьте ответы.", "Check your answers first."));
+  }
+  function question(q) {
+    var a = st.answers[q.id], h = '<div class="qbox"><p class="q">' + esc(T3(q.q)) + "</p>";
+    if (q.type === "choice") {
+      h += '<div class="opts">' + q.opts.map(function (o, i) {
+        var cls = st.checked ? (i === q.correct ? " right" : a === i ? " wrong" : "") : "";
+        return '<label class="opt' + cls + '"><input type="radio" name="q_' + q.id + '" value="' + i + '"' + (a === i ? " checked" : "") + (st.checked ? " disabled" : "") + "><span>" + esc(T3(o)) + "</span></label>";
+      }).join("") + "</div>";
+    } else if (q.type === "num") {
+      h += '<div class="row"><input class="inp" type="text" inputmode="decimal" data-qn="' + q.id + '" value="' + esc(a == null ? "" : a) + '"' + (st.checked ? " readonly" : "") + '><span class="muted">' + esc(T3(q.unit)) + "</span></div>";
+    } else {
+      h += '<textarea data-qo="' + q.id + '"' + (st.checked ? " readonly" : "") + ">" + esc(a || "") + "</textarea>";
+    }
+    if (st.checked) {
+      var ok = grade(q);
+      h += '<div class="fb ' + (ok === null ? "" : ok ? "ok" : "bad") + '"><p>' + (ok === null ? L("Ашық жауап — мұғалім бағалайды. ", "Открытый ответ — оценит учитель. ", "Open answer — the teacher will assess it. ") : ok ? '<span class="mark-ok">✓</span> ' : '<span class="mark-bad">✗</span> ') +
+        (q.type === "num" ? L("Дұрыс мәні: ", "Правильное значение: ", "Correct value: ") + "<b>" + esc(numAns(q)) + "</b>. " : "") + esc(T3(q.explain)) + "</p></div>";
+    }
+    return h + "</div>";
+  }
+  function numAns(q) { var v = q.answer(st, simulate); return v == null ? "—" : fmtN(v, q.dec == null ? 3 : q.dec) + " " + T3(q.unit); }
+  function grade(q) {
+    var a = st.answers[q.id];
+    if (q.type === "choice") return a === q.correct;
+    if (q.type === "num") { var v = q.answer(st, simulate), x = parseNum(a); return v != null && isFinite(x) && Math.abs(x - v) / Math.abs(v) <= (q.tol || 0.03); }
+    return null;
+  }
+  function bindAnalysis() {
+    lab.questions.forEach(function (q) {
+      document.querySelectorAll('input[name="q_' + q.id + '"]').forEach(function (el) { el.addEventListener("change", function () { st.answers[q.id] = +el.value; save(); }); });
+      var n = document.querySelector('[data-qn="' + q.id + '"]'); if (n) n.addEventListener("input", function () { st.answers[q.id] = n.value; save(); });
+      var o = document.querySelector('[data-qo="' + q.id + '"]'); if (o) o.addEventListener("input", function () { st.answers[q.id] = o.value; save(); });
+    });
+    if ($("checkQ")) $("checkQ").addEventListener("click", function () {
+      var missing = lab.questions.filter(function (q) { var a = st.answers[q.id]; return a == null || (typeof a === "string" && a.trim().length < (q.type === "open" ? 10 : 1)); });
+      if (missing.length) { $("qMsg").textContent = L("Барлық сұраққа жауап беріңіз (ашық жауап — кемінде бір сөйлем).", "Ответьте на все вопросы (открытый ответ — хотя бы одно предложение).", "Answer every question (open answers need at least one sentence)."); return; }
+      st.checked = true; save(); renderRunner();
+    });
+    bindNext();
+  }
+
+  /* ================= Вывод ================= */
+  function stConcl() {
+    var h = '<div class="card"><h2>' + L("Қорытынды", "Вывод", "Conclusion") + '</h2><p class="muted">' + esc(T3(lab.conclusionHint)) + '</p><textarea id="conclText" style="min-height:140px">' + esc(st.concl.text) + "</textarea>";
+    h += '<p class="q">' + L("Қорытындыңызды қай тәжірибелер растайды?", "Какие опыты подтверждают ваш вывод?", "Which runs support your conclusion?") + '</p><div class="yn">';
+    var n = lab.kind === "data" ? 0 : st.runs.length;
+    for (var i = 0; i < n; i++) h += '<label class="opt"><input type="checkbox" data-ev="' + i + '"' + (st.concl.evidence.indexOf(i) >= 0 ? " checked" : "") + "><span>" + L("Тәжірибе ", "Опыт ", "Run ") + (i + 1) + "</span></label>";
+    if (lab.kind === "data") h += '<label class="opt"><input type="checkbox" data-ev="0"' + (st.concl.evidence.indexOf(0) >= 0 ? " checked" : "") + "><span>" + L("Деректер кестесі", "Таблица данных", "Data table") + "</span></label>";
+    h += "</div></div>";
+    return h + '<div class="row"><button class="btn btn-primary" type="button" id="nextStage"' + (st.concl.text.trim().length >= 20 && st.concl.evidence.length ? "" : " disabled") + ">" + L("Аяқтау және сақтау", "Завершить и сохранить", "Finish and save") + '</button><span class="muted small">' + L("Кемінде 20 таңба және бір дәлел.", "Не меньше 20 символов и одно доказательство.", "At least 20 characters and one piece of evidence.") + "</span></div>";
+  }
+  function bindConcl() {
+    $("conclText").addEventListener("input", function () { st.concl.text = $("conclText").value; save(); refreshNext(); });
+    document.querySelectorAll("[data-ev]").forEach(function (el) {
+      el.addEventListener("change", function () {
+        var i = +el.getAttribute("data-ev"), k = st.concl.evidence.indexOf(i);
+        if (el.checked && k < 0) st.concl.evidence.push(i); else if (!el.checked && k >= 0) st.concl.evidence.splice(k, 1);
+        save(); refreshNext();
+      });
+    });
+    $("nextStage").addEventListener("click", function () {
+      st.finished = new Date().toISOString();
+      st.score = score();
+      var hist = load("nc-lab-history", []);
+      hist.unshift(record());
+      store("nc-lab-history", JSON.stringify(hist.slice(0, 300)));
+      go(5);
+    });
+  }
+  function score() {
+    var auto = 0, max = 0, open = 0;
+    lab.questions.forEach(function (q) { var g = grade(q); if (g === null) open++; else { max++; if (g) auto++; } });
+    return { auto: auto, max: max, open: open, prediction: st.pred.choice === lab.prediction.correct };
+  }
+  function record() {
+    return { lab: lab.id, title: lab.title[1], version: st.version, started: st.started, finished: st.finished, lang: LANG,
+      prediction: st.pred, runs: st.runs.map(function (r) { return { params: r.p, result: r.summary, at: r.at }; }), data: lab.kind === "data" ? { seed: st.dataSeed, answers: st.data } : null,
+      answers: st.answers, conclusion: st.concl, score: st.score, teacherReview: null };
+  }
+
+  /* ================= Результат ================= */
+  function stResult() {
+    var s = st.score || score();
+    var h = '<div class="card print-area"><h2>' + L("Жұмыс аяқталды", "Работа завершена", "Lab complete") + "</h2>" +
+      '<div class="readout big"><div><b>' + s.auto + " / " + s.max + "</b><span>" + L("автоматты тексерілген сұрақтар", "вопросы с автопроверкой", "auto-checked questions") + "</span></div>" +
+      "<div><b>" + s.open + "</b><span>" + L("ашық жауап — мұғалім бағалайды", "открытых ответа — оценит учитель", "open answers — teacher to assess") + "</span></div>" +
+      "<div><b>" + (lab.kind === "data" ? "—" : st.runs.length) + "</b><span>" + L("тәжірибе", "опытов", "runs") + "</span></div></div>" +
+      '<p class="muted small" style="margin-top:12px">' + L("Бұл — алдын ала автоматты нәтиже. Қорытынды мен ашық жауаптарды мұғалім бағалайды. Аккаунттар қосылмағандықтан, нәтиже тек осы браузерде сақталады — файлға жүктеп алыңыз.", "Это предварительный автоматический результат. Вывод и открытые ответы оценивает учитель. Аккаунты пока не подключены, поэтому результат хранится только в этом браузере — скачайте файл.", "This is a preliminary automatic result. The teacher assesses the conclusion and open answers. Accounts are not connected yet, so the result is stored only in this browser — download the file.") + "</p>" +
+      "<h3>" + L("Сіздің қорытындыңыз", "Ваш вывод", "Your conclusion") + "</h3><p>" + esc(st.concl.text) + "</p></div>";
+    h += '<div class="row"><button class="btn" type="button" id="dlJson">' + L("JSON жүктеу", "Скачать JSON", "Download JSON") + '</button><button class="btn" type="button" id="dlCsv">' + L("CSV (Excel) жүктеу", "Скачать CSV (Excel)", "Download CSV (Excel)") + '</button><button class="btn" type="button" id="printBtn">' + L("Басып шығару / PDF", "Печать / PDF", "Print / PDF") + '</button><button class="btn btn-primary" type="button" id="againBtn">' + L("Жұмысты қайта орындау", "Выполнить заново", "Do it again") + "</button></div>";
+    return h;
+  }
+  function bindResult() {
+    $("dlJson").addEventListener("click", function () { download(lab.id + ".json", JSON.stringify(record(), null, 2), "application/json"); });
+    $("dlCsv").addEventListener("click", function () {
+      var cols = lab.kind === "data" ? [] : lab.columns(LANG), lines = [["№"].concat(cols).join(";")];
+      if (lab.kind !== "data") st.runs.forEach(function (r, i) { lines.push([i + 1].concat(lab.row(r.p, simulate(r.p), LANG)).map(csv).join(";")); });
+      lines.push(""); lines.push([L("Қорытынды", "Вывод", "Conclusion"), csv(st.concl.text)].join(";"));
+      download(lab.id + ".csv", "﻿" + lines.join("\r\n"), "text/csv;charset=utf-8");
+    });
+    $("printBtn").addEventListener("click", function () { try { window.print(); } catch (e) {} });
+    $("againBtn").addEventListener("click", function () { st = fresh(); save(); renderRunner(); });
+  }
+  function csv(v) { var s = String(v == null ? "" : v); return /[";\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; }
+  function download(name, text, type) {
+    try { var a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([text], { type: type })); a.download = name; document.body.appendChild(a); a.click(); a.remove(); } catch (e) { console.error(e); }
+  }
+
+  /* ================= Режим «Демонстрация на уроке» ================= */
+  function demoOn() { return document.documentElement.hasAttribute("data-demo"); }
+  function setDemo(on) {
+    if (on) document.documentElement.setAttribute("data-demo", ""); else document.documentElement.removeAttribute("data-demo");
+    try { if (on && document.documentElement.requestFullscreen && !document.fullscreenElement) document.documentElement.requestFullscreen().catch(function () {}); if (!on && document.fullscreenElement) document.exitFullscreen(); } catch (e) {}
+    store("nc-demo", on ? "1" : "0");
+    $("demoBar").hidden = !on;
+    if (lab) renderRunner();
+  }
+  function demoBind() {
+    $("demoRun").addEventListener("click", function () { if (st.stage !== 2) go(2); setTimeout(function () { if ($("runBtn") && !$("runBtn").disabled) startRun(); else togglePause(); }, 30); });
+    $("demoReset").addEventListener("click", function () { if (st.stage === 2) resetRun(); });
+    $("demoExplain").addEventListener("click", function () { var b = $("explainBox"); b.hidden = !b.hidden; b.innerHTML = "<h3>" + L("Түсіндірме", "Объяснение", "Explanation") + "</h3>" + T3(lab.explain); });
+    $("demoExit").addEventListener("click", function () { setDemo(false); });
+    $("demoPrev").addEventListener("click", function () { var i = LABS.indexOf(lab); if (i > 0) location.href = "?lab=" + LABS[i - 1].id; });
+    $("demoNext").addEventListener("click", function () { var i = LABS.indexOf(lab); if (i < LABS.length - 1) location.href = "?lab=" + LABS[i + 1].id; });
+    document.addEventListener("keydown", function (e) {
+      var tg = e.target && e.target.tagName;
+      if (tg === "INPUT" || tg === "TEXTAREA" || tg === "SELECT" || e.ctrlKey || e.metaKey || e.altKey) return;
+      if (e.key === "d" || e.key === "D") setDemo(!demoOn());
+      else if (demoOn() && e.key === " ") { e.preventDefault(); $("demoRun").click(); }
+      else if (demoOn() && (e.key === "r" || e.key === "R")) $("demoReset").click();
+      else if (demoOn() && (e.key === "e" || e.key === "E")) $("demoExplain").click();
+      else if (e.key === "Escape" && demoOn()) setDemo(false);
+    });
+  }
+
+  /* ================= Запуск ================= */
+  if (lab) {
+    st = load("nc-lab-" + lab.id, null);
+    if (!st || st.version !== NCLabs.VERSION) st = fresh();
+    if (st.finished && st.stage < 5) st.stage = 5;
+    if (store("nc-demo") === "1") document.documentElement.setAttribute("data-demo", "");
+    $("demoBar").hidden = !demoOn();
+    demoBind();
+    renderRunner();
+    window.addEventListener("resize", function () { if (st.stage === 2 && lab.kind !== "data") { sizeCanvas(); drawFrame(); } });
+    onLang(renderRunner);
+    // Перерисовка цветов canvas при смене темы.
+    document.addEventListener("prefschange", function () { if (st.stage === 2) drawFrame(); });
+  } else {
+    bindCatalog();
+    renderCatalog();
+    onLang(renderCatalog);
+  }
+});
+
+</script>
+</body>
+</html>
